@@ -31,7 +31,7 @@ app.post('/api/study-assistant', async (req, res) => {
 
 const distPath = path.resolve(__dirname, '../dist');
 app.use(express.static(distPath));
-app.get('*', (_req, res) => res.sendFile(path.join(distPath, 'index.html')));
+app.get(/.*/, (_req, res) => res.sendFile(path.join(distPath, 'index.html')));
 
 const port = Number(process.env.PORT || 8787);
 app.listen(port, () => console.log(`GP Seoni Student Portal running on port ${port}`));
