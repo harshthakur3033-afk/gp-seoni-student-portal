@@ -14,7 +14,7 @@ app.post('/api/study-assistant', async (req, res) => {
   try {
     const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
     const response = await client.responses.create({
-      model: process.env.OPENAI_MODEL || 'gpt-5.6-mini',
+      model: process.env.OPENAI_MODEL || 'gpt-5.6-luna',
       instructions: 'You are a helpful study assistant for diploma/polytechnic students in India. Explain concepts clearly, step-by-step, and keep answers suitable for exams and practical learning. Do not invent college-specific notices or syllabus details.',
       input: question,
     });
