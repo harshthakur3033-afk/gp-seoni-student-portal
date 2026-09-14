@@ -1,6 +1,10 @@
+import 'dotenv/config';
 import express from 'express';
 import OpenAI from 'openai';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 app.use(express.json({ limit: '1mb' }));
 
@@ -25,5 +29,9 @@ app.post('/api/study-assistant', async (req, res) => {
   }
 });
 
+const distPath = path.resolve(__dirname, '../dist');
+app.use(express.static(distPath));
+app.get('*', (_req, res) => res.sendFile(path.join(distPath, 'index.html')));
+
 const port = Number(process.env.PORT || 8787);
-app.listen(port, () => console.log(`Study assistant server running on http://localhost:${port}`));
+app.listen(port, () => console.log(`GP Seoni Student Portal running on port ${port}`));
