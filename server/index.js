@@ -22,7 +22,13 @@ app.post('/api/study-assistant', async (req, res) => {
       instructions: 'You are a helpful study assistant for diploma/polytechnic students in India. Explain concepts clearly, step-by-step, and keep answers suitable for exams and practical learning. Do not invent college-specific notices or syllabus details.',
       input: question,
     });
-    res.json({ answer: response.output_text });
+
+    const answer = response.output_text
+      .replace(/\*\*(.*?)\*\*/gs, '$1')
+      .replace(/^#{1,6}\s*/gm, '')
+      .replace(/^\s*[-*]\s+/gm, '• ');
+
+    res.json({ answer });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'The AI assistant could not answer right now.' });
