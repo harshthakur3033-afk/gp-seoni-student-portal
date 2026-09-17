@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { createRoot } from 'react-dom/client';
-import { BookOpen, BrainCircuit, CalendarDays, CheckCircle2, ChevronRight, CircleHelp, Clock3, Code2, FileText, GraduationCap, LayoutDashboard, Menu, Network, Plus, Search, Send, ShieldCheck, Sparkles, Target, X } from 'lucide-react';
+import { BookOpen, BrainCircuit, CalendarDays, CheckCircle2, ChevronRight, CircleHelp, Code2, FileText, GraduationCap, LayoutDashboard, Menu, Network, Plus, Search, Send, ShieldCheck, Sparkles, Target, X } from 'lucide-react';
 import './styles.css';
 
 const subjects = [
@@ -13,10 +12,34 @@ const subjects = [
 ];
 
 const notes = [
-  { subject: 'Computer Networks', type: 'Notes', title: 'OSI Model — 7 Layers', desc: 'Layer-by-layer revision guide with key functions and examples.' },
-  { subject: 'Data Structures', type: 'Notes', title: 'Stack & Queue Basics', desc: 'Concepts, operations, complexity and common exam questions.' },
-  { subject: 'Cyber Security Basics', type: 'Quick Guide', title: 'CIA Triad & Common Threats', desc: 'Short revision sheet for confidentiality, integrity and availability.' },
-  { subject: 'Database Management', type: 'Notes', title: 'SQL Fundamentals', desc: 'SELECT, WHERE, ORDER BY, GROUP BY and basic joins.' },
+  {
+    subject: 'Computer Networks',
+    type: 'Notes',
+    title: 'OSI Model — 7 Layers',
+    desc: 'Layer-by-layer revision guide with key functions and examples.',
+    content: `OSI Model — 7 Layers\n\n1. Physical — transmits raw bits over the medium.\n2. Data Link — frames, MAC addressing and basic error detection.\n3. Network — logical addressing and routing; IP works here.\n4. Transport — end-to-end delivery, reliability and ports; TCP/UDP.\n5. Session — manages communication sessions between applications.\n6. Presentation — data format, translation, encryption and compression.\n7. Application — network services used by applications, such as HTTP, DNS and email protocols.\n\nExam tip: Remember the order from Layer 1 to 7: Physical, Data Link, Network, Transport, Session, Presentation, Application.`
+  },
+  {
+    subject: 'Data Structures',
+    type: 'Notes',
+    title: 'Stack & Queue Basics',
+    desc: 'Concepts, operations, complexity and common exam questions.',
+    content: `Stack & Queue Basics\n\nSTACK\n• Follows LIFO: Last In, First Out.\n• Main operations: push, pop and peek/top.\n• Applications: function calls, undo operations and expression evaluation.\n\nQUEUE\n• Follows FIFO: First In, First Out.\n• Main operations: enqueue and dequeue.\n• Applications: scheduling, printer queues and breadth-first search.\n\nExam tip: Stack = LIFO. Queue = FIFO.`
+  },
+  {
+    subject: 'Cyber Security Basics',
+    type: 'Quick Guide',
+    title: 'CIA Triad & Common Threats',
+    desc: 'Short revision sheet for confidentiality, integrity and availability.',
+    content: `CIA Triad & Common Threats\n\nCONFIDENTIALITY\nOnly authorized people or systems should access information.\n\nINTEGRITY\nInformation should remain accurate and protected from unauthorized modification.\n\nAVAILABILITY\nAuthorized users should be able to access systems and information when needed.\n\nCommon threats include phishing, weak passwords, malware, social engineering and unauthorized access.\n\nExam tip: CIA = Confidentiality, Integrity, Availability.`
+  },
+  {
+    subject: 'Database Management',
+    type: 'Notes',
+    title: 'SQL Fundamentals',
+    desc: 'SELECT, WHERE, ORDER BY, GROUP BY and basic joins.',
+    content: `SQL Fundamentals\n\nSELECT — retrieves data.\nWHERE — filters rows using a condition.\nORDER BY — sorts the result.\nGROUP BY — groups rows for aggregate operations.\nJOIN — combines related data from multiple tables.\n\nExample:\nSELECT name, marks\nFROM students\nWHERE marks >= 60\nORDER BY marks DESC;\n\nCommon aggregate functions: COUNT(), SUM(), AVG(), MIN(), MAX().`
+  },
 ];
 
 const papers = [
@@ -136,7 +159,43 @@ function Subjects({ filteredSubjects, go }) {
 
 function Notes({ search }) {
   const filtered = notes.filter((n) => `${n.subject} ${n.title} ${n.desc}`.toLowerCase().includes(search));
-  return <><div className="page-intro"><span className="section-kicker">STUDY LIBRARY</span><h1>Notes & Study Material</h1><p>Short, exam-friendly resources. Official college material can be added as it becomes available.</p></div><div className="resource-grid">{filtered.map((n)=><article className="resource-card" key={n.title}><div className="resource-icon"><BookOpen size={20}/></div><span className="resource-tag">{n.type}</span><h3>{n.title}</h3><b>{n.subject}</b><p>{n.desc}</p><button className="text-button">Open resource <ChevronRight size={15}/></button></article>)}</div>{filtered.length===0&&<div className="empty">No study resources match “{search}”.</div>}</>;
+  const [selectedNote, setSelectedNote] = useState(null);
+
+  return <>
+    <div className="page-intro"><span className="section-kicker">STUDY LIBRARY</span><h1>Notes & Study Material</h1><p>Short, exam-friendly resources. Official college material can be added as it becomes available.</p></div>
+    <div className="resource-grid">
+      {filtered.map((n)=><article className="resource-card" key={n.title}>
+        <div className="resource-icon"><BookOpen size={20}/></div>
+        <span className="resource-tag">{n.type}</span>
+        <h3>{n.title}</h3>
+        <b>{n.subject}</b>
+        <p>{n.desc}</p>
+        <button className="text-button" onClick={() => setSelectedNote(n)}>Open resource <ChevronRight size={15}/></button>
+      </article>)}
+    </div>
+    {filtered.length===0&&<div className="empty">No study resources match “{search}”.</div>}
+
+    {selectedNote && <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={selectedNote.title}
+      onClick={(e) => { if (e.target === e.currentTarget) setSelectedNote(null); }}
+      style={{position:'fixed',inset:0,background:'rgba(6,20,46,.58)',display:'grid',placeItems:'center',padding:'20px',zIndex:50}}
+    >
+      <section style={{width:'min(760px,100%)',maxHeight:'85vh',overflow:'auto',background:'#fff',borderRadius:'16px',border:'1px solid #e2e8f0',padding:'24px',boxShadow:'0 24px 70px rgba(7,21,46,.25)'}}>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',gap:'16px'}}>
+          <div>
+            <span className="section-kicker">{selectedNote.type}</span>
+            <h2 style={{margin:'5px 0 4px',fontSize:'22px',color:'#14213d'}}>{selectedNote.title}</h2>
+            <div style={{fontSize:'10px',fontWeight:700,color:'#5e7ba2'}}>{selectedNote.subject}</div>
+          </div>
+          <button className="text-button" onClick={() => setSelectedNote(null)} aria-label="Close resource"><X size={20}/></button>
+        </div>
+        <div style={{marginTop:'18px',padding:'16px',borderRadius:'10px',background:'#f7faff',color:'#334764',fontSize:'12px',lineHeight:1.75,whiteSpace:'pre-wrap'}}>{selectedNote.content}</div>
+        <button className="primary full" style={{marginTop:'16px'}} onClick={() => setSelectedNote(null)}>Close Resource</button>
+      </section>
+    </div>}
+  </>;
 }
 
 function Papers() { return <><div className="page-intro"><span className="section-kicker">EXAM PREPARATION</span><h1>Question Papers</h1><p>Practice sets are ready here; replace or extend them with verified college/university papers later.</p></div><div className="paper-list">{papers.map((p)=><article className="paper-row" key={p.subject}><div className="paper-icon"><FileText size={21}/></div><div><strong>{p.subject}</strong><small>{p.semester} · {p.year}</small></div><span>{p.status}</span><button className="secondary dark">Practice <ChevronRight size={15}/></button></article>)}</div></>;
