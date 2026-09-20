@@ -2018,8 +2018,285 @@ PRACTICAL PRACTICE
 
 SYLLABUS ALIGNMENT
 This note follows Unit 1 of the uploaded Semester III CSE Data Structures syllabus: classification of data structures as linear/non-linear and primitive/non-primitive; pointers including declaration, initialization, accessing variables, pointer arithmetic and array of pointers; row-major and column-major implementation of 2-D arrays; structures including definition, declaration and initialization; and operations on data structures including traversing, searching, insertion, deletion, sorting, merging and updating.` },
-  { subject:'Data Structures', code:'303', unit:'Unit 2', title:'Searching and Sorting Techniques', desc:'Linear and binary search plus insertion, selection, bubble, quick and heap sort.', type:'Syllabus Unit',
-    content:'Unit 2 — Searching and Sorting Techniques\n\n• Linear search\n• Binary search\n• Insertion sort\n• Selection sort\n• Bubble sort\n• Quick sort\n• Heap sort' },
+    { subject:'Data Structures', code:'303', unit:'Unit 2', title:'Searching and Sorting Techniques', desc:'Detailed Unit 2 notes covering linear and binary search plus insertion, selection, bubble, quick and heap sort.', type:'Detailed Notes',
+    content:`Unit 2 — Searching and Sorting Techniques
+
+1. SEARCHING TECHNIQUES
+Searching means finding whether a required element is present in a collection and, when applicable, identifying its position.
+
+This unit covers two searching techniques:
+• Linear search
+• Binary search
+
+2. LINEAR SEARCH — CONCEPT
+Linear search checks elements one by one from the beginning of a list until the target is found or all elements have been checked.
+
+Example:
+List: 10, 25, 40, 55, 70
+Target: 40
+
+Check 10 → not equal
+Check 25 → not equal
+Check 40 → found
+
+Linear search does not require the data to be sorted.
+
+3. LINEAR SEARCH — PROCESS
+Basic steps:
+1) Start from the first element.
+2) Compare the current element with the target.
+3) If they match, report the position.
+4) Otherwise move to the next element.
+5) Continue until the target is found or the list ends.
+
+Simple C-style logic:
+for (int i = 0; i < n; i++) {
+    if (a[i] == key) {
+        /* found */
+    }
+}
+
+4. LINEAR SEARCH — COMPLEXITY
+In the best case, the target is found at the first position.
+In the worst case, every element may be checked.
+For n elements, the worst-case time grows linearly with n, commonly described as O(n).
+
+5. BINARY SEARCH — CONCEPT
+Binary search repeatedly divides a sorted collection into smaller parts.
+
+Important condition:
+The data must be arranged in sorted order before applying binary search.
+
+Example:
+List: 10, 20, 30, 40, 50, 60, 70
+Target: 60
+
+1) Check the middle value 40.
+2) Since 60 is greater than 40, ignore the left half.
+3) Check the middle of the remaining right half.
+4) Continue until the target is found or the search interval becomes empty.
+
+6. BINARY SEARCH — PROCESS
+Basic steps:
+1) Set low to the first index and high to the last index.
+2) Find the middle index.
+3) Compare the middle value with the target.
+4) If equal, the target is found.
+5) If the target is smaller, search the left half.
+6) If the target is larger, search the right half.
+7) Repeat while the search interval is valid.
+
+Conceptual C-style logic:
+while (low <= high) {
+    mid = low + (high - low) / 2;
+    if (a[mid] == key) {
+        /* found */
+    } else if (key < a[mid]) {
+        high = mid - 1;
+    } else {
+        low = mid + 1;
+    }
+}
+
+7. BINARY SEARCH — COMPLEXITY
+Each step removes roughly half of the remaining search space. For n elements, the worst-case time is commonly expressed as O(log n).
+
+8. LINEAR SEARCH VS BINARY SEARCH
+Linear search:
+• Can be used on unsorted data.
+• Checks elements sequentially.
+• Worst-case time: O(n).
+
+Binary search:
+• Requires sorted data.
+• Repeatedly halves the search range.
+• Worst-case time: O(log n).
+
+The choice depends on the data organization and whether the collection is already sorted.
+
+9. SORTING TECHNIQUES
+Sorting means arranging data according to an order, commonly ascending or descending.
+
+This unit covers:
+• Insertion sort
+• Selection sort
+• Bubble sort
+• Quick sort
+• Heap sort
+
+10. INSERTION SORT — CONCEPT
+Insertion sort builds the sorted part of the collection one element at a time. Each new element is inserted into its proper position among the elements already considered sorted.
+
+Example:
+4, 2, 5, 1
+
+Start with 4 as sorted.
+Insert 2 before 4 → 2, 4
+Insert 5 after 4 → 2, 4, 5
+Insert 1 at the beginning → 1, 2, 4, 5
+
+11. INSERTION SORT — PROCESS
+1) Treat the first element as the initially sorted portion.
+2) Take the next element as the key.
+3) Shift larger sorted elements one position to the right.
+4) Insert the key in its correct position.
+5) Repeat for the remaining elements.
+
+For an array of n elements, the worst-case time is O(n²).
+
+12. SELECTION SORT — CONCEPT
+Selection sort repeatedly selects the smallest element from the unsorted portion and places it at the next correct position.
+
+Example:
+5, 3, 4, 1
+
+Find minimum 1 and place it first:
+1, 3, 4, 5
+
+Then continue with the remaining unsorted portion.
+
+13. SELECTION SORT — PROCESS
+1) Start at the first position.
+2) Find the minimum element in the unsorted part.
+3) Swap it with the element at the current position.
+4) Move the boundary of the sorted portion forward.
+5) Repeat.
+
+Selection sort has O(n²) comparisons in the typical analysis.
+
+14. BUBBLE SORT — CONCEPT
+Bubble sort repeatedly compares adjacent elements and swaps them when they are in the wrong order. Larger elements move toward the end of the list through repeated passes.
+
+Example:
+5, 1, 4
+
+Compare 5 and 1 → swap:
+1, 5, 4
+
+Compare 5 and 4 → swap:
+1, 4, 5
+
+After another pass if needed, the list becomes sorted.
+
+15. BUBBLE SORT — PROCESS
+1) Compare adjacent elements.
+2) Swap them if they are in the wrong order.
+3) Continue through the collection.
+4) Repeat passes until the collection is sorted.
+
+A basic implementation has O(n²) worst-case time. An optimized version that stops when no swap occurs can be O(n) in the best case.
+
+16. QUICK SORT — CONCEPT
+Quick sort is a divide-and-conquer sorting method. It chooses a pivot, partitions the data around the pivot, and recursively sorts the resulting parts.
+
+Main idea:
+1) Choose a pivot.
+2) Put smaller values on one side and larger values on the other according to the chosen partition rule.
+3) Recursively sort the left and right parts.
+
+17. QUICK SORT — COMPLEXITY
+The average-case time is commonly O(n log n).
+The worst-case time can become O(n²), for example when partitions are repeatedly very unbalanced.
+
+The exact behavior depends on pivot selection and partitioning strategy.
+
+18. HEAP SORT — CONCEPT
+Heap sort uses a heap data structure to repeatedly select the next element for the sorted position.
+
+A common approach for ascending order is:
+1) Build a max-heap.
+2) Move the maximum element to the end.
+3) Reduce the heap size.
+4) Restore the heap property.
+5) Repeat until the collection is sorted.
+
+19. HEAP SORT — COMPLEXITY
+Building and maintaining the heap leads to an O(n log n) time bound for heap sort.
+
+20. COMPARISON OF SORTING METHODS
+Insertion sort:
+• Simple and useful for small or nearly sorted data.
+• Worst-case O(n²).
+
+Selection sort:
+• Repeatedly selects the minimum element.
+• Typical comparison count is O(n²).
+
+Bubble sort:
+• Uses adjacent comparisons and swaps.
+• Basic worst-case O(n²).
+• Optimized best case can be O(n).
+
+Quick sort:
+• Divide-and-conquer approach.
+• Average O(n log n).
+• Worst O(n²).
+
+Heap sort:
+• Heap-based approach.
+• O(n log n) time bound.
+
+21. CHOOSING A SORTING METHOD
+A sorting method is selected according to the data and the required performance.
+
+Examples:
+• Small or nearly sorted data can make insertion sort practical.
+• Selection and bubble sort are simple for learning and small datasets.
+• Quick sort is a widely used divide-and-conquer approach.
+• Heap sort provides an O(n log n) time bound and uses a heap.
+
+22. IMPORTANT DISTINCTION — SEARCHING VS SORTING
+Searching:
+Goal = find a required element.
+
+Sorting:
+Goal = arrange elements into an order.
+
+Example:
+Searching for roll number 25 asks whether 25 exists and where it is.
+Sorting roll numbers arranges all roll numbers in ascending or descending order.
+
+23. QUICK EXAM REVISION
+• Linear search = sequential checking.
+• Binary search = repeatedly halves the search space.
+• Binary search requires sorted data.
+• Linear search worst case = O(n).
+• Binary search worst case = O(log n).
+• Insertion sort = insert each new element into the sorted portion.
+• Selection sort = select the minimum from the unsorted portion.
+• Bubble sort = compare and swap adjacent elements.
+• Quick sort = divide and conquer using a pivot.
+• Heap sort = sorting using a heap.
+• Basic insertion, selection and bubble sort analyses commonly involve O(n²) worst-case behavior.
+• Quick sort average = O(n log n), worst = O(n²).
+• Heap sort = O(n log n).
+
+IMPORTANT EXAM QUESTIONS
+1. What is searching? Explain linear search with its process and complexity.
+2. Explain binary search and state the condition required before applying it.
+3. Differentiate linear search and binary search.
+4. What is sorting? Explain insertion sort.
+5. Explain selection sort with its process.
+6. Explain bubble sort with an example.
+7. Explain quick sort and the divide-and-conquer idea.
+8. Explain heap sort and the role of the heap.
+9. Compare insertion, selection, bubble, quick and heap sort.
+10. Write a C program to implement linear search.
+11. Write a C program to implement binary search.
+12. Write C programs for insertion, selection, bubble, quick and heap sorting.
+
+PRACTICAL PRACTICE
+• Implement linear search on a list of integers.
+• Implement binary search on a sorted list of integers.
+• Generate or use random data and implement insertion sort.
+• Implement selection sort.
+• Implement bubble sort.
+• Implement quick sort.
+• Implement heap sort.
+• Compare the behavior of different search and sorting techniques on suitable input data.
+
+SYLLABUS ALIGNMENT
+This note follows Unit 2 of the uploaded Semester III CSE Data Structures syllabus: Searching Techniques — Linear search and Binary search; and Sorting Techniques — Insertion sort, Selection sort, Bubble sort, quick sort, and heap sort. The syllabus also assigns 14 hours and 14 marks to this unit.` },
   { subject:'Data Structures', code:'303', unit:'Unit 3', title:'Linear Data Structures', desc:'Stacks and queues, representations, applications and queue variants.', type:'Syllabus Unit',
     content:'Unit 3 — Linear Data Structures\n\n• Stack introduction and array representation\n• Applications of stacks\n• Infix-to-postfix transformation and postfix expressions\n• Queue introduction and array representation\n• DeQueue and circular queue\n• Applications of queues' },
   { subject:'Data Structures', code:'303', unit:'Unit 4', title:'Linked List', desc:'Singly, circular and doubly linked lists with core operations.', type:'Syllabus Unit',
