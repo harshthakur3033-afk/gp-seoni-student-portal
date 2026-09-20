@@ -948,8 +948,225 @@ PRACTICAL PRACTICE
 
 SYLLABUS ALIGNMENT
 This note follows the Unit 2 topics in the uploaded Semester III CSE Scripting Languages syllabus: introduction to advanced data types; lists with creating, accessing, modifying, slicing and iterating; tuples with creating, accessing, immutability, slicing, unpacking and iteration; dictionaries with creation, access, adding/modifying key-value pairs, deletion and iteration; sets with creation and adding/removing elements; and arrays with the array module, creation, access, modification and operations.` },
-  { subject:'Scripting Languages', code:'302', unit:'Unit 3', title:'Control Structures', desc:'Coding blocks, if/else/elif, for and while loops, loop controls and programming practice.', type:'Syllabus Unit',
-    content:'Unit 3 — Control Structures\n\n• Coding blocks\n• if, else and elif\n• for loops and iteration over sequences and range\n• while loop\n• continue, break, else and pass\n• Programming using conditional and loop blocks' },
+    { subject:'Scripting Languages', code:'302', unit:'Unit 3', title:'Control Structures', desc:'Detailed Unit 3 notes covering coding blocks, if/else/elif, for and range, while, continue, break, loop else and conditional-loop programming.', type:'Detailed Notes',
+    content:`Unit 3 — Control Structures
+
+1. CODING BLOCKS
+A coding block is a group of statements that belong together and execute as one logical unit. In Python, indentation is used to show the beginning and end of a block.
+
+Example:
+marks = 72
+if marks >= 40:
+    print("Pass")
+    print("Result checked")
+
+Both indented statements belong to the if block.
+
+2. CONDITIONAL BLOCKS
+Conditional blocks allow a Python program to choose which statements should run according to a condition.
+
+The syllabus covers:
+• if
+• else
+• elif
+
+3. if STATEMENT
+The if statement executes its block when the condition is true.
+
+Syntax:
+if condition:
+    statement
+
+Example:
+marks = 75
+if marks >= 40:
+    print("Pass")
+
+If marks is 40 or more, the indented statement runs.
+
+4. if-else STATEMENT
+The else block runs when the if condition is false.
+
+Example:
+marks = 35
+
+if marks >= 40:
+    print("Pass")
+else:
+    print("Fail")
+
+Only one of the two blocks is selected for this condition.
+
+5. elif STATEMENT
+elif means "else if". It is used when there are multiple conditions to test.
+
+Example:
+marks = 82
+
+if marks >= 75:
+    print("Distinction")
+elif marks >= 40:
+    print("Pass")
+else:
+    print("Fail")
+
+Python checks the conditions in order and executes the first matching block.
+
+6. FOR LOOP
+A for loop is used to iterate over the items of a sequence or another iterable object.
+
+Basic form:
+for item in sequence:
+    statement
+
+Example:
+names = ["Harsh", "Aman", "Riya"]
+
+for name in names:
+    print(name)
+
+The loop processes each item one by one.
+
+7. ITERATING OVER SEQUENCES
+A sequence can contain multiple values that can be processed one after another.
+
+Example with a string:
+word = "Python"
+
+for ch in word:
+    print(ch)
+
+Each character is processed in sequence.
+
+8. range() WITH FOR LOOP
+The range() function is commonly used when a loop needs a sequence of numbers.
+
+Example:
+for i in range(1, 6):
+    print(i)
+
+This processes the numbers 1 through 5.
+
+range() can also use a step:
+for i in range(0, 10, 2):
+    print(i)
+
+This processes even numbers from 0 up to, but not including, 10.
+
+9. WHILE LOOP
+A while loop repeats its block as long as its condition remains true.
+
+Syntax:
+while condition:
+    statement
+
+Example:
+i = 1
+
+while i <= 5:
+    print(i)
+    i += 1
+
+The condition is checked before each iteration. The loop variable or other state must change appropriately so that the loop can eventually finish.
+
+10. continue STATEMENT
+The continue statement skips the remaining statements in the current loop iteration and moves to the next iteration.
+
+Example:
+for i in range(1, 6):
+    if i == 3:
+        continue
+    print(i)
+
+The statement for printing is skipped when i is 3.
+
+11. break STATEMENT
+The break statement terminates the nearest enclosing loop immediately.
+
+Example:
+for i in range(1, 6):
+    if i == 4:
+        break
+    print(i)
+
+The loop stops when i becomes 4.
+
+12. else WITH LOOPS
+Python also allows an else block to be attached to a loop. The loop else block executes when the loop finishes normally without encountering break.
+
+Example:
+for i in range(3):
+    print(i)
+else:
+    print("Loop completed")
+
+If break is used before normal completion, the loop's else block is skipped.
+
+13. BREAK VS CONTINUE
+break:
+• Stops the loop completely.
+• Control moves outside the loop.
+
+continue:
+• Does not stop the loop completely.
+• Skips the rest of the current iteration and continues with the next iteration.
+
+14. CONDITIONAL AND LOOP COMBINATIONS
+Conditional statements can be placed inside loops, and loops can be used inside conditional blocks. This allows a program to solve problems that require repeated processing together with decisions.
+
+Example:
+for i in range(1, 6):
+    if i % 2 == 0:
+        print(i, "Even")
+
+Here, the for loop provides repetition and the if statement provides the decision.
+
+15. PROGRAMMING USING CONDITIONAL AND LOOP BLOCKS
+A useful approach is:
+1) Identify the condition or repeated task.
+2) Choose if/else/elif for decisions.
+3) Choose for when iterating through a sequence or range.
+4) Choose while when repetition depends on a condition.
+5) Use break when the loop must stop early.
+6) Use continue when the current iteration should be skipped.
+7) Keep indentation consistent.
+
+16. QUICK EXAM REVISION
+• Coding block = group of statements belonging to one logical block.
+• if = executes when condition is true.
+• else = executes when the if condition is false.
+• elif = tests another condition.
+• for = iterates over a sequence or range.
+• range() = provides a sequence of numbers for iteration.
+• while = repeats while a condition is true.
+• continue = skips the current iteration.
+• break = terminates the loop.
+• loop else = runs when the loop completes normally without break.
+• Indentation defines Python code blocks.
+
+IMPORTANT EXAM QUESTIONS
+1. What is a coding block in Python? Explain the role of indentation.
+2. Explain if, else and elif with examples.
+3. What is a for loop? Explain iteration over a sequence.
+4. Explain the use of range() with a for loop.
+5. What is a while loop? Give an example.
+6. Explain continue and break statements.
+7. Explain the use of else with a loop.
+8. Differentiate break and continue.
+9. Explain how conditional and loop blocks can be combined in a Python program.
+
+PRACTICAL PRACTICE
+• Write a program using if, else and elif to classify marks.
+• Use a for loop to display elements of a list.
+• Use a for loop with range() to print a number series.
+• Write a while loop to print numbers from 1 to 10.
+• Use continue to skip a chosen value.
+• Use break to stop a loop when a condition is met.
+• Write a loop with an else block and observe when the else part executes.
+• Write a small program combining a loop and a conditional block.
+
+SYLLABUS ALIGNMENT
+This note follows the Unit 3 topics in the uploaded Semester III CSE Scripting Languages syllabus: understanding coding blocks; conditional blocks using if, else and elif; for loops and iteration over sequences and range; while loop; loop manipulation using continue, break, else and pass; and programming using conditional and loop blocks.` },
   { subject:'Scripting Languages', code:'302', unit:'Unit 4', title:'Functions, Modules and Packages', desc:'Functions, parameters, return values, scope, recursion, modules, namespaces, packages and PIP.', type:'Syllabus Unit',
     content:'Unit 4 — Functions, Modules and Packages\n\n• Defining and calling functions\n• Positional, default and keyword parameters\n• Return values, variable scope and recursion\n• User-defined modules, namespaces and scoping\n• Importing own and external modules\n• User-defined and built-in packages\n• Installing packages using PIP' },
   { subject:'Scripting Languages', code:'302', unit:'Unit 5', title:'File I/O, Text Processing and Regular Expressions', desc:'File modes and operations, exception handling and regex with Python re.', type:'Syllabus Unit',
