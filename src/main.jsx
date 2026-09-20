@@ -190,9 +190,186 @@ PRACTICAL PRACTICE
 • Allocate and release dynamic memory using malloc() and free().
 
 Syllabus alignment: This note covers Unit 4 of the uploaded Semester III CSE syllabus: one-dimensional and multidimensional arrays, memory organization, strings and string functions, pointers, and dynamic memory allocation.` },
-  { subject:'Computer Programming', code:'301', unit:'Unit 5', title:'Functions and Recursion', desc:'Function declaration, scope, lifetime, parameter passing and recursion.', type:'Syllabus Unit',
-    content:'Unit 5 — Functions and Recursion\n\n• Function declaration\n• Scope and lifetime of variables in functions\n• Types of functions\n• Call by value vs call by reference\n• Recursion: concept, uses, characteristics, types and examples' },
+    { subject:'Computer Programming', code:'301', unit:'Unit 5', title:'Functions and Recursion', desc:'Detailed Unit 5 notes covering function declaration, scope and lifetime of variables, function types, parameter passing, recursion, recursive-function characteristics, recursion types and examples.', type:'Detailed Notes',
+    content:`Unit 5 — Functions and Recursion
 
+1. FUNCTIONS
+A function is a named block of code that performs a specific task. Functions help divide a program into smaller, reusable parts and make programs easier to understand, test and maintain.
+
+2. FUNCTION DECLARATION
+A function declaration tells the compiler the function's name, return type and parameter types before the function is used.
+
+General form:
+return_type function_name(parameter_list);
+
+Example:
+int add(int a, int b);
+
+A function is commonly used through three related parts:
+• Declaration (prototype) — tells the compiler the function interface.
+• Definition — contains the statements that perform the task.
+• Function call — requests execution of the function.
+
+Example:
+int add(int a, int b) {
+    return a + b;
+}
+
+int result = add(10, 20);
+
+3. SCOPE OF VARIABLES IN FUNCTIONS
+Scope means the region of the program where a variable name can be accessed.
+
+Local variable:
+A variable declared inside a function or block is generally accessible only within that function or block.
+
+Example:
+void test(void) {
+    int x = 10;
+    printf("%d", x);
+}
+
+The variable x cannot be directly accessed outside its scope.
+
+4. LIFETIME OF VARIABLES IN FUNCTIONS
+Lifetime means the period during program execution for which a variable exists in memory.
+
+The scope and lifetime of a variable are related but not identical concepts. A local automatic variable normally exists while execution is within its function/block. A static local variable has local scope but retains its stored value between calls to the function.
+
+Example:
+void counter(void) {
+    static int count = 0;
+    count++;
+    printf("%d", count);
+}
+
+Repeated calls to counter() continue from the previous value of count.
+
+5. TYPES OF FUNCTIONS
+Functions can be discussed in different ways. For exam preparation, one common classification based on parameters and return value is:
+
+• No arguments and no return value.
+• Arguments but no return value.
+• No arguments but a return value.
+• Arguments and a return value.
+
+Example with arguments and return value:
+int square(int n) {
+    return n * n;
+}
+
+6. CALL BY VALUE
+In C, ordinary function arguments are passed by value: the function receives a copy of the argument's value. Changing the parameter inside the function does not directly change the caller's original variable.
+
+Example:
+void change(int x) {
+    x = 100;
+}
+
+int a = 10;
+change(a);
+
+After the call, a remains 10.
+
+7. CALL BY REFERENCE — C CONTEXT
+C does not have a separate built-in "call by reference" parameter-passing mechanism like some other languages. In C, reference-like behavior is achieved by passing the address of a variable through a pointer and modifying the object through that pointer.
+
+Example:
+void change(int *x) {
+    *x = 100;
+}
+
+int a = 10;
+change(&a);
+
+After the call, a becomes 100.
+
+Exam point:
+• Call by value → value is copied into the parameter.
+• Reference-like passing in C → address is passed using a pointer, allowing the called function to modify the original object.
+
+8. RECURSION
+Recursion is a technique in which a function calls itself, directly or indirectly, to solve a problem by reducing it to smaller instances of the same problem.
+
+A recursive function needs:
+• A base case — stops further recursive calls.
+• A recursive case — reduces the problem and calls the function again.
+
+9. CHARACTERISTICS OF RECURSIVE FUNCTIONS
+Important characteristics include:
+• The function calls itself directly or indirectly.
+• A base case is required to terminate recursion.
+• Each recursive step should move toward the base case.
+• Each call has its own set of automatic local variables and execution state.
+• Recursion uses the program's call stack and therefore consumes stack space.
+
+10. TYPES OF RECURSION
+• Direct recursion — a function calls itself directly.
+• Indirect recursion — one function calls another function, which eventually calls the first function again.
+
+Direct recursion example:
+int factorial(int n) {
+    if (n <= 1)
+        return 1;
+    return n * factorial(n - 1);
+}
+
+For factorial of 5:
+5! = 5 × 4 × 3 × 2 × 1 = 120.
+
+11. USES OF RECURSION
+Recursion is useful for problems that naturally break into smaller similar subproblems, especially where a recursive structure is present.
+
+Examples include:
+• Factorial calculation.
+• Traversing hierarchical structures.
+• Divide-and-conquer style problem solving.
+• Problems that can be expressed using repeated smaller instances.
+
+Recursion should be used carefully because excessive recursive calls can consume stack memory.
+
+12. FUNCTION VS RECURSIVE FUNCTION
+• Function — performs a task and does not necessarily call itself.
+• Recursive function — a function that uses self-calls directly or indirectly as part of its solution.
+• Every recursive solution needs a suitable stopping condition.
+
+13. QUICK EXAM REVISION
+• Function = reusable block of code for a specific task.
+• Declaration/prototype = tells the compiler the function interface.
+• Definition = actual function body.
+• Call = executes the function.
+• Scope = where a variable name can be accessed.
+• Lifetime = how long the variable exists during execution.
+• C normally passes ordinary arguments by value.
+• Reference-like behavior in C is achieved by passing addresses with pointers.
+• Recursion = function calling itself directly or indirectly.
+• Base case = stopping condition.
+• Direct recursion = function calls itself.
+• Indirect recursion = functions call each other in a cycle.
+
+IMPORTANT EXAM QUESTIONS
+1. What is a function? Explain function declaration, definition and function call.
+2. Explain scope and lifetime of variables in functions.
+3. Describe the common types of functions based on arguments and return value.
+4. Explain call by value with an example.
+5. Explain how reference-like parameter passing is achieved in C using pointers.
+6. What is recursion? Explain its concept and uses.
+7. Explain the characteristics of recursive functions.
+8. Differentiate direct and indirect recursion.
+9. Write a recursive function to calculate factorial.
+10. Differentiate call by value and reference-like passing in C.
+
+PRACTICAL PRACTICE
+• Write a function to add two numbers.
+• Write functions using different combinations of arguments and return values.
+• Demonstrate the difference between a local variable's scope and its lifetime.
+• Write a program showing call by value.
+• Write a program that modifies a variable using a pointer parameter.
+• Write a recursive program for factorial.
+• Write another simple recursive program and identify its base and recursive cases.
+
+SYLLABUS ALIGNMENT
+This note covers exactly the Unit 5 topics listed in the uploaded Semester III CSE Computer Programming syllabus: Function declaration, scope and lifetime of variables in functions, types of function; call by value vs call by reference; and recursion including concept and uses, characteristics of recursive functions, types of recursion and examples.` },
   { subject:'Scripting Languages', code:'302', unit:'Unit 1', title:'Introduction, Variables and Data Types', desc:'Python history and features, setup, syntax, errors, variables, basic data types and operators.', type:'Syllabus Unit',
     content:'Unit 1 — Introduction, Variables and Data Types\n\n• History, versions and features of Python\n• Python installation and environment setup\n• Writing and running code\n• Input, output, comments and indentation\n• Types of errors\n• Variables and basic data types: numeric, string, Boolean\n• String operations and basic operators' },
   { subject:'Scripting Languages', code:'302', unit:'Unit 2', title:'Advanced Data Types', desc:'Lists, tuples, dictionaries, sets and arrays with creation, access and modification.', type:'Syllabus Unit',
