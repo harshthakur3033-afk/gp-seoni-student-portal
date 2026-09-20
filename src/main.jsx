@@ -370,8 +370,286 @@ PRACTICAL PRACTICE
 
 SYLLABUS ALIGNMENT
 This note covers exactly the Unit 5 topics listed in the uploaded Semester III CSE Computer Programming syllabus: Function declaration, scope and lifetime of variables in functions, types of function; call by value vs call by reference; and recursion including concept and uses, characteristics of recursive functions, types of recursion and examples.` },
-  { subject:'Scripting Languages', code:'302', unit:'Unit 1', title:'Introduction, Variables and Data Types', desc:'Python history and features, setup, syntax, errors, variables, basic data types and operators.', type:'Syllabus Unit',
-    content:'Unit 1 — Introduction, Variables and Data Types\n\n• History, versions and features of Python\n• Python installation and environment setup\n• Writing and running code\n• Input, output, comments and indentation\n• Types of errors\n• Variables and basic data types: numeric, string, Boolean\n• String operations and basic operators' },
+    { subject:'Scripting Languages', code:'302', unit:'Unit 1', title:'Introduction, Variables and Data Types', desc:'Detailed Unit 1 notes covering Python history, versions, features, setup, syntax, errors, variables, basic data types, strings and basic operators.', type:'Detailed Notes',
+    content:`Unit 1 — Introduction, Variables and Data Types
+
+1. HISTORY, VERSIONS AND FEATURES OF PYTHON
+Python is a high-level programming language used for many kinds of programming and scripting tasks.
+
+The syllabus asks you to understand:
+• History and development of Python.
+• Different Python versions.
+• Important features of Python.
+
+Key features to remember:
+• Simple and readable syntax.
+• High-level language.
+• Interpreted execution model.
+• Dynamically typed variables.
+• Large standard library.
+• Supports modular and object-oriented programming.
+• Portable across major operating systems.
+
+Exam point: Learn the meaning of the features, not only their names.
+
+2. PYTHON INSTALLATION AND ENVIRONMENT SETUP
+To work with Python, you need a Python interpreter and a suitable environment for writing and running programs.
+
+Basic setup flow:
+1) Install a suitable Python version.
+2) Check that Python runs correctly.
+3) Open an editor or IDE.
+4) Create a .py source file.
+5) Write the program.
+6) Run the program and inspect the output.
+
+A terminal can also be used to check the Python installation and execute a Python file.
+
+3. WORKING WITH PYTHON — WRITING AND RUNNING CODE
+A Python program can be written in a source file and then executed by the Python interpreter.
+
+Example:
+print("Hello, Python!")
+
+When the program runs, Python executes the statement and displays:
+Hello, Python!
+
+The basic learning cycle is:
+Write code → Run code → Observe output → Find errors → Correct code → Run again.
+
+4. BASIC SYNTAX
+Syntax means the rules used to write valid Python code.
+
+Important syntax points from the syllabus:
+• Input and output.
+• Comments.
+• Indentation.
+
+Python uses indentation to define blocks of code.
+
+Example:
+if marks >= 40:
+    print("Pass")
+
+The indented line belongs to the if block.
+
+5. INPUT AND OUTPUT
+The input() function is used to accept input from the user. The print() function is used to display output.
+
+Example:
+name = input("Enter your name: ")
+print("Hello", name)
+
+Important point:
+input() returns the entered value as text (a string). Convert it when numeric input is required.
+
+Example:
+age = int(input("Enter age: "))
+
+6. COMMENTS
+Comments are notes written for the programmer and are not executed as program statements.
+
+Single-line comment:
+# This is a comment
+
+Comments make code easier to read and understand.
+
+7. INDENTATION
+Indentation means spaces at the beginning of a line. In Python, indentation is significant because it defines the structure of code blocks.
+
+Example:
+if temperature > 30:
+    print("Hot")
+    print("Stay hydrated")
+
+Both indented statements belong to the if block.
+
+Incorrect or inconsistent indentation can cause an IndentationError or change the intended program structure.
+
+8. TYPES OF ERRORS
+The syllabus introduces types of errors. Three common categories are:
+
+• Syntax error — the code does not follow the language's syntax rules.
+Example: missing a colon after an if statement.
+
+• Runtime error/exception — an error occurs while the program is running.
+Example: attempting to divide by zero.
+
+• Logical error — the program runs, but produces an incorrect result because the logic is wrong.
+
+Exam tip:
+Syntax error = code structure problem.
+Runtime error = problem during execution.
+Logical error = wrong result due to wrong logic.
+
+9. VARIABLES
+A variable is a name used to refer to a value in a program.
+
+Example:
+marks = 75
+name = "Harsh"
+
+The variable name can be used later:
+print(marks)
+print(name)
+
+Python variables are dynamically typed, so a variable name can refer to values of different types at different times.
+
+Example:
+x = 10
+x = "Hello"
+
+10. BASIC DATA TYPES
+The syllabus includes basic data types such as numeric, string and Boolean.
+
+Numeric:
+• int — whole numbers.
+• float — numbers with a fractional part.
+• complex — complex numbers.
+
+String:
+• str — sequence of characters.
+
+Boolean:
+• bool — True or False.
+
+Examples:
+age = 17
+price = 99.5
+name = "Harsh"
+is_student = True
+
+Use type() to inspect the type of a value:
+print(type(age))
+
+11. STRINGS
+A string is a sequence of characters enclosed in quotes.
+
+Examples:
+name = "Harsh"
+city = 'Seoni'
+
+Basic string operations include:
+• Concatenation using +.
+• Repetition using *.
+• Indexing.
+• Slicing.
+
+Examples:
+first = "Hello"
+second = "World"
+message = first + " " + second
+
+word = "Python"
+print(word[0])
+print(word[1:4])
+
+Remember: Python string indexing starts at 0.
+
+12. BASIC OPERATORS
+Operators are symbols or keywords used to perform operations on values.
+
+Common operator groups introduced in this unit include:
+
+Arithmetic:
++  addition
+-  subtraction
+*  multiplication
+/  division
+// floor division
+%  remainder
+** power
+
+Comparison:
+== equal to
+!= not equal to
+< less than
+> greater than
+<= less than or equal to
+>= greater than or equal to
+
+Logical:
+and
+or
+not
+
+Assignment examples:
+x = 10
+x += 5
+x *= 2
+
+Membership:
+in
+not in
+
+Identity:
+is
+is not
+
+Example:
+marks = 75
+print(marks >= 40)
+
+The expression produces a Boolean result.
+
+13. VARIABLES, VALUES AND EXPRESSIONS
+A variable stores or refers to a value, while an expression combines values, variables and operators to produce a result.
+
+Example:
+a = 10
+b = 5
+total = a + b
+
+Here:
+• a and b are variables.
+• a + b is an expression.
+• total refers to the resulting value.
+
+14. QUICK EXAM REVISION
+• Python = high-level scripting/programming language with readable syntax.
+• Interpreter = software that executes Python code.
+• input() = accepts user input.
+• print() = displays output.
+• # = starts a single-line comment.
+• Indentation = defines code blocks in Python.
+• Syntax error = invalid language structure.
+• Runtime error/exception = problem during execution.
+• Logical error = incorrect program logic/result.
+• Variable = name referring to a value.
+• int, float, complex = numeric types.
+• str = string.
+• bool = True or False.
+• String indexing starts from 0.
+• +, -, *, /, //, %, ** = common arithmetic operators.
+• == and != compare values.
+• and, or, not = logical operators.
+
+IMPORTANT EXAM QUESTIONS
+1. What is Python? Explain its important features.
+2. Write a brief note on the history and versions of Python.
+3. Explain how to install and set up a Python environment.
+4. Explain how to write and run a Python program.
+5. What is Python syntax? Explain the importance of indentation.
+6. Explain input() and print() with examples.
+7. What are comments? Why are they used?
+8. Explain syntax, runtime and logical errors with examples.
+9. What is a variable in Python?
+10. Explain basic Python data types with examples.
+11. What is a string? Explain indexing and basic string operations.
+12. Explain basic operators in Python with examples.
+
+PRACTICAL PRACTICE
+• Write and run a program that prints your name and branch.
+• Take a user's name and age as input and display them.
+• Convert numeric input using int() or float().
+• Write a program that demonstrates arithmetic operators.
+• Compare two numbers using relational operators.
+• Combine conditions using and, or and not.
+• Create strings and demonstrate concatenation, indexing and slicing.
+• Write one example each of a syntax error, runtime error and logical error, then identify the category.
+
+SYLLABUS ALIGNMENT
+This note follows the Unit 1 topics in the uploaded Semester III CSE Scripting Languages syllabus: history, versions and features of Python; installation and environment setup; writing and running code; basic syntax including input, output, comments and indentation; types of error; variables and basic data types including numeric, string and Boolean; string operations; and basic operators.` },
   { subject:'Scripting Languages', code:'302', unit:'Unit 2', title:'Advanced Data Types', desc:'Lists, tuples, dictionaries, sets and arrays with creation, access and modification.', type:'Syllabus Unit',
     content:'Unit 2 — Advanced Data Types\n\n• Lists: creating, accessing, modifying, slicing and iterating\n• Tuples: creation, access, immutability, slicing, unpacking and iteration\n• Dictionaries: creation, access, adding/modifying key-value pairs, deletion and iteration\n• Sets: creation, adding and removing elements\n• Arrays: array module, creation, access, modification and operations' },
   { subject:'Scripting Languages', code:'302', unit:'Unit 3', title:'Control Structures', desc:'Coding blocks, if/else/elif, for and while loops, loop controls and programming practice.', type:'Syllabus Unit',
