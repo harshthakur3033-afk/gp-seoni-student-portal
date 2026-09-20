@@ -584,7 +584,23 @@ function Notes({ search, subjectFilter }) {
           </div>
           <button className="text-button" onClick={() => setSelectedNote(null)} aria-label="Close resource"><X size={20}/></button>
         </div>
-        <div style={{marginTop:'18px',padding:'16px',borderRadius:'10px',background:'#f7faff',color:'#334764',fontSize:'12px',lineHeight:1.75,whiteSpace:'pre-wrap'}}>{selectedNote.content}</div>
+        <div className="note-content" aria-label="Study material">
+          {selectedNote.content.split('\\n').map((line, i) => {
+            const text = line.trim();
+            const isHeading =
+              /^\\d+\\.\\s+/.test(text) ||
+              /^(IMPORTANT EXAM QUESTIONS|PRACTICAL PRACTICE|QUICK EXAM REVISION|SYLLABUS ALIGNMENT|PRACTICAL PRACTICE|FUNCTION VS RECURSIVE FUNCTION)$/.test(text);
+            const isLabel = /^(Example:|Syntax:|General form:|Declaration:|Initialization:|Access example:)$/.test(text);
+
+            if (!text) return <div key={i} className="note-blank" />;
+
+            return (
+              <div key={i} className={isHeading ? 'note-heading' : isLabel ? 'note-label' : 'note-line'}>
+                {line}
+              </div>
+            );
+          })}
+        </div>
         <button className="primary full" style={{marginTop:'16px'}} onClick={() => setSelectedNote(null)}>Close Resource</button>
       </section>
     </div>}
