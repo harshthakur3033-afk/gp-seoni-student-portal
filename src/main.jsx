@@ -1755,8 +1755,269 @@ PRACTICAL PRACTICE
 
 SYLLABUS ALIGNMENT
 This note follows the Unit 5 topics in the uploaded Semester III CSE Scripting Languages syllabus: file handling modes; file operations including read, write, open, append, rename, delete and close; basic exception handling; pattern matching and searching with the Python re module; and regex pattern searching.` },
-  { subject:'Data Structures', code:'303', unit:'Unit 1', title:'Basics of Data Structure', desc:'Classification, pointers, structures and core data-structure operations.', type:'Syllabus Unit',
-    content:'Unit 1 — Basics of Data Structure\n\n• Linear, non-linear, primitive and non-primitive data structures\n• Pointers and pointer arithmetic\n• Array of pointers\n• Row-major and column-major implementation of 2-D arrays\n• Structure: definition, declaration and initialization\n• Traversing, searching, insertion, deletion, sorting, merging and updating' },
+    { subject:'Data Structures', code:'303', unit:'Unit 1', title:'Basics of Data Structure', desc:'Detailed Unit 1 notes covering classification, pointers, array-of-pointers, 2-D arrays, row-major/column-major layout, structures and core data-structure operations.', type:'Detailed Notes',
+    content:`Unit 1 — Basics of Data Structure
+
+1. INTRODUCTION TO DATA STRUCTURES
+A data structure is a way of organizing and storing data so that it can be used efficiently by a program.
+
+The purpose of a data structure is to make common operations such as storing, accessing, searching, inserting and deleting data easier to perform.
+
+2. CLASSIFICATION OF DATA STRUCTURES
+The syllabus asks for classification into:
+• Linear and non-linear data structures.
+• Primitive and non-primitive data structures.
+• Other common classifications may also be discussed as part of the "etc." in the syllabus.
+
+Linear data structure:
+Elements are arranged in a sequential form. Examples include arrays, stacks, queues and linked lists.
+
+Non-linear data structure:
+Elements are organized in hierarchical or network-like relationships. Examples include trees and graphs.
+
+Primitive data structure:
+Basic data types provided by a programming language, such as int, char, float and similar types.
+
+Non-primitive data structure:
+Structures built to organize collections of data, such as arrays, linked lists, stacks, queues, trees and graphs.
+
+3. POINTERS — INTRODUCTION
+A pointer is a variable that stores the memory address of another variable or object.
+
+Example:
+int x = 10;
+int *p = &x;
+
+Here:
+• x stores the value 10.
+• &x gives the address of x.
+• p stores that address.
+• *p accesses the value stored at that address.
+
+4. DECLARING AND INITIALIZING POINTERS
+A pointer is declared using the * symbol with its data type.
+
+Syntax:
+data_type *pointer_name;
+
+Example:
+int *p;
+
+A pointer can be initialized using the address-of operator &.
+
+Example:
+int x = 25;
+int *p = &x;
+
+A pointer should point to a valid object or be a null pointer before it is dereferenced.
+
+5. ACCESSING VARIABLES USING POINTERS
+The dereference operator * is used to access the value at the address stored in a pointer.
+
+Example:
+int x = 20;
+int *p = &x;
+
+printf("%d", *p);
+
+The expression *p gives the value of x.
+
+A pointer can also be used to modify the value of the pointed-to variable.
+
+Example:
+*p = 30;
+
+Now x becomes 30.
+
+6. POINTER ARITHMETIC
+Pointer arithmetic allows a pointer to move through elements of an array.
+
+If p is a pointer to an element of type int, then p + 1 points to the next int element. The actual address change depends on the size of the pointed-to type.
+
+Example:
+int a[3] = {10, 20, 30};
+int *p = a;
+
+• *p gives 10.
+• *(p + 1) gives 20.
+• *(p + 2) gives 30.
+
+Common pointer arithmetic includes incrementing and decrementing pointers and adding or subtracting integer offsets.
+
+7. ARRAY OF POINTERS
+An array of pointers is an array in which each element stores an address.
+
+Example:
+char *names[3] = {"Harsh", "Aman", "Riya"};
+
+Here names is an array of three character pointers.
+
+An array of pointers is different from a pointer to an array. The first stores multiple addresses; the second points to an array object.
+
+8. TWO-DIMENSIONAL ARRAYS
+A two-dimensional array is commonly represented as rows and columns.
+
+Example:
+int matrix[2][3] = {
+    {1, 2, 3},
+    {4, 5, 6}
+};
+
+Access example:
+matrix[1][2] gives 6.
+
+Nested loops are commonly used to traverse a two-dimensional array.
+
+9. ROW-MAJOR IMPLEMENTATION
+In row-major order, all elements of one row are stored before the elements of the next row.
+
+For:
+A[2][3] = {
+    {1, 2, 3},
+    {4, 5, 6}
+}
+
+The storage order is:
+1, 2, 3, 4, 5, 6
+
+For a zero-based two-dimensional array A[i][j], a common address calculation is:
+Address = Base + ((i × number_of_columns) + j) × element_size
+
+10. COLUMN-MAJOR IMPLEMENTATION
+In column-major order, elements of one column are stored before the elements of the next column.
+
+For the same matrix:
+1, 2, 3
+4, 5, 6
+
+The conceptual column-major storage order is:
+1, 4, 2, 5, 3, 6
+
+For a zero-based A[i][j] with a fixed number of rows, a common address calculation is:
+Address = Base + ((j × number_of_rows) + i) × element_size
+
+Exam point:
+C's native multidimensional array layout is row-major. Column-major is an important contrasting implementation concept included in the syllabus.
+
+11. STRUCTURE
+A structure is a user-defined C type that groups related variables, possibly of different data types, under one name.
+
+Definition:
+struct Student {
+    int roll;
+    char name[20];
+    float marks;
+};
+
+12. DECLARING AND INITIALIZING A STRUCTURE
+A structure variable can be declared after defining the structure type.
+
+Example:
+struct Student s1 = {101, "Harsh", 78.5f};
+
+Members are accessed using the dot operator.
+
+Example:
+printf("%d", s1.roll);
+printf("%s", s1.name);
+
+13. OPERATIONS ON DATA STRUCTURES
+The syllabus includes these basic operations:
+
+Traversing:
+Visiting or processing each element of a data structure.
+
+Searching:
+Finding whether a particular value or element exists and locating it.
+
+Insertion:
+Adding a new element at an appropriate position.
+
+Deletion:
+Removing an existing element.
+
+Sorting:
+Arranging elements according to a chosen order, such as ascending or descending order.
+
+Merging:
+Combining elements or two compatible data structures into a single collection.
+
+Updating:
+Changing the value of an existing element.
+
+14. EXAMPLE OF BASIC OPERATIONS
+Consider:
+int a[4] = {10, 20, 30, 40};
+
+Traversing:
+Read elements from a[0] to a[3].
+
+Searching:
+Find whether 30 is present.
+
+Insertion:
+Add a new value at a selected position, while shifting elements if the representation requires it.
+
+Deletion:
+Remove a selected element and adjust the remaining elements.
+
+Sorting:
+Arrange the values from smallest to largest.
+
+Merging:
+Combine two ordered or unordered collections according to the required method.
+
+Updating:
+Change, for example, 20 to 25.
+
+The exact implementation of each operation depends on the data structure being used.
+
+15. QUICK EXAM REVISION
+• Data structure = organized way to store/manage data.
+• Linear = sequential arrangement.
+• Non-linear = hierarchical/network arrangement.
+• Primitive = basic data types.
+• Non-primitive = structured collections of data.
+• Pointer = stores an address.
+• & = address-of operator.
+• * = dereference operator in pointer expressions.
+• Pointer arithmetic helps traverse arrays.
+• Array of pointers = each array element stores an address.
+• Two-dimensional arrays use row and column indexes.
+• Row-major = row by row.
+• Column-major = column by column.
+• Structure = groups related variables, possibly of different types.
+• Traversing = visiting elements.
+• Searching = finding an element.
+• Insertion = adding an element.
+• Deletion = removing an element.
+• Sorting = arranging elements.
+• Merging = combining collections.
+• Updating = modifying an existing value.
+
+IMPORTANT EXAM QUESTIONS
+1. Define a data structure. Explain its basic classification.
+2. Differentiate linear and non-linear data structures.
+3. Differentiate primitive and non-primitive data structures.
+4. What is a pointer? Explain declaration, initialization and accessing variables using pointers.
+5. Explain pointer arithmetic with an example.
+6. What is an array of pointers?
+7. Explain one-dimensional and two-dimensional arrays.
+8. Explain row-major and column-major implementation of a two-dimensional array.
+9. What is a structure in C? Explain definition, declaration and initialization.
+10. Explain traversing, searching, insertion, deletion, sorting, merging and updating.
+
+PRACTICAL PRACTICE
+• Declare and initialize a pointer and access a variable through it.
+• Traverse an array using pointer arithmetic.
+• Create an array of pointers.
+• Create and process a two-dimensional array.
+• Demonstrate row-major and column-major order conceptually.
+• Define and initialize a structure.
+• Practice basic operations such as searching, insertion, deletion, sorting, merging and updating on an appropriate data collection.
+
+SYLLABUS ALIGNMENT
+This note follows Unit 1 of the uploaded Semester III CSE Data Structures syllabus: classification of data structures as linear/non-linear and primitive/non-primitive; pointers including declaration, initialization, accessing variables, pointer arithmetic and array of pointers; row-major and column-major implementation of 2-D arrays; structures including definition, declaration and initialization; and operations on data structures including traversing, searching, insertion, deletion, sorting, merging and updating.` },
   { subject:'Data Structures', code:'303', unit:'Unit 2', title:'Searching and Sorting Techniques', desc:'Linear and binary search plus insertion, selection, bubble, quick and heap sort.', type:'Syllabus Unit',
     content:'Unit 2 — Searching and Sorting Techniques\n\n• Linear search\n• Binary search\n• Insertion sort\n• Selection sort\n• Bubble sort\n• Quick sort\n• Heap sort' },
   { subject:'Data Structures', code:'303', unit:'Unit 3', title:'Linear Data Structures', desc:'Stacks and queues, representations, applications and queue variants.', type:'Syllabus Unit',
