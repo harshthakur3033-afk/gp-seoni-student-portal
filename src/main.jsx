@@ -1494,9 +1494,267 @@ PRACTICAL PRACTICE
 
 SYLLABUS ALIGNMENT
 This note follows the Unit 4 topics in the uploaded Semester III CSE Scripting Languages syllabus: organizing Python code using functions; introduction, defining and calling functions; positional, default and keyword parameters; return values; variable scope and recursion; organizing Python projects into user-defined modules with namespaces and scoping; importing own and external modules; understanding packages; creating and importing user-defined and built-in packages; and installing packages using PIP.` },
-  { subject:'Scripting Languages', code:'302', unit:'Unit 5', title:'File I/O, Text Processing and Regular Expressions', desc:'File modes and operations, exception handling and regex with Python re.', type:'Syllabus Unit',
-    content:'Unit 5 — File I/O, Text Processing, Regular Expressions\n\n• File handling modes\n• Open, read, write, append, rename, delete and close\n• Basic exception handling\n• Pattern matching and searching with the Python re module\n• Regular expression patterns and applications' },
+    { subject:'Scripting Languages', code:'302', unit:'Unit 5', title:'File I/O, Text Processing and Regular Expressions', desc:'Detailed Unit 5 notes covering file modes and operations, exception handling, text processing, Python re pattern matching, searching and regex applications.', type:'Detailed Notes',
+    content:`Unit 5 — File I/O, Text Processing, Regular Expressions
 
+1. FILE HANDLING MODES
+Python file handling starts with opening a file in an appropriate mode. The mode determines how the program will use the file.
+
+Common modes:
+• r — read an existing file.
+• w — write to a file; creates it when needed and replaces existing contents.
+• a — append data to the end of a file.
+• x — create a new file and fail if it already exists.
+• b — binary mode can be combined with a mode, such as rb or wb.
+• t — text mode; this is the normal default mode.
+
+Examples:
+open("notes.txt", "r")
+open("notes.txt", "w")
+open("notes.txt", "a")
+
+2. OPENING A FILE
+The open() function opens a file and returns a file object.
+
+Syntax:
+open(file, mode)
+
+Example:
+file = open("notes.txt", "r")
+
+After opening a file, the program can perform the required read or write operation.
+
+3. READING FROM A FILE
+The syllabus includes reading file contents.
+
+Common methods:
+• read() — reads content from the file.
+• readline() — reads one line.
+• readlines() — reads multiple lines and returns them as a list of lines.
+
+Example:
+file = open("notes.txt", "r")
+data = file.read()
+print(data)
+file.close()
+
+4. WRITING TO A FILE
+The write() method writes text to an opened file.
+
+Example:
+file = open("notes.txt", "w")
+file.write("Semester III Study Portal")
+file.close()
+
+When using w mode, existing file contents can be replaced.
+
+5. APPENDING TO A FILE
+The append mode a is used to add new content at the end of a file without intentionally replacing the existing contents.
+
+Example:
+file = open("notes.txt", "a")
+file.write("\nNew study note")
+file.close()
+
+6. CLOSING A FILE
+The close() method releases the file resource after file operations are complete.
+
+Example:
+file.close()
+
+Closing a file is important after finishing direct file operations.
+
+7. USING with FOR FILE HANDLING
+The with statement provides a convenient way to work with files because the file is closed automatically when the block finishes.
+
+Example:
+with open("notes.txt", "r") as file:
+    data = file.read()
+    print(data)
+
+For practical programs, using with is generally preferred over manually opening and closing the file.
+
+8. FILE-RELATED OPERATIONS
+The syllabus specifically mentions read, write, open, append, rename, delete and close.
+
+Rename:
+Python can rename a file using the os module.
+
+Example:
+import os
+os.rename("old.txt", "new.txt")
+
+Delete:
+A file can be removed using os.remove().
+
+Example:
+import os
+os.remove("old.txt")
+
+Use care with rename and delete operations because they change the file system.
+
+9. BASIC EXCEPTION HANDLING
+Exception handling allows a program to respond to runtime problems instead of terminating unexpectedly.
+
+The basic structure uses:
+• try — contains code that may raise an exception.
+• except — handles a matching exception.
+• else — runs when the try block finishes without an exception.
+• finally — runs after the try/except process for cleanup.
+
+Example:
+try:
+    number = int(input("Enter a number: "))
+    print(10 / number)
+except ValueError:
+    print("Please enter a valid number.")
+except ZeroDivisionError:
+    print("Cannot divide by zero.")
+
+10. WHY EXCEPTION HANDLING IS USED
+Exception handling improves program reliability by allowing expected runtime problems to be handled clearly.
+
+Example:
+If a user enters text where a number is expected, int() may raise ValueError. The except block can show a useful message and keep the program flow controlled.
+
+11. TEXT PROCESSING
+Text processing means working with textual data such as reading text files, searching for text, modifying text and checking whether text follows a required pattern.
+
+Common tasks:
+• Read text from a file.
+• Process the text line by line.
+• Search for words or patterns.
+• Validate formatted text.
+• Extract required information.
+
+Example:
+text = "Computer Programming"
+print(text.lower())
+print(text.upper())
+
+12. REGULAR EXPRESSIONS
+A regular expression, often called regex, is a pattern used to match, search for or validate text.
+
+Python provides the re module for regular expressions.
+
+Import:
+import re
+
+Basic operations commonly used with re include:
+• search() — searches for a match anywhere in the string.
+• match() — checks for a match at the beginning of the string.
+• fullmatch() — checks whether the entire string matches the pattern.
+• findall() — returns all non-overlapping matches.
+• sub() — replaces matching text.
+
+13. REGEX PATTERNS
+A regex pattern describes the form of text that should be matched.
+
+Common pattern elements:
+• . — any character except a newline in the usual mode.
+• \d — a digit.
+• \w — a word character.
+• \s — whitespace.
+• ^ — beginning of the string/line.
+• $ — end of the string/line.
+• + — one or more repetitions.
+• * — zero or more repetitions.
+• ? — zero or one repetition.
+• {m,n} — between m and n repetitions.
+
+Example:
+pattern = r"\d+"
+text = "Roll 12345"
+result = re.findall(pattern, text)
+
+The result contains the digit sequence found in the text.
+
+14. PATTERN MATCHING AND SEARCHING WITH re
+Example:
+import re
+
+text = "Email: student@example.com"
+pattern = r"[\w.-]+@[\w.-]+\.\w+"
+
+match = re.search(pattern, text)
+
+if match:
+    print("Email found:", match.group())
+
+This demonstrates searching for a text pattern using Python's re module.
+
+15. VALIDATION USING REGEX
+Regex can be used to check whether input follows a required pattern.
+
+Examples of validation applications:
+• Email addresses.
+• Phone numbers.
+• Roll numbers.
+• Branch or college codes embedded in an identifier.
+
+Validation means checking the input against an expected pattern. A regex alone does not prove that the underlying real-world value is valid; it checks the specified text format.
+
+16. TEXT PROCESSING WITH FILES
+File processing and text processing can be combined.
+
+Example:
+with open("notes.txt", "r") as file:
+    for line in file:
+        line = line.strip()
+        if line:
+            print(line)
+
+This reads the file line by line and removes leading/trailing whitespace with strip().
+
+17. QUICK EXAM REVISION
+• open() = opens a file.
+• r = read.
+• w = write and may replace existing contents.
+• a = append.
+• read() = reads content.
+• write() = writes text.
+• close() = closes the file.
+• with = convenient automatic file cleanup.
+• os.rename() = renames a file.
+• os.remove() = deletes a file.
+• try = code that may raise an exception.
+• except = handles an exception.
+• else = runs when no exception occurs in try.
+• finally = cleanup code that runs afterward.
+• Text processing = working with textual data.
+• re = Python regular-expression module.
+• search() = search for a match.
+• findall() = find all matches.
+• sub() = replace matching text.
+
+IMPORTANT EXAM QUESTIONS
+1. Explain common Python file handling modes.
+2. Explain open(), read(), write() and close() with examples.
+3. What is append mode?
+4. Explain how to read a file line by line.
+5. Explain file rename and delete operations.
+6. What is exception handling? Explain try, except, else and finally.
+7. What is text processing?
+8. What is a regular expression? Explain the role of Python's re module.
+9. Explain common regex operators/patterns with examples.
+10. Differentiate search(), match(), fullmatch() and findall().
+11. Explain regex applications for validating email or phone-number formats.
+
+PRACTICAL PRACTICE
+• Create a text file and write study data into it.
+• Read and display file contents.
+• Append a new line to an existing file.
+• Read a text file line by line.
+• Rename a practice file using os.rename().
+• Delete a practice file using os.remove().
+• Handle invalid numeric input using try and except.
+• Search for a pattern using re.search().
+• Extract all matching numbers or words using re.findall().
+• Replace matching text using re.sub().
+• Build a simple regex validation for an email-like format.
+
+SYLLABUS ALIGNMENT
+This note follows the Unit 5 topics in the uploaded Semester III CSE Scripting Languages syllabus: file handling modes; file operations including read, write, open, append, rename, delete and close; basic exception handling; pattern matching and searching with the Python re module; and regex pattern searching.` },
   { subject:'Data Structures', code:'303', unit:'Unit 1', title:'Basics of Data Structure', desc:'Classification, pointers, structures and core data-structure operations.', type:'Syllabus Unit',
     content:'Unit 1 — Basics of Data Structure\n\n• Linear, non-linear, primitive and non-primitive data structures\n• Pointers and pointer arithmetic\n• Array of pointers\n• Row-major and column-major implementation of 2-D arrays\n• Structure: definition, declaration and initialization\n• Traversing, searching, insertion, deletion, sorting, merging and updating' },
   { subject:'Data Structures', code:'303', unit:'Unit 2', title:'Searching and Sorting Techniques', desc:'Linear and binary search plus insertion, selection, bubble, quick and heap sort.', type:'Syllabus Unit',
