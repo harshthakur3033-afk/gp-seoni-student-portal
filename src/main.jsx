@@ -74,7 +74,7 @@ Strings can be declared as character arrays and initialized using a string liter
 
 Example:
 char name[20] = "Harsh";
-name[0] = "J";
+name[0] = 'J';
 
 7. COMMON STRING FUNCTIONS
 The C standard string functions are commonly provided through the string header. Important functions include:
