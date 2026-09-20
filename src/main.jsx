@@ -2573,8 +2573,282 @@ PRACTICAL PRACTICE
 
 SYLLABUS ALIGNMENT
 This note follows Unit 3 of the uploaded Semester III CSE Data Structures syllabus: Stacks — introduction, array representation, applications, infix-to-postfix transformation and postfix expressions; and Queues — introduction, array representation, DeQueue, circular queue and applications. The syllabus also lists practicals for stack and queue operations using arrays and linked lists.` },
-  { subject:'Data Structures', code:'303', unit:'Unit 4', title:'Linked List', desc:'Singly, circular and doubly linked lists with core operations.', type:'Syllabus Unit',
-    content:'Unit 4 — Linked List\n\n• Singly linked list and memory representation\n• Traversal, insertion, deletion and searching\n• Circular linked lists\n• Doubly linked lists' },
+    { subject:'Data Structures', code:'303', unit:'Unit 4', title:'Linked List', desc:'Detailed Unit 4 notes covering singly linked lists, memory representation, traversal, insertion, deletion, searching, circular linked lists and doubly linked lists.', type:'Detailed Notes',
+    content:`Unit 4 — Linked List
+
+1. INTRODUCTION TO LINKED LIST
+A linked list is a linear data structure made of nodes. Each node stores data and a link to another node.
+
+Unlike an array, linked-list nodes do not need to occupy contiguous memory locations. Links connect the nodes into a sequence.
+
+Basic idea:
+Node → Node → Node → NULL
+
+2. SINGLY LINKED LIST
+In a singly linked list, each node has:
+• Data field — stores the value.
+• Next pointer — stores the address of the next node.
+
+A simple C representation is:
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+The last node's next pointer is set to NULL to indicate the end of the list.
+
+3. REPRESENTATION IN MEMORY
+Linked-list nodes are dynamically allocated and can exist at different memory locations.
+
+Conceptually:
+
+head
+ ↓
+[data | next] → [data | next] → [data | NULL]
+
+The head pointer stores the address of the first node.
+
+Because nodes are connected using pointers, the list can grow or shrink by changing links and allocating or releasing nodes as required.
+
+4. TRAVERSAL OF A SINGLY LINKED LIST
+Traversal means visiting each node from the first node to the last node.
+
+Basic process:
+1) Start at head.
+2) Process the current node's data.
+3) Move to the next pointer.
+4) Repeat until the pointer becomes NULL.
+
+Conceptual C logic:
+
+struct Node *temp = head;
+while (temp != NULL) {
+    printf("%d ", temp->data);
+    temp = temp->next;
+}
+
+5. INSERTION IN A SINGLY LINKED LIST
+Insertion means adding a new node to the list.
+
+Common insertion positions:
+• At the beginning.
+• At the end.
+• At a specified position or after a specified node.
+
+Insertion at beginning:
+1) Create a new node.
+2) Store the required data.
+3) Set newNode->next = head.
+4) Move head to newNode.
+
+Conceptually:
+New Node → Old Head
+
+6. INSERTION AT THE END
+Basic process:
+1) Create a new node and set its next pointer to NULL.
+2) If the list is empty, make head point to the new node.
+3) Otherwise traverse to the last node.
+4) Set the last node's next pointer to the new node.
+
+Conceptually:
+Old Last → New Node → NULL
+
+7. INSERTION AT A SPECIFIED POSITION
+The basic idea is to reach the node before the required position and adjust the links.
+
+Process:
+1) Create the new node.
+2) Traverse to the appropriate previous node.
+3) Make the new node point to the next node.
+4) Make the previous node point to the new node.
+
+Correct link adjustment is important so that no existing node becomes disconnected accidentally.
+
+8. DELETION FROM A SINGLY LINKED LIST
+Deletion removes an existing node from the list.
+
+Common cases:
+• Delete the first node.
+• Delete the last node.
+• Delete a node at a specified position or matching a value.
+
+Deletion at beginning:
+1) Store the current head in a temporary pointer.
+2) Move head to head->next.
+3) Release the old first node.
+
+Conceptually:
+Before: head → A → B → C
+After deleting A: head → B → C
+
+9. DELETION OF A NODE IN THE MIDDLE
+To delete a middle node:
+1) Locate the node to delete and its previous node.
+2) Change the previous node's next pointer so it skips the target node.
+3) Release the removed node.
+
+Conceptually:
+A → B → C
+Delete B
+A → C
+
+10. SEARCHING IN A SINGLY LINKED LIST
+Searching checks nodes one by one until the required value is found or the end is reached.
+
+Basic process:
+1) Start at head.
+2) Compare current node data with the target.
+3) If equal, report the node/position.
+4) Otherwise move to next.
+5) Stop at a match or NULL.
+
+Because nodes are followed sequentially, basic linked-list search is commonly O(n) in the worst case.
+
+11. ADVANTAGES OF A LINKED LIST
+• Dynamic size.
+• Insertion and deletion can be efficient when the required node position is already known and links can be adjusted directly.
+• Does not require contiguous memory for all nodes.
+
+12. LIMITATIONS OF A LINKED LIST
+• Extra memory is needed for link pointers.
+• No direct index-based access like a normal array.
+• Traversal is sequential.
+• Pointer manipulation makes implementation more complex than simple arrays.
+
+13. CIRCULAR LINKED LIST
+In a circular linked list, the last node points back to the first node instead of pointing to NULL.
+
+Conceptually:
+head → A → B → C
+       ↑       ↓
+       └───────┘
+
+This creates a cycle.
+
+14. TRAVERSAL OF A CIRCULAR LINKED LIST
+Because there is no NULL at the end, traversal must stop when the pointer reaches the starting node again.
+
+Basic idea:
+1) Start at head.
+2) Process the current node.
+3) Move to next.
+4) Stop when the current pointer becomes head again.
+
+A do-while style traversal is often convenient for this structure.
+
+15. USES OF CIRCULAR LINKED LIST
+A circular linked list is useful when processing should repeatedly move from the last element back to the first.
+
+Typical examples include:
+• Round-robin style processing.
+• Repeated cyclic traversal.
+• Applications where no natural last node is required.
+
+16. DOUBLY LINKED LIST
+A doubly linked list has two links in each node:
+• Previous pointer.
+• Next pointer.
+
+Example structure:
+
+struct DNode {
+    int data;
+    struct DNode *prev;
+    struct DNode *next;
+};
+
+Conceptually:
+NULL ← A ⇄ B ⇄ C → NULL
+
+17. REPRESENTATION OF A DOUBLY LINKED LIST
+Each node stores:
+[data | prev | next]
+
+The prev pointer connects to the previous node, while next connects to the next node.
+
+The first node usually has prev = NULL.
+The last node usually has next = NULL.
+
+18. OPERATIONS ON A DOUBLY LINKED LIST
+Typical operations include traversal, insertion and deletion.
+
+Because each node has both previous and next links, movement can be performed in both directions.
+
+When inserting or deleting a node, the surrounding prev and next pointers must be updated consistently.
+
+19. SINGLY VS CIRCULAR VS DOUBLY LINKED LIST
+Singly linked list:
+• One next pointer per node.
+• Last node points to NULL.
+• Traversal is normally forward.
+
+Circular linked list:
+• Last node links back to the first node.
+• No NULL at the end of the circular chain.
+• Suitable for cyclic processing.
+
+Doubly linked list:
+• Two links per node: prev and next.
+• Supports movement in both directions.
+• Uses more memory than a singly linked list because of the extra pointer.
+
+20. IMPORTANT POINTER IDEA
+Linked-list operations work mainly by changing links rather than shifting an entire collection of elements.
+
+For example, to insert B between A and C:
+Before:
+A → C
+
+After:
+A → B → C
+
+Only the relevant links need to be adjusted.
+
+21. QUICK EXAM REVISION
+• Linked list = collection of connected nodes.
+• Node = data + link(s).
+• Head = pointer to the first node.
+• Singly linked list = one next pointer.
+• Last singly linked-list node points to NULL.
+• Traversal = visit nodes one by one.
+• Insertion = add a node and adjust links.
+• Deletion = remove a node and reconnect links.
+• Searching = compare nodes sequentially.
+• Circular linked list = last node links to first.
+• Doubly linked list = prev + next links.
+• Linked lists use non-contiguous memory locations in general.
+• Pointer manipulation is central to linked-list operations.
+
+IMPORTANT EXAM QUESTIONS
+1. What is a linked list? Explain its basic node structure.
+2. Explain the memory representation of a singly linked list.
+3. Explain traversal of a singly linked list with an example.
+4. Explain insertion at the beginning and end of a singly linked list.
+5. Explain insertion at a specified position.
+6. Explain deletion from the beginning, end and middle of a singly linked list.
+7. Explain searching in a singly linked list.
+8. What is a circular linked list? Explain its representation and traversal.
+9. What is a doubly linked list? Explain its node structure.
+10. Differentiate singly, circular and doubly linked lists.
+11. Why is pointer manipulation important in linked-list operations?
+
+PRACTICAL PRACTICE
+• Create a singly linked list with multiple nodes.
+• Traverse and display all nodes.
+• Insert a node at the beginning.
+• Insert a node at the end.
+• Insert a node at a specified position.
+• Delete the first node.
+• Delete the last node.
+• Delete a selected node.
+• Search for a value in the list.
+• Create and traverse a circular linked list.
+• Create and traverse a doubly linked list.
+
+SYLLABUS ALIGNMENT
+This note follows Unit 4 of the uploaded Semester III CSE Data Structures syllabus: Singly Linked List, representation in memory, traversal, insertion, deletion and searching operations on a singly linked list; Circular Linked Lists; and Doubly Linked Lists.` },
   { subject:'Data Structures', code:'303', unit:'Unit 5', title:'Non Linear Data Structure', desc:'Trees, binary-tree operations, tree types and graph representation and traversal.', type:'Syllabus Unit',
     content:'Unit 5 — Non Linear Data Structure\n\n• Tree terminology: root, node, edge, parent, child, sibling, leaf, subtree, degree, level and height\n• Binary trees and array representation\n• Insertion, deletion and traversals\n• Full, complete, perfect and balanced binary trees\n• Graphs: vertices, edges, degree, walks, paths and cycles\n• Set, linked and matrix representations\n• BFS and DFS' },
 
