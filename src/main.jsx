@@ -20,8 +20,177 @@ const notes = [
     content:'Unit 2 — Operators and Input-Output\n\n1. OPERATORS\nAn operator is a symbol that tells the C compiler to perform an operation on one or more values or variables.\n\n2. ARITHMETIC OPERATORS\nArithmetic operators are used for mathematical calculations.\n• +  Addition\n• -  Subtraction\n• *  Multiplication\n• /  Division\n• %  Remainder (modulus)\n\nExample:\nint a = 10, b = 3;\nint sum = a + b;\nint rem = a % b;\n\nImportant: For integer operands, integer division discards the fractional part. For example, 10 / 3 gives 3.\n\n3. RELATIONAL OPERATORS\nRelational operators compare two values. The result is used as a true/false condition.\n• <  less than\n• >  greater than\n• <= less than or equal to\n• >= greater than or equal to\n• == equal to\n• != not equal to\n\nExample:\nif (marks >= 40) {\n    printf("Pass");\n}\n\nDo not confuse = (assignment) with == (equality comparison).\n\n4. LOGICAL OPERATORS\nLogical operators combine or negate conditions.\n• &&  logical AND — true when both conditions are true\n• ||  logical OR — true when at least one condition is true\n• !   logical NOT — reverses the truth value\n\nExample:\nif (age >= 18 && citizen == 1) {\n    printf("Eligible");\n}\n\n5. BITWISE OPERATORS\nBitwise operators work on the individual bits of integer values.\n• &  bitwise AND\n• |  bitwise OR\n• ^  bitwise XOR\n• ~  bitwise NOT\n• << left shift\n• >> right shift\n\nExample:\nint a = 5;\nint b = 3;\nint c = a & b;\n\nBinary idea:\n5 = 0101\n3 = 0011\nAND → 0001 = 1\n\nBitwise operators are different from logical && and || operators.\n\n6. OPERATOR PRECEDENCE\nOperator precedence decides which operator is evaluated first in an expression when parentheses are not used. Multiplication, division and modulus have higher precedence than addition and subtraction. Parentheses can be used to make the intended order explicit.\n\nExample:\nint x = 2 + 3 * 4;\n\nThe multiplication is evaluated before addition, so x becomes 14.\n\nUsing parentheses:\nint y = (2 + 3) * 4;\n\nHere, y becomes 20.\n\n7. ASSOCIATIVITY\nWhen operators of the same precedence occur together, associativity determines the direction in which they are evaluated. Many arithmetic operators such as +, -, *, / and % are evaluated left-to-right when grouped at the same precedence level.\n\nExample:\nint x = 20 / 5 * 2;\n\nThe / and * operators have the same precedence and are evaluated left-to-right, so x becomes 8.\n\nUse parentheses whenever the intended order is important or may be unclear.\n\n8. INPUT AND OUTPUT FUNCTIONS\nThe standard C input/output functions are commonly provided by stdio.h.\n\nprintf() — displays formatted output.\nscanf() — reads formatted input.\n\nExample:\n#include <stdio.h>\nint main() {\n    int age;\n    printf("Enter age: ");\n    scanf("%d", &age);\n    printf("Age = %d", age);\n    return 0;\n}\n\nIn scanf(), the address operator & is commonly used with ordinary variables so the function can store the entered value in the variable.\n\n9. FORMATTED OUTPUT\nprintf() uses format specifiers to display values of different types.\n• %d — integer\n• %c — character\n• %f — floating-point value\n• %lf — commonly used with double in formatted input; exact format use depends on the function\n• %s — string\n\nExample:\nprintf("Marks = %d\\n", marks);\n\nThe \\n escape sequence moves the cursor to a new line.\n\n10. BASIC FILE I/O\nFile I/O allows a C program to store data in and retrieve data from files. The syllabus includes file modes and the basic open, read, write and close operations.\n\nCommon steps:\n1) Declare a file pointer.\n2) Open the file using fopen().\n3) Perform the required read/write operation.\n4) Close the file using fclose().\n\nExample:\nFILE *fp;\nfp = fopen("notes.txt", "w");\nif (fp != NULL) {\n    fprintf(fp, "Computer Programming Unit 2");\n    fclose(fp);\n}\n\nCommon file modes:\n• "r" — open for reading\n• "w" — open for writing; an existing file may be replaced\n• "a" — open for appending\n\nAlways check whether fopen() succeeded before using the file pointer, and close an opened file when finished.\n\n11. QUICK EXAM REVISION\n• Arithmetic = mathematical calculations.\n• Relational = comparison of values.\n• Logical = combination/negation of conditions.\n• Bitwise = operations on individual bits.\n• Precedence = priority of operators.\n• Associativity = evaluation direction when precedence is the same.\n• printf() = formatted output.\n• scanf() = formatted input.\n• fopen() = open a file.\n• fclose() = close a file.\n\nIMPORTANT EXAM QUESTIONS\n1. Explain arithmetic, relational, logical and bitwise operators with examples.\n2. What is operator precedence? Give an example.\n3. What is associativity? Explain with an expression.\n4. Differentiate = and == in C.\n5. Explain printf() and scanf() with suitable examples.\n6. What is formatted output?\n7. Explain basic file I/O and common file modes.\n8. Write the basic steps for opening, using and closing a file in C.\n\nPRACTICAL PRACTICE\n• Write programs using different operators.\n• Evaluate expressions while applying precedence and associativity.\n• Take input using scanf() and display formatted output using printf().\n• Create a file, write data to it and close the file.\n\nSyllabus alignment: This note covers the Unit 2 topics listed in the uploaded Semester III CSE syllabus: arithmetic, relational, logical and bitwise operators; precedence and associativity; input/output functions; formatted output; and basic file I/O with file modes and open/read/write/close operations.' },
   { subject:'Computer Programming', code:'301', unit:'Unit 3', title:'Conditional and Looping Constructs', desc:'Detailed Unit 3 notes covering if, if-else, nested if, conditional operator, for/while/do-while, switch-case, continue and break.', type:'Detailed Notes',
     content:'Unit 3 — Conditional and Looping Constructs\n\n1. CONDITIONAL STATEMENTS\nConditional statements allow a program to make decisions based on whether a condition is true or false. They control which block of code should execute.\n\n2. if STATEMENT\nThe if statement executes a block only when its condition is true.\n\nSyntax:\nif (condition) {\n    statement;\n}\n\nExample:\nif (marks >= 40) {\n    printf("Pass");\n}\n\n3. if-else STATEMENT\nThe if-else statement chooses between two blocks: one for a true condition and one for a false condition.\n\nExample:\nif (number % 2 == 0) {\n    printf("Even");\n} else {\n    printf("Odd");\n}\n\n4. NESTED if\nA nested if is an if statement placed inside another if or else block. It is useful when one decision depends on another decision.\n\nExample:\nif (marks >= 40) {\n    if (marks >= 75) {\n        printf("Distinction");\n    }\n}\n\nKeep nested conditions organized so the logic remains easy to understand.\n\n5. CONDITIONAL OPERATOR\nThe conditional operator ?: is a compact way to choose one of two expressions based on a condition.\n\nSyntax:\ncondition ? expression1 : expression2;\n\nExample:\nresult = (a > b) ? a : b;\n\nIf a > b is true, result gets a; otherwise it gets b.\n\n6. for LOOP\nA for loop is commonly used when initialization, a condition and an update can be written together and the loop needs to repeat while the condition remains true.\n\nSyntax:\nfor (initialization; condition; update) {\n    statement;\n}\n\nExample:\nfor (int i = 1; i <= 5; i++) {\n    printf("%d\\n", i);\n}\n\nThe loop above prints the numbers 1 through 5.\n\n7. while LOOP\nA while loop checks the condition before each iteration. It is useful when the number of repetitions depends on a condition and is not necessarily known in advance.\n\nSyntax:\nwhile (condition) {\n    statement;\n}\n\nExample:\nint i = 1;\nwhile (i <= 5) {\n    printf("%d\\n", i);\n    i++;\n}\n\n8. do-while LOOP\nA do-while loop executes its body first and checks the condition afterward. Therefore, the body executes at least once.\n\nSyntax:\ndo {\n    statement;\n} while (condition);\n\nExample:\nint choice;\ndo {\n    printf("1. Continue  0. Exit\\n");\n    scanf("%d", &choice);\n} while (choice != 0);\n\nRemember the semicolon after the while(condition) in a do-while statement.\n\n9. NESTED LOOPS\nA loop can be placed inside another loop. This is called a nested loop. The inner loop completes its iterations for each iteration of the outer loop. Nested loops are commonly used for tables, patterns and multidimensional data.\n\nExample:\nfor (int i = 1; i <= 3; i++) {\n    for (int j = 1; j <= 3; j++) {\n        printf("%d ", j);\n    }\n    printf("\\n");\n}\n\n10. switch-case\nThe switch-case statement selects one block from several alternatives based on the value of an expression.\n\nBasic form:\nswitch (expression) {\n    case value1:\n        statement;\n        break;\n    case value2:\n        statement;\n        break;\n    default:\n        statement;\n}\n\nThe break statement usually prevents execution from continuing into the next case. The default block runs when no case matches.\n\nExample:\nswitch (choice) {\n    case 1:\n        printf("Add");\n        break;\n    case 2:\n        printf("Exit");\n        break;\n    default:\n        printf("Invalid choice");\n}\n\n11. break STATEMENT\nThe break statement immediately terminates the nearest enclosing loop or switch statement and transfers control to the statement that follows it.\n\nExample:\nfor (int i = 1; i <= 10; i++) {\n    if (i == 5) break;\n    printf("%d ", i);\n}\n\nThe loop stops when i becomes 5.\n\n12. continue STATEMENT\nThe continue statement skips the remaining statements in the current loop iteration and moves to the next iteration.\n\nExample:\nfor (int i = 1; i <= 5; i++) {\n    if (i == 3) continue;\n    printf("%d ", i);\n}\n\nThe value 3 is skipped.\n\n13. COMPARISON OF LOOPS\n• for — convenient when initialization, condition and update are together and the iteration pattern is clear.\n• while — condition-controlled loop; condition is checked before each iteration.\n• do-while — condition is checked after the body, so the body runs at least once.\n\n14. QUICK EXAM REVISION\n• if = execute when condition is true.\n• if-else = choose between two blocks.\n• Nested if = decision inside another decision block.\n• ?: = conditional operator.\n• for = initialization + condition + update.\n• while = check condition first.\n• do-while = execute first, check condition later.\n• switch-case = select among multiple alternatives.\n• break = exit loop/switch immediately.\n• continue = skip current iteration and proceed with the next one.\n\nIMPORTANT EXAM QUESTIONS\n1. Explain if and if-else statements with examples.\n2. What is a nested if statement?\n3. Explain the conditional operator with an example.\n4. Explain for, while and do-while loops and compare them.\n5. What is a nested loop? Give an example.\n6. Explain switch-case with break and default.\n7. Differentiate break and continue.\n8. Write a C program to demonstrate a loop and a conditional statement.\n\nPRACTICAL PRACTICE\n• Write a program to check whether a number is positive, negative or zero.\n• Write a program to check whether a number is even or odd.\n• Print numbers using for, while and do-while loops.\n• Write a menu-driven program using switch-case.\n• Use break and continue in a loop and observe the difference.\n• Write a nested-loop program for a simple pattern.\n\nSyllabus alignment: This note covers Unit 3 of the uploaded Semester III CSE syllabus: if, if-else, nested if, conditional operator, for, while, do-while, nested structures, switch-case, continue and break.' },
-  { subject:'Computer Programming', code:'301', unit:'Unit 4', title:'Arrays and Pointer', desc:'Detailed Unit 4 notes covering one-dimensional and multidimensional arrays, memory organization, strings, pointers and dynamic memory allocation.', type:'Detailed Notes',
-    content:'Unit 4 — Arrays and Pointer\n\n1. ARRAYS\nAn array is a collection of elements of the same data type stored in a contiguous block of memory. Each element is accessed using an index. In C, array indexing starts from 0.\n\nExample:\nint marks[5] = {72, 65, 81, 90, 76};\n\nHere, marks[0] is the first element and marks[4] is the fifth element.\n\n2. ONE-DIMENSIONAL ARRAY\nA one-dimensional array represents a simple linear collection of values. It is declared by giving the data type, array name and size.\n\nSyntax:\ndata_type array_name[size];\n\nExample:\nint numbers[5];\n\nReading and displaying elements commonly uses a loop:\nfor (int i = 0; i < 5; i++) {\n    scanf("%d", &numbers[i]);\n}\n\n3. MULTIDIMENSIONAL ARRAYS\nA multidimensional array uses more than one index. A two-dimensional array is commonly represented as rows and columns and is useful for tables and matrices.\n\nExample:\nint matrix[2][3] = {{1,2,3}, {4,5,6}};\n\nAccess example:\nmatrix[1][2] gives 6.\n\nNested loops are commonly used to process a two-dimensional array.\n\n4. MEMORY ORGANIZATION OF AN ARRAY\nArray elements are stored in contiguous memory locations. Because elements have the same data type and size, the address of an element can be related to the base address and its index.\n\nFor a one-dimensional array, conceptually:\nAddress of a[i] = Base Address + (i × size of each element)\n\nFor a two-dimensional array in C, row-major order is used: elements of a row are stored together before moving to the next row.\n\n5. STRINGS IN C\nA string in C is a sequence of characters terminated by the null character NUL character. Strings are stored in character arrays.\n\nExample:\nchar name[] = "Harsh";\n\nThe array contains the characters followed by the terminating null character.\n\n6. STRING CREATION, USE AND MODIFICATION\nStrings can be declared as character arrays and initialized using a string literal. Individual characters can be accessed using an index. A string can be modified when stored in a writable character array.\n\nExample:\nchar name[20] = "Harsh";\nname[0] = "J";\n\n7. COMMON STRING FUNCTIONS\nThe C standard string functions are commonly provided through <string.h>. Important functions include:\n• strlen() — finds the length of a string (excluding the terminating null character).\n• strcpy() — copies a string.\n• strcat() — appends one string to another.\n• strcmp() — compares two strings.\n\nExample:\n#include <string.h>\nint len = strlen(name);\n\nUse functions according to the size of the destination array to avoid writing beyond its bounds.\n\n8. POINTERS\nA pointer is a variable that stores the memory address of another object. Pointers are important for working directly with memory, arrays, functions and dynamic memory allocation.\n\nDeclaration:\nint *p;\n\nInitialization with the address of a variable:\nint x = 10;\nint *p = &x;\n\nHere, &x gives the address of x and *p accesses the value stored at that address.\n\n9. POINTER DECLARATION AND INITIALIZATION\nThe * in a pointer declaration indicates that the variable is a pointer. A pointer should be initialized to a valid address or NULL before it is dereferenced.\n\nExample:\nint x = 20;\nint *ptr = &x;\nprintf("%d", *ptr);\n\nThe output is 20.\n\n10. POINTERS AND ARRAYS\nIn many expressions, the name of an array can be used as a reference to its first element. Pointer arithmetic can then be used to move between elements.\n\nExample:\nint a[3] = {10, 20, 30};\nint *p = a;\n\n*p gives 10, and *(p + 1) gives 20.\n\n11. POINTER ARITHMETIC\nAdding 1 to a pointer moves it to the next element of the pointed-to type, not simply one byte forward. This makes pointer arithmetic useful for traversing arrays.\n\nExample:\np++\n\np moves to the next int element when p is an int pointer.\n\n12. DYNAMIC MEMORY ALLOCATION\nDynamic memory allocation allows memory to be obtained during program execution rather than using only fixed-size storage. The functions are declared in <stdlib.h>.\n\nImportant functions:\n• malloc() — allocates a specified number of bytes.\n• calloc() — allocates space for multiple elements and initializes the allocated bytes to zero.\n• realloc() — changes the size of a previously allocated block.\n• free() — releases dynamically allocated memory.\n\nExample:\nint *p = (int *)malloc(5 * sizeof(int));\nif (p != NULL) {\n    p[0] = 10;\n    free(p);\n}\n\nIn modern C, the cast on malloc() is not required; it is shown here only to illustrate the pointer type. Always check allocation results and release memory that is no longer needed.\n\n13. ARRAY VS POINTER\n• Array = fixed collection of elements declared as an array object.\n• Pointer = variable that stores an address and can point to different objects during its lifetime.\n• Array storage is part of the array object; a pointer only stores an address.\n• Pointer arithmetic can be used to traverse arrays.\n\n14. QUICK EXAM REVISION\n• Array = collection of same-type elements accessed by index.\n• First index in C = 0.\n• 2-D array = rows and columns.\n• C stores 2-D arrays in row-major order.\n• C string = character array ending with NUL character.\n• strlen() = string length.\n• strcpy() = copy string.\n• strcat() = concatenate strings.\n• strcmp() = compare strings.\n• Pointer = stores a memory address.\n• & = address-of operator.\n• * = dereference operator in pointer expressions/declarations.\n• malloc/calloc/realloc = allocate or resize dynamic memory.\n• free = release dynamic memory.\n\nIMPORTANT EXAM QUESTIONS\n1. Define an array and explain one-dimensional and multidimensional arrays.\n2. Explain memory organization of an array.\n3. What is a string in C? Explain the null character.\n4. Explain common string functions with examples.\n5. Define a pointer. Explain declaration, initialization and dereferencing.\n6. Explain the relationship between arrays and pointers.\n7. What is pointer arithmetic?\n8. Explain dynamic memory allocation and the functions malloc(), calloc(), realloc() and free().\n9. Differentiate an array and a pointer.\n\nPRACTICAL PRACTICE\n• Read and display elements of a one-dimensional array.\n• Perform operations on a two-dimensional matrix.\n• Find the largest/smallest value in an array.\n• Perform string operations using <string.h>.\n• Demonstrate pointer declaration, initialization and dereferencing.\n• Traverse an array using a pointer.\n• Allocate and release dynamic memory using malloc() and free().\n\nSyllabus alignment: This note covers Unit 4 of the uploaded Semester III CSE syllabus: one-dimensional and multidimensional arrays, memory organization, strings and string functions, pointers, and dynamic memory allocation.' },\n  { subject:'Computer Programming', code:'301', unit:'Unit 5', title:'Functions and Recursion', desc:'Function declaration, scope, lifetime, parameter passing and recursion.', type:'Syllabus Unit',
+    { subject:'Computer Programming', code:'301', unit:'Unit 4', title:'Arrays and Pointer', desc:'Detailed Unit 4 notes covering one-dimensional and multidimensional arrays, memory organization, strings, pointers and dynamic memory allocation.', type:'Detailed Notes',
+    content:`Unit 4 — Arrays and Pointer
+
+1. ARRAYS
+An array is a collection of elements of the same data type stored in a contiguous block of memory. Each element is accessed using an index. In C, array indexing starts from 0.
+
+Example:
+int marks[5] = {72, 65, 81, 90, 76};
+
+Here, marks[0] is the first element and marks[4] is the fifth element.
+
+2. ONE-DIMENSIONAL ARRAY
+A one-dimensional array represents a simple linear collection of values. It is declared by giving the data type, array name and size.
+
+Syntax:
+data_type array_name[size];
+
+Example:
+int numbers[5];
+
+Reading and displaying elements commonly uses a loop with an index.
+
+3. MULTIDIMENSIONAL ARRAYS
+A multidimensional array uses more than one index. A two-dimensional array is commonly represented as rows and columns and is useful for tables and matrices.
+
+Example:
+int matrix[2][3] = {{1,2,3}, {4,5,6}};
+
+Access example:
+matrix[1][2] gives 6.
+
+Nested loops are commonly used to process a two-dimensional array.
+
+4. MEMORY ORGANIZATION OF AN ARRAY
+Array elements are stored in contiguous memory locations. Because elements have the same data type and size, the address of an element can be related to the base address and its index.
+
+For a one-dimensional array, conceptually:
+Address of a[i] = Base Address + (i × size of each element)
+
+For a two-dimensional array in C, row-major order is used: elements of a row are stored together before moving to the next row.
+
+5. STRINGS IN C
+A string in C is a sequence of characters terminated by the null character, commonly written as the NUL character. Strings are stored in character arrays.
+
+Example:
+char name[] = "Harsh";
+
+The array contains the characters followed by the terminating NUL character.
+
+6. STRING CREATION, USE AND MODIFICATION
+Strings can be declared as character arrays and initialized using a string literal. Individual characters can be accessed using an index. A string can be modified when stored in a writable character array.
+
+Example:
+char name[20] = "Harsh";
+name[0] = "J";
+
+7. COMMON STRING FUNCTIONS
+The C standard string functions are commonly provided through the string header. Important functions include:
+• strlen() — finds the length of a string, excluding the terminating NUL character.
+• strcpy() — copies a string.
+• strcat() — appends one string to another.
+• strcmp() — compares two strings.
+
+Example:
+#include <string.h>
+int len = strlen(name);
+
+Use functions according to the size of the destination array to avoid writing beyond its bounds.
+
+8. POINTERS
+A pointer is a variable that stores the memory address of another object. Pointers are important for working with memory, arrays, functions and dynamic memory allocation.
+
+Declaration:
+int *p;
+
+Initialization with the address of a variable:
+int x = 10;
+int *p = &x;
+
+Here, &x gives the address of x and *p accesses the value stored at that address.
+
+9. POINTER DECLARATION AND INITIALIZATION
+The star symbol in a pointer declaration indicates that the variable is a pointer. A pointer should be initialized to a valid address or a null pointer before it is dereferenced.
+
+Example:
+int x = 20;
+int *ptr = &x;
+printf("%d", *ptr);
+
+The output is 20.
+
+10. POINTERS AND ARRAYS
+In many expressions, the name of an array can be used as a reference to its first element. Pointer arithmetic can then be used to move between elements.
+
+Example:
+int a[3] = {10, 20, 30};
+int *p = a;
+
+*p gives 10, and *(p + 1) gives 20.
+
+11. POINTER ARITHMETIC
+Adding 1 to a pointer moves it to the next element of the pointed-to type, not simply one byte forward. This makes pointer arithmetic useful for traversing arrays.
+
+Example:
+p++
+
+p moves to the next int element when p is an int pointer.
+
+12. DYNAMIC MEMORY ALLOCATION
+Dynamic memory allocation allows memory to be obtained during program execution rather than using only fixed-size storage. The functions are declared in the standard library.
+
+Important functions:
+• malloc() — allocates a specified number of bytes.
+• calloc() — allocates space for multiple elements and initializes the allocated bytes to zero.
+• realloc() — changes the size of a previously allocated block.
+• free() — releases dynamically allocated memory.
+
+Example:
+int *p = malloc(5 * sizeof(int));
+if (p != NULL) {
+    p[0] = 10;
+    free(p);
+}
+
+In modern C, malloc does not need a cast. Always check allocation results and release memory that is no longer needed.
+
+13. ARRAY VS POINTER
+• Array = fixed collection of elements declared as an array object.
+• Pointer = variable that stores an address and can point to different objects during its lifetime.
+• Array storage is part of the array object; a pointer only stores an address.
+• Pointer arithmetic can be used to traverse arrays.
+
+14. QUICK EXAM REVISION
+• Array = collection of same-type elements accessed by index.
+• First index in C = 0.
+• Two-dimensional array = rows and columns.
+• C stores two-dimensional arrays in row-major order.
+• C string = character array ending with the NUL character.
+• strlen() = string length.
+• strcpy() = copy string.
+• strcat() = concatenate strings.
+• strcmp() = compare strings.
+• Pointer = stores a memory address.
+• Ampersand operator = address-of operator.
+• Star operator = dereference operator in pointer expressions.
+• malloc and calloc = allocate dynamic memory.
+• realloc = resize dynamic memory.
+• free = release dynamic memory.
+
+IMPORTANT EXAM QUESTIONS
+1. Define an array and explain one-dimensional and multidimensional arrays.
+2. Explain memory organization of an array.
+3. What is a string in C? Explain the NUL character.
+4. Explain common string functions with examples.
+5. Define a pointer. Explain declaration, initialization and dereferencing.
+6. Explain the relationship between arrays and pointers.
+7. What is pointer arithmetic?
+8. Explain dynamic memory allocation and the functions malloc(), calloc(), realloc() and free().
+9. Differentiate an array and a pointer.
+
+PRACTICAL PRACTICE
+• Read and display elements of a one-dimensional array.
+• Perform operations on a two-dimensional matrix.
+• Find the largest and smallest value in an array.
+• Perform string operations using the standard string functions.
+• Demonstrate pointer declaration, initialization and dereferencing.
+• Traverse an array using a pointer.
+• Allocate and release dynamic memory using malloc() and free().
+
+Syllabus alignment: This note covers Unit 4 of the uploaded Semester III CSE syllabus: one-dimensional and multidimensional arrays, memory organization, strings and string functions, pointers, and dynamic memory allocation.` },
+  { subject:'Computer Programming', code:'301', unit:'Unit 5', title:'Functions and Recursion', desc:'Function declaration, scope, lifetime, parameter passing and recursion.', type:'Syllabus Unit',
     content:'Unit 5 — Functions and Recursion\n\n• Function declaration\n• Scope and lifetime of variables in functions\n• Types of functions\n• Call by value vs call by reference\n• Recursion: concept, uses, characteristics, types and examples' },
 
   { subject:'Scripting Languages', code:'302', unit:'Unit 1', title:'Introduction, Variables and Data Types', desc:'Python history and features, setup, syntax, errors, variables, basic data types and operators.', type:'Syllabus Unit',
