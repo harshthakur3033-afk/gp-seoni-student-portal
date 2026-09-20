@@ -1178,8 +1178,322 @@ PRACTICAL PRACTICE
 
 SYLLABUS ALIGNMENT
 This note follows the Unit 3 topics in the uploaded Semester III CSE Scripting Languages syllabus: understanding coding blocks; conditional blocks using if, else and elif; for loops and iteration over sequences and range; while loop; loop manipulation using continue, break, else and pass; and programming using conditional and loop blocks.` },
-  { subject:'Scripting Languages', code:'302', unit:'Unit 4', title:'Functions, Modules and Packages', desc:'Functions, parameters, return values, scope, recursion, modules, namespaces, packages and PIP.', type:'Syllabus Unit',
-    content:'Unit 4 — Functions, Modules and Packages\n\n• Defining and calling functions\n• Positional, default and keyword parameters\n• Return values, variable scope and recursion\n• User-defined modules, namespaces and scoping\n• Importing own and external modules\n• User-defined and built-in packages\n• Installing packages using PIP' },
+    { subject:'Scripting Languages', code:'302', unit:'Unit 4', title:'Functions, Modules and Packages', desc:'Detailed Unit 4 notes covering functions, parameter types, return values, scope, recursion, modules, namespaces, packages and PIP.', type:'Detailed Notes',
+    content:`Unit 4 — Functions, Modules and Packages
+
+1. FUNCTIONS IN PYTHON
+A function is a reusable block of Python code designed to perform a particular task. Functions help organize a program into smaller parts and reduce repeated code.
+
+The syllabus covers:
+• Introduction to functions.
+• Defining and calling functions.
+• Function parameters.
+• Return values.
+• Variable scope and recursion.
+
+2. DEFINING A FUNCTION
+A function is defined with the def keyword followed by the function name and parameter list.
+
+Syntax:
+def function_name(parameters):
+    statements
+
+Example:
+def greet():
+    print("Hello, student")
+
+The function body is indented.
+
+3. CALLING A FUNCTION
+Defining a function does not execute it. The function runs when it is called.
+
+Example:
+def greet():
+    print("Hello, student")
+
+greet()
+
+The call greet() executes the statements inside the function.
+
+4. FUNCTION PARAMETERS
+Parameters are names written in a function definition that receive values when the function is called.
+
+Example:
+def add(a, b):
+    return a + b
+
+result = add(10, 20)
+
+Here, a and b are parameters and 10 and 20 are arguments supplied to the call.
+
+5. POSITIONAL PARAMETERS
+With positional arguments, values are matched to parameters according to their position.
+
+Example:
+def student_info(name, age):
+    print(name, age)
+
+student_info("Harsh", 17)
+
+"Harsh" is passed to name and 17 is passed to age because of their positions.
+
+6. DEFAULT PARAMETERS
+A default parameter has a value that is used when the caller does not provide an argument for that parameter.
+
+Example:
+def greet(name="Student"):
+    print("Hello", name)
+
+greet()
+greet("Harsh")
+
+The first call uses the default value.
+
+7. KEYWORD ARGUMENTS
+Keyword arguments are passed by writing the parameter name explicitly.
+
+Example:
+def student_info(name, age):
+    print(name, age)
+
+student_info(age=17, name="Harsh")
+
+The arguments are matched using their parameter names rather than only their positions.
+
+8. RETURN VALUES
+A function can return a result using the return statement.
+
+Example:
+def square(number):
+    return number * number
+
+answer = square(5)
+
+Here, square(5) returns 25 and the value is stored in answer.
+
+A function can also perform an action without returning a useful value to the caller.
+
+9. VARIABLE SCOPE
+Scope describes where a variable name can be accessed.
+
+Local variable:
+A variable created inside a function is generally local to that function.
+
+Example:
+def demo():
+    x = 10
+    print(x)
+
+The name x is available inside demo().
+
+Global variable:
+A variable created outside functions is in the global scope of the module and can be accessed from functions subject to Python's name-resolution rules.
+
+Example:
+college = "GP Seoni"
+
+def show_college():
+    print(college)
+
+Scope helps prevent unrelated parts of a program from accidentally using the same local name.
+
+10. RECURSION IN PYTHON
+Recursion occurs when a function calls itself directly or through another function.
+
+A recursive solution needs a condition that stops the recursive process and a step that moves the problem toward that stopping condition.
+
+Example:
+def factorial(n):
+    if n <= 1:
+        return 1
+    return n * factorial(n - 1)
+
+factorial(5) returns 120.
+
+11. ORGANIZING PYTHON CODE USING MODULES
+A module is a Python file containing code such as functions, variables or other definitions that can be imported and reused in another Python program.
+
+The syllabus requires creating user-defined modules and understanding namespaces and scoping.
+
+Suppose a file named calculator.py contains:
+def add(a, b):
+    return a + b
+
+Another Python file can import it:
+import calculator
+print(calculator.add(10, 20))
+
+This separates reusable code from the main program.
+
+12. CREATE A USER-DEFINED MODULE
+Basic steps:
+1) Create a Python file with reusable definitions.
+2) Save the file with a .py extension.
+3) Keep it in a location from which Python can import it.
+4) Import the module in another script.
+5) Use the module's functions or variables.
+
+Example module:
+student_tools.py
+
+def display_name(name):
+    print(name)
+
+Another script:
+import student_tools
+student_tools.display_name("Harsh")
+
+13. NAMESPACE
+A namespace is a mapping that connects names to their corresponding objects. It helps Python keep names organized and avoid unintended name conflicts.
+
+When a module is imported, its names can be accessed through the module namespace.
+
+Example:
+import math
+print(math.sqrt(25))
+
+The name sqrt is accessed through the math namespace.
+
+14. SCOPING
+Python resolves names through different scopes. A simple exam-level understanding is:
+• Local — inside the current function.
+• Global — at the module level.
+• Built-in — names provided by Python.
+
+The important idea is that where a name is defined affects where it can be found.
+
+15. IMPORTING YOUR OWN MODULE
+A user-defined module can be imported using import.
+
+Example:
+import student_tools
+
+A specific definition can also be imported:
+from student_tools import display_name
+
+Then:
+display_name("Harsh")
+
+16. IMPORTING EXTERNAL MODULES
+External modules are modules that are not part of the current Python file. They can be imported when they are available in the Python environment.
+
+Example:
+import math
+print(math.sqrt(16))
+
+A module can be used through its namespace after importing it.
+
+17. PACKAGES
+A package is a way of organizing related Python modules into a larger project structure.
+
+In this syllabus, package topics include:
+• User-defined packages.
+• Importing user-defined packages.
+• Importing built-in packages.
+• Installing packages using PIP.
+
+18. CREATE A USER-DEFINED PACKAGE
+A basic package structure can contain a directory with related Python modules.
+
+Example structure:
+student_package/
+    __init__.py
+    marks.py
+
+Suppose marks.py contains:
+def total(a, b):
+    return a + b
+
+The package can then be imported using its package/module path when the project is set up correctly.
+
+19. IMPORTING A USER-DEFINED PACKAGE
+Example:
+from student_package import marks
+
+print(marks.total(10, 20))
+
+The exact import path depends on the package structure and where the project is run from.
+
+20. BUILT-IN PACKAGES
+Python provides many modules and packages as part of its standard library.
+
+Example:
+import math
+print(math.sqrt(49))
+
+Here math is available from the Python standard library.
+
+21. INSTALLING PACKAGES USING PIP
+PIP is a package-management tool commonly used to install Python packages from package indexes.
+
+A common command is:
+python -m pip install package_name
+
+After installation, the package can be imported in a Python program when supported by the environment.
+
+Example:
+python -m pip install requests
+
+Then, in code:
+import requests
+
+The exact package name and available version depend on the package and environment.
+
+22. FUNCTION, MODULE AND PACKAGE — QUICK DIFFERENCE
+Function:
+• Reusable block of code.
+• Usually performs one related task.
+
+Module:
+• Python file containing reusable definitions.
+
+Package:
+• Organized collection of related Python modules.
+
+A practical organization can be:
+Package → Modules → Functions
+
+23. QUICK EXAM REVISION
+• def = defines a function.
+• Function call = executes a function.
+• Parameter = name in a function definition.
+• Positional arguments = matched by position.
+• Default parameter = supplies a value when an argument is omitted.
+• Keyword argument = matched by parameter name.
+• return = sends a value back from a function.
+• Scope = where a name can be accessed.
+• Recursion = function calling itself directly or indirectly.
+• Module = Python file containing reusable code.
+• Namespace = mapping of names to objects.
+• Package = organized collection of related modules.
+• PIP = package-management tool used to install Python packages.
+
+IMPORTANT EXAM QUESTIONS
+1. What is a function? Explain defining and calling a function in Python.
+2. Explain positional, default and keyword parameters with examples.
+3. What is a return value?
+4. Explain variable scope in Python.
+5. What is recursion? Give an example.
+6. What is a module? Explain how to create and import a user-defined module.
+7. What is a namespace? Explain its role.
+8. Explain importing your own module and an external module.
+9. What is a package? Explain how a user-defined package is organized.
+10. Explain how to install a Python package using PIP.
+11. Differentiate function, module and package.
+
+PRACTICAL PRACTICE
+• Define and call a Python function.
+• Use positional arguments in a function.
+• Use a default parameter and observe its behavior.
+• Call a function using keyword arguments.
+• Write a function that returns a calculated value.
+• Create a user-defined module and import it from another Python file.
+• Use an imported module through its namespace.
+• Create a simple user-defined package with one module.
+• Install a package using PIP and import it in a script.
+
+SYLLABUS ALIGNMENT
+This note follows the Unit 4 topics in the uploaded Semester III CSE Scripting Languages syllabus: organizing Python code using functions; introduction, defining and calling functions; positional, default and keyword parameters; return values; variable scope and recursion; organizing Python projects into user-defined modules with namespaces and scoping; importing own and external modules; understanding packages; creating and importing user-defined and built-in packages; and installing packages using PIP.` },
   { subject:'Scripting Languages', code:'302', unit:'Unit 5', title:'File I/O, Text Processing and Regular Expressions', desc:'File modes and operations, exception handling and regex with Python re.', type:'Syllabus Unit',
     content:'Unit 5 — File I/O, Text Processing, Regular Expressions\n\n• File handling modes\n• Open, read, write, append, rename, delete and close\n• Basic exception handling\n• Pattern matching and searching with the Python re module\n• Regular expression patterns and applications' },
 
