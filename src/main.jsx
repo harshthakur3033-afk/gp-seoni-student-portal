@@ -2849,9 +2849,391 @@ PRACTICAL PRACTICE
 
 SYLLABUS ALIGNMENT
 This note follows Unit 4 of the uploaded Semester III CSE Data Structures syllabus: Singly Linked List, representation in memory, traversal, insertion, deletion and searching operations on a singly linked list; Circular Linked Lists; and Doubly Linked Lists.` },
-  { subject:'Data Structures', code:'303', unit:'Unit 5', title:'Non Linear Data Structure', desc:'Trees, binary-tree operations, tree types and graph representation and traversal.', type:'Syllabus Unit',
-    content:'Unit 5 — Non Linear Data Structure\n\n• Tree terminology: root, node, edge, parent, child, sibling, leaf, subtree, degree, level and height\n• Binary trees and array representation\n• Insertion, deletion and traversals\n• Full, complete, perfect and balanced binary trees\n• Graphs: vertices, edges, degree, walks, paths and cycles\n• Set, linked and matrix representations\n• BFS and DFS' },
+    { subject:'Data Structures', code:'303', unit:'Unit 5', title:'Non Linear Data Structure', desc:'Detailed Unit 5 notes covering trees, binary trees, tree terminology, traversals, binary-tree types, graphs, graph representations, BFS and DFS.', type:'Detailed Notes',
+    content:`Unit 5 — Non Linear Data Structure
 
+1. INTRODUCTION TO NON-LINEAR DATA STRUCTURES
+A non-linear data structure does not arrange elements in one simple sequence. Instead, relationships can be hierarchical or network-like.
+
+This unit focuses on:
+• Trees
+• Graphs
+
+2. TREES
+A tree is a hierarchical data structure made of nodes connected by edges. One node can be the starting/root node, and other nodes can appear at lower levels.
+
+A simple example:
+        A
+       / \
+      B   C
+
+Here A is the root, B and C are below it.
+
+3. BASIC TREE TERMINOLOGIES
+The syllabus specifically includes these terms:
+
+Root:
+The top/start node of a tree. A tree normally has one root.
+
+Node:
+An individual element of a tree.
+
+Edge:
+A connection between two related nodes.
+
+Parent:
+A node that has one or more child nodes below it.
+
+Child:
+A node directly connected below a parent.
+
+Sibling:
+Nodes that have the same parent.
+
+Leaf:
+A node with no children.
+
+Subtree:
+A tree formed from a node and its descendants.
+
+Degree:
+The number of children of a node in a rooted tree.
+
+Level:
+The position of a node within the hierarchy. The exact numbering convention can vary; always follow the convention used by your teacher or question.
+
+Height:
+The length/depth of the longest downward path from a node to a leaf, measured according to the convention being used.
+
+4. BINARY TREE
+A binary tree is a tree in which each node has at most two children, commonly called the left child and right child.
+
+Example:
+        10
+       /  \
+      5    15
+     / \
+    2   7
+
+Each node can have zero, one or two children.
+
+5. REPRESENTATION OF A BINARY TREE USING ARRAYS
+A binary tree can be represented in an array by assigning positions to nodes according to a chosen indexing scheme.
+
+For a common zero-based scheme:
+• Root at index 0.
+• Left child of node at index i → 2i + 1.
+• Right child of node at index i → 2i + 2.
+• Parent of a non-root node at index i → floor((i - 1) / 2).
+
+For:
+        A
+       / \
+      B   C
+
+The array can conceptually be:
+index: 0  1  2
+value: A  B  C
+
+Array representation is especially convenient for complete or nearly complete binary trees.
+
+6. BINARY TREE INSERTION
+Insertion means adding a new node while preserving the required binary-tree structure.
+
+The exact insertion process depends on the type of binary tree and the representation being used.
+
+For a simple level-order style binary tree, a new node may be placed at the next available position.
+
+Example:
+Before:
+    A
+   / \
+  B   C
+
+Insert D:
+    A
+   / \
+  B   C
+ /
+D
+
+The important point is that the operation must preserve the rules of the particular binary tree being used.
+
+7. BINARY TREE DELETION
+Deletion means removing a node from a binary tree while maintaining the required structure.
+
+The exact algorithm depends on the type of binary tree.
+
+In exam questions, clearly identify the tree type and the deletion rule before performing the operation.
+
+8. TREE TRAVERSALS
+Traversal means visiting tree nodes in a particular order.
+
+The three basic traversal orders are:
+
+Preorder:
+Root → Left subtree → Right subtree
+
+Inorder:
+Left subtree → Root → Right subtree
+
+Postorder:
+Left subtree → Right subtree → Root
+
+Example:
+        A
+       / \
+      B   C
+
+Preorder = A, B, C
+Inorder = B, A, C
+Postorder = B, C, A
+
+A level-order traversal visits nodes level by level from top to bottom.
+
+9. TYPES OF BINARY TREES — FULL
+A full binary tree is a binary tree in which every node has either 0 children or 2 children.
+
+No node has exactly one child.
+
+10. COMPLETE BINARY TREE
+A complete binary tree has every level completely filled except possibly the last level, and the last level is filled from left to right.
+
+This property makes array representation particularly useful.
+
+11. PERFECT BINARY TREE
+A perfect binary tree has all internal nodes with two children and all leaf nodes at the same level.
+
+For a perfect binary tree with height h under the common root-at-height-0 convention:
+Number of nodes = 2^(h+1) - 1.
+
+12. BALANCED BINARY TREE
+A balanced binary tree keeps its left and right subtree heights sufficiently close according to the balancing rule being used.
+
+The purpose of balancing is to avoid excessive height and keep tree operations efficient.
+
+13. FULL VS COMPLETE VS PERFECT VS BALANCED
+Full:
+Every node has either 0 or 2 children.
+
+Complete:
+All levels except possibly the last are full, and the last is filled from left to right.
+
+Perfect:
+All internal nodes have two children and all leaves are at the same level.
+
+Balanced:
+Tree height is kept under control so the subtrees remain suitably balanced according to the definition being used.
+
+14. GRAPHS
+A graph is a non-linear data structure consisting of vertices and edges that represent relationships between objects.
+
+Conceptually:
+A — B
+|   |
+C — D
+
+The vertices are the objects and the edges represent relationships.
+
+15. VERTICES
+A vertex is an individual point or node in a graph.
+
+Example:
+In a graph with A, B and C, A, B and C are vertices.
+
+16. EDGES
+An edge is a connection between two vertices.
+
+Example:
+A — B
+
+The line represents an edge connecting A and B.
+
+17. DEGREE OF A VERTEX
+The degree of a vertex is the number of edges incident on that vertex in an undirected graph.
+
+Example:
+A connected to B, C and D.
+Degree of A = 3.
+
+For directed graphs, indegree and outdegree are commonly distinguished.
+
+18. WALKS, PATHS AND CYCLES
+Walk:
+A sequence of vertices where consecutive vertices are connected by edges. A walk may repeat vertices or edges.
+
+Path:
+A route through connected vertices; in common basic usage, a path does not repeat vertices.
+
+Cycle:
+A closed path that starts and ends at the same vertex.
+
+These definitions may use slightly different conventions in advanced graph theory, so follow the terminology used in your class.
+
+19. DIRECTED AND UNDIRECTED GRAPHS
+Directed graph:
+Edges have a direction.
+
+Example:
+A → B
+
+Undirected graph:
+Edges do not have a direction.
+
+Example:
+A — B
+
+20. GRAPH REPRESENTATION — SET
+The syllabus lists a Set representation. A set can describe the vertex and edge collections of a graph.
+
+For example:
+V = {A, B, C}
+E = {{A,B}, {B,C}}
+
+This records the vertices and edges as sets.
+
+21. GRAPH REPRESENTATION — LINKED
+A linked representation stores graph relationships using linked structures. A common implementation is an adjacency-list style structure where each vertex maintains a linked list of its neighboring vertices.
+
+Conceptually:
+A → B → C
+B → A → C
+C → A → B
+
+The exact linked representation can vary with implementation.
+
+22. GRAPH REPRESENTATION — MATRIX
+An adjacency matrix uses a two-dimensional matrix to record whether an edge exists between two vertices.
+
+For an undirected graph:
+    A B C
+A   0 1 0
+B   1 0 1
+C   0 1 0
+
+A 1 means an edge is present and 0 means no edge under this simple unweighted representation.
+
+23. BREADTH FIRST SEARCH — BFS
+BFS visits graph vertices in breadth-wise order, exploring nearby vertices before moving to vertices farther away.
+
+A queue is commonly used.
+
+Basic process:
+1) Choose a starting vertex.
+2) Mark it visited and enqueue it.
+3) Remove a vertex from the queue.
+4) Visit each unvisited adjacent vertex and enqueue it.
+5) Repeat until the queue is empty.
+
+Example:
+Graph:
+A — B
+|   |
+C — D
+
+Starting at A, one possible BFS order is:
+A, B, C, D
+
+The exact order can depend on the order in which adjacent vertices are stored.
+
+24. DEPTH FIRST SEARCH — DFS
+DFS explores as far as possible along one branch before backtracking.
+
+A stack or recursion is commonly used.
+
+Basic process:
+1) Choose a starting vertex.
+2) Mark it visited.
+3) Visit an unvisited adjacent vertex.
+4) Continue deeper while possible.
+5) Backtrack when no unvisited adjacent vertex remains.
+
+Using the same graph, one possible DFS order from A is:
+A, B, D, C
+
+Again, the exact traversal order depends on the adjacency order.
+
+25. BFS VS DFS
+BFS:
+• Breadth-wise exploration.
+• Commonly uses a queue.
+• Visits closer layers before deeper layers.
+
+DFS:
+• Depth-wise exploration.
+• Commonly uses a stack or recursion.
+• Explores a branch before backtracking.
+
+26. TREES VS GRAPHS
+Tree:
+• Hierarchical structure.
+• A connected tree with n nodes has n - 1 edges.
+• Has a root in the rooted-tree representation.
+• No cycles in a tree.
+
+Graph:
+• General network structure.
+• Can be directed or undirected.
+• May contain cycles.
+• Can have many different numbers of edges depending on the graph.
+
+27. QUICK EXAM REVISION
+• Tree = hierarchical non-linear structure.
+• Root = top/start node.
+• Node = individual tree element.
+• Edge = connection.
+• Parent = node above a child.
+• Child = node directly below a parent.
+• Sibling = nodes with the same parent.
+• Leaf = node with no children.
+• Subtree = tree formed by a node and descendants.
+• Degree = number of children of a node in a rooted tree.
+• Level = position in the hierarchy.
+• Height = longest downward path/depth measure under the chosen convention.
+• Binary tree = at most two children per node.
+• Preorder = Root, Left, Right.
+• Inorder = Left, Root, Right.
+• Postorder = Left, Right, Root.
+• Full = 0 or 2 children.
+• Complete = last level filled left to right.
+• Perfect = all internal nodes have 2 children and leaves are at same level.
+• Balanced = height kept under control.
+• Graph = vertices + edges.
+• Degree = number of incident edges in an undirected graph.
+• Walk may repeat vertices/edges.
+• Path is a connected route, commonly without repeated vertices.
+• Cycle = closed route back to starting vertex.
+• BFS = queue-based breadth-wise traversal.
+• DFS = stack/recursion-based depth-wise traversal.
+
+IMPORTANT EXAM QUESTIONS
+1. What is a non-linear data structure? Give examples.
+2. Explain a tree and define root, node, edge, parent, child, sibling, leaf, subtree, degree, level and height.
+3. What is a binary tree?
+4. Explain array representation of a binary tree.
+5. Explain insertion, deletion and traversal of a binary tree.
+6. Explain preorder, inorder and postorder traversals with an example.
+7. Differentiate full, complete, perfect and balanced binary trees.
+8. Define a graph. Explain vertices, edges and degree.
+9. Explain walk, path and cycle.
+10. Differentiate directed and undirected graphs.
+11. Explain graph representations using set, linked and matrix forms.
+12. Explain BFS with an example.
+13. Explain DFS with an example.
+14. Differentiate BFS and DFS.
+15. Differentiate trees and graphs.
+
+PRACTICAL PRACTICE
+• Implement a binary tree of integers.
+• Perform preorder, inorder and postorder traversal.
+• Practice binary-tree insertion and deletion according to the selected tree structure.
+• Implement BFS for a graph.
+• Implement DFS for a graph.
+• Represent a graph using an adjacency-style matrix.
+• Find the minimum depth of a binary tree.
+
+SYLLABUS ALIGNMENT
+This note follows Unit 5 of the uploaded Semester III CSE Data Structures syllabus: Trees with basic terminologies (root, nodes, edges, parent, child, sibling, leaf, subtree, degree, level and height); Binary Trees; array representation; insertion, deletion and traversals; full, complete, perfect and balanced binary trees; Graphs with vertices, edges, degree, walks, paths and cycles; graph representations listed as Set, Linked and Matrix; and graph traversals BFS and DFS. The syllabus also includes practicals for binary trees, BFS and DFS.` },
   { subject:'Computer System Organisation', code:'304', unit:'Unit 1', title:'Basic Computer Structure', desc:'Functional blocks, architectures, buses, number systems, registers, RTL, microoperations and data representation.', type:'Syllabus Unit',
     content:'Unit 1 — Basic Computer Structure\n\n• CPU, memory, input/output and control unit\n• Von Neumann vs Harvard architecture and bottleneck\n• Data, address and control buses\n• Decimal, binary, octal and hexadecimal systems and conversion\n• Registers and instruction cycle\n• Register transfer, bus and memory transfer, RTL\n• Arithmetic, logical and shift microoperations\n• ALU and arithmetic logical shift unit\n• Fixed-point, floating-point, sign bit, 1’s complement and 2’s complement\n• Addition and subtraction using 2’s complement' },
   { subject:'Computer System Organisation', code:'304', unit:'Unit 2', title:'Instruction Set Architecture', desc:'Instruction code, addressing modes, instruction formats, interrupts, RISC/CISC and pipeline concepts.', type:'Syllabus Unit',
