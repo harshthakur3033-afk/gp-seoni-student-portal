@@ -650,8 +650,304 @@ PRACTICAL PRACTICE
 
 SYLLABUS ALIGNMENT
 This note follows the Unit 1 topics in the uploaded Semester III CSE Scripting Languages syllabus: history, versions and features of Python; installation and environment setup; writing and running code; basic syntax including input, output, comments and indentation; types of error; variables and basic data types including numeric, string and Boolean; string operations; and basic operators.` },
-  { subject:'Scripting Languages', code:'302', unit:'Unit 2', title:'Advanced Data Types', desc:'Lists, tuples, dictionaries, sets and arrays with creation, access and modification.', type:'Syllabus Unit',
-    content:'Unit 2 — Advanced Data Types\n\n• Lists: creating, accessing, modifying, slicing and iterating\n• Tuples: creation, access, immutability, slicing, unpacking and iteration\n• Dictionaries: creation, access, adding/modifying key-value pairs, deletion and iteration\n• Sets: creation, adding and removing elements\n• Arrays: array module, creation, access, modification and operations' },
+    { subject:'Scripting Languages', code:'302', unit:'Unit 2', title:'Advanced Data Types', desc:'Detailed Unit 2 notes covering lists, tuples, dictionaries, sets and Python arrays with creation, access, modification, slicing, iteration and operations.', type:'Detailed Notes',
+    content:`Unit 2 — Advanced Data Types
+
+1. INTRODUCTION TO ADVANCED DATA TYPES
+Advanced data types help store collections of values in a structured way. This unit focuses on lists, tuples, dictionaries, sets and arrays in Python.
+
+A quick idea:
+• List — ordered, mutable collection.
+• Tuple — ordered, immutable collection.
+• Dictionary — collection of key-value pairs.
+• Set — collection of unique elements.
+• Array — sequence provided through Python's array module, with elements of a specified type.
+
+2. LISTS
+A list is an ordered and mutable collection. Lists can contain multiple values and can be changed after creation.
+
+Creating a list:
+numbers = [10, 20, 30, 40]
+
+Accessing elements:
+print(numbers[0])
+print(numbers[2])
+
+Python list indexing starts at 0.
+
+3. MODIFYING LISTS
+Lists can be modified by assigning a new value to an existing index.
+
+Example:
+numbers[1] = 25
+
+Common operations:
+• append(x) — adds an item at the end.
+• insert(index, x) — inserts an item at a given position.
+• remove(x) — removes the first matching item.
+• pop() — removes and returns an item, normally the last item.
+• clear() — removes all items.
+
+Example:
+numbers.append(50)
+numbers.insert(1, 15)
+
+4. LIST SLICING
+Slicing extracts part of a list using a start, stop and optional step.
+
+General form:
+list[start:stop:step]
+
+Example:
+numbers = [10, 20, 30, 40, 50]
+print(numbers[1:4])
+
+This gives the elements at indexes 1, 2 and 3. The stop position is not included.
+
+5. ITERATING OVER A LIST
+Iteration means processing list elements one by one.
+
+Example:
+for item in numbers:
+    print(item)
+
+A loop with range() can also be used when indexes are needed.
+
+Example:
+for i in range(len(numbers)):
+    print(numbers[i])
+
+6. TUPLES
+A tuple is an ordered collection that is immutable after creation.
+
+Creating a tuple:
+values = (10, 20, 30)
+
+Accessing elements:
+print(values[0])
+
+Tuple values cannot normally be changed after the tuple has been created.
+
+7. TUPLE IMMUTABILITY
+Immutability means the tuple structure cannot be modified by assigning a new value to one of its positions.
+
+Example:
+values = (10, 20, 30)
+
+An assignment such as values[0] = 99 is not allowed.
+
+Use a tuple when the collection is intended to remain unchanged.
+
+8. TUPLE SLICING
+Tuples support indexing and slicing just like lists.
+
+Example:
+values = (10, 20, 30, 40, 50)
+print(values[1:4])
+
+The result is a new tuple containing the selected elements.
+
+9. TUPLE UNPACKING
+Tuple unpacking assigns tuple elements to multiple variables.
+
+Example:
+student = ("Harsh", 17)
+name, age = student
+
+Now:
+name refers to "Harsh"
+age refers to 17
+
+The number of variables normally needs to match the number of unpacked elements.
+
+10. ITERATING OVER TUPLES
+Tuples can be processed using a for loop.
+
+Example:
+values = (10, 20, 30)
+for value in values:
+    print(value)
+
+11. DICTIONARIES
+A dictionary stores data as key-value pairs. Each key is used to access its corresponding value.
+
+Creating a dictionary:
+student = {
+    "name": "Harsh",
+    "marks": 78
+}
+
+Accessing a value:
+print(student["name"])
+
+A dictionary is mutable, so entries can be added, changed or deleted.
+
+12. ADDING AND MODIFYING KEY-VALUE PAIRS
+Add a new key:
+student["city"] = "Seoni"
+
+Modify an existing key:
+student["marks"] = 85
+
+The key is used to identify the value.
+
+13. DELETING ITEMS FROM A DICTIONARY
+Items can be deleted using methods such as pop() or statements such as del.
+
+Example:
+student.pop("city")
+
+Another form:
+del student["marks"]
+
+clear() can be used to remove all items from a dictionary.
+
+14. ITERATING OVER DICTIONARIES
+A dictionary can be iterated over its keys, values or key-value pairs.
+
+Examples:
+for key in student:
+    print(key)
+
+for key, value in student.items():
+    print(key, value)
+
+15. DICTIONARY KEY RULE
+Dictionary keys must be suitable hashable objects. Common examples include strings, numbers and tuples containing hashable values.
+
+Values can be of many different types, including lists or other dictionaries.
+
+16. SETS
+A set is a collection that stores unique elements. Duplicate values are removed.
+
+Creating a set:
+numbers = {1, 2, 3, 3, 4}
+
+The resulting set contains each unique value once.
+
+17. ADDING AND REMOVING SET ELEMENTS
+add(x) adds an element.
+
+Example:
+numbers.add(5)
+
+remove(x) removes an element and raises an error if the element is absent.
+
+discard(x) removes an element if present and does not raise an error when it is absent.
+
+Example:
+numbers.discard(10)
+
+18. IMPORTANT SET PROPERTY
+Sets are useful when uniqueness is important. They are not used like lists for index-based access.
+
+Example:
+items = {"A", "B", "A"}
+The repeated "A" is stored only once.
+
+19. PYTHON ARRAYS
+This unit introduces arrays using Python's standard array module.
+
+Import:
+from array import array
+
+Creating an integer array:
+numbers = array("i", [10, 20, 30])
+
+The type code defines the kind of elements stored by the array.
+
+20. ACCESSING AND MODIFYING ARRAYS
+Array elements can be accessed by index.
+
+Example:
+print(numbers[0])
+
+An array element can be modified:
+numbers[1] = 25
+
+Arrays support iteration and common sequence-style operations.
+
+Example:
+for value in numbers:
+    print(value)
+
+21. ARRAY OPERATIONS
+Common array operations include:
+• append(x) — add an item.
+• insert(i, x) — insert at a position.
+• remove(x) — remove the first matching value.
+• pop([i]) — remove and return an item.
+
+Always use a type code and values compatible with the array's declared element type.
+
+22. LIST VS TUPLE VS DICTIONARY VS SET VS ARRAY
+List:
+• Ordered.
+• Mutable.
+• Accessed by index.
+• Duplicate values allowed.
+
+Tuple:
+• Ordered.
+• Immutable.
+• Accessed by index.
+• Duplicate values allowed.
+
+Dictionary:
+• Stores key-value pairs.
+• Mutable.
+• Accessed using keys.
+• Keys must satisfy the dictionary's hashing requirements.
+
+Set:
+• Stores unique elements.
+• Mutable.
+• Not used as an index-based sequence.
+• Useful for membership and uniqueness.
+
+Array:
+• Sequence from the array module.
+• Stores elements using a specified array type code.
+• Supports indexed access and modification.
+
+23. QUICK EXAM REVISION
+• List = ordered and mutable.
+• Tuple = ordered and immutable.
+• Dictionary = key-value pairs.
+• Set = unique elements.
+• Python array = array module with a specified type code.
+• List slicing uses start:stop:step.
+• Tuple unpacking assigns elements to variables.
+• Dictionary items can be added, changed and deleted.
+• Set add() inserts an element.
+• Set remove() may raise an error if an item is absent.
+• Set discard() does not raise an error when an item is absent.
+• Array elements can be accessed and modified by index.
+
+IMPORTANT EXAM QUESTIONS
+1. What are advanced data types in Python?
+2. Explain lists with creating, accessing, modifying, slicing and iterating operations.
+3. What is a tuple? Explain immutability, slicing, unpacking and iteration.
+4. What is a dictionary? Explain creation, access, adding, modifying, deleting and iteration.
+5. What is a set? Explain creation and adding/removing elements.
+6. Explain arrays in Python using the array module.
+7. Differentiate list, tuple, dictionary, set and array.
+8. Explain list slicing with an example.
+9. Explain tuple unpacking with an example.
+10. Differentiate remove() and discard() for sets.
+
+PRACTICAL PRACTICE
+• Create a list of marks, modify an element and print a slice.
+• Iterate over a list using a for loop.
+• Create a tuple and demonstrate indexing, slicing and unpacking.
+• Create a dictionary for a student and add, modify and delete entries.
+• Iterate over dictionary key-value pairs.
+• Create a set containing duplicate values and observe uniqueness.
+• Add and remove elements from a set.
+• Create an integer array using the array module and modify its elements.
+
+SYLLABUS ALIGNMENT
+This note follows the Unit 2 topics in the uploaded Semester III CSE Scripting Languages syllabus: introduction to advanced data types; lists with creating, accessing, modifying, slicing and iterating; tuples with creating, accessing, immutability, slicing, unpacking and iteration; dictionaries with creation, access, adding/modifying key-value pairs, deletion and iteration; sets with creation and adding/removing elements; and arrays with the array module, creation, access, modification and operations.` },
   { subject:'Scripting Languages', code:'302', unit:'Unit 3', title:'Control Structures', desc:'Coding blocks, if/else/elif, for and while loops, loop controls and programming practice.', type:'Syllabus Unit',
     content:'Unit 3 — Control Structures\n\n• Coding blocks\n• if, else and elif\n• for loops and iteration over sequences and range\n• while loop\n• continue, break, else and pass\n• Programming using conditional and loop blocks' },
   { subject:'Scripting Languages', code:'302', unit:'Unit 4', title:'Functions, Modules and Packages', desc:'Functions, parameters, return values, scope, recursion, modules, namespaces, packages and PIP.', type:'Syllabus Unit',
