@@ -1091,6 +1091,17 @@ for i in range(1, 6):
 
 The loop stops when i becomes 4.
 
+12. pass STATEMENT
+The pass statement is a null operation: it does nothing when executed. It is useful as a placeholder when a statement is syntactically required but no action is needed yet.
+
+Example:
+if marks >= 40:
+    pass
+else:
+    print("Needs improvement")
+
+The pass statement is different from continue: pass does not skip an iteration or alter loop control; it simply performs no operation.
+
 12. else WITH LOOPS
 Python also allows an else block to be attached to a loop. The loop else block executes when the loop finishes normally without encountering break.
 
