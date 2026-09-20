@@ -108,6 +108,7 @@ const initialTasks = [
 
 function App() {
   const [active, setActive] = useState('Dashboard');
+  const [selectedSubject, setSelectedSubject] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [search, setSearch] = useState('');
   const [mcqIndex, setMcqIndex] = useState(0);
@@ -123,7 +124,7 @@ function App() {
   const query = search.trim().toLowerCase();
   const filteredSubjects = useMemo(() => subjects.filter((s) => `${s.name} ${s.code} ${s.topics.join(' ')}`.toLowerCase().includes(query)), [query]);
 
-  const go = (page) => { setActive(page); setMenuOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  const go = (page, subject = null) => { setActive(page); setSelectedSubject(subject); setMenuOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }); };
 
   const answerMcq = (index) => {
     if (selected !== null) return;
@@ -170,7 +171,7 @@ function App() {
         <section className="content">
           {active === 'Dashboard' && <Dashboard go={go} filteredSubjects={filteredSubjects} />}
           {active === 'Subjects' && <Subjects filteredSubjects={filteredSubjects} go={go} />}
-          {active === 'Notes' && <Notes search={query} />}
+          {active === 'Notes' && <Notes search={query} subjectFilter={selectedSubject} />}
           {active === 'Question Papers' && <Papers />}
           {active === 'MCQ Practice' && <MCQPractice mcq={mcqs[mcqIndex]} index={mcqIndex} selected={selected} score={score} answer={answerMcq} next={nextMcq} />}
           {active === 'Study Planner' && <Planner tasks={tasks} newTask={newTask} setNewTask={setNewTask} addTask={addTask} toggleTask={toggleTask} />}
@@ -198,11 +199,14 @@ function Dashboard({ go, filteredSubjects }) {
 function Subjects({ filteredSubjects, go }) {
   const [selected, setSelected] = useState(filteredSubjects[0]?.code || null);
   const current = filteredSubjects.find((s) => s.code === selected);
-  return <><div className="page-intro"><span className="section-kicker">ACADEMIC CONTENT</span><h1>Subjects & Modules</h1><p>Choose a subject to see its current module outline and jump into study material.</p></div><div className="subject-page-grid"><div className="subject-list">{filteredSubjects.map(({name,code,icon:Icon,tag}) => <button key={code} className={selected===code?'subject-row selected':'subject-row'} onClick={() => setSelected(code)}><span className="subject-icon"><Icon size={19}/></span><span><strong>{name}</strong><small>{code} · {tag}</small></span><ChevronRight size={17}/></button>)}</div>{current && <section className="module-panel"><div className="module-head"><div className="subject-icon">{React.createElement(current.icon,{size:21})}</div><div><span className="section-kicker">MODULE OUTLINE</span><h2>{current.name}</h2><small>{current.code}</small></div></div><div className="topic-list">{current.topics.map((topic,i)=><button key={topic} onClick={() => go('Notes')}><span>{String(i+1).padStart(2,'0')}</span><b>{topic}</b><ChevronRight size={16}/></button>)}</div><button className="primary full" onClick={() => go('Notes')}>Open Study Material <BookOpen size={16}/></button></section>}</div></>;
+  return <><div className="page-intro"><span className="section-kicker">ACADEMIC CONTENT</span><h1>Subjects & Modules</h1><p>Choose a subject to see its current module outline and jump into study material.</p></div><div className="subject-page-grid"><div className="subject-list">{filteredSubjects.map(({name,code,icon:Icon,tag}) => <button key={code} className={selected===code?'subject-row selected':'subject-row'} onClick={() => setSelected(code)}><span className="subject-icon"><Icon size={19}/></span><span><strong>{name}</strong><small>{code} · {tag}</small></span><ChevronRight size={17}/></button>)}</div>{current && <section className="module-panel"><div className="module-head"><div className="subject-icon">{React.createElement(current.icon,{size:21})}</div><div><span className="section-kicker">MODULE OUTLINE</span><h2>{current.name}</h2><small>{current.code}</small></div></div><div className="topic-list">{current.topics.map((topic,i)=><button key={topic} onClick={() => go('Notes', current.name)}><span>{String(i+1).padStart(2,'0')}</span><b>{topic}</b><ChevronRight size={16}/></button>)}</div><button className="primary full" onClick={() => go('Notes', current.name)}>Open Study Material <BookOpen size={16}/></button></section>}</div></>;
 }
 
-function Notes({ search }) {
-  const filtered = notes.filter((n) => `${n.subject} ${n.code} ${n.unit} ${n.title} ${n.desc}`.toLowerCase().includes(search));
+function Notes({ search, subjectFilter }) {
+  const filtered = notes.filter((n) =>
+    (!subjectFilter || n.subject === subjectFilter) &&
+    `${n.subject} ${n.code} ${n.unit} ${n.title} ${n.desc}`.toLowerCase().includes(search)
+  );
   const [selectedNote, setSelectedNote] = useState(null);
 
   return <>
