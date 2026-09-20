@@ -14,34 +14,76 @@ const subjects = [
 ];
 
 const notes = [
-  {
-    subject: 'Computer Networks',
-    type: 'Notes',
-    title: 'OSI Model — 7 Layers',
-    desc: 'Layer-by-layer revision guide with key functions and examples.',
-    content: `OSI Model — 7 Layers\n\n1. Physical — transmits raw bits over the medium.\n2. Data Link — frames, MAC addressing and basic error detection.\n3. Network — logical addressing and routing; IP works here.\n4. Transport — end-to-end delivery, reliability and ports; TCP/UDP.\n5. Session — manages communication sessions between applications.\n6. Presentation — data format, translation, encryption and compression.\n7. Application — network services used by applications, such as HTTP, DNS and email protocols.\n\nExam tip: Remember the order from Layer 1 to 7: Physical, Data Link, Network, Transport, Session, Presentation, Application.`
-  },
-  {
-    subject: 'Data Structures',
-    type: 'Notes',
-    title: 'Stack & Queue Basics',
-    desc: 'Concepts, operations, complexity and common exam questions.',
-    content: `Stack & Queue Basics\n\nSTACK\n• Follows LIFO: Last In, First Out.\n• Main operations: push, pop and peek/top.\n• Applications: function calls, undo operations and expression evaluation.\n\nQUEUE\n• Follows FIFO: First In, First Out.\n• Main operations: enqueue and dequeue.\n• Applications: scheduling, printer queues and breadth-first search.\n\nExam tip: Stack = LIFO. Queue = FIFO.`
-  },
-  {
-    subject: 'Cyber Security Basics',
-    type: 'Quick Guide',
-    title: 'CIA Triad & Common Threats',
-    desc: 'Short revision sheet for confidentiality, integrity and availability.',
-    content: `CIA Triad & Common Threats\n\nCONFIDENTIALITY\nOnly authorized people or systems should access information.\n\nINTEGRITY\nInformation should remain accurate and protected from unauthorized modification.\n\nAVAILABILITY\nAuthorized users should be able to access systems and information when needed.\n\nCommon threats include phishing, weak passwords, malware, social engineering and unauthorized access.\n\nExam tip: CIA = Confidentiality, Integrity, Availability.`
-  },
-  {
-    subject: 'Database Management',
-    type: 'Notes',
-    title: 'SQL Fundamentals',
-    desc: 'SELECT, WHERE, ORDER BY, GROUP BY and basic joins.',
-    content: `SQL Fundamentals\n\nSELECT — retrieves data.\nWHERE — filters rows using a condition.\nORDER BY — sorts the result.\nGROUP BY — groups rows for aggregate operations.\nJOIN — combines related data from multiple tables.\n\nExample:\nSELECT name, marks\nFROM students\nWHERE marks >= 60\nORDER BY marks DESC;\n\nCommon aggregate functions: COUNT(), SUM(), AVG(), MIN(), MAX().`
-  },
+  { subject:'Computer Programming', code:'301', unit:'Unit 1', title:'Computational Thinking, Variables & Data Representation', desc:'Problem solving, computational thinking, flowcharts, algorithms, variables, constants, data types and memory representation.', type:'Syllabus Unit',
+    content:'Unit 1 — Introduction to Computational Thinking & Variables and Data Representation\n\n• Concept of problem-solving and computational thinking\n• Steps involved in problem solving\n• Components of computational thinking\n• Converting problems into flowcharts and algorithms\n• Variables and constants\n• Data types and memory representation of variables' },
+  { subject:'Computer Programming', code:'301', unit:'Unit 2', title:'Operators and Input-Output', desc:'Arithmetic, relational, logical and bitwise operators, precedence, associativity and basic file I/O.', type:'Syllabus Unit',
+    content:'Unit 2 — Operators and Input-Output\n\n• Arithmetic, relational, logical and bitwise operators\n• Operator precedence and associativity\n• Input and output functions\n• Formatted output\n• Basic file I/O: file modes, open, read, write and close' },
+  { subject:'Computer Programming', code:'301', unit:'Unit 3', title:'Conditional and Looping Constructs', desc:'if, if-else, nested if, conditional operator, loops, switch-case, continue and break.', type:'Syllabus Unit',
+    content:'Unit 3 — Conditional and Looping Constructs\n\n• if, if-else and nested if\n• Conditional operator\n• for, while and do-while loops\n• Nested structures and use cases\n• switch-case\n• continue and break' },
+  { subject:'Computer Programming', code:'301', unit:'Unit 4', title:'Arrays and Pointer', desc:'One-dimensional and multidimensional arrays, strings, pointers and dynamic memory allocation.', type:'Syllabus Unit',
+    content:'Unit 4 — Arrays and Pointer\n\n• One-dimensional and multidimensional arrays\n• Memory organization of an array\n• Strings: creation, use, modification and string functions\n• Pointers: declaration, initialization and use\n• Dynamic memory allocation' },
+  { subject:'Computer Programming', code:'301', unit:'Unit 5', title:'Functions and Recursion', desc:'Function declaration, scope, lifetime, parameter passing and recursion.', type:'Syllabus Unit',
+    content:'Unit 5 — Functions and Recursion\n\n• Function declaration\n• Scope and lifetime of variables in functions\n• Types of functions\n• Call by value vs call by reference\n• Recursion: concept, uses, characteristics, types and examples' },
+
+  { subject:'Scripting Languages', code:'302', unit:'Unit 1', title:'Introduction, Variables and Data Types', desc:'Python history and features, setup, syntax, errors, variables, basic data types and operators.', type:'Syllabus Unit',
+    content:'Unit 1 — Introduction, Variables and Data Types\n\n• History, versions and features of Python\n• Python installation and environment setup\n• Writing and running code\n• Input, output, comments and indentation\n• Types of errors\n• Variables and basic data types: numeric, string, Boolean\n• String operations and basic operators' },
+  { subject:'Scripting Languages', code:'302', unit:'Unit 2', title:'Advanced Data Types', desc:'Lists, tuples, dictionaries, sets and arrays with creation, access and modification.', type:'Syllabus Unit',
+    content:'Unit 2 — Advanced Data Types\n\n• Lists: creating, accessing, modifying, slicing and iterating\n• Tuples: creation, access, immutability, slicing, unpacking and iteration\n• Dictionaries: creation, access, adding/modifying key-value pairs, deletion and iteration\n• Sets: creation, adding and removing elements\n• Arrays: array module, creation, access, modification and operations' },
+  { subject:'Scripting Languages', code:'302', unit:'Unit 3', title:'Control Structures', desc:'Coding blocks, if/else/elif, for and while loops, loop controls and programming practice.', type:'Syllabus Unit',
+    content:'Unit 3 — Control Structures\n\n• Coding blocks\n• if, else and elif\n• for loops and iteration over sequences and range\n• while loop\n• continue, break, else and pass\n• Programming using conditional and loop blocks' },
+  { subject:'Scripting Languages', code:'302', unit:'Unit 4', title:'Functions, Modules and Packages', desc:'Functions, parameters, return values, scope, recursion, modules, namespaces, packages and PIP.', type:'Syllabus Unit',
+    content:'Unit 4 — Functions, Modules and Packages\n\n• Defining and calling functions\n• Positional, default and keyword parameters\n• Return values, variable scope and recursion\n• User-defined modules, namespaces and scoping\n• Importing own and external modules\n• User-defined and built-in packages\n• Installing packages using PIP' },
+  { subject:'Scripting Languages', code:'302', unit:'Unit 5', title:'File I/O, Text Processing and Regular Expressions', desc:'File modes and operations, exception handling and regex with Python re.', type:'Syllabus Unit',
+    content:'Unit 5 — File I/O, Text Processing, Regular Expressions\n\n• File handling modes\n• Open, read, write, append, rename, delete and close\n• Basic exception handling\n• Pattern matching and searching with the Python re module\n• Regular expression patterns and applications' },
+
+  { subject:'Data Structures', code:'303', unit:'Unit 1', title:'Basics of Data Structure', desc:'Classification, pointers, structures and core data-structure operations.', type:'Syllabus Unit',
+    content:'Unit 1 — Basics of Data Structure\n\n• Linear, non-linear, primitive and non-primitive data structures\n• Pointers and pointer arithmetic\n• Array of pointers\n• Row-major and column-major implementation of 2-D arrays\n• Structure: definition, declaration and initialization\n• Traversing, searching, insertion, deletion, sorting, merging and updating' },
+  { subject:'Data Structures', code:'303', unit:'Unit 2', title:'Searching and Sorting Techniques', desc:'Linear and binary search plus insertion, selection, bubble, quick and heap sort.', type:'Syllabus Unit',
+    content:'Unit 2 — Searching and Sorting Techniques\n\n• Linear search\n• Binary search\n• Insertion sort\n• Selection sort\n• Bubble sort\n• Quick sort\n• Heap sort' },
+  { subject:'Data Structures', code:'303', unit:'Unit 3', title:'Linear Data Structures', desc:'Stacks and queues, representations, applications and queue variants.', type:'Syllabus Unit',
+    content:'Unit 3 — Linear Data Structures\n\n• Stack introduction and array representation\n• Applications of stacks\n• Infix-to-postfix transformation and postfix expressions\n• Queue introduction and array representation\n• DeQueue and circular queue\n• Applications of queues' },
+  { subject:'Data Structures', code:'303', unit:'Unit 4', title:'Linked List', desc:'Singly, circular and doubly linked lists with core operations.', type:'Syllabus Unit',
+    content:'Unit 4 — Linked List\n\n• Singly linked list and memory representation\n• Traversal, insertion, deletion and searching\n• Circular linked lists\n• Doubly linked lists' },
+  { subject:'Data Structures', code:'303', unit:'Unit 5', title:'Non Linear Data Structure', desc:'Trees, binary-tree operations, tree types and graph representation and traversal.', type:'Syllabus Unit',
+    content:'Unit 5 — Non Linear Data Structure\n\n• Tree terminology: root, node, edge, parent, child, sibling, leaf, subtree, degree, level and height\n• Binary trees and array representation\n• Insertion, deletion and traversals\n• Full, complete, perfect and balanced binary trees\n• Graphs: vertices, edges, degree, walks, paths and cycles\n• Set, linked and matrix representations\n• BFS and DFS' },
+
+  { subject:'Computer System Organisation', code:'304', unit:'Unit 1', title:'Basic Computer Structure', desc:'Functional blocks, architectures, buses, number systems, registers, RTL, microoperations and data representation.', type:'Syllabus Unit',
+    content:'Unit 1 — Basic Computer Structure\n\n• CPU, memory, input/output and control unit\n• Von Neumann vs Harvard architecture and bottleneck\n• Data, address and control buses\n• Decimal, binary, octal and hexadecimal systems and conversion\n• Registers and instruction cycle\n• Register transfer, bus and memory transfer, RTL\n• Arithmetic, logical and shift microoperations\n• ALU and arithmetic logical shift unit\n• Fixed-point, floating-point, sign bit, 1’s complement and 2’s complement\n• Addition and subtraction using 2’s complement' },
+  { subject:'Computer System Organisation', code:'304', unit:'Unit 2', title:'Instruction Set Architecture', desc:'Instruction code, addressing modes, instruction formats, interrupts, RISC/CISC and pipeline concepts.', type:'Syllabus Unit',
+    content:'Unit 2 — Instruction Set Architecture\n\n• Instruction code and addressing modes\n• Assembly code vs machine code\n• Instruction cycle, timing and control\n• General register organization and stack architecture\n• Three-, two-, one- and zero-address instruction formats\n• Data transfer, data manipulation and program control instructions\n• Interrupts and interrupt handling\n• RISC and CISC\n• Pipeline, vector processing and array processing' },
+  { subject:'Computer System Organisation', code:'304', unit:'Unit 3', title:'Control Unit Organization', desc:'Control signals, hardwired and microprogrammed control, microinstructions and control memory.', type:'Syllabus Unit',
+    content:'Unit 3 — Control Unit Organization\n\n• Role of control unit and control signals\n• Hardwired control unit: concept, advantages and limitations\n• Microprogrammed control unit and architecture\n• Microinstructions\n• Horizontal vs vertical microinstruction formats\n• Control memory and address sequencing\n• Hardwired vs microprogrammed control' },
+  { subject:'Computer System Organisation', code:'304', unit:'Unit 4', title:'Memory and I/O Organization', desc:'Memory hierarchy, RAM/ROM family, interfacing, interrupts, handshaking and DMA.', type:'Syllabus Unit',
+    content:'Unit 4 — Memory and I/O Organization\n\n• Memory hierarchy, SRAM and DRAM\n• RAM, ROM and EPROM chips and CPU interfacing\n• I/O configuration and interfacing\n• Interrupt-driven I/O, handshaking and asynchronous transfer\n• DMA and I/O processors' },
+  { subject:'Computer System Organisation', code:'304', unit:'Unit 5', title:'8085 Case Study and Assembly Language Programming', desc:'8085 architecture, pins, instructions, addressing modes and sample GNUSim8085 programs.', type:'Syllabus Unit',
+    content:'Unit 5 — 8085 Case Study and Assembly Language Programming\n\n• Introduction and architecture of 8085\n• Functional blocks: ALU, registers and control unit\n• Pin diagram and signal description\n• Instruction set overview and addressing modes\n• Applications of 8085\n• GNUSim8085 format, directives and flags\n• Sample programs: addition, data transfer, comparisons and loops' },
+
+  { subject:'Algorithms', code:'305', unit:'Unit 1', title:'Fundamentals of Algorithms', desc:'Algorithm characteristics, design steps, pseudocode, flowcharts, complexity and asymptotic notation.', type:'Syllabus Unit',
+    content:'Unit 1 — Fundamentals of Algorithms\n\n• Definition, characteristics and importance\n• Steps in algorithm design\n• Pseudocode, flowcharts and structured approach\n• Iterative vs recursive processes\n• Time and space complexity\n• Big-O, Omega and Theta\n• Best-case, worst-case and average-case analysis\n• Analysis of simple array algorithms' },
+  { subject:'Algorithms', code:'305', unit:'Unit 2', title:'Sorting', desc:'Sorting importance and applications, elementary sorts, merge sort and quick sort.', type:'Syllabus Unit',
+    content:'Unit 2 — Sorting\n\n• Importance and applications of sorting\n• Bubble sort\n• Selection sort\n• Insertion sort\n• Merge sort\n• Quick sort and divide-and-conquer idea\n• Complexity and comparison of sorting methods' },
+  { subject:'Algorithms', code:'305', unit:'Unit 3', title:'Searching', desc:'Linear and binary search, BST, balancing and hashing concepts.', type:'Syllabus Unit',
+    content:'Unit 3 — Searching\n\n• Linear search\n• Binary search and recurrence relation\n• Binary Search Trees: structure, insertion, deletion and search\n• Balanced search trees and height balancing\n• Hash tables and purpose of hashing\n• Hash functions\n• Collision handling: chaining and open addressing' },
+  { subject:'Algorithms', code:'305', unit:'Unit 4', title:'Graphs', desc:'Graph types and representation, topological sorting, MST and shortest path algorithms.', type:'Syllabus Unit',
+    content:'Unit 4 — Graphs\n\n• Directed and undirected graphs\n• Adjacency list and matrix\n• Paths, cycles and connected/disconnected graphs\n• Spanning trees\n• Topological sorting\n• Minimum spanning trees: Prim’s and Kruskal’s algorithms\n• Shortest path: Dijkstra’s algorithm' },
+  { subject:'Algorithms', code:'305', unit:'Unit 5', title:'Strings and Data Compression', desc:'String sorting, substring search, regular expressions and Huffman coding.', type:'Syllabus Unit',
+    content:'Unit 5 — Strings and Data Compression\n\n• String sorting and applications\n• Substring search\n• Regular expressions: meaning, patterns and validation applications\n• Need for data compression\n• Huffman coding and working\n• Applications in file storage and transmission' },
+
+  { subject:'Summer Internship - I', code:'—', unit:'Internship', title:'Summer Internship - I', desc:'3–4 week practical internship after the second semester with report, viva and presentation evaluation.', type:'Activity',
+    content:'Summer Internship — I\n\n• Duration: 3–4 weeks after the II Semester\n• Undertaken in an industry, Government or Private certified agency, social-sector agency, Government Skill Center or scheme\n• Evaluation based on work done, quality of report, viva-voce performance and presentation' },
+
+  { subject:'Professional Development', code:'—', unit:'Unit I', title:'Professional and Social Ethics', desc:'Professional ethics, code of ethics and social skills for group performance.', type:'Syllabus Unit',
+    content:'Unit I — Professional and Social Ethics\n\n• Professional ethics, need and importance\n• General code of ethics for engineers\n• Ethical issues for engineers\n• Need and importance of social skills\n• Social skills for better group performance\n• Social perceptiveness, coordination, negotiation and persuasion' },
+  { subject:'Professional Development', code:'—', unit:'Unit II', title:'Lifelong Learning and Self-directed Learning', desc:'Lifelong learning, self-directed learning, planning and examples.', type:'Syllabus Unit',
+    content:'Unit II — Lifelong Learning and Self-directed Learning\n\n• Lifelong learning and examples\n• Self-directed learning and examples\n• Important steps in lifelong learning\n• Need for planning self-directed learning\n• Planning a self-directed learning plan' },
+  { subject:'Professional Development', code:'—', unit:'Unit III', title:'Career Planning', desc:'Career opportunities, qualification, skills, experience and a self-career plan.', type:'Syllabus Unit',
+    content:'Unit III — Career Planning\n\n• Importance of career planning\n• Career opportunities related to the branch\n• Qualification, knowledge, skills and experience requirements\n• Personal lifestyle, interest areas, desires and preferences in career planning\n• Development of a self-career plan' },
+  { subject:'Professional Development', code:'—', unit:'Unit IV', title:'Industrial Visits', desc:'Purpose and planning of industrial visits and learning by observing real systems.', type:'Syllabus Unit',
+    content:'Unit IV — Industrial Visits\n\n• Exposure to industrial environment and practices\n• Lectures by industry experts\n• Importance of industrial visits\n• Learning through observation of real-life industrial systems\n• Planning and organizing industrial visits' },
+  { subject:'Professional Development', code:'—', unit:'Unit V', title:'CV, Resume, Bio-data and Interview', desc:'Employment presentation, formats, covering letter, interview preparation and practice.', type:'Syllabus Unit',
+    content:'Unit V — CV, Resume, Bio-data and Interview\n\n• Need for presenting self for employment\n• Features and formats of bio-data, CV and resume\n• Comparison, merits, limitations and uses\n• Covering letter\n• Interview purpose, dress code, body language and posture\n• Interview do’s and don’ts, checklist and practice' },
+  { subject:'Professional Development', code:'—', unit:'Unit VI', title:'Group Discussion', desc:'Importance of group discussion, participation skills and practice.', type:'Syllabus Unit',
+    content:'Unit VI — Group Discussion\n\n• Need and importance of group discussion in professional work\n• Ideal group discussion\n• Skills needed for effective participation\n• Practice of group discussion skills' },
 ];
 
 const papers = [
@@ -160,19 +202,19 @@ function Subjects({ filteredSubjects, go }) {
 }
 
 function Notes({ search }) {
-  const filtered = notes.filter((n) => `${n.subject} ${n.title} ${n.desc}`.toLowerCase().includes(search));
+  const filtered = notes.filter((n) => `${n.subject} ${n.code} ${n.unit} ${n.title} ${n.desc}`.toLowerCase().includes(search));
   const [selectedNote, setSelectedNote] = useState(null);
 
   return <>
-    <div className="page-intro"><span className="section-kicker">STUDY LIBRARY</span><h1>Notes & Study Material</h1><p>Short, exam-friendly resources. Official college material can be added as it becomes available.</p></div>
+    <div className="page-intro"><span className="section-kicker">SYLLABUS-WISE STUDY LIBRARY</span><h1>Notes & Study Material</h1><p>Semester III resources are organized subject-wise and unit-wise from the uploaded CSE syllabus.</p></div>
     <div className="resource-grid">
-      {filtered.map((n)=><article className="resource-card" key={n.title}>
+      {filtered.map((n)=><article className="resource-card" key={`${n.subject}-${n.unit}`}>
         <div className="resource-icon"><BookOpen size={20}/></div>
-        <span className="resource-tag">{n.type}</span>
+        <span className="resource-tag">{n.unit}</span>
         <h3>{n.title}</h3>
-        <b>{n.subject}</b>
+        <b>{n.subject} · {n.code}</b>
         <p>{n.desc}</p>
-        <button className="text-button" onClick={() => setSelectedNote(n)}>Open resource <ChevronRight size={15}/></button>
+        <button className="text-button" onClick={() => setSelectedNote(n)}>Open unit <ChevronRight size={15}/></button>
       </article>)}
     </div>
     {filtered.length===0&&<div className="empty">No study resources match “{search}”.</div>}
@@ -187,9 +229,9 @@ function Notes({ search }) {
       <section style={{width:'min(760px,100%)',maxHeight:'85vh',overflow:'auto',background:'#fff',borderRadius:'16px',border:'1px solid #e2e8f0',padding:'24px',boxShadow:'0 24px 70px rgba(7,21,46,.25)'}}>
         <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',gap:'16px'}}>
           <div>
-            <span className="section-kicker">{selectedNote.type}</span>
+            <span className="section-kicker">{selectedNote.unit}</span>
             <h2 style={{margin:'5px 0 4px',fontSize:'22px',color:'#14213d'}}>{selectedNote.title}</h2>
-            <div style={{fontSize:'10px',fontWeight:700,color:'#5e7ba2'}}>{selectedNote.subject}</div>
+            <div style={{fontSize:'10px',fontWeight:700,color:'#5e7ba2'}}>{selectedNote.subject} · {selectedNote.code}</div>
           </div>
           <button className="text-button" onClick={() => setSelectedNote(null)} aria-label="Close resource"><X size={20}/></button>
         </div>
