@@ -4,12 +4,13 @@ import { BookOpen, BrainCircuit, CalendarDays, CheckCircle2, ChevronRight, Circl
 import './styles.css';
 
 const subjects = [
-  { name: 'Data Structures', code: 'CS-301', icon: Code2, tag: 'CSE', topics: ['Arrays', 'Linked Lists', 'Stacks', 'Queues', 'Trees'] },
-  { name: 'Computer Networks', code: 'CS-302', icon: Network, tag: 'CSE', topics: ['OSI Model', 'TCP/IP', 'IP Addressing', 'DNS', 'Routing'] },
-  { name: 'Database Management', code: 'CS-303', icon: FileText, tag: 'CSE', topics: ['SQL', 'Keys', 'Normalization', 'ER Model', 'Transactions'] },
-  { name: 'Operating Systems', code: 'CS-304', icon: LayoutDashboard, tag: 'CSE', topics: ['Processes', 'Threads', 'Memory', 'File Systems', 'Scheduling'] },
-  { name: 'Cyber Security Basics', code: 'CS-305', icon: ShieldCheck, tag: 'Skill', topics: ['CIA Triad', 'Phishing', 'Passwords', '2FA', 'Linux Basics'] },
-  { name: 'Professional Practice', code: 'CS-306', icon: GraduationCap, tag: 'Career', topics: ['Resume', 'Communication', 'Interview', 'Projects', 'Teamwork'] },
+  { name: 'Computer Programming', code: '301', icon: Code2, tag: 'CSE', topics: ['Unit 1: Computational Thinking, Variables & Data Representation', 'Unit 2: Operators & Input-Output', 'Unit 3: Conditional & Looping Constructs', 'Unit 4: Arrays & Pointer', 'Unit 5: Functions & Recursion'] },
+  { name: 'Scripting Languages', code: '302', icon: Code2, tag: 'CSE', topics: ['Unit 1: Introduction, Variables & Data Types', 'Unit 2: Advanced Data Types', 'Unit 3: Control Structures', 'Unit 4: Functions, Modules & Packages', 'Unit 5: File I/O, Text Processing & Regular Expressions'] },
+  { name: 'Data Structures', code: '303', icon: Network, tag: 'CSE', topics: ['Unit 1: Basics of Data Structure', 'Unit 2: Searching & Sorting Techniques', 'Unit 3: Linear Data Structures', 'Unit 4: Linked List', 'Unit 5: Non-Linear Data Structure'] },
+  { name: 'Computer System Organisation', code: '304', icon: LayoutDashboard, tag: 'CSE', topics: ['Unit 1: Basic Computer Structure', 'Unit 2: Instruction Set Architecture', 'Unit 3: Control Unit Organization', 'Unit 4: Memory & I/O Organization', 'Unit 5: 8085 Case Study & Assembly Language Programming'] },
+  { name: 'Algorithms', code: '305', icon: Target, tag: 'CSE', topics: ['Unit 1: Fundamentals of Algorithms', 'Unit 2: Sorting', 'Unit 3: Searching', 'Unit 4: Graphs', 'Unit 5: Strings & Data Compression'] },
+  { name: 'Summer Internship - I', code: '—', icon: CalendarDays, tag: 'Internship', topics: ['3–4 Week Internship', 'Industry / Government / Certified Agency', 'Work & Practical Learning', 'Report Preparation', 'Viva-Voce & Presentation'] },
+  { name: 'Professional Development', code: '—', icon: GraduationCap, tag: 'Career', topics: ['Unit I: Professional & Social Ethics', 'Unit II: Lifelong & Self-directed Learning', 'Unit III: Career Planning', 'Unit IV: Industrial Visits', 'Unit V: CV, Resume, Bio-data & Interview', 'Unit VI: Group Discussion'] },
 ];
 
 const notes = [
