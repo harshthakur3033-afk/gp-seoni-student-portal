@@ -3234,8 +3234,411 @@ PRACTICAL PRACTICE
 
 SYLLABUS ALIGNMENT
 This note follows Unit 5 of the uploaded Semester III CSE Data Structures syllabus: Trees with basic terminologies (root, nodes, edges, parent, child, sibling, leaf, subtree, degree, level and height); Binary Trees; array representation; insertion, deletion and traversals; full, complete, perfect and balanced binary trees; Graphs with vertices, edges, degree, walks, paths and cycles; graph representations listed as Set, Linked and Matrix; and graph traversals BFS and DFS. The syllabus also includes practicals for binary trees, BFS and DFS.` },
-  { subject:'Computer System Organisation', code:'304', unit:'Unit 1', title:'Basic Computer Structure', desc:'Functional blocks, architectures, buses, number systems, registers, RTL, microoperations and data representation.', type:'Syllabus Unit',
-    content:'Unit 1 — Basic Computer Structure\n\n• CPU, memory, input/output and control unit\n• Von Neumann vs Harvard architecture and bottleneck\n• Data, address and control buses\n• Decimal, binary, octal and hexadecimal systems and conversion\n• Registers and instruction cycle\n• Register transfer, bus and memory transfer, RTL\n• Arithmetic, logical and shift microoperations\n• ALU and arithmetic logical shift unit\n• Fixed-point, floating-point, sign bit, 1’s complement and 2’s complement\n• Addition and subtraction using 2’s complement' },
+    { subject:'Computer System Organisation', code:'304', unit:'Unit 1', title:'Basic Computer Structure', desc:'Detailed Unit 1 notes covering computer functional blocks, architectures, buses, number systems, registers, instruction cycle, RTL, microoperations and data representation.', type:'Detailed Notes',
+    content:`Unit 1 — Basic Computer Structure
+
+1. FUNCTIONAL BLOCKS OF A DIGITAL COMPUTER
+A digital computer can be understood as a set of functional blocks that work together to accept data, process it, store it and produce results.
+
+Main functional blocks:
+• CPU — performs processing and controls program execution.
+• Memory — stores instructions and data.
+• Input unit — supplies data and instructions to the computer.
+• Output unit — presents processed information.
+• Control unit — coordinates the activities of the computer and generates control signals.
+
+The CPU mainly contains the control unit, arithmetic and logic circuitry, and registers.
+
+2. CPU
+The Central Processing Unit is the main processing section of a computer. It executes instructions and controls the sequence of operations.
+
+Major CPU elements:
+• ALU — performs arithmetic and logical operations.
+• Control Unit — directs and coordinates instruction execution.
+• Registers — very fast storage locations used during processing.
+
+Basic instruction flow:
+Fetch → Decode → Execute
+
+3. MEMORY
+Memory stores instructions, data and intermediate/final results.
+
+A simple hierarchy is:
+Registers → Cache → Main Memory → Secondary Storage
+
+Higher levels are generally faster and smaller, while lower levels are generally slower and larger.
+
+The syllabus specifically focuses on the basic computer structure and the role of memory as a functional block.
+
+4. INPUT AND OUTPUT
+Input devices provide data to the computer. Output devices present processed information to the user or another system.
+
+Examples:
+• Input — keyboard, mouse, sensors.
+• Output — monitor, printer, display devices.
+
+Input/Output operations allow the computer system to communicate with the outside world.
+
+5. CONTROL UNIT
+The Control Unit coordinates the activities of the processor. It interprets instructions and generates signals that control data movement and the sequence of operations.
+
+It does not normally perform arithmetic calculations itself; that role is primarily handled by the ALU.
+
+6. VON NEUMANN ARCHITECTURE
+In the Von Neumann model, instructions and data share the same main memory and memory path.
+
+Basic idea:
+CPU ↔ Shared Memory ↔ Input/Output
+
+Important feature:
+• A common memory stores both instructions and data.
+
+7. HARVARD ARCHITECTURE
+In the Harvard model, instructions and data use separate memory arrangements and, conceptually, separate paths.
+
+Basic idea:
+Instruction Memory ↔ CPU ↔ Data Memory
+
+Important feature:
+• Instruction and data storage are separated.
+
+8. VON NEUMANN VS HARVARD
+Von Neumann:
+• One shared memory for instructions and data.
+• Shared path can become a communication bottleneck.
+• Simpler unified memory model.
+
+Harvard:
+• Separate instruction and data memories/paths.
+• Can allow instruction and data transfers to occur more independently.
+• Uses a separate organization for instructions and data.
+
+9. VON NEUMANN BOTTLENECK
+The Von Neumann bottleneck refers to the limitation caused by the shared path between the processor and memory when instructions and data compete for access.
+
+The effect is that processor speed can be greater than the rate at which instructions/data can be supplied from memory.
+
+10. BUS STRUCTURES
+A bus is a communication pathway used to transfer information between computer components.
+
+The syllabus identifies three basic buses:
+
+Data Bus:
+Carries data between components.
+
+Address Bus:
+Carries the address that identifies the memory or I/O location involved in an operation.
+
+Control Bus:
+Carries control and timing signals that coordinate operations.
+
+11. BASIC BUS OPERATION
+When the CPU needs to read data from memory, an address is placed on the address bus and appropriate control signals are generated. The memory returns the requested data over the data bus.
+
+A memory write operation similarly uses the address bus for the destination address, the data bus for the value and control signals to indicate a write.
+
+12. NUMBER SYSTEMS
+The syllabus includes:
+• Decimal
+• Binary
+• Octal
+• Hexadecimal
+
+Decimal:
+Base 10, digits 0–9.
+
+Binary:
+Base 2, digits 0 and 1.
+
+Octal:
+Base 8, digits 0–7.
+
+Hexadecimal:
+Base 16, digits 0–9 and A–F.
+
+13. NUMBER SYSTEM CONVERSION
+Conversion changes a number from one base to another while representing the same value.
+
+Example:
+Decimal 10 = Binary 1010
+Decimal 10 = Octal 12
+Decimal 10 = Hexadecimal A
+
+For decimal-to-binary conversion, repeated division by 2 can be used and the remainders are read in reverse order.
+
+14. REGISTERS
+Registers are small, high-speed storage locations inside the CPU.
+
+They temporarily hold data, addresses, instructions or intermediate results during instruction execution.
+
+15. TYPES OF REGISTERS AND THEIR FUNCTIONS
+Common examples include:
+• Program Counter (PC) — holds the address of the next instruction to be fetched.
+• Instruction Register (IR) — holds the instruction currently being decoded/executed.
+• Memory Address Register (MAR) — holds a memory address involved in an operation.
+• Memory Data Register (MDR) — holds data being transferred to/from memory.
+• Accumulator — commonly used to hold intermediate arithmetic/logic results in suitable processor designs.
+• General-purpose registers — hold temporary operands and intermediate values.
+
+Register names and exact organization can vary between processor architectures.
+
+16. INSTRUCTION CYCLE
+The instruction cycle is the sequence of steps through which a processor processes an instruction.
+
+At a basic level:
+1) Fetch — obtain the instruction from memory.
+2) Decode — determine what the instruction means.
+3) Execute — perform the required operation.
+4) Store/write back — place the result where required, when applicable.
+
+The control unit coordinates these steps.
+
+17. REGISTER TRANSFER
+Register transfer means moving data from one register to another.
+
+Conceptual notation:
+R2 ← R1
+
+This means the contents of R1 are transferred to R2.
+
+18. BUS AND MEMORY TRANSFER
+Register transfer can occur through internal buses, while memory transfer involves communication between CPU registers and memory.
+
+Typical memory-read idea:
+MAR ← address
+Memory read
+MDR ← memory data
+
+The exact control signals and timing depend on the processor architecture.
+
+19. RTL — REGISTER TRANSFER LANGUAGE
+Register Transfer Language (RTL) is a symbolic notation used to describe data transfers and microoperations at the register level.
+
+Examples:
+R2 ← R1
+R3 ← R1 + R2
+
+RTL helps describe what happens during a processor operation without writing a complete program.
+
+20. MICROOPERATIONS
+A microoperation is a basic operation performed on data stored in registers.
+
+The syllabus covers:
+• Arithmetic microoperations.
+• Logical microoperations.
+• Shift microoperations.
+
+21. ARITHMETIC MICROOPERATIONS
+Arithmetic microoperations perform numerical operations on register contents.
+
+Examples:
+R3 ← R1 + R2
+R1 ← R1 + 1
+R2 ← R2 - 1
+
+Typical arithmetic microoperations include addition, subtraction, increment and decrement.
+
+22. LOGICAL MICROOPERATIONS
+Logical microoperations perform bit-by-bit logical operations.
+
+Examples:
+R3 ← R1 AND R2
+R3 ← R1 OR R2
+R3 ← R1 XOR R2
+R2 ← NOT R1
+
+These are useful for manipulating individual bits or groups of bits.
+
+23. SHIFT MICROOPERATIONS
+Shift microoperations move the bits in a register left or right.
+
+Types commonly discussed:
+• Logical shift.
+• Arithmetic shift.
+• Circular shift.
+
+Logical left shift:
+Bits move toward the left and zeros are introduced at the vacated positions, under the chosen fixed-width representation.
+
+Arithmetic right shift:
+The sign bit is preserved in signed representations while bits shift right.
+
+Circular shift:
+Bits shifted out from one end are reintroduced at the other end.
+
+24. ALU
+The Arithmetic Logic Unit performs arithmetic and logical operations on data.
+
+Typical operations include:
+• Addition and subtraction.
+• AND, OR and related logical operations.
+• Comparisons and other processor-specific operations.
+
+The ALU works with registers and control signals to complete processor operations.
+
+25. ARITHMETIC LOGICAL SHIFT UNIT
+An arithmetic logical shift unit combines arithmetic, logical and shift capabilities in a processor datapath.
+
+It can perform selected operations on register data based on control inputs.
+
+26. FIXED-POINT REPRESENTATION
+Fixed-point representation stores numbers with an implied, fixed position for the radix point.
+
+The syllabus includes fixed-point representation of:
+• Integers.
+• Decimal numbers.
+
+The main idea is that the number of bits allocated to the integer and fractional parts is predetermined.
+
+27. FLOATING-POINT REPRESENTATION
+Floating-point representation stores a number using components that represent its sign, significand/fraction and exponent.
+
+It is useful for representing a wide range of very small and very large values.
+
+The exact bit layout depends on the floating-point format/architecture being used.
+
+28. NEGATIVE NUMBER REPRESENTATION — SIGN BIT
+A sign-bit representation uses one bit to indicate the sign of a number and the remaining bits for its magnitude.
+
+A common conceptual form is:
+0 → positive
+1 → negative
+
+The exact handling of zero and arithmetic behavior depends on the representation scheme.
+
+29. 1’S COMPLEMENT
+In 1’s complement representation, the bits of a binary number are inverted to form the complement representation.
+
+Example:
+Binary:     00001010
+1’s comp:   11110101
+
+For fixed-width representations, sign and arithmetic rules must be considered when using 1’s complement.
+
+30. 2’S COMPLEMENT
+In 2’s complement representation, the negative form of a number is obtained by taking the 1’s complement and adding 1.
+
+Example using 8 bits:
++5 = 00000101
+1’s complement = 11111010
+Add 1 = 11111011
+
+So -5 is represented as 11111011 in 8-bit 2’s complement.
+
+31. 1’S COMPLEMENT VS 2’S COMPLEMENT
+1’s complement:
+• Inverts every bit.
+• Has separate positive and negative zero representations in the conventional form.
+• End-around carry is relevant in its arithmetic.
+
+2’s complement:
+• Inverts every bit and adds 1.
+• Has a single zero representation.
+• Makes binary addition/subtraction convenient for signed arithmetic.
+
+32. ADDITION USING 2’S COMPLEMENT
+To perform signed subtraction using 2’s complement:
+1) Represent the numbers using the same fixed width.
+2) Take the 2’s complement of the number being subtracted.
+3) Add it to the first number.
+4) Interpret the result according to the fixed-width signed representation.
+5) Handle carry/overflow according to the representation.
+
+Example:
+7 - 3
+
+7  = 00000111
+3  = 00000011
+2’s complement of 3:
+11111100 + 1 = 11111101
+
+Add:
+00000111
+11111101
+---------
+00000100
+
+Result = 4.
+
+33. SUBTRACTION USING 2’S COMPLEMENT
+For A - B:
+A - B = A + (2’s complement of B)
+
+Example:
+5 - 8
+
+5 = 00000101
+8 = 00001000
+2’s complement of 8:
+11111000
+
+Add:
+00000101
+11111000
+---------
+11111101
+
+In 8-bit 2’s complement, 11111101 represents -3.
+
+34. OVERFLOW IN SIGNED ARITHMETIC
+Overflow occurs when the mathematical result cannot be represented in the available number of signed bits.
+
+For 2’s complement arithmetic, adding two positive numbers and getting a negative result, or adding two negative numbers and getting a positive result, is a common indication of signed overflow.
+
+35. QUICK EXAM REVISION
+• CPU = executes instructions and controls processing.
+• ALU = arithmetic and logical operations.
+• Control Unit = coordinates operations.
+• Register = fast CPU storage.
+• Von Neumann = shared instruction/data memory.
+• Harvard = separate instruction/data memory organization.
+• Von Neumann bottleneck = limitation from shared instruction/data path.
+• Data bus = carries data.
+• Address bus = carries addresses.
+• Control bus = carries control signals.
+• Decimal = base 10.
+• Binary = base 2.
+• Octal = base 8.
+• Hexadecimal = base 16.
+• PC = address of next instruction.
+• IR = current instruction.
+• MAR = memory address.
+• MDR = memory data.
+• RTL = notation for register-level transfers/microoperations.
+• Arithmetic microoperations = arithmetic on register data.
+• Logical microoperations = bitwise logical operations.
+• Shift microoperations = move bits left/right/circularly.
+• Fixed-point = fixed radix-point position.
+• Floating-point = significand/fraction + exponent style representation.
+• 1’s complement = invert bits.
+• 2’s complement = invert bits + 1.
+• 2’s complement can be used for signed addition and subtraction.
+
+IMPORTANT EXAM QUESTIONS
+1. Explain the functional blocks of a digital computer.
+2. Explain Von Neumann and Harvard architectures and the Von Neumann bottleneck.
+3. Explain data, address and control buses.
+4. Explain decimal, binary, octal and hexadecimal number systems with conversions.
+5. What are registers? Explain common register types and their functions.
+6. Explain the instruction cycle.
+7. What is register transfer? Explain RTL with examples.
+8. Explain arithmetic, logical and shift microoperations.
+9. Explain the functions of the ALU and arithmetic logical shift unit.
+10. Explain fixed-point and floating-point representation.
+11. Explain sign-bit, 1’s complement and 2’s complement representations of negative numbers.
+12. Perform binary addition/subtraction using 2’s complement.
+13. What is signed arithmetic overflow?
+
+PRACTICAL / NUMERICAL PRACTICE
+• Convert decimal numbers to binary, octal and hexadecimal and vice versa.
+• Practice register-transfer and RTL expressions.
+• Perform arithmetic, logical and shift microoperations on sample bit patterns.
+• Represent positive and negative numbers using sign bit, 1’s complement and 2’s complement.
+• Solve binary addition and subtraction using 2’s complement.
+• Identify possible signed overflow cases.
+
+SYLLABUS ALIGNMENT
+This note follows Unit 1 of the uploaded Semester III CSE Computer System Organisation syllabus: functional blocks (CPU, Memory, Input/Output, Control Unit); Von Neumann vs Harvard architectures and bottleneck; Data, Address and Control buses; Decimal, Binary, Octal and Hexadecimal number systems and conversion; registers, types and functions, and instruction cycle; Register Transfer, Bus and Memory Transfer, RTL; Arithmetic, Logical and Shift microoperations; ALU and Arithmetic Logical Shift Unit; and data representation through fixed-point, floating-point, sign-bit, 1’s complement and 2’s complement methods, including arithmetic addition and subtraction using 2’s complement.` },
   { subject:'Computer System Organisation', code:'304', unit:'Unit 2', title:'Instruction Set Architecture', desc:'Instruction code, addressing modes, instruction formats, interrupts, RISC/CISC and pipeline concepts.', type:'Syllabus Unit',
     content:'Unit 2 — Instruction Set Architecture\n\n• Instruction code and addressing modes\n• Assembly code vs machine code\n• Instruction cycle, timing and control\n• General register organization and stack architecture\n• Three-, two-, one- and zero-address instruction formats\n• Data transfer, data manipulation and program control instructions\n• Interrupts and interrupt handling\n• RISC and CISC\n• Pipeline, vector processing and array processing' },
   { subject:'Computer System Organisation', code:'304', unit:'Unit 3', title:'Control Unit Organization', desc:'Control signals, hardwired and microprogrammed control, microinstructions and control memory.', type:'Syllabus Unit',
