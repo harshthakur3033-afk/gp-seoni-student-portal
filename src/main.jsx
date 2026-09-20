@@ -2297,8 +2297,282 @@ PRACTICAL PRACTICE
 
 SYLLABUS ALIGNMENT
 This note follows Unit 2 of the uploaded Semester III CSE Data Structures syllabus: Searching Techniques — Linear search and Binary search; and Sorting Techniques — Insertion sort, Selection sort, Bubble sort, quick sort, and heap sort. The syllabus also assigns 14 hours and 14 marks to this unit.` },
-  { subject:'Data Structures', code:'303', unit:'Unit 3', title:'Linear Data Structures', desc:'Stacks and queues, representations, applications and queue variants.', type:'Syllabus Unit',
-    content:'Unit 3 — Linear Data Structures\n\n• Stack introduction and array representation\n• Applications of stacks\n• Infix-to-postfix transformation and postfix expressions\n• Queue introduction and array representation\n• DeQueue and circular queue\n• Applications of queues' },
+    { subject:'Data Structures', code:'303', unit:'Unit 3', title:'Linear Data Structures', desc:'Detailed Unit 3 notes covering stacks, queues, array representations, applications, infix-to-postfix, postfix expressions, deque and circular queue.', type:'Detailed Notes',
+    content:`Unit 3 — Linear Data Structures
+
+1. LINEAR DATA STRUCTURES
+A linear data structure stores elements in a sequential relationship. This unit focuses on two important linear data structures:
+• Stack
+• Queue
+
+2. STACK — INTRODUCTION
+A stack is a linear data structure in which insertion and deletion take place at one end called the top.
+
+A stack follows the LIFO principle:
+Last In, First Out.
+
+Example:
+Think of a stack of plates. The last plate placed on top is the first one removed.
+
+3. STACK OPERATIONS
+Common stack operations include:
+• Push — insert an element at the top.
+• Pop — remove the top element.
+• Peek/Top — inspect the top element without removing it.
+
+Example:
+Start: [10, 20]
+Push 30 → [10, 20, 30]
+Pop → removes 30
+
+4. ARRAY REPRESENTATION OF STACK
+A stack can be implemented using an array and a variable such as top to indicate the current top position.
+
+Conceptual form:
+int stack[MAX];
+int top = -1;
+
+When top is -1, the stack is empty.
+
+Push:
+1) Check whether the stack is full.
+2) Increase top.
+3) Store the new value at stack[top].
+
+Pop:
+1) Check whether the stack is empty.
+2) Read stack[top].
+3) Decrease top.
+
+5. STACK OVERFLOW AND UNDERFLOW
+Overflow occurs when an insertion is attempted on a full stack.
+
+Underflow occurs when a deletion is attempted from an empty stack.
+
+For an array-based stack, checking these conditions prevents invalid operations.
+
+6. APPLICATIONS OF STACKS
+Stacks are useful when the most recently added item must be processed first.
+
+Common applications:
+• Expression processing.
+• Infix-to-postfix conversion.
+• Processing postfix expressions.
+• Function-call and execution-stack behavior.
+• Undo-like operations in suitable software systems.
+
+7. INFIX, PREFIX AND POSTFIX
+Expression notation can be described by operator position.
+
+Infix:
+Operator is written between operands.
+Example:
+A + B
+
+Prefix:
+Operator is written before operands.
+Example:
++ A B
+
+Postfix:
+Operator is written after operands.
+Example:
+A B +
+
+The syllabus specifically requires infix-to-postfix transformation and postfix expressions.
+
+8. INFIX-TO-POSTFIX TRANSFORMATION
+A stack can be used to convert an infix expression into postfix form.
+
+Basic idea:
+1) Read the expression from left to right.
+2) If the symbol is an operand, add it to the output.
+3) If it is an opening parenthesis, push it onto the stack.
+4) For an operator, manage operators on the stack according to precedence and associativity.
+5) When a closing parenthesis appears, pop until the matching opening parenthesis.
+6) After the input ends, pop remaining operators into the output.
+
+Example:
+Infix:
+A + B * C
+
+Postfix:
+A B C * +
+
+Multiplication has higher precedence than addition, so B * C is placed before + in the postfix expression.
+
+9. POSTFIX EXPRESSIONS
+A postfix expression is evaluated from left to right using a stack.
+
+Basic evaluation method:
+1) Read the expression from left to right.
+2) If an operand is found, push it.
+3) If an operator is found, pop the required operands.
+4) Apply the operator.
+5) Push the result back.
+6) At the end, the remaining stack value is the result.
+
+Example:
+Postfix:
+2 3 + 4 *
+
+Steps:
+• Push 2
+• Push 3
+• + → 5
+• Push 4
+• * → 20
+
+Result = 20.
+
+10. QUEUE — INTRODUCTION
+A queue is a linear data structure in which insertion is performed at the rear and deletion is performed at the front.
+
+A queue follows FIFO:
+First In, First Out.
+
+Example:
+In a waiting line, the person who joins first is normally served first.
+
+11. QUEUE OPERATIONS
+Common queue operations:
+• Enqueue — insert an element at the rear.
+• Dequeue — remove an element from the front.
+• Front — inspect the front element.
+• Rear — inspect the rear position.
+
+Example:
+Start: [10, 20]
+Enqueue 30 → [10, 20, 30]
+Dequeue → removes 10
+
+12. ARRAY REPRESENTATION OF QUEUE
+A queue can be implemented using an array with front and rear indexes.
+
+Conceptual initialization:
+int queue[MAX];
+int front = -1;
+int rear = -1;
+
+The exact index update rules depend on the queue implementation.
+
+For a simple linear array queue:
+Enqueue adds at the rear.
+Dequeue removes from the front.
+
+The implementation must correctly handle empty and full conditions.
+
+13. QUEUE OVERFLOW AND UNDERFLOW
+Overflow occurs when an insertion is attempted on a full queue.
+
+Underflow occurs when a deletion is attempted from an empty queue.
+
+The implementation needs checks for these conditions.
+
+14. TYPES OF QUEUES
+The syllabus specifically includes:
+• DeQueue (Deque)
+• Circular Queue
+
+15. DEQUEUE (DEQUE)
+A deque, or double-ended queue, allows insertion and deletion at both ends.
+
+Possible operations include:
+• Insert at front.
+• Insert at rear.
+• Delete from front.
+• Delete from rear.
+
+Unlike an ordinary queue, a deque is not restricted to insertion only at the rear and deletion only at the front.
+
+16. CIRCULAR QUEUE
+A circular queue treats the queue positions as connected in a circle. After reaching the final array position, the next position can wrap around to the beginning when space is available.
+
+This helps reuse positions that may have become free after deletions in an array-based queue.
+
+Conceptual next position:
+(rear + 1) % MAX
+
+The exact full/empty conditions depend on the chosen circular-queue implementation.
+
+17. ORDINARY QUEUE VS CIRCULAR QUEUE
+Ordinary linear queue:
+• Uses a linear range of array positions.
+• Freed positions at the beginning may not be reused efficiently in a simple implementation.
+
+Circular queue:
+• Reuses positions by wrapping around.
+• Uses modular movement through the array.
+
+18. APPLICATIONS OF QUEUES
+Queues are useful when processing should happen in arrival order.
+
+Examples:
+• Waiting-line systems.
+• Printer/job scheduling.
+• CPU or task scheduling concepts.
+• Buffering and producer-consumer style situations.
+• Breadth-oriented processing in algorithms.
+
+19. STACK VS QUEUE
+Stack:
+• LIFO.
+• Insertion and deletion at the same end, top.
+• Main operations: push and pop.
+
+Queue:
+• FIFO.
+• Insertion at rear and deletion at front.
+• Main operations: enqueue and dequeue.
+
+20. QUICK EXAM REVISION
+• Linear data structure = sequential organization.
+• Stack = LIFO.
+• Queue = FIFO.
+• Push = insert into stack.
+• Pop = remove from stack.
+• Peek/Top = inspect stack top.
+• Stack overflow = push into full stack.
+• Stack underflow = pop from empty stack.
+• Infix = operator between operands.
+• Postfix = operator after operands.
+• Infix-to-postfix conversion uses a stack.
+• Postfix evaluation uses a stack.
+• Enqueue = insert into queue.
+• Dequeue = remove from queue.
+• Deque = insertion/deletion at both ends.
+• Circular queue = queue with wrap-around positions.
+
+IMPORTANT EXAM QUESTIONS
+1. Define a stack and explain the LIFO principle.
+2. Explain push, pop and peek operations.
+3. Explain array representation of a stack.
+4. What are stack overflow and underflow?
+5. Explain applications of stacks.
+6. What are infix and postfix expressions?
+7. Explain infix-to-postfix transformation using a stack.
+8. Explain evaluation of a postfix expression.
+9. Define a queue and explain the FIFO principle.
+10. Explain enqueue and dequeue operations.
+11. Explain array representation of a queue.
+12. What are overflow and underflow in a queue?
+13. Explain deque and its operations.
+14. Explain circular queue and why wrap-around is useful.
+15. Differentiate stack and queue.
+
+PRACTICAL PRACTICE
+• Implement stack operations using an array.
+• Practice push, pop and peek.
+• Implement stack operations using a linked-list representation when applicable.
+• Convert a simple infix expression to postfix.
+• Evaluate a postfix expression using a stack.
+• Implement queue operations using an array.
+• Practice enqueue and dequeue.
+• Implement a circular queue.
+• Practice deque operations conceptually.
+
+SYLLABUS ALIGNMENT
+This note follows Unit 3 of the uploaded Semester III CSE Data Structures syllabus: Stacks — introduction, array representation, applications, infix-to-postfix transformation and postfix expressions; and Queues — introduction, array representation, DeQueue, circular queue and applications. The syllabus also lists practicals for stack and queue operations using arrays and linked lists.` },
   { subject:'Data Structures', code:'303', unit:'Unit 4', title:'Linked List', desc:'Singly, circular and doubly linked lists with core operations.', type:'Syllabus Unit',
     content:'Unit 4 — Linked List\n\n• Singly linked list and memory representation\n• Traversal, insertion, deletion and searching\n• Circular linked lists\n• Doubly linked lists' },
   { subject:'Data Structures', code:'303', unit:'Unit 5', title:'Non Linear Data Structure', desc:'Trees, binary-tree operations, tree types and graph representation and traversal.', type:'Syllabus Unit',
