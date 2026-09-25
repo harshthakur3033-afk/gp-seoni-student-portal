@@ -4434,9 +4434,405 @@ PRACTICAL / CONCEPT PRACTICE
 
 SYLLABUS ALIGNMENT
 This note follows Unit 4 of the uploaded Semester III CSE Computer System Organisation syllabus: memory hierarchy, SRAM and DRAM; RAM, ROM and EPROM chips and their interfacing with CPU; I/O configuration and interfacing; interrupt-driven I/O, handshaking and asynchronous transfer; and DMA (Direct Memory Access) and I/O processors.` },
-  { subject:'Computer System Organisation', code:'304', unit:'Unit 5', title:'8085 Case Study and Assembly Language Programming', desc:'8085 architecture, pins, instructions, addressing modes and sample GNUSim8085 programs.', type:'Syllabus Unit',
-    content:'Unit 5 — 8085 Case Study and Assembly Language Programming\n\n• Introduction and architecture of 8085\n• Functional blocks: ALU, registers and control unit\n• Pin diagram and signal description\n• Instruction set overview and addressing modes\n• Applications of 8085\n• GNUSim8085 format, directives and flags\n• Sample programs: addition, data transfer, comparisons and loops' },
+  { subject:'Computer System Organisation', code:'304', unit:'Unit 5', title:'8085 Case Study and Assembly Language Programming', desc:'Detailed Unit 5 notes covering the 8085 microprocessor, architecture, functional blocks, pin diagram and signals, instruction set, addressing modes, applications, and GNUSim8085 assembly programming with sample programs.', type:'Detailed Notes',
+    content:`Unit 5 — Microprocessor 8085 Case Study and Assembly Language Programming
 
+1. INTRODUCTION TO 8085 MICROPROCESSOR
+The Intel 8085 is an 8-bit microprocessor used as a classic processor for studying the basic organization and programming of microprocessors.
+
+Important basic points:
+• It is an 8-bit microprocessor, so its ALU and general data operations are based on 8-bit data.
+• It has a 16-bit address bus, allowing it to address a 64 KB memory address space.
+• It operates using registers, an ALU, a control unit and external buses/signals.
+• It is commonly used for learning processor architecture, instruction execution and assembly programming.
+
+2. ARCHITECTURE OF 8085
+The architecture of 8085 consists of major functional sections that work together to fetch, decode and execute instructions.
+
+Main parts include:
+• Arithmetic Logic Unit (ALU)
+• Register section
+• Control Unit
+• Program Counter
+• Stack Pointer
+• Instruction Register and Instruction Decoder
+• Address bus and data bus
+• Timing and control logic
+• Interrupt control
+• Serial I/O control
+
+Basic instruction flow:
+Memory → Instruction Register/Decoder → Control Unit → ALU/Register operations → Result
+
+3. FUNCTIONAL BLOCK — ALU
+The Arithmetic Logic Unit performs arithmetic and logical operations on data.
+
+Typical functions include:
+• Addition
+• Subtraction
+• AND
+• OR
+• XOR
+• Comparison
+• Increment and decrement
+• Complement-related operations supported by the instruction set
+
+The ALU works with the accumulator and other registers as required by the instruction.
+
+4. FUNCTIONAL BLOCK — REGISTERS
+Registers are fast storage locations inside the microprocessor used to hold data, addresses and intermediate information.
+
+Important 8085 registers include:
+• Accumulator — an 8-bit register closely associated with ALU operations.
+• General-purpose registers B, C, D, E, H and L — used for temporary data storage and can also be combined as register pairs for suitable operations.
+• Program Counter (PC) — 16-bit register that holds the address of the next instruction.
+• Stack Pointer (SP) — 16-bit register that points to the current top of the stack.
+• Instruction Register — holds the current instruction for decoding.
+• Flag register — stores status flags produced by relevant operations.
+
+5. 8085 FLAGS
+The 8085 flag register contains status information about the result of operations.
+
+Important flags:
+• Sign (S) — indicates the sign of the result in the relevant 8-bit operation.
+• Zero (Z) — set when the result is zero.
+• Auxiliary Carry (AC) — indicates carry from bit 3 to bit 4 in applicable arithmetic operations.
+• Parity (P) — indicates whether the result contains an even or odd number of 1 bits.
+• Carry (CY) — indicates a carry out of the most significant bit in addition or a borrow-related condition in applicable subtraction operations.
+
+Flags are used by conditional instructions and help the processor make decisions based on operation results.
+
+6. FUNCTIONAL BLOCK — CONTROL UNIT
+The control unit coordinates the execution of instructions.
+
+It:
+• Interprets decoded instructions.
+• Generates timing and control signals.
+• Controls data movement between registers, ALU and external memory/I/O.
+• Coordinates the fetch, decode and execute sequence.
+
+7. PROGRAM COUNTER AND STACK POINTER
+Program Counter:
+The Program Counter is a 16-bit register that contains the address of the next instruction to be fetched.
+
+Stack Pointer:
+The Stack Pointer is a 16-bit register that points to the current top position of the stack in memory.
+
+The stack is used for temporary storage, subroutine calls, returns and related operations.
+
+8. INSTRUCTION REGISTER AND INSTRUCTION DECODER
+The Instruction Register holds the instruction opcode that has been fetched from memory.
+
+The Instruction Decoder interprets the opcode and helps the control unit determine which sequence of control operations must be generated.
+
+Basic flow:
+Fetch instruction → Instruction Register → Decode → Control signals → Execute
+
+9. PIN DIAGRAM AND SIGNAL DESCRIPTION
+The 8085 is a 40-pin microprocessor. Its pins provide address, data, control, timing, interrupt, serial and power-related signals.
+
+Major signal groups include:
+
+Address/data-related signals:
+• AD0–AD7 — multiplexed lower-order address and data lines.
+• A8–A15 — higher-order address lines.
+
+Control and status signals:
+• ALE — Address Latch Enable; helps separate the lower address from multiplexed address/data lines.
+• RD — indicates a read operation.
+• WR — indicates a write operation.
+• IO/M — distinguishes I/O and memory-related operations.
+
+Interrupt-related signals:
+• TRAP
+• RST 7.5
+• RST 6.5
+• RST 5.5
+• INTR
+• INTA
+
+Serial I/O:
+• SID — Serial Input Data.
+• SOD — Serial Output Data.
+
+Clock/power and related signals:
+• X1, X2 — clock generation connections.
+• CLK OUT — clock output.
+• RESET IN, RESET OUT — reset-related signals.
+• VCC and VSS — power and ground connections.
+
+The exact electrical behavior of each pin should be studied from the 8085 pin diagram when preparing diagrams-based exam questions.
+
+10. 8085 INSTRUCTION SET — OVERVIEW
+An instruction set is the collection of instructions supported by the 8085.
+
+The major groups commonly used for study are:
+• Data Transfer Instructions
+• Arithmetic Instructions
+• Logical Instructions
+• Branching Instructions
+• Machine Control Instructions
+
+Examples include:
+• MOV — move data between registers or supported locations.
+• MVI — move immediate data.
+• LXI — load a register pair with immediate 16-bit data.
+• ADD — add data to the accumulator.
+• SUB — subtract data from the accumulator.
+• INR / DCR — increment / decrement.
+• ANA / ORA / XRA — logical operations.
+• JMP — unconditional jump.
+• CALL / RET — subroutine call and return.
+• HLT — halt processor operation.
+
+The exact operands and legal combinations depend on the 8085 instruction set.
+
+11. ADDRESSING MODES OF 8085
+Addressing mode specifies how the operand required by an instruction is obtained.
+
+The principal 8085 addressing modes are:
+
+IMMEDIATE ADDRESSING
+The data is given directly in the instruction.
+
+Example:
+MVI A, 25H
+
+Here 25H is the immediate data.
+
+REGISTER ADDRESSING
+The operand is stored in a register.
+
+Example:
+MOV A, B
+
+The contents of register B are copied to accumulator A.
+
+DIRECT ADDRESSING
+The memory address of the operand is explicitly specified in the instruction.
+
+Example idea:
+LDA 2050H
+
+The accumulator loads data from the specified memory address.
+
+REGISTER INDIRECT ADDRESSING
+A register pair contains the memory address of the operand.
+
+Example idea:
+MOV A, M
+
+Here M represents the memory location addressed by the HL register pair.
+
+IMPLIED / IMPLICIT ADDRESSING
+The operand is implied by the instruction itself.
+
+Example:
+CMA
+
+The accumulator is implicitly used by the instruction.
+
+12. APPLICATIONS OF 8085
+The 8085 can be used in learning and basic embedded-control applications where a simple microprocessor is suitable.
+
+Examples of application areas:
+• Educational microprocessor systems.
+• Basic control systems.
+• Simple data acquisition and monitoring arrangements.
+• Timing and sequencing tasks.
+• Interfacing experiments with peripherals.
+• Small embedded systems used for instruction and laboratory demonstrations.
+
+These examples illustrate the type of tasks for which a simple 8-bit microprocessor can be studied and applied.
+
+13. ASSEMBLY PROGRAMMING USING GNUSIM8085
+GNUSim8085 is an educational simulator used to write, assemble, execute and observe 8085 assembly programs.
+
+A student can use it to:
+• Write 8085 assembly instructions.
+• Assemble the program.
+• Observe registers and flags.
+• Execute instructions step by step.
+• Check memory and program results.
+• Debug basic assembly programs.
+
+14. BASIC ASSEMBLY PROGRAM FORMAT
+An 8085 assembly program contains instructions and, when required, labels/directives and data definitions according to the simulator/assembler syntax.
+
+A simple program structure may contain:
+• Label or starting address information.
+• Instruction mnemonic.
+• Operand(s).
+• Comments for explanation.
+• Program termination instruction or suitable simulator convention.
+
+Example:
+MVI A, 05H
+MVI B, 03H
+ADD B
+HLT
+
+This loads 5 into A, loads 3 into B, adds B to A and then halts.
+
+15. ASSEMBLY LANGUAGE DIRECTIVES
+Directives provide information to the assembler/simulator rather than representing ordinary processor operations.
+
+Depending on the GNUSim8085 environment and program format, directives can be used for tasks such as:
+• Specifying data or storage.
+• Defining constants/locations.
+• Controlling assembly placement or organization.
+
+Students should follow the directive syntax supported by the GNUSim8085 version used in their practical work.
+
+16. FLAGS DURING ASSEMBLY PROGRAMMING
+8085 instructions can change relevant flags depending on the operation.
+
+Important flags for practical observation:
+• S — Sign
+• Z — Zero
+• AC — Auxiliary Carry
+• P — Parity
+• CY — Carry
+
+Example:
+If an arithmetic instruction produces a zero result, the Zero flag may become set according to the instruction's flag behavior.
+
+17. SAMPLE PROGRAM — 8-BIT ADDITION
+Goal: Add two 8-bit numbers.
+
+Example program:
+MVI A, 05H
+MVI B, 03H
+ADD B
+HLT
+
+Working:
+1) A ← 05H
+2) B ← 03H
+3) ADD B performs A ← A + B
+4) Result in A = 08H
+5) HLT stops execution
+
+This demonstrates immediate data loading and addition using a register operand.
+
+18. SAMPLE PROGRAM — 16-BIT ADDITION
+A 16-bit addition can be performed using register-pair operations and the 8085 instruction set.
+
+Conceptual steps:
+1) Load the first 16-bit number into one register pair.
+2) Load the second 16-bit number into another suitable register pair.
+3) Add the second pair to the first using the appropriate 16-bit instruction.
+4) Observe the result and carry-related behavior.
+
+Example form:
+LXI H, 1234H
+LXI D, 1111H
+DAD D
+HLT
+
+Here the instruction adds the DE register pair to the HL register pair.
+
+19. SAMPLE PROGRAM — DATA TRANSFER
+Goal: Transfer data from one register to another.
+
+Example:
+MVI B, 25H
+MOV A, B
+HLT
+
+Working:
+1) B ← 25H
+2) A ← B
+3) A contains 25H
+
+This demonstrates register-to-register data transfer.
+
+20. SAMPLE PROGRAM — COMPARISON
+The 8085 can compare a value with the accumulator using the CMP instruction.
+
+Example:
+MVI A, 05H
+MVI B, 05H
+CMP B
+HLT
+
+CMP B performs a comparison between A and B by internally carrying out the relevant subtraction condition without changing the accumulator value. The flags are used to interpret the comparison result.
+
+For equal values, the Zero flag is set according to the instruction's flag behavior.
+
+21. SAMPLE PROGRAM — LOOP
+Loops can be created using a counter register and a conditional or unconditional jump.
+
+Example:
+MVI C, 05H
+LOOP: DCR C
+JNZ LOOP
+HLT
+
+Working:
+1) C is initialized to 5.
+2) DCR C decreases C by 1.
+3) JNZ LOOP jumps back while the result is not zero.
+4) The loop ends when C becomes zero.
+5) HLT stops execution.
+
+22. BASIC GNUSim8085 PRACTICE WORKFLOW
+1) Open GNUSim8085.
+2) Enter the 8085 assembly program in the editor.
+3) Assemble the program using the simulator's assemble function.
+4) Correct syntax errors if reported.
+5) Execute the program.
+6) Observe registers, flags and memory values.
+7) Verify that the final result matches the expected result.
+8) Practice step-by-step execution to understand each instruction.
+
+23. QUICK EXAM REVISION
+• 8085 = classic 8-bit microprocessor.
+• Address bus = 16-bit.
+• Main functional blocks = ALU, registers, control unit and supporting control/bus logic.
+• PC = address of next instruction.
+• SP = top of stack.
+• Accumulator = central 8-bit register for many ALU operations.
+• Flags = S, Z, AC, P, CY.
+• AD0–AD7 = multiplexed lower address/data lines.
+• A8–A15 = higher address lines.
+• ALE = separates lower address from multiplexed address/data bus.
+• RD = read control.
+• WR = write control.
+• 8085 addressing modes = immediate, register, direct, register indirect and implied.
+• GNUSim8085 = simulator for 8085 assembly programming.
+• Practical programs = 8-bit addition, 16-bit addition, data transfer, comparison and loops.
+
+IMPORTANT EXAM QUESTIONS
+1. Explain the architecture of the 8085 microprocessor with a neat block diagram.
+2. Explain the functional blocks of 8085: ALU, registers and control unit.
+3. Explain the Program Counter, Stack Pointer, Accumulator and flag register.
+4. Explain the 8085 pin diagram and major signal groups.
+5. Explain the major groups of the 8085 instruction set with examples.
+6. Explain the addressing modes of 8085 with suitable examples.
+7. Write the applications of the 8085 microprocessor.
+8. What is GNUSim8085? Explain its use in assembly programming.
+9. Explain the basic format of an 8085 assembly program and the role of directives.
+10. Explain the 8085 flags.
+11. Write an 8085 program for 8-bit addition.
+12. Explain the steps for 16-bit addition in 8085.
+13. Write an 8085 program for data transfer.
+14. Explain how comparison is performed using CMP.
+15. Write an 8085 program using a loop.
+
+PRACTICAL PRACTICE
+• Draw and label the 8085 architecture.
+• Draw the 40-pin 8085 pin diagram and identify major signal groups.
+• Practice identifying opcodes, operands and addressing modes.
+• Run an 8-bit addition program in GNUSim8085.
+• Run a 16-bit addition program and observe the register-pair result.
+• Write and execute a data-transfer program.
+• Write and execute a comparison program and observe flags.
+• Write and execute a loop program using a counter and conditional jump.
+• Observe registers, flags and memory step by step in GNUSim8085.
+
+SYLLABUS ALIGNMENT
+This note follows Unit 5 of the uploaded Semester III CSE Computer System Organisation syllabus: 8085 microprocessor introduction, architecture, functional blocks (ALU, registers, control unit), pin diagram and signal description, instruction set overview, addressing modes, applications of 8085; and assembly programming using GNUSim8085 covering format, directives, flags, and sample programs for 8-bit and 16-bit addition, data transfer, comparisons and loops.` },
   { subject:'Algorithms', code:'305', unit:'Unit 1', title:'Fundamentals of Algorithms', desc:'Algorithm characteristics, design steps, pseudocode, flowcharts, complexity and asymptotic notation.', type:'Syllabus Unit',
     content:'Unit 1 — Fundamentals of Algorithms\n\n• Definition, characteristics and importance\n• Steps in algorithm design\n• Pseudocode, flowcharts and structured approach\n• Iterative vs recursive processes\n• Time and space complexity\n• Big-O, Omega and Theta\n• Best-case, worst-case and average-case analysis\n• Analysis of simple array algorithms' },
   { subject:'Algorithms', code:'305', unit:'Unit 2', title:'Sorting', desc:'Sorting importance and applications, elementary sorts, merge sort and quick sort.', type:'Syllabus Unit',
