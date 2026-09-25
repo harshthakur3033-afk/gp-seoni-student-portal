@@ -6076,9 +6076,278 @@ PRACTICAL / CONCEPT PRACTICE
 
 SYLLABUS ALIGNMENT
 This note follows Unit 4 of the uploaded Semester III CSE Algorithms syllabus: directed and undirected graphs; adjacency list and matrix; paths, cycles and connected/disconnected graphs; spanning trees; topological sorting; Minimum Spanning Trees using Prim’s and Kruskal’s algorithms; and shortest path using Dijkstra’s algorithm.` },
-  { subject:'Algorithms', code:'305', unit:'Unit 5', title:'Strings and Data Compression', desc:'String sorting, substring search, regular expressions and Huffman coding.', type:'Syllabus Unit',
-    content:'Unit 5 — Strings and Data Compression\n\n• String sorting and applications\n• Substring search\n• Regular expressions: meaning, patterns and validation applications\n• Need for data compression\n• Huffman coding and working\n• Applications in file storage and transmission' },
+  { subject:'Algorithms', code:'305', unit:'Unit 5', title:'Strings and Data Compression', desc:'Detailed Unit 5 notes covering string sorting, substring search, regular expressions, validation applications, data-compression need, Huffman coding and its applications.', type:'Detailed Notes',
+    content:`Unit 5 — Strings and Data Compression
 
+1. INTRODUCTION TO STRINGS
+A string is a sequence of characters.
+
+Examples:
+• "HELLO"
+• "COMPUTER"
+• "ALGORITHM"
+
+String processing includes operations for organizing, searching and analyzing text.
+
+2. STRING SORTING — CONCEPT
+String sorting means arranging strings in a specified order, commonly lexicographic or dictionary order.
+
+Example:
+Unsorted:
+"banana", "apple", "cat"
+
+Sorted:
+"apple", "banana", "cat"
+
+For correct string sorting, character comparison rules and the chosen ordering method must be consistent.
+
+3. STRING SORTING — PROCESS
+A general string-sorting process is:
+1) Store the strings to be sorted.
+2) Compare strings according to the selected ordering rule.
+3) Reorder strings that are out of order.
+4) Continue until the collection is correctly ordered.
+
+The exact sorting technique can vary depending on the application and data.
+
+4. STRING SORTING — SIMPLE EXAMPLE
+Suppose the strings are:
+"dog", "cat", "ant"
+
+Compare according to alphabetical order:
+"cat" comes before "dog".
+"ant" comes before both.
+
+Final order:
+"ant", "cat", "dog"
+
+5. APPLICATIONS OF STRING SORTING
+String sorting is useful in text processing applications such as:
+• Alphabetically arranging names or words.
+• Organizing dictionary or word lists.
+• Sorting text records.
+• Preparing ordered search results.
+• Organizing textual data for further processing.
+
+6. SUBSTRING SEARCH — CONCEPT
+A substring is a smaller sequence of characters occurring within a larger string.
+
+Example:
+Text: "COMPUTER"
+Pattern: "PUT"
+
+The pattern "PUT" occurs inside "COMPUTER".
+
+Substring search is the process of finding whether a pattern occurs in a larger text and, when applicable, locating its position.
+
+7. SUBSTRING SEARCH — PROCESS
+A basic substring-search process is:
+1) Take the text and the pattern.
+2) Compare the pattern with possible positions in the text.
+3) Move to the next position when the current comparison does not match.
+4) Report the matching position when the complete pattern is found.
+5) Continue when multiple occurrences need to be located.
+
+8. SUBSTRING SEARCH — SIMPLE EXAMPLE
+Text:
+"DATA STRUCTURES"
+
+Pattern:
+"STRUCT"
+
+The pattern begins at the position where the characters "STRUCT" occur consecutively in the text.
+
+Substring search is commonly used in text editors, document search and other text-processing systems.
+
+9. REGULAR EXPRESSIONS — MEANING
+A Regular Expression (regex) is a pattern used to describe and search for text that follows a specified structure.
+
+Regex is useful when simple exact string matching is not enough and we need to describe a class of possible strings.
+
+10. IMPORTANCE OF REGULAR EXPRESSIONS
+Regular expressions are important because they can:
+• Search for text patterns.
+• Validate whether input follows a required format.
+• Extract matching parts of text.
+• Replace matching text patterns.
+• Help automate common text-processing tasks.
+
+11. BASIC REGEX OPERATORS AND PATTERNS
+Common regex symbols include:
+
+• . — matches a character in many regex implementations.
+• ^ — beginning of a string/line.
+• $ — end of a string/line.
+• * — zero or more repetitions of the preceding element.
+• + — one or more repetitions.
+• ? — zero or one occurrence in common regex syntax.
+• [abc] — matches one character from the specified set.
+• [0-9] — matches a digit from 0 to 9.
+• [A-Za-z] — matches a letter from the specified ranges.
+• \\d — commonly represents a digit.
+• \\w — commonly represents a word character.
+• {m,n} — specifies a permitted repetition range in common regex syntax.
+
+Exact regex syntax can vary slightly between tools and programming languages.
+
+12. REGEX PATTERN EXAMPLE — PHONE NUMBER
+A regex can be used to check whether a phone-number input follows a specified format.
+
+Example conceptual pattern for a 10-digit numeric input:
+^[0-9]{10}$
+
+Meaning:
+• ^ = start of input.
+• [0-9] = a digit.
+• {10} = exactly ten occurrences.
+• $ = end of input.
+
+This checks the format; it does not prove that the number actually belongs to a person.
+
+13. REGEX PATTERN EXAMPLE — EMAIL
+Regular expressions can be used for basic email-format validation.
+
+A conceptual pattern can check for:
+• Some characters before @.
+• An @ symbol.
+• A domain name.
+• A dot and domain extension where required by the chosen validation rule.
+
+Example of a simple illustrative pattern:
+^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$
+
+This is a format check. Real-world email validation can involve rules beyond a simple regex.
+
+14. DATA COMPRESSION — NEED
+Data compression reduces the amount of space needed to represent data.
+
+Why compression is useful:
+• Reduces storage requirements.
+• Can reduce transmission size.
+• Can improve transfer efficiency when less data needs to be sent.
+• Helps manage large collections of files and textual data.
+
+15. ELEMENTARY DATA COMPRESSION
+Compression methods generally try to represent the same information using fewer bits than the original representation.
+
+There are two broad ideas:
+• Lossless compression — original data can be reconstructed exactly.
+• Lossy compression — some information may be discarded to achieve greater size reduction.
+
+For this syllabus, the main named technique is Huffman coding, which is a lossless coding method.
+
+16. HUFFMAN CODING — CONCEPT
+Huffman coding is a lossless data-compression technique that assigns shorter binary codes to more frequent symbols and longer codes to less frequent symbols.
+
+The goal is to reduce the average number of bits required to represent the data.
+
+17. HUFFMAN CODING — BASIC IDEA
+Suppose symbols have frequencies:
+
+A → high frequency
+B → medium frequency
+C → low frequency
+D → very low frequency
+
+Huffman coding builds a binary tree based on symbol frequencies so that frequent symbols receive shorter codes and less frequent symbols receive longer codes.
+
+The resulting codes are prefix-free, meaning one complete symbol code is not the prefix of another symbol code.
+
+18. HUFFMAN CODING — WORKING
+Basic procedure:
+1) Count the frequency of each symbol.
+2) Create one node for each symbol with its frequency.
+3) Select the two nodes with the smallest frequencies.
+4) Combine them into a new node whose frequency is their sum.
+5) Put the new node back into the collection.
+6) Repeat until one tree remains.
+7) Assign binary digits along the tree branches.
+8) The path from the root to each symbol gives its Huffman code.
+
+19. SIMPLE HUFFMAN EXAMPLE
+Suppose the frequencies are:
+
+A = 5
+B = 3
+C = 2
+D = 1
+
+The two smallest frequencies are combined first:
+1 + 2 = 3
+
+Then the smallest available nodes are combined again, continuing until one tree is formed.
+
+The exact binary codes depend on the final tree and the chosen left/right bit assignment, but the high-frequency symbols receive shorter codes than very low-frequency symbols.
+
+20. WHY HUFFMAN CODING SAVES SPACE
+If frequently occurring symbols receive shorter codes and less frequent symbols receive longer codes, the total number of bits needed for the complete message can be reduced compared with a fixed-length representation.
+
+This is the basic compression principle behind Huffman coding.
+
+21. HUFFMAN CODING — LOSSLESS PROPERTY
+Huffman coding is lossless.
+
+After decoding a correctly encoded message using the corresponding Huffman tree, the original symbol sequence can be recovered without loss of information.
+
+22. APPLICATIONS OF HUFFMAN CODING
+Huffman coding can be used in:
+• File storage.
+• Data transmission.
+• Text compression.
+• Compression systems that need exact recovery of the original data.
+
+23. STRING PROCESSING AND COMPRESSION — CONNECTION
+String sorting and substring search help organize and find information in text.
+
+Regular expressions help identify and validate text patterns.
+
+Data compression reduces the storage or transmission size of data.
+
+These concepts are therefore closely related to practical text-processing systems.
+
+24. QUICK EXAM REVISION
+• String sorting = arranging strings in a selected order.
+• Substring = smaller character sequence within a larger string.
+• Substring search = finding a pattern within text.
+• Regex = pattern used to describe/search structured text.
+• ^ = start; $ = end in common regex syntax.
+• * = zero or more; + = one or more.
+• [0-9] = digit range.
+• {10} = exactly ten repetitions.
+• Data compression = represent data with fewer bits.
+• Lossless = original data can be recovered exactly.
+• Huffman coding = lossless coding based on symbol frequency.
+• Huffman idea = frequent symbols generally get shorter codes.
+• Huffman working = frequency count → combine two least frequencies repeatedly → form tree → assign codes.
+• Applications = text processing, file storage and transmission.
+
+IMPORTANT EXAM QUESTIONS
+1. What is string sorting? Explain its process.
+2. Write the applications of string sorting in text processing.
+3. What is substring search? Explain its process with an example.
+4. Define regular expressions and explain their importance.
+5. Explain basic regex operators and patterns.
+6. Explain the use of regex for phone-number validation.
+7. Explain the use of regex for basic email-format validation.
+8. Why is data compression needed?
+9. Differentiate lossless and lossy compression.
+10. What is Huffman coding?
+11. Explain the working steps of Huffman coding.
+12. Why does Huffman coding give shorter codes to frequent symbols?
+13. Write applications of Huffman coding in file storage and transmission.
+
+PRACTICAL / CONCEPT PRACTICE
+• Sort a small list of strings alphabetically.
+• Find a substring inside a sample text.
+• Write simple regex patterns for digits and fixed-length numbers.
+• Write a regex for basic email-format validation.
+• Create a small frequency table for characters.
+• Build a simple Huffman tree from a small set of symbol frequencies.
+• Assign binary codes from the Huffman tree.
+• Explain how the resulting codes reduce the average number of bits.
+
+SYLLABUS ALIGNMENT
+This note follows Unit 5 of the uploaded Semester III CSE Algorithms syllabus: String Sorting (concept, process and applications in text processing); Substring Search (concept and process); Regular Expressions (meaning and importance, basic operators and patterns, applications for email and phone-number validation); and Elementary Data Compression (need, Huffman coding concept and working, and applications in file storage and transmission).` },
   { subject:'Summer Internship - I', code:'—', unit:'Internship', title:'Summer Internship - I', desc:'3–4 week practical internship after the second semester with report, viva and presentation evaluation.', type:'Activity',
     content:'Summer Internship — I\n\n• Duration: 3–4 weeks after the II Semester\n• Undertaken in an industry, Government or Private certified agency, social-sector agency, Government Skill Center or scheme\n• Evaluation based on work done, quality of report, viva-voce performance and presentation' },
 
