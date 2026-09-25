@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BookOpen, BrainCircuit, CalendarDays, CheckCircle2, ChevronRight, CircleHelp, Code2, FileText, GraduationCap, LayoutDashboard, Menu, Network, Plus, Search, Send, ShieldCheck, Sparkles, Target, X } from 'lucide-react';
 import './styles.css';
@@ -6403,7 +6403,49 @@ function App() {
   const query = search.trim().toLowerCase();
   const filteredSubjects = useMemo(() => subjects.filter((s) => `${s.name} ${s.code} ${s.topics.join(' ')}`.toLowerCase().includes(query)), [query]);
 
-  const go = (page, subject = null) => { setActive(page); setSelectedSubject(subject); setMenuOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  useEffect(() => {
+    const initialState = {
+      gpStudentPortal: true,
+      active: 'Dashboard',
+      selectedSubject: null,
+    };
+
+    if (!window.history.state?.gpStudentPortal) {
+      window.history.replaceState(initialState, '', window.location.href);
+    }
+
+    const handlePopState = (event) => {
+      const state = event.state;
+      setActive(state?.gpStudentPortal && state.active ? state.active : 'Dashboard');
+      setSelectedSubject(state?.gpStudentPortal ? (state.selectedSubject || null) : null);
+      setMenuOpen(false);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const go = (page, subject = null) => {
+    const nextSubject = subject || null;
+
+    if (active === page && (selectedSubject || null) === nextSubject) {
+      setMenuOpen(false);
+      return;
+    }
+
+    const nextState = {
+      gpStudentPortal: true,
+      active: page,
+      selectedSubject: nextSubject,
+    };
+
+    window.history.pushState(nextState, '', window.location.href);
+    setActive(page);
+    setSelectedSubject(nextSubject);
+    setMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const answerMcq = (index) => {
     if (selected !== null) return;
