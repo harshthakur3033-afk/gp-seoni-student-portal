@@ -6600,7 +6600,7 @@ function App() {
   const [aiAnswer, setAiAnswer] = useState('');
   const [aiLoading, setAiLoading] = useState(false);
 
-  const nav = ['Dashboard', 'Subjects', 'Notes', 'Question Papers', 'MCQ Practice', 'Study Planner', 'AI Study Assistant'];
+  const nav = ['Dashboard', 'Subjects', 'Modules', 'Notes', 'Question Papers', 'MCQ Practice', 'Study Planner', 'AI Study Assistant'];
   const query = search.trim().toLowerCase();
   const filteredSubjects = useMemo(() => subjects.filter((s) => `${s.name} ${s.code} ${s.topics.join(' ')}`.toLowerCase().includes(query)), [query]);
 
@@ -6688,7 +6688,7 @@ function App() {
       <aside className={`sidebar ${menuOpen ? 'open' : ''}`}>
         <div className="brand"><div className="brand-mark"><GraduationCap size={23}/></div><div><strong>GP Seoni</strong><span>Student Portal</span></div><button className="mobile-close" onClick={() => setMenuOpen(false)} aria-label="Close menu"><X size={20}/></button></div>
         <div className="college-chip">Government Polytechnic College<br/>Seoni, Madhya Pradesh</div>
-        <nav>{nav.map((item) => <button key={item} className={active === item ? 'nav-item active' : 'nav-item'} onClick={() => go(item)}><span>{item === 'Dashboard' ? <LayoutDashboard size={18}/> : item === 'Subjects' ? <BookOpen size={18}/> : item === 'Notes' ? <FileText size={18}/> : item === 'Question Papers' ? <FileText size={18}/> : item === 'MCQ Practice' ? <CircleHelp size={18}/> : item === 'Study Planner' ? <CalendarDays size={18}/> : <BrainCircuit size={18}/>}</span>{item}</button>)}</nav>
+        <nav>{nav.map((item) => <button key={item} className={active === item ? 'nav-item active' : 'nav-item'} onClick={() => go(item)}><span>{item === 'Dashboard' ? <LayoutDashboard size={18}/> : item === 'Subjects' ? <BookOpen size={18}/> : item === 'Modules' ? <BookOpen size={18}/> : item === 'Notes' ? <FileText size={18}/> : item === 'Question Papers' ? <FileText size={18}/> : item === 'MCQ Practice' ? <CircleHelp size={18}/> : item === 'Study Planner' ? <CalendarDays size={18}/> : <BrainCircuit size={18}/>}</span>{item}</button>)}</nav>
         <div className="sidebar-bottom"><div className="security-note"><ShieldCheck size={17}/><span>Learning resources<br/><b>Student-focused</b></span></div></div>
       </aside>
 
@@ -6698,6 +6698,7 @@ function App() {
         <section className="content">
           {active === 'Dashboard' && <Dashboard go={go} filteredSubjects={filteredSubjects} />}
           {active === 'Subjects' && <Subjects filteredSubjects={filteredSubjects} go={go} />}
+          {active === 'Modules' && <ModuleLibrary go={go} />}
           {active === 'Notes' && <Notes search={query} subjectFilter={selectedSubject} />}
           {active === 'Module' && <StudyModule subject={selectedSubject} unit={selectedUnit} onExit={() => go('Subjects')} />}
           {active === 'Question Papers' && <Papers />}
@@ -6796,6 +6797,46 @@ function Notes({ search, subjectFilter }) {
   </>;
 }
 
+
+
+function ModuleLibrary({ go }) {
+  const unitCatalog = subjects.filter((subject) => subject.code && subject.code !== '—').flatMap((subject) =>
+    subject.topics.map((topic, index) => ({
+      subject: subject.name,
+      code: subject.code,
+      unit: index + 1,
+      title: topic.replace(/^Unit\\s+\\d+:\\s*/i, ''),
+      available: subject.name === 'Computer Programming' && index === 0
+    }))
+  );
+
+  return <>
+    <div className="page-intro">
+      <span className="section-kicker">INTERACTIVE LEARNING</span>
+      <h1>Modules</h1>
+      <p>Complete a unit step-by-step: learn the topic, answer short questions, move forward, and see your final result after submitting the unit.</p>
+    </div>
+
+    <div className="module-library-grid">
+      {unitCatalog.map((item) => (
+        <article className={item.available ? "module-library-card available" : "module-library-card"} key={item.code + '-' + item.unit}>
+          <div className="module-library-top">
+            <div className="subject-icon"><BookOpen size={19}/></div>
+            <span>{item.available ? 'READY' : 'COMING NEXT'}</span>
+          </div>
+          <span className="section-kicker">UNIT {item.unit} · {item.code}</span>
+          <h2>{item.subject}</h2>
+          <h3>{item.title}</h3>
+          <p>{item.available ? 'Interactive module is available. Start learning topic-by-topic and complete the questions before moving ahead.' : 'This unit will use the same interactive module format after the current module is finalized.'}</p>
+          {item.available
+            ? <button className="primary full" onClick={() => go('Module', item.subject, item.unit)}>Open Module <ChevronRight size={16}/></button>
+            : <button className="secondary dark full" disabled>Module in preparation</button>
+          }
+        </article>
+      ))}
+    </div>
+  </>;
+}
 
 function StudyModule({ subject, unit, onExit }) {
   const key = `${subject || ''}|${unit || ''}`;
