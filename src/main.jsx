@@ -6371,6 +6371,89 @@ const papers = [
   { semester: '3rd Semester', subject: 'Database Management', year: 'Question Bank', status: 'Revision' },
 ];
 
+
+const moduleLessons = {
+  "Computer Programming|1": {
+    title: "Unit 1 — Introduction to Computational Thinking & Variables and Data Representation",
+    topics: [
+      {
+        title: "Problem-solving and computational thinking",
+        lesson: `Problem solving means understanding a problem, deciding what the computer needs to do, and building a logical solution.
+
+Computational thinking is a structured way to solve problems so that the solution can be expressed as clear steps a computer can follow.
+
+Think of it like this:
+Problem → Understand it → Plan the steps → Implement → Test → Improve
+
+Easy example:
+To find the total of two numbers, we first identify the inputs, decide the calculation, write the steps, and then check the result.`,
+        questions: [
+          { type: "mcq", prompt: "Which idea means solving a problem using a clear, step-by-step logical approach?", options: ["Computational thinking", "Random guessing", "Data deletion", "File compression"], answer: 0 },
+          { type: "short", prompt: "Write any two important steps of problem solving.", keywords: ["understand", "input", "output", "algorithm", "implement", "test", "improve", "solution"], minKeywords: 2 }
+        ]
+      },
+      {
+        title: "Components of computational thinking, flowcharts and algorithms",
+        lesson: `Computational thinking commonly uses decomposition, pattern recognition, abstraction and algorithmic thinking.
+
+Decomposition means breaking a large problem into smaller manageable parts.
+Pattern recognition means finding similarities or repeated structures.
+Abstraction means focusing on important information and ignoring unnecessary detail.
+Algorithmic thinking means creating a clear sequence of steps.
+
+An algorithm is a finite, ordered sequence of clear steps used to solve a problem.
+
+A flowchart is a graphical representation of an algorithm.
+
+Common flowchart symbols:
+• Oval — Start/End
+• Rectangle — Process
+• Parallelogram — Input/Output
+• Diamond — Decision
+
+Example algorithm to add two numbers:
+1. Start
+2. Read A and B
+3. SUM = A + B
+4. Display SUM
+5. Stop`,
+        questions: [
+          { type: "mcq", prompt: "Which flowchart symbol is normally used for a decision?", options: ["Oval", "Rectangle", "Diamond", "Parallelogram"], answer: 2 },
+          { type: "short", prompt: "What is an algorithm? Answer in one or two simple sentences.", keywords: ["finite", "sequence", "steps", "solve", "problem", "ordered"], minKeywords: 2 }
+        ]
+      },
+      {
+        title: "Variables, constants, data types and memory representation",
+        lesson: `A variable is a named storage location whose value can change during program execution.
+
+Example:
+int marks = 75;
+
+A constant is a value that is intended not to change during program execution.
+
+Example:
+const int DAYS = 7;
+
+Common C data types include:
+• int — integer values
+• char — character values
+• float — single-precision floating-point values
+• double — double-precision floating-point values
+• void — absence of a value/type in relevant contexts
+
+Computers store data in binary form using bits (0 or 1). A group of 8 bits is called a byte. A variable is stored in memory, and its data type tells the program how the stored value should be interpreted.
+
+Concept:
+Variable name → memory location → stored value`,
+        questions: [
+          { type: "mcq", prompt: "Which statement is correct?", options: ["A variable can never change", "A variable is a named storage location", "A constant must always change", "A data type is a flowchart symbol"], answer: 1 },
+          { type: "short", prompt: "Name any three common C data types.", keywords: ["int", "char", "float", "double", "void"], minKeywords: 3 }
+        ]
+      }
+    ]
+  }
+};
+
 const mcqs = [
   { q: 'Which layer of the OSI model is responsible for routing?', options: ['Transport', 'Network', 'Session', 'Presentation'], answer: 1, topic: 'Computer Networks' },
   { q: 'Which data structure follows LIFO?', options: ['Queue', 'Array', 'Stack', 'Linked List'], answer: 2, topic: 'Data Structures' },
@@ -6388,6 +6471,7 @@ const initialTasks = [
 function App() {
   const [active, setActive] = useState('Dashboard');
   const [selectedSubject, setSelectedSubject] = useState(null);
+  const [selectedUnit, setSelectedUnit] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [search, setSearch] = useState('');
   const [mcqIndex, setMcqIndex] = useState(0);
@@ -6408,6 +6492,7 @@ function App() {
       gpStudentPortal: true,
       active: 'Dashboard',
       selectedSubject: null,
+      selectedUnit: null,
     };
 
     if (!window.history.state?.gpStudentPortal) {
@@ -6418,6 +6503,7 @@ function App() {
       const state = event.state;
       setActive(state?.gpStudentPortal && state.active ? state.active : 'Dashboard');
       setSelectedSubject(state?.gpStudentPortal ? (state.selectedSubject || null) : null);
+      setSelectedUnit(state?.gpStudentPortal ? (state.selectedUnit || null) : null);
       setMenuOpen(false);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -6426,10 +6512,11 @@ function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  const go = (page, subject = null) => {
+  const go = (page, subject = null, unit = null) => {
     const nextSubject = subject || null;
+    const nextUnit = unit || null;
 
-    if (active === page && (selectedSubject || null) === nextSubject) {
+    if (active === page && (selectedSubject || null) === nextSubject && (selectedUnit || null) === nextUnit) {
       setMenuOpen(false);
       return;
     }
@@ -6438,11 +6525,13 @@ function App() {
       gpStudentPortal: true,
       active: page,
       selectedSubject: nextSubject,
+      selectedUnit: nextUnit,
     };
 
     window.history.pushState(nextState, '', window.location.href);
     setActive(page);
     setSelectedSubject(nextSubject);
+    setSelectedUnit(nextUnit);
     setMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -6475,7 +6564,7 @@ function App() {
     } finally { setAiLoading(false); }
   };
 
-  const pageTitle = active === 'Dashboard' ? 'Student Dashboard' : active;
+  const pageTitle = active === 'Dashboard' ? 'Student Dashboard' : active === 'Module' ? 'Study Module' : active;
 
   return (
     <div className="app-shell">
@@ -6493,6 +6582,7 @@ function App() {
           {active === 'Dashboard' && <Dashboard go={go} filteredSubjects={filteredSubjects} />}
           {active === 'Subjects' && <Subjects filteredSubjects={filteredSubjects} go={go} />}
           {active === 'Notes' && <Notes search={query} subjectFilter={selectedSubject} />}
+          {active === 'Module' && <StudyModule subject={selectedSubject} unit={selectedUnit} onExit={() => go('Subjects')} />}
           {active === 'Question Papers' && <Papers />}
           {active === 'MCQ Practice' && <MCQPractice mcq={mcqs[mcqIndex]} index={mcqIndex} selected={selected} score={score} answer={answerMcq} next={nextMcq} />}
           {active === 'Study Planner' && <Planner tasks={tasks} newTask={newTask} setNewTask={setNewTask} addTask={addTask} toggleTask={toggleTask} />}
@@ -6520,7 +6610,13 @@ function Dashboard({ go, filteredSubjects }) {
 function Subjects({ filteredSubjects, go }) {
   const [selected, setSelected] = useState(filteredSubjects[0]?.code || null);
   const current = filteredSubjects.find((s) => s.code === selected);
-  return <><div className="page-intro"><span className="section-kicker">ACADEMIC CONTENT</span><h1>Subjects & Modules</h1><p>Choose a subject to see its current module outline and jump into study material.</p></div><div className="subject-page-grid"><div className="subject-list">{filteredSubjects.map(({name,code,icon:Icon,tag}) => <button key={code} className={selected===code?'subject-row selected':'subject-row'} onClick={() => setSelected(code)}><span className="subject-icon"><Icon size={19}/></span><span><strong>{name}</strong><small>{code} · {tag}</small></span><ChevronRight size={17}/></button>)}</div>{current && <section className="module-panel"><div className="module-head"><div className="subject-icon">{React.createElement(current.icon,{size:21})}</div><div><span className="section-kicker">MODULE OUTLINE</span><h2>{current.name}</h2><small>{current.code}</small></div></div><div className="topic-list">{current.topics.map((topic,i)=><button key={topic} onClick={() => go('Notes', current.name)}><span>{String(i+1).padStart(2,'0')}</span><b>{topic}</b><ChevronRight size={16}/></button>)}</div><button className="primary full" onClick={() => go('Notes', current.name)}>Open Study Material <BookOpen size={16}/></button></section>}</div></>;
+  return <><div className="page-intro"><span className="section-kicker">ACADEMIC CONTENT</span><h1>Subjects & Modules</h1><p>Choose a subject to see its current module outline and jump into study material.</p></div><div className="subject-page-grid"><div className="subject-list">{filteredSubjects.map(({name,code,icon:Icon,tag}) => <button key={code} className={selected===code?'subject-row selected':'subject-row'} onClick={() => setSelected(code)}><span className="subject-icon"><Icon size={19}/></span><span><strong>{name}</strong><small>{code} · {tag}</small></span><ChevronRight size={17}/></button>)}</div>{current && <section className="module-panel"><div className="module-head"><div className="subject-icon">{React.createElement(current.icon,{size:21})}</div><div><span className="section-kicker">MODULE OUTLINE</span><h2>{current.name}</h2><small>{current.code}</small></div></div><div className="topic-list">{current.topics.map((topic,i)=><button key={topic} onClick={() => {
+            if (current.name === 'Computer Programming' && i === 0) {
+              go('Module', current.name, 1);
+            } else {
+              go('Notes', current.name);
+            }
+          }}><span>{String(i+1).padStart(2,'0')}</span><b>{topic}</b><ChevronRight size={16}/></button>)}</div><button className="primary full" onClick={() => go('Notes', current.name)}>Open Study Material <BookOpen size={16}/></button></section>}</div></>;
 }
 
 function Notes({ search, subjectFilter }) {
@@ -6582,6 +6678,210 @@ function Notes({ search, subjectFilter }) {
     </div>}
   </>;
 }
+
+
+function StudyModule({ subject, unit, onExit }) {
+  const key = `${subject || ''}|${unit || ''}`;
+  const module = moduleLessons[key];
+  const [started, setStarted] = useState(false);
+  const [topicIndex, setTopicIndex] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+  const [startedAt, setStartedAt] = useState(null);
+  const [finishedAt, setFinishedAt] = useState(null);
+
+  if (!module) {
+    return <section className="module-empty">
+      <span className="section-kicker">MODULE</span>
+      <h1>This module is being prepared</h1>
+      <p>The interactive learning flow is ready, and this unit will be added next. You can still open the full study material for this unit.</p>
+      <button className="primary" onClick={onExit}>Back to Subjects <ChevronRight size={16}/></button>
+    </section>;
+  }
+
+  const currentTopic = module.topics[topicIndex];
+  const totalQuestions = module.topics.reduce((sum, topic) => sum + topic.questions.length, 0);
+  const flatQuestions = module.topics.flatMap((topic, tIndex) => topic.questions.map((question, qIndex) => ({
+    ...question,
+    topicIndex: tIndex,
+    questionIndex: qIndex,
+    id: `${tIndex}-${qIndex}`
+  })));
+
+  const topicComplete = currentTopic.questions.every((question, qIndex) => {
+    const value = answers[`${topicIndex}-${qIndex}`];
+    return value !== undefined && String(value).trim() !== '';
+  });
+
+  const setAnswer = (qIndex, value) => {
+    setAnswers((prev) => ({ ...prev, [`${topicIndex}-${qIndex}`]: value }));
+  };
+
+  const startModule = () => {
+    setStarted(true);
+    setStartedAt(Date.now());
+  };
+
+  const nextTopic = () => {
+    if (!topicComplete) return;
+    if (topicIndex < module.topics.length - 1) {
+      setTopicIndex((index) => index + 1);
+    }
+  };
+
+  const submitModule = () => {
+    if (!topicComplete) return;
+    setFinishedAt(Date.now());
+    setSubmitted(true);
+  };
+
+  const checkQuestion = (question, value) => {
+    if (question.type === 'mcq') return Number(value) === question.answer;
+    const normalized = String(value || '').toLowerCase();
+    const hits = question.keywords.filter((keyword) => normalized.includes(keyword.toLowerCase()));
+    return hits.length >= question.minKeywords;
+  };
+
+  const results = submitted ? flatQuestions.map((question) => {
+    const value = answers[question.id] ?? '';
+    return {
+      ...question,
+      value,
+      correct: checkQuestion(question, value),
+      correctAnswer: question.type === 'mcq'
+        ? question.options[question.answer]
+        : `Include at least ${question.minKeywords} key ideas such as: ${question.keywords.slice(0, Math.min(question.minKeywords + 2, question.keywords.length)).join(', ')}.`
+    };
+  }) : [];
+
+  const correctCount = results.filter((item) => item.correct).length;
+  const wrongCount = results.length - correctCount;
+  const elapsedSeconds = submitted && startedAt && finishedAt ? Math.max(0, Math.round((finishedAt - startedAt) / 1000)) : 0;
+  const minutes = Math.floor(elapsedSeconds / 60);
+  const seconds = elapsedSeconds % 60;
+
+  if (!started) {
+    return <section className="module-shell">
+      <div className="module-hero">
+        <div>
+          <span className="section-kicker">INTERACTIVE STUDY MODULE</span>
+          <h1>{module.title}</h1>
+          <p>Read each topic in simple language, answer short questions, then move to the next topic.</p>
+        </div>
+        <div className="module-stat"><strong>{module.topics.length}</strong><span>Topics</span></div>
+      </div>
+
+      <section className="module-overview-card">
+        <div className="module-overview-head">
+          <div>
+            <span className="section-kicker">FIRST LOOK</span>
+            <h2>What you will study</h2>
+          </div>
+          <BookOpen size={22}/>
+        </div>
+        <div className="module-topic-preview">
+          {module.topics.map((topic, index) => <div className="module-topic-preview-row" key={topic.title}>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <div><strong>{topic.title}</strong><small>{topic.questions.length} quick questions</small></div>
+          </div>)}
+        </div>
+        <div className="module-rules">
+          <span>✓ Learn the topic first</span>
+          <span>✓ Answer all questions before moving on</span>
+          <span>✓ Results stay hidden until final submit</span>
+        </div>
+        <button className="primary full" onClick={startModule}>Start Module <ChevronRight size={17}/></button>
+      </section>
+    </section>;
+  }
+
+  if (submitted) {
+    return <section className="module-shell">
+      <div className="module-result-hero">
+        <span className="section-kicker">MODULE COMPLETE</span>
+        <h1>Unit completed</h1>
+        <p>Here is your final result for <b>{module.title}</b>.</p>
+      </div>
+
+      <div className="module-result-grid">
+        <div><span>Correct</span><strong>{correctCount}</strong></div>
+        <div><span>Wrong</span><strong>{wrongCount}</strong></div>
+        <div><span>Total</span><strong>{totalQuestions}</strong></div>
+        <div><span>Time</span><strong>{minutes}m {seconds}s</strong></div>
+      </div>
+
+      <section className="module-review-card">
+        <div className="module-overview-head"><div><span className="section-kicker">ANSWER REVIEW</span><h2>See what you got right and wrong</h2></div><CheckCircle2 size={22}/></div>
+        <div className="module-review-list">
+          {results.map((item, index) => <article key={item.id} className={item.correct ? 'module-review-item correct' : 'module-review-item wrong'}>
+            <div className="module-review-top">
+              <span>Q{index + 1}</span>
+              <b>{item.correct ? 'Correct' : 'Wrong'}</b>
+            </div>
+            <h3>{item.prompt}</h3>
+            <div className="module-review-answer"><strong>Your answer:</strong><span>{item.value || 'No answer'}</span></div>
+            {!item.correct && <div className="module-review-answer"><strong>Expected:</strong><span>{item.correctAnswer}</span></div>}
+          </article>)}
+        </div>
+        <button className="secondary dark full" onClick={onExit}>Back to Subjects</button>
+      </section>
+    </section>;
+  }
+
+  return <section className="module-shell">
+    <div className="module-progress-head">
+      <div>
+        <span className="section-kicker">TOPIC {topicIndex + 1} OF {module.topics.length}</span>
+        <h1>{currentTopic.title}</h1>
+      </div>
+      <span className="module-progress-count">{Math.round(((topicIndex + 1) / module.topics.length) * 100)}%</span>
+    </div>
+    <div className="module-progress-bar"><i style={{ width: `${((topicIndex + 1) / module.topics.length) * 100}%` }}/></div>
+
+    <article className="module-lesson-card">
+      <span className="section-kicker">LEARN</span>
+      <div className="module-lesson-text">
+        {currentTopic.lesson.split('\n').map((line, index) => line.trim() ? <p key={index}>{line}</p> : <div key={index} className="module-space" />)}
+      </div>
+    </article>
+
+    <article className="module-questions-card">
+      <div className="module-overview-head"><div><span className="section-kicker">CHECK YOUR UNDERSTANDING</span><h2>Answer before continuing</h2></div><CircleHelp size={22}/></div>
+      <div className="module-question-list">
+        {currentTopic.questions.map((question, qIndex) => {
+          const value = answers[`${topicIndex}-${qIndex}`];
+          return <div className="module-question" key={`${topicIndex}-${qIndex}`}>
+            <div className="module-question-number">Q{qIndex + 1}</div>
+            <h3>{question.prompt}</h3>
+            {question.type === 'mcq'
+              ? <div className="module-option-grid">{question.options.map((option, index) => <button
+                  key={option}
+                  className={Number(value) === index ? 'module-option selected' : 'module-option'}
+                  onClick={() => setAnswer(qIndex, index)}
+                ><span>{String.fromCharCode(65 + index)}</span>{option}</button>)}</div>
+              : <textarea
+                  className="module-short-answer"
+                  value={value || ''}
+                  onChange={(e) => setAnswer(qIndex, e.target.value)}
+                  rows={3}
+                  placeholder="Write a short answer..."
+                />
+            }
+          </div>;
+        })}
+      </div>
+
+      <div className="module-navigation">
+        <span>{topicComplete ? 'Topic complete. You can continue.' : 'Answer all questions to continue.'}</span>
+        {topicIndex < module.topics.length - 1
+          ? <button className="primary" disabled={!topicComplete} onClick={nextTopic}>Next Topic <ChevronRight size={17}/></button>
+          : <button className="primary" disabled={!topicComplete} onClick={submitModule}>I Have Completed / Submit <CheckCircle2 size={17}/></button>
+        }
+      </div>
+    </article>
+  </section>;
+}
+
 
 function Papers() { return <><div className="page-intro"><span className="section-kicker">EXAM PREPARATION</span><h1>Question Papers</h1><p>Practice sets are ready here; replace or extend them with verified college/university papers later.</p></div><div className="paper-list">{papers.map((p)=><article className="paper-row" key={p.subject}><div className="paper-icon"><FileText size={21}/></div><div><strong>{p.subject}</strong><small>{p.semester} · {p.year}</small></div><span>{p.status}</span><button className="secondary dark">Practice <ChevronRight size={15}/></button></article>)}</div></>;
 }
