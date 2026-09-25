@@ -4123,8 +4123,317 @@ PRACTICAL / CONCEPT PRACTICE
 
 SYLLABUS ALIGNMENT
 This note follows Unit 3 of the uploaded Semester III CSE Computer System Organisation syllabus: role of control unit and control signals; Hardwired Control Unit with concept, advantages and limitations; Microprogrammed Control Unit with architecture and microinstructions; Horizontal vs Vertical microinstruction formats; Control memory and address sequencing; and comparison of Hardwired vs Microprogrammed control with examples.` },
-  { subject:'Computer System Organisation', code:'304', unit:'Unit 4', title:'Memory and I/O Organization', desc:'Memory hierarchy, RAM/ROM family, interfacing, interrupts, handshaking and DMA.', type:'Syllabus Unit',
-    content:'Unit 4 — Memory and I/O Organization\n\n• Memory hierarchy, SRAM and DRAM\n• RAM, ROM and EPROM chips and CPU interfacing\n• I/O configuration and interfacing\n• Interrupt-driven I/O, handshaking and asynchronous transfer\n• DMA and I/O processors' },
+  { subject:'Computer System Organisation', code:'304', unit:'Unit 4', title:'Memory and I/O Organization', desc:'Detailed Unit 4 notes covering memory hierarchy, SRAM and DRAM, RAM/ROM/EPROM and CPU interfacing, I/O configuration and interfacing, interrupt-driven I/O, handshaking, asynchronous transfer, DMA and I/O processors.', type:'Detailed Notes',
+    content:`Unit 4 — Memory and I/O Organization
+
+1. MEMORY AND I/O ORGANIZATION
+Memory and Input/Output (I/O) organization describes how a computer stores information and communicates with external devices. This unit focuses on the memory hierarchy, semiconductor memory, CPU-memory interfacing, I/O organization, interrupt-driven I/O, handshaking, asynchronous transfer, DMA and I/O processors.
+
+2. MEMORY HIERARCHY
+Memory hierarchy arranges different types of storage according to characteristics such as speed, capacity and cost.
+
+A simple hierarchy is:
+Registers → Cache → Main Memory → Secondary Storage
+
+General idea:
+• Upper levels are faster, smaller and generally more expensive per bit.
+• Lower levels are slower, larger and generally less expensive per bit.
+• The hierarchy helps provide fast access to frequently needed information while retaining larger storage capacity.
+
+The CPU normally works most directly with registers and main memory during instruction execution, while secondary storage provides larger long-term storage.
+
+3. SRAM
+SRAM stands for Static Random Access Memory.
+
+Important characteristics:
+• Stores each bit using a stable memory cell.
+• Does not require periodic refresh while power is available.
+• Faster than DRAM in typical memory-system use.
+• More expensive and less dense than DRAM.
+• Commonly used where high speed is important, such as cache memory.
+
+Key point:
+SRAM is fast, but its memory cell requires more hardware, so the amount of memory that can be provided economically is relatively smaller.
+
+4. DRAM
+DRAM stands for Dynamic Random Access Memory.
+
+Important characteristics:
+• Stores each bit using a memory cell that requires periodic refreshing.
+• Higher density than SRAM.
+• Lower cost per bit than SRAM.
+• Commonly used for main memory.
+
+Key point:
+DRAM provides larger capacity economically, but refresh operations are required and its access characteristics differ from SRAM.
+
+5. SRAM VS DRAM
+SRAM:
+• Faster.
+• No periodic refresh required for data retention while powered.
+• More expensive per bit.
+• Lower density.
+• Commonly used for cache.
+
+DRAM:
+• Requires periodic refresh.
+• Higher density.
+• Lower cost per bit.
+• Commonly used for main memory.
+
+6. RAM
+RAM means Random Access Memory. It is memory from which locations can be accessed directly using their addresses.
+
+In ordinary computer systems, RAM is used for working data and program information that the CPU needs during operation.
+
+The unit syllabus specifically includes RAM along with ROM and EPROM and their interfacing with the CPU.
+
+7. ROM
+ROM means Read Only Memory. ROM is designed to retain stored information without requiring normal write operations during every use.
+
+Characteristics:
+• Used for information that should remain available even when normal working power is removed, depending on the memory technology.
+• Traditionally used for fixed or firmware-type information.
+• The exact writing capability depends on the type of ROM technology.
+
+8. EPROM
+EPROM stands for Erasable Programmable Read Only Memory.
+
+EPROM is a non-volatile memory technology that can be programmed and later erased for reprogramming using the method associated with the device.
+
+Important idea:
+EPROM provides non-volatile storage while allowing the stored contents to be erased and programmed again under appropriate conditions.
+
+9. RAM, ROM AND EPROM — BASIC COMPARISON
+RAM:
+• Used for working/program execution data.
+• Read and write operations are generally supported.
+
+ROM:
+• Used for stored information that should be retained.
+• Primarily used for read operations during normal use.
+
+EPROM:
+• Non-volatile memory.
+• Can be programmed and later erased/reprogrammed using its specified method.
+
+The exact behavior depends on the particular memory technology and system design.
+
+10. MEMORY INTERFACING WITH CPU
+Memory interfacing means connecting memory chips to the CPU so that the processor can correctly select a memory location and perform read or write operations.
+
+A basic interface uses:
+• Address lines — select the memory location.
+• Data lines — carry data to or from the memory.
+• Control signals — specify operations such as read or write.
+
+Conceptual memory read:
+1) CPU places the required address on the address bus.
+2) CPU activates the memory-read control signal.
+3) The selected memory location places data on the data bus.
+4) CPU receives the data into the appropriate register.
+
+Conceptual memory write:
+1) CPU places the destination address on the address bus.
+2) CPU places the data on the data bus.
+3) CPU activates the memory-write control signal.
+4) The memory stores the data at the selected location.
+
+11. ADDRESS DECODING IN MEMORY INTERFACING
+Address decoding is used to determine which memory chip or memory location should respond to a given address.
+
+The CPU sends address bits to the memory system. Decoding logic uses those bits to enable the appropriate memory chip or region.
+
+Basic idea:
+CPU address → Decoder / selection logic → Selected memory chip
+
+This prevents multiple memory devices from responding to the same address at the same time.
+
+12. I/O ORGANIZATION
+Input/Output organization deals with communication between the CPU and external devices such as keyboards, displays, storage devices and other peripherals.
+
+An I/O interface provides the connection between the processor system and the external device.
+
+Typical interface elements may include:
+• Data register/buffer.
+• Status information.
+• Control information.
+• Address or device-select logic.
+• Control signals.
+
+13. I/O CONFIGURATION
+I/O configuration describes how I/O devices are connected and selected by the computer system.
+
+The CPU needs a way to:
+• Identify the required device.
+• Send data to the device.
+• Receive data from the device.
+• Check the device status.
+• Control the timing and direction of transfer.
+
+An I/O interface provides the signals and registers needed for these operations.
+
+14. I/O INTERFACING
+I/O interfacing is the process of connecting an I/O device to the processor system through appropriate hardware and control signals.
+
+A simplified data path is:
+CPU ↔ I/O Interface ↔ Peripheral Device
+
+The interface isolates differences between the CPU and the external device and provides a controlled method for data transfer.
+
+15. INTERRUPT-DRIVEN I/O
+In interrupt-driven I/O, an I/O device signals the CPU when it needs attention or when a transfer-related event occurs.
+
+Basic sequence:
+1) CPU starts or enables an I/O operation.
+2) CPU continues executing other instructions.
+3) Device generates an interrupt when service is required.
+4) CPU recognizes the interrupt.
+5) CPU saves necessary program state.
+6) CPU executes the interrupt service routine.
+7) The I/O event is serviced.
+8) CPU restores the saved state and resumes the interrupted program.
+
+Advantage:
+The CPU does not need to continuously check the device status through polling.
+
+16. POLLING VS INTERRUPT-DRIVEN I/O
+Polling:
+• CPU repeatedly checks device status.
+• CPU time may be spent checking devices even when no service is needed.
+
+Interrupt-driven I/O:
+• Device notifies CPU when attention is needed.
+• CPU can perform other work until an interrupt occurs.
+
+17. HANDSHAKING
+Handshaking is a method of coordinating data transfer between two devices when their timing is not guaranteed to be identical.
+
+Control signals are exchanged to indicate conditions such as:
+• Data is ready.
+• Data has been accepted.
+• The sender can continue.
+• The receiver is ready.
+
+Basic idea:
+Sender indicates data ready → Receiver acknowledges/accepts → Transfer progresses according to control signals.
+
+Handshaking helps prevent data loss when the sender and receiver operate at different speeds.
+
+18. ASYNCHRONOUS DATA TRANSFER
+Asynchronous transfer is used when two units do not share a common timing reference for every transfer.
+
+Because the units may operate independently, control information is used to coordinate the transfer.
+
+Handshaking is one common method for asynchronous transfer.
+
+Conceptually:
+Source → Control/handshake signals → Destination
+
+The transfer occurs only when the required readiness and acceptance conditions are satisfied.
+
+19. SYNCHRONOUS VS ASYNCHRONOUS TRANSFER
+Synchronous transfer:
+• Uses a common timing reference.
+• Transfers occur according to agreed timing/clock relationships.
+
+Asynchronous transfer:
+• Does not rely on one common timing reference for each transfer.
+• Uses control methods such as handshaking to coordinate the transfer.
+
+20. DMA — DIRECT MEMORY ACCESS
+DMA stands for Direct Memory Access.
+
+DMA is a technique in which an I/O device can transfer data to or from main memory with reduced direct involvement of the CPU for every individual data item.
+
+Basic idea:
+I/O Device ↔ DMA Mechanism ↔ Main Memory
+
+The CPU normally initializes/configures the DMA operation by providing information such as:
+• Starting memory address.
+• Direction of transfer.
+• Amount of data to transfer.
+
+After setup, the DMA mechanism controls the data movement between the device and memory for the transfer.
+
+21. DMA OPERATION — BASIC STEPS
+1) CPU configures the DMA transfer.
+2) I/O device requests a transfer.
+3) DMA mechanism obtains control of the required system resources according to the processor/system design.
+4) Data is transferred between the I/O device and memory.
+5) DMA updates address/count information as required.
+6) Transfer completes.
+7) CPU can be notified that the operation is complete, commonly through an interrupt.
+
+22. ADVANTAGES OF DMA
+• Reduces CPU involvement in moving large blocks of data.
+• Can improve overall I/O throughput.
+• Allows CPU processing and data-transfer activity to overlap more effectively, depending on the system.
+
+23. I/O PROCESSORS
+An I/O processor is a specialized processor or processing unit designed to handle I/O-related operations and reduce the workload on the main CPU.
+
+It can manage I/O tasks, communication with devices and transfer operations according to the system architecture.
+
+General idea:
+Main CPU → Assigns/coordinates I/O work → I/O Processor → I/O Devices
+
+This allows the main CPU to concentrate on program execution while I/O processing is handled by the specialized unit.
+
+24. DMA VS I/O PROCESSOR
+DMA:
+• Focuses on efficient data transfer between I/O and memory.
+• Reduces CPU involvement in individual data movements.
+
+I/O Processor:
+• Handles a broader set of I/O-related processing tasks.
+• Can execute or manage more complex I/O operations depending on the architecture.
+
+25. QUICK EXAM REVISION
+• Memory hierarchy = organized levels of storage based on speed, capacity and cost.
+• SRAM = fast, no periodic refresh, commonly used for cache.
+• DRAM = higher density, requires refresh, commonly used for main memory.
+• RAM = working read/write memory in typical systems.
+• ROM = non-volatile memory for stored information.
+• EPROM = programmable, erasable and reprogrammable non-volatile memory.
+• Memory interfacing = connecting CPU and memory using address, data and control signals.
+• Address decoding = selecting the correct memory chip/location.
+• I/O interfacing = connecting CPU system with peripherals through an interface.
+• Interrupt-driven I/O = device requests CPU attention through an interrupt.
+• Handshaking = control-signal coordination between sender and receiver.
+• Asynchronous transfer = transfer without a common timing reference for each operation.
+• DMA = direct I/O-to-memory or memory-to-I/O transfer with reduced CPU involvement.
+• I/O processor = specialized processing unit for I/O activities.
+
+IMPORTANT EXAM QUESTIONS
+1. Explain memory hierarchy.
+2. Differentiate SRAM and DRAM.
+3. Explain RAM, ROM and EPROM.
+4. What is memory interfacing? Explain the role of address, data and control lines.
+5. What is address decoding in memory interfacing?
+6. Explain I/O configuration and I/O interfacing.
+7. Explain interrupt-driven I/O with its sequence of operations.
+8. What is handshaking? Why is it used in data transfer?
+9. Explain asynchronous data transfer.
+10. Differentiate synchronous and asynchronous transfer.
+11. What is DMA? Explain its basic operation.
+12. Write the advantages of DMA.
+13. What is an I/O processor? Explain its role.
+14. Differentiate DMA and an I/O processor.
+
+PRACTICAL / CONCEPT PRACTICE
+• Draw a memory hierarchy diagram and label the levels.
+• Make a comparison table for SRAM and DRAM.
+• Draw a simple CPU-memory interface showing address, data and control lines.
+• Explain the steps of a memory read and memory write operation.
+• Draw a basic I/O interface between CPU and a peripheral.
+• Trace an interrupt-driven I/O sequence.
+• Draw a handshaking sequence showing ready and acknowledge signals.
+• Draw a basic DMA data-transfer path between an I/O device and memory.
+• Compare the roles of CPU, DMA mechanism and I/O processor in data transfer.
+
+SYLLABUS ALIGNMENT
+This note follows Unit 4 of the uploaded Semester III CSE Computer System Organisation syllabus: memory hierarchy, SRAM and DRAM; RAM, ROM and EPROM chips and their interfacing with CPU; I/O configuration and interfacing; interrupt-driven I/O, handshaking and asynchronous transfer; and DMA (Direct Memory Access) and I/O processors.` },
   { subject:'Computer System Organisation', code:'304', unit:'Unit 5', title:'8085 Case Study and Assembly Language Programming', desc:'8085 architecture, pins, instructions, addressing modes and sample GNUSim8085 programs.', type:'Syllabus Unit',
     content:'Unit 5 — 8085 Case Study and Assembly Language Programming\n\n• Introduction and architecture of 8085\n• Functional blocks: ALU, registers and control unit\n• Pin diagram and signal description\n• Instruction set overview and addressing modes\n• Applications of 8085\n• GNUSim8085 format, directives and flags\n• Sample programs: addition, data transfer, comparisons and loops' },
 
