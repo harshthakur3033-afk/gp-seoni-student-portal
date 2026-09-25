@@ -6926,13 +6926,19 @@ function StudyModule({ subject, unit, onExit }) {
 
   const results = submitted ? flatQuestions.map((question) => {
     const value = answers[question.id] ?? '';
+    const selectedAnswer = question.type === 'mcq'
+      ? (value !== '' && question.options[Number(value)] ? question.options[Number(value)] : 'No option selected')
+      : (String(value).trim() || 'No answer');
+    const correctAnswer = question.type === 'mcq'
+      ? question.options[question.answer]
+      : question.modelAnswer;
+
     return {
       ...question,
       value,
+      selectedAnswer,
       correct: checkQuestion(question, value),
-      correctAnswer: question.type === 'mcq'
-        ? question.options[question.answer]
-        : question.modelAnswer
+      correctAnswer
     };
   }) : [];
 
@@ -7002,8 +7008,14 @@ function StudyModule({ subject, unit, onExit }) {
               <b>{item.correct ? 'Correct' : 'Wrong'}</b>
             </div>
             <h3>{item.prompt}</h3>
-            <div className="module-review-answer"><strong>Your answer:</strong><span>{item.value || 'No answer'}</span></div>
-            {!item.correct && <div className="module-review-answer"><strong>Expected:</strong><span>{item.correctAnswer}</span></div>}
+            <div className="module-review-answer">
+              <strong>Your answer:</strong>
+              <span>{item.question?.type === 'mcq' ? item.selectedAnswer : (item.value || 'No answer')}</span>
+            </div>
+            <div className="module-review-answer">
+              <strong>Correct answer:</strong>
+              <span>{item.correctAnswer}</span>
+            </div>
           </article>)}
         </div>
         <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'8px'}}>
