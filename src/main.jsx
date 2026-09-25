@@ -4833,8 +4833,200 @@ PRACTICAL PRACTICE
 
 SYLLABUS ALIGNMENT
 This note follows Unit 5 of the uploaded Semester III CSE Computer System Organisation syllabus: 8085 microprocessor introduction, architecture, functional blocks (ALU, registers, control unit), pin diagram and signal description, instruction set overview, addressing modes, applications of 8085; and assembly programming using GNUSim8085 covering format, directives, flags, and sample programs for 8-bit and 16-bit addition, data transfer, comparisons and loops.` },
-  { subject:'Algorithms', code:'305', unit:'Unit 1', title:'Fundamentals of Algorithms', desc:'Algorithm characteristics, design steps, pseudocode, flowcharts, complexity and asymptotic notation.', type:'Syllabus Unit',
-    content:'Unit 1 — Fundamentals of Algorithms\n\n• Definition, characteristics and importance\n• Steps in algorithm design\n• Pseudocode, flowcharts and structured approach\n• Iterative vs recursive processes\n• Time and space complexity\n• Big-O, Omega and Theta\n• Best-case, worst-case and average-case analysis\n• Analysis of simple array algorithms' },
+  { subject:'Algorithms', code:'305', unit:'Unit 1', title:'Fundamentals of Algorithms', desc:'Detailed notes on algorithm definition, characteristics, importance, design steps, pseudocode, flowcharts, structured approach, iterative and recursive processes, time and space complexity, Big-O, Omega, Theta and basic array analysis.', type:'Detailed Notes',
+    content:`Unit 1 — Fundamentals of Algorithms
+
+1. INTRODUCTION TO ALGORITHMS
+An algorithm is a finite and clearly defined sequence of steps used to solve a problem or perform a task.
+
+Example: Add two numbers
+1) Start
+2) Read A and B
+3) SUM = A + B
+4) Display SUM
+5) Stop
+
+2. CHARACTERISTICS OF AN ALGORITHM
+• Finiteness — it terminates after a finite number of steps.
+• Definiteness — each step is clear and unambiguous.
+• Input — it may accept zero or more inputs.
+• Output — it produces the required result.
+• Effectiveness — each step is practical to execute.
+
+3. IMPORTANCE OF ALGORITHMS
+Algorithms provide a logical plan before implementation. They help in systematic problem solving, program development, comparison of alternative solutions, complexity analysis, testing and debugging.
+
+4. STEPS IN ALGORITHM DESIGN
+1) Understand the problem.
+2) Identify inputs and outputs.
+3) Break the problem into smaller parts when needed.
+4) Develop the logical sequence of steps.
+5) Represent the solution using an algorithm, pseudocode or flowchart.
+6) Test the logic with sample inputs.
+7) Analyze time and space requirements.
+8) Implement and test the program.
+
+5. PSEUDOCODE
+Pseudocode is a simple, language-independent representation of program logic.
+
+Example: Find larger of A and B
+START
+Read A, B
+IF A > B
+    MAX = A
+ELSE
+    MAX = B
+Display MAX
+STOP
+
+6. FLOWCHARTS
+A flowchart represents an algorithm graphically.
+
+Common symbols:
+• Oval — Start/End
+• Rectangle — Process
+• Parallelogram — Input/Output
+• Diamond — Decision
+• Arrow — Flow direction
+
+7. STRUCTURED APPROACH
+A structured solution organizes logic using:
+• Sequence — steps execute in order.
+• Selection — a condition chooses among alternatives.
+• Iteration — steps are repeated.
+
+8. ITERATIVE PROCESS
+An iterative process repeats steps using a loop until a condition is satisfied.
+
+Example: Sum 1 to n
+SUM = 0
+Repeat for each value from 1 to n:
+    SUM = SUM + current value
+Output SUM
+
+9. RECURSIVE PROCESS
+A recursive process solves a problem by applying the same procedure to a smaller version of the problem.
+
+A recursive solution needs:
+• Base case — stops further calls.
+• Recursive case — reduces the problem and calls the procedure again.
+
+Example:
+factorial(n) = n × factorial(n−1), for n > 1
+factorial(1) = 1
+
+10. ITERATIVE VS RECURSIVE
+Iterative:
+• Uses loops.
+• Has explicit repetition control.
+• Often uses less call-stack memory.
+
+Recursive:
+• A function/procedure calls itself.
+• Needs a base case.
+• Uses call-stack frames for the active calls.
+
+11. ALGORITHM ANALYSIS
+Algorithm analysis studies the resources required as input size increases.
+
+The syllabus includes:
+• Time complexity
+• Space complexity
+• Big-O, Omega and Theta
+• Best-case, worst-case and average-case analysis
+• Analysis of simple algorithms such as array addition and multiplication
+
+12. TIME COMPLEXITY
+Time complexity describes how the amount of computational work grows with input size.
+
+Examples:
+• One fixed operation → O(1)
+• One pass through n elements → O(n)
+• Two nested passes over n elements → O(n²)
+
+13. SPACE COMPLEXITY
+Space complexity describes how memory usage grows with input size.
+
+It may include input storage and extra/auxiliary memory used during execution.
+
+An algorithm using only a fixed number of extra variables can have auxiliary space O(1).
+
+14. ASYMPTOTIC NOTATIONS
+Asymptotic notation describes the growth of an algorithm for large input sizes.
+
+Big-O:
+• Asymptotic upper bound.
+
+Omega (Ω):
+• Asymptotic lower bound.
+
+Theta (Θ):
+• Tight asymptotic bound when matching upper and lower growth orders are established.
+
+15. BEST-CASE ANALYSIS
+Best-case analysis considers the minimum work required for an input of a given size.
+
+16. WORST-CASE ANALYSIS
+Worst-case analysis considers the maximum work required for an input of a given size.
+
+17. AVERAGE-CASE ANALYSIS
+Average-case analysis considers expected work under stated assumptions about the input distribution.
+
+18. SIMPLE ARRAY ADDITION ANALYSIS
+Suppose every element of an array is added to SUM.
+
+For n elements, every element is processed once.
+• Time complexity = O(n)
+• Auxiliary space = O(1) when only a fixed number of extra variables are used
+
+19. SIMPLE ARRAY MULTIPLICATION ANALYSIS
+Suppose every element of an array is multiplied into PRODUCT.
+
+For n elements, every element is processed once.
+• Time complexity = O(n)
+• Auxiliary space = O(1) when only a fixed number of extra variables are used
+
+20. QUICK EXAM REVISION
+• Algorithm = finite, clear sequence of steps.
+• Pseudocode = language-independent logic representation.
+• Flowchart = graphical representation of an algorithm.
+• Structured approach = sequence, selection and iteration.
+• Iterative = repetition using loops.
+• Recursive = procedure calls itself on a smaller problem.
+• Time complexity = growth of computational work.
+• Space complexity = growth of memory requirement.
+• O = upper bound.
+• Ω = lower bound.
+• Θ = tight bound.
+• Best case = minimum work.
+• Worst case = maximum work.
+• Average case = expected work.
+• Array addition and multiplication = linear time O(n).
+
+IMPORTANT EXAM QUESTIONS
+1. Define an algorithm. Explain its characteristics and importance.
+2. Explain the steps involved in algorithm design.
+3. What is pseudocode? Give an example.
+4. What is a flowchart? Explain common symbols.
+5. Explain the structured approach.
+6. Differentiate iterative and recursive processes.
+7. Define time complexity and space complexity.
+8. Explain Big-O, Omega and Theta.
+9. Differentiate best-case, worst-case and average-case analysis.
+10. Analyze the time and auxiliary-space complexity of simple array addition.
+11. Analyze the time and auxiliary-space complexity of simple array multiplication.
+12. Explain O(1), O(n) and O(n²) with examples.
+
+PRACTICAL / CONCEPT PRACTICE
+• Write an algorithm to add two numbers.
+• Write pseudocode to find the maximum of two numbers.
+• Draw a flowchart for an even/odd check.
+• Write iterative and recursive factorial solutions.
+• Analyze array addition and multiplication.
+• Classify simple algorithms as O(1), O(n) or O(n²).
+
+SYLLABUS ALIGNMENT
+This note follows Unit 1 of the uploaded Semester III CSE Algorithms syllabus: definition, characteristics and importance; steps in algorithm design; pseudocode; flowcharts and structured approach; iterative vs recursive processes; time and space complexity; Big-O, Omega and Theta; best-case, worst-case and average-case analysis; and analysis of simple algorithms such as addition and multiplication of an array.` },
   { subject:'Algorithms', code:'305', unit:'Unit 2', title:'Sorting', desc:'Sorting importance and applications, elementary sorts, merge sort and quick sort.', type:'Syllabus Unit',
     content:'Unit 2 — Sorting\n\n• Importance and applications of sorting\n• Bubble sort\n• Selection sort\n• Insertion sort\n• Merge sort\n• Quick sort and divide-and-conquer idea\n• Complexity and comparison of sorting methods' },
   { subject:'Algorithms', code:'305', unit:'Unit 3', title:'Searching', desc:'Linear and binary search, BST, balancing and hashing concepts.', type:'Syllabus Unit',
