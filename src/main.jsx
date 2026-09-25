@@ -6915,7 +6915,11 @@ function StudyModule({ subject, unit, onExit }) {
   };
 
   const checkQuestion = (question, value) => {
-    if (question.type === 'mcq') return Number(value) === question.answer;
+    if (question.type === 'mcq') {
+      if (value === '' || value === null || value === undefined) return false;
+      const selectedIndex = Number(value);
+      return Number.isInteger(selectedIndex) && selectedIndex >= 0 && selectedIndex < question.options.length && selectedIndex === question.answer;
+    }
     const normalized = String(value || '').toLowerCase().replace(/[^a-z0-9+.#]+/g, ' ');
     const hits = question.keywords.filter((keyword) => {
       const key = keyword.toLowerCase().replace(/[^a-z0-9+.#]+/g, ' ').trim();
