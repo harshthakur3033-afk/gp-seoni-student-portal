@@ -6698,9 +6698,9 @@ function App() {
         <section className="content">
           {active === 'Dashboard' && <Dashboard go={go} filteredSubjects={filteredSubjects} />}
           {active === 'Subjects' && <Subjects filteredSubjects={filteredSubjects} go={go} />}
-          {active === 'Modules' && <ModuleLibrary go={go} />}
+          {active === 'Modules' && <ModuleLibrary go={go} subjectFilter={selectedSubject} />}
           {active === 'Notes' && <Notes search={query} subjectFilter={selectedSubject} />}
-          {active === 'Module' && <StudyModule subject={selectedSubject} unit={selectedUnit} onExit={() => go('Subjects')} />}
+          {active === 'Module' && <StudyModule subject={selectedSubject} unit={selectedUnit} onExit={() => go('Modules', selectedSubject)} />}
           {active === 'Question Papers' && <Papers />}
           {active === 'MCQ Practice' && <MCQPractice mcq={mcqs[mcqIndex]} index={mcqIndex} selected={selected} score={score} answer={answerMcq} next={nextMcq} />}
           {active === 'Study Planner' && <Planner tasks={tasks} newTask={newTask} setNewTask={setNewTask} addTask={addTask} toggleTask={toggleTask} />}
@@ -6720,7 +6720,7 @@ function Dashboard({ go, filteredSubjects }) {
       ['Notes & Study Material','Subject-wise notes and resources',BookOpen,'Notes'],['Previous Year Papers','Practice with past exam papers',FileText,'Question Papers'],['MCQ Practice','Test yourself with objective questions',CircleHelp,'MCQ Practice'],['AI Study Assistant','Ask questions and learn faster',Sparkles,'AI Study Assistant']
     ].map(([title,desc,Icon,page]) => <button className="quick-card" key={title} onClick={() => go(page)}><div className="quick-icon"><Icon size={21}/></div><div><strong>{title}</strong><p>{desc}</p></div><ChevronRight size={18}/></button>)}</div>
     <div className="section-heading subjects-head"><div><span className="section-kicker">CURRENT STUDY</span><h2>Subjects & modules</h2></div><span className="semester-badge">3rd Semester</span></div>
-    <div className="subject-grid">{filteredSubjects.map(({name,code,icon:Icon,tag},i) => <button className="subject-card" key={code} onClick={() => go('Notes')}><div className="subject-top"><div className="subject-icon"><Icon size={20}/></div><span>{tag}</span></div><strong>{name}</strong><small>{code} · Study material available</small><div className="progress"><i style={{width:`${52+i*8}%`}}/></div></button>)}</div>
+    <div className="subject-grid">{filteredSubjects.map(({name,code,icon:Icon,tag},i) => <button className="subject-card" key={code} onClick={() => go('Modules', name)}><div className="subject-top"><div className="subject-icon"><Icon size={20}/></div><span>{tag}</span></div><strong>{name}</strong><small>{code} · Study material available</small><div className="progress"><i style={{width:`${52+i*8}%`}}/></div></button>)}</div>
     <div className="lower-grid"><section className="notice-card"><div className="card-title"><div><span className="section-kicker">STUDENT HUB</span><h2>Build your study routine</h2></div><CalendarDays size={21}/></div><div className="notice"><b>Study resources</b><span>Notes, question papers and revision material are organized into dedicated sections.</span></div><div className="notice"><b>Practice zone</b><span>Use MCQs to check your understanding before exams.</span></div></section><section className="planner-card"><div className="card-title"><div><span className="section-kicker">YOUR FOCUS</span><h2>One target at a time</h2></div><Target size={21}/></div><div className="focus-ring"><strong>01</strong><span>Set one small target<br/>for today.</span></div><button className="primary full" onClick={() => go('Study Planner')}>Open Study Planner <ChevronRight size={17}/></button></section></div>
   </>;
 }
@@ -6799,45 +6799,66 @@ function Notes({ search, subjectFilter }) {
 
 
 
-function ModuleLibrary({ go }) {
-  const unitCatalog = subjects.filter((subject) => subject.code && subject.code !== '—').flatMap((subject) =>
-    subject.topics.map((topic, index) => ({
-      subject: subject.name,
-      code: subject.code,
-      unit: index + 1,
-      title: topic.replace(/^Unit\\s+\\d+:\\s*/i, ''),
-      available: subject.name === 'Computer Programming' && index === 0
-    }))
-  );
+function ModuleLibrary({ go, subjectFilter }) {
+  const moduleSubjects = subjects.filter((subject) => subject.code && subject.code !== '—');
+  const initialCode = moduleSubjects.find((subject) => subject.name === subjectFilter)?.code || moduleSubjects[0]?.code || null;
+  const [selected, setSelected] = useState(initialCode);
+
+  useEffect(() => {
+    const nextCode = moduleSubjects.find((subject) => subject.name === subjectFilter)?.code || moduleSubjects[0]?.code || null;
+    setSelected(nextCode);
+  }, [subjectFilter]);
+
+  const current = moduleSubjects.find((subject) => subject.code === selected);
 
   return <>
     <div className="page-intro">
       <span className="section-kicker">INTERACTIVE LEARNING</span>
       <h1>Modules</h1>
-      <p>Complete a unit step-by-step: learn the topic, answer short questions, move forward, and see your final result after submitting the unit.</p>
+      <p>Choose a subject, select its unit, and open the interactive module. The learning flow is topic-by-topic with questions before moving ahead.</p>
     </div>
 
-    <div className="module-library-grid">
-      {unitCatalog.map((item) => (
-        <article className={item.available ? "module-library-card available" : "module-library-card"} key={item.code + '-' + item.unit}>
-          <div className="module-library-top">
-            <div className="subject-icon"><BookOpen size={19}/></div>
-            <span>{item.available ? 'READY' : 'COMING NEXT'}</span>
+    <div className="subject-page-grid">
+      <div className="subject-list">
+        {moduleSubjects.map(({name,code,icon:Icon,tag}) => (
+          <button key={code} className={selected===code ? 'subject-row selected' : 'subject-row'} onClick={() => setSelected(code)}>
+            <span className="subject-icon"><Icon size={19}/></span>
+            <span><strong>{name}</strong><small>{code} · {tag}</small></span>
+            <ChevronRight size={17}/>
+          </button>
+        ))}
+      </div>
+
+      {current && <section className="module-panel">
+        <div className="module-head">
+          <div className="subject-icon">{React.createElement(current.icon,{size:21})}</div>
+          <div>
+            <span className="section-kicker">MODULES · {current.code}</span>
+            <h2>{current.name}</h2>
+            <small>Select a unit to start interactive learning</small>
           </div>
-          <span className="section-kicker">UNIT {item.unit} · {item.code}</span>
-          <h2>{item.subject}</h2>
-          <h3>{item.title}</h3>
-          <p>{item.available ? 'Interactive module is available. Start learning topic-by-topic and complete the questions before moving ahead.' : 'This unit will use the same interactive module format after the current module is finalized.'}</p>
-          {item.available
-            ? <button className="primary full" onClick={() => go('Module', item.subject, item.unit)}>Open Module <ChevronRight size={16}/></button>
-            : <button className="secondary dark full" disabled>Module in preparation</button>
-          }
-        </article>
-      ))}
+        </div>
+
+        <div className="topic-list">
+          {current.topics.map((topic,i) => {
+            const available = current.name === 'Computer Programming' && i === 0;
+            return <button
+              key={topic}
+              disabled={!available}
+              className={available ? '' : 'module-topic-disabled'}
+              onClick={() => available && go('Module', current.name, i + 1)}
+            >
+              <span>{String(i+1).padStart(2,'0')}</span>
+              <b>{topic}</b>
+              <span className={available ? 'module-open-badge' : 'module-soon-badge'}>{available ? 'Open Module' : 'Coming Soon'}</span>
+              <ChevronRight size={16}/>
+            </button>;
+          })}
+        </div>
+      </section>}
     </div>
   </>;
 }
-
 function StudyModule({ subject, unit, onExit }) {
   const key = `${subject || ''}|${unit || ''}`;
   const module = moduleLessons[key];
