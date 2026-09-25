@@ -3640,253 +3640,253 @@ PRACTICAL / NUMERICAL PRACTICE
 SYLLABUS ALIGNMENT
 This note follows Unit 1 of the uploaded Semester III CSE Computer System Organisation syllabus: functional blocks (CPU, Memory, Input/Output, Control Unit); Von Neumann vs Harvard architectures and bottleneck; Data, Address and Control buses; Decimal, Binary, Octal and Hexadecimal number systems and conversion; registers, types and functions, and instruction cycle; Register Transfer, Bus and Memory Transfer, RTL; Arithmetic, Logical and Shift microoperations; ALU and Arithmetic Logical Shift Unit; and data representation through fixed-point, floating-point, sign-bit, 1’s complement and 2’s complement methods, including arithmetic addition and subtraction using 2’s complement.` },
   { subject:'Computer System Organisation', code:'304', unit:'Unit 2', title:'Instruction Set Architecture', desc:'Detailed Unit 2 notes covering instruction code, addressing modes, assembly and machine code, instruction cycle, register and stack organization, instruction formats, instruction categories, interrupts, RISC/CISC, pipeline, vector processing and array processing.', type:'Detailed Notes',
-    content:`Unit 2 — Instruction Set Architecture\
-\
-1. INSTRUCTION SET ARCHITECTURE (ISA)\
-Instruction Set Architecture (ISA) is the programmer-visible description of how a processor understands and executes instructions. It defines the instruction set, instruction formats, registers, addressing modes and rules for accessing data and memory.\
-\
-The ISA acts as an interface between software and processor hardware. Programs use the instructions and rules defined by the target processor architecture.\
-\
-2. INSTRUCTION CODE\
-An instruction code is the encoded information that tells the CPU what operation to perform and, when required, where the operands are located. An instruction generally contains an operation code (opcode) and operand/address information.\
-\
-Opcode — specifies the operation, such as ADD, SUB, LOAD or STORE.\
-Operand/address fields — specify the data, register or memory location involved in the operation.\
-\
-Conceptually:\
-Instruction = Opcode + Operand / Address information\
-\
-3. ADDRESSING MODES\
-An addressing mode specifies how the operand of an instruction is located or obtained. Different modes provide different ways to access data.\
-\
-Common addressing modes:\
-• Immediate — the operand value is included in the instruction. Example idea: MOV R1, #10\
-• Direct — the instruction contains the memory address of the operand.\
-• Register — the operand is stored in a register named in the instruction.\
-• Register indirect — a register contains the address of the operand.\
-• Indexed — an effective address is formed using an index value with a base address.\
-\
-The exact addressing modes depend on the processor ISA. The key idea is that the addressing mode tells the CPU how to find the required operand.\
-\
-4. ASSEMBLY CODE VS MACHINE CODE\
-Machine code is the encoded instruction representation executed directly by the processor. Assembly language uses human-readable mnemonics and symbols to represent machine instructions.\
-\
-Example idea:\
-Assembly: ADD R1, R2\
-Machine code: the corresponding binary/encoded instruction for the target processor\
-\
-An assembler translates assembly language into machine code.\
-\
-5. INSTRUCTION CYCLE\
-The instruction cycle is the sequence of steps used by the CPU to process an instruction. A general instruction cycle includes fetching the instruction, decoding it, obtaining required operands, executing the operation and storing the result when needed.\
-\
-Basic stages:\
-1) Fetch — obtain the instruction from memory.\
-2) Decode — determine the operation and required operands.\
-3) Operand access — obtain required data/register values when necessary.\
-4) Execute — perform the specified operation.\
-5) Store/Write back — place the result in the required destination when applicable.\
-\
-6. TIMING AND CONTROL\
-Timing and control coordinate the sequence of operations inside the CPU. Control signals determine when registers are loaded, data is transferred, the ALU performs an operation, and memory or I/O operations occur.\
-\
-A clock provides the timing reference. The control unit uses the instruction and timing information to generate the required control signals for each step of execution.\
-\
-7. GENERAL REGISTER ORGANIZATION\
-General-purpose registers are fast storage locations inside the CPU used to hold operands, intermediate results and other working data. General register organization connects registers with selection/control logic and the ALU so data can be transferred and processed.\
-\
-Typical parts:\
-• General-purpose registers\
-• Selection/control logic for source and destination registers\
-• ALU for arithmetic and logical operations\
-• Control signals for register transfers and ALU operations\
-\
-Example concept:\
-R3 ← R1 + R2\
-Here R1 and R2 provide operands and the ALU produces a result stored in R3.\
-\
-8. STACK ARCHITECTURE\
-A stack is a Last-In, First-Out (LIFO) storage structure. The most recently stored item is the first item removed.\
-\
-Main operations:\
-• PUSH — places an item on the top of the stack.\
-• POP — removes an item from the top of the stack.\
-\
-The Stack Pointer (SP) identifies the current top position of the stack. Stack architecture is useful for temporary storage, procedure/function calls, return addresses and expression evaluation.\
-\
-9. INSTRUCTION SET\
-An instruction set is the collection of machine instructions supported by a processor. For this syllabus, important instruction categories are:\
-• Data Transfer Instructions\
-• Data Manipulation Instructions\
-• Program Control Instructions\
-\
-10. INSTRUCTION FORMAT\
-Instruction format describes how instruction fields are arranged, especially the opcode and operand/address fields. Based on the number of explicit addresses/operands, the syllabus includes four formats.\
-\
-THREE-ADDRESS INSTRUCTION\
-A three-address instruction explicitly specifies three operands/addresses, commonly two source operands and one destination.\
-Example idea:\
-ADD R1, R2, R3\
-Meaning: R1 ← R2 + R3\
-\
-TWO-ADDRESS INSTRUCTION\
-A two-address instruction uses two explicitly specified operands, with one operand commonly serving as both source and destination.\
-Example idea:\
-ADD R1, R2\
-Meaning: R1 ← R1 + R2\
-\
-ONE-ADDRESS INSTRUCTION\
-A one-address instruction uses one explicit address and commonly relies on an accumulator or another implicit operand.\
-Example idea:\
-ADD X\
-Meaning: ACC ← ACC + M[X]\
-\
-ZERO-ADDRESS INSTRUCTION\
-A zero-address instruction uses implicit operands, typically the top elements of a stack.\
-Example idea:\
-ADD\
-Meaning: combine the required top stack operands and place the result back on the stack.\
-\
-11. DATA TRANSFER INSTRUCTIONS\
-Data transfer instructions move data from one location to another without changing the meaning of the data. Depending on the ISA, transfers may occur between registers, memory and registers, or other supported locations.\
-\
-Examples of operations:\
-• LOAD — move data from memory to a register.\
-• STORE — move data from a register to memory.\
-• MOVE — transfer data between supported registers/locations.\
-\
-12. DATA MANIPULATION INSTRUCTIONS\
-Data manipulation instructions process or change data. They commonly include arithmetic, logical, shift and comparison operations supported by the instruction set.\
-\
-Examples:\
-• ADD / SUB — arithmetic operations\
-• AND / OR / XOR — logical/bitwise operations\
-• SHIFT / ROTATE — bit-position operations\
-• COMPARE — compares operand values and updates relevant status information\
-\
-13. PROGRAM CONTROL INSTRUCTIONS\
-Program control instructions change the normal sequence of instruction execution. They are used for decisions, repetition, procedure calls and returns.\
-\
-Examples include:\
-• Branch / jump\
-• Conditional branch\
-• CALL\
-• RETURN\
-\
-A branch instruction changes the next instruction address according to the instruction and, when applicable, its condition.\
-\
-14. INTERRUPTS AND INTERRUPT HANDLING\
-An interrupt is a request for the CPU to temporarily stop its normal program sequence and service an event that needs attention. Depending on the system, interrupts may be generated by hardware or software.\
-\
-Basic interrupt handling sequence:\
-1) Interrupt request occurs.\
-2) CPU recognizes and accepts the interrupt when permitted.\
-3) CPU saves the necessary program state.\
-4) Control transfers to an Interrupt Service Routine (ISR).\
-5) ISR services the event.\
-6) Saved state is restored and the interrupted program resumes.\
-\
-Interrupts allow the processor to respond to events without continuously checking each device through polling.\
-\
-15. RISC\
-RISC means Reduced Instruction Set Computer. RISC designs generally use a smaller, simpler instruction set with emphasis on simple instructions and efficient execution.\
-\
-General characteristics:\
-• Relatively simple instruction formats\
-• Many operations designed to execute efficiently\
-• Strong use of registers\
-• Load/store approach is commonly associated with RISC designs\
-\
-16. CISC\
-CISC means Complex Instruction Set Computer. CISC designs provide a larger and more varied instruction set, including instructions that may perform more complex operations.\
-\
-General characteristics:\
-• Large instruction set\
-• More varied instruction formats and addressing possibilities\
-• Some instructions may perform multi-step or complex operations\
-\
-17. RISC VS CISC\
-RISC and CISC are different instruction-set design approaches. The comparison focuses on instruction complexity, instruction format, addressing possibilities and how much work an individual instruction may perform.\
-\
-RISC — simpler instructions and regular/simple formats are common; efficient execution is emphasized.\
-CISC — more complex and varied instructions are provided; some operations can be expressed in fewer instructions.\
-\
-The exact implementation depends on the processor architecture, and modern processors may combine ideas from both approaches internally.\
-\
-18. PIPELINE ARCHITECTURE\
-Pipeline architecture divides instruction processing into stages so that different instructions can be in different stages at the same time. This overlaps work on multiple instructions and can increase instruction throughput.\
-\
-Simple conceptual pipeline:\
-Fetch → Decode → Execute → Memory → Write Back\
-\
-Example:\
-While instruction 1 is in Execute, instruction 2 can be in Decode and instruction 3 can be in Fetch.\
-\
-Pipelining improves throughput, but hazards and dependencies can reduce the ideal speedup.\
-\
-19. VECTOR PROCESSING\
-Vector processing performs the same type of operation on multiple data elements treated as a vector. It is useful when the same operation must be repeated over a sequence of values.\
-\
-Example idea:\
-C[i] = A[i] + B[i]\
-A vector-oriented processor can process multiple elements of A and B efficiently as part of vector operations.\
-\
-20. ARRAY PROCESSING\
-Array processing is a method of processing multiple data elements arranged as an array using parallel or organized operations. It is useful for problems involving large collections of similar data.\
-\
-Example applications include matrix and image-related computations where the same type of operation is performed on many array elements.\
-\
-21. VECTOR PROCESSING VS ARRAY PROCESSING\
-Vector processing treats a sequence of data elements as a vector and applies operations across the elements. Array processing emphasizes processing many array elements, often using parallel processing resources. The exact implementation depends on the processor architecture.\
-\
-22. QUICK EXAM REVISION\
-• ISA = programmer-visible rules and instruction set of a processor.\
-• Instruction code = encoded information specifying the operation and operand/address information.\
-• Addressing mode = method used to locate an operand.\
-• Assembly language = symbolic representation of machine instructions.\
-• Machine code = processor-executable encoded instructions.\
-• Instruction cycle = fetch → decode → operand access → execute → write back/store, as applicable.\
-• General registers = fast CPU storage for operands/intermediate results.\
-• Stack = LIFO structure using PUSH and POP.\
-• Three-address = three explicit operands/addresses.\
-• Two-address = two explicit operands/addresses.\
-• One-address = one explicit address with an implicit operand such as ACC.\
-• Zero-address = operands are implicit, typically stack-based.\
-• Data transfer = move data.\
-• Data manipulation = process/change data.\
-• Program control = change execution sequence.\
-• Interrupt = request for CPU attention and service routine execution.\
-• RISC = reduced, simpler instruction-set approach.\
-• CISC = complex, larger instruction-set approach.\
-• Pipeline = overlap instruction-processing stages.\
-• Vector processing = operate on multiple vector elements.\
-• Array processing = organized/parallel processing of array elements.\
-\
-IMPORTANT EXAM QUESTIONS\
-1. Define Instruction Set Architecture (ISA).\
-2. What is an instruction code? Explain opcode and operand/address fields.\
-3. Explain addressing modes with suitable examples.\
-4. Differentiate assembly language and machine code.\
-5. Explain the instruction cycle, timing and control.\
-6. Explain general register organization.\
-7. What is stack architecture? Explain PUSH and POP.\
-8. Explain three-address, two-address, one-address and zero-address instruction formats with examples.\
-9. Explain data transfer, data manipulation and program control instructions.\
-10. What is an interrupt? Explain the basic interrupt handling sequence.\
-11. Differentiate RISC and CISC.\
-12. Explain pipeline architecture with a simple stage diagram.\
-13. Explain vector processing and array processing.\
-14. Compare vector processing and array processing.\
-\
-PRACTICAL / CONCEPT PRACTICE\
-• Identify opcode and operand/address fields in sample instruction formats.\
-• Identify the addressing mode used by a sample instruction.\
-• Express a simple arithmetic statement in three-address, two-address, one-address and zero-address forms.\
-• Trace fetch-decode-execute for a simple instruction.\
-• Draw a stack and show PUSH/POP operations.\
-• Draw a simple five-stage pipeline and trace three instructions through it.\
-• Practice short-answer explanations for interrupts, RISC/CISC, vector processing and array processing.\
-\
+    content:`Unit 2 — Instruction Set Architecture
+
+1. INSTRUCTION SET ARCHITECTURE (ISA)
+Instruction Set Architecture (ISA) is the programmer-visible description of how a processor understands and executes instructions. It defines the instruction set, instruction formats, registers, addressing modes and rules for accessing data and memory.
+
+The ISA acts as an interface between software and processor hardware. Programs use the instructions and rules defined by the target processor architecture.
+
+2. INSTRUCTION CODE
+An instruction code is the encoded information that tells the CPU what operation to perform and, when required, where the operands are located. An instruction generally contains an operation code (opcode) and operand/address information.
+
+Opcode — specifies the operation, such as ADD, SUB, LOAD or STORE.
+Operand/address fields — specify the data, register or memory location involved in the operation.
+
+Conceptually:
+Instruction = Opcode + Operand / Address information
+
+3. ADDRESSING MODES
+An addressing mode specifies how the operand of an instruction is located or obtained. Different modes provide different ways to access data.
+
+Common addressing modes:
+• Immediate — the operand value is included in the instruction. Example idea: MOV R1, #10
+• Direct — the instruction contains the memory address of the operand.
+• Register — the operand is stored in a register named in the instruction.
+• Register indirect — a register contains the address of the operand.
+• Indexed — an effective address is formed using an index value with a base address.
+
+The exact addressing modes depend on the processor ISA. The key idea is that the addressing mode tells the CPU how to find the required operand.
+
+4. ASSEMBLY CODE VS MACHINE CODE
+Machine code is the encoded instruction representation executed directly by the processor. Assembly language uses human-readable mnemonics and symbols to represent machine instructions.
+
+Example idea:
+Assembly: ADD R1, R2
+Machine code: the corresponding binary/encoded instruction for the target processor
+
+An assembler translates assembly language into machine code.
+
+5. INSTRUCTION CYCLE
+The instruction cycle is the sequence of steps used by the CPU to process an instruction. A general instruction cycle includes fetching the instruction, decoding it, obtaining required operands, executing the operation and storing the result when needed.
+
+Basic stages:
+1) Fetch — obtain the instruction from memory.
+2) Decode — determine the operation and required operands.
+3) Operand access — obtain required data/register values when necessary.
+4) Execute — perform the specified operation.
+5) Store/Write back — place the result in the required destination when applicable.
+
+6. TIMING AND CONTROL
+Timing and control coordinate the sequence of operations inside the CPU. Control signals determine when registers are loaded, data is transferred, the ALU performs an operation, and memory or I/O operations occur.
+
+A clock provides the timing reference. The control unit uses the instruction and timing information to generate the required control signals for each step of execution.
+
+7. GENERAL REGISTER ORGANIZATION
+General-purpose registers are fast storage locations inside the CPU used to hold operands, intermediate results and other working data. General register organization connects registers with selection/control logic and the ALU so data can be transferred and processed.
+
+Typical parts:
+• General-purpose registers
+• Selection/control logic for source and destination registers
+• ALU for arithmetic and logical operations
+• Control signals for register transfers and ALU operations
+
+Example concept:
+R3 ← R1 + R2
+Here R1 and R2 provide operands and the ALU produces a result stored in R3.
+
+8. STACK ARCHITECTURE
+A stack is a Last-In, First-Out (LIFO) storage structure. The most recently stored item is the first item removed.
+
+Main operations:
+• PUSH — places an item on the top of the stack.
+• POP — removes an item from the top of the stack.
+
+The Stack Pointer (SP) identifies the current top position of the stack. Stack architecture is useful for temporary storage, procedure/function calls, return addresses and expression evaluation.
+
+9. INSTRUCTION SET
+An instruction set is the collection of machine instructions supported by a processor. For this syllabus, important instruction categories are:
+• Data Transfer Instructions
+• Data Manipulation Instructions
+• Program Control Instructions
+
+10. INSTRUCTION FORMAT
+Instruction format describes how instruction fields are arranged, especially the opcode and operand/address fields. Based on the number of explicit addresses/operands, the syllabus includes four formats.
+
+THREE-ADDRESS INSTRUCTION
+A three-address instruction explicitly specifies three operands/addresses, commonly two source operands and one destination.
+Example idea:
+ADD R1, R2, R3
+Meaning: R1 ← R2 + R3
+
+TWO-ADDRESS INSTRUCTION
+A two-address instruction uses two explicitly specified operands, with one operand commonly serving as both source and destination.
+Example idea:
+ADD R1, R2
+Meaning: R1 ← R1 + R2
+
+ONE-ADDRESS INSTRUCTION
+A one-address instruction uses one explicit address and commonly relies on an accumulator or another implicit operand.
+Example idea:
+ADD X
+Meaning: ACC ← ACC + M[X]
+
+ZERO-ADDRESS INSTRUCTION
+A zero-address instruction uses implicit operands, typically the top elements of a stack.
+Example idea:
+ADD
+Meaning: combine the required top stack operands and place the result back on the stack.
+
+11. DATA TRANSFER INSTRUCTIONS
+Data transfer instructions move data from one location to another without changing the meaning of the data. Depending on the ISA, transfers may occur between registers, memory and registers, or other supported locations.
+
+Examples of operations:
+• LOAD — move data from memory to a register.
+• STORE — move data from a register to memory.
+• MOVE — transfer data between supported registers/locations.
+
+12. DATA MANIPULATION INSTRUCTIONS
+Data manipulation instructions process or change data. They commonly include arithmetic, logical, shift and comparison operations supported by the instruction set.
+
+Examples:
+• ADD / SUB — arithmetic operations
+• AND / OR / XOR — logical/bitwise operations
+• SHIFT / ROTATE — bit-position operations
+• COMPARE — compares operand values and updates relevant status information
+
+13. PROGRAM CONTROL INSTRUCTIONS
+Program control instructions change the normal sequence of instruction execution. They are used for decisions, repetition, procedure calls and returns.
+
+Examples include:
+• Branch / jump
+• Conditional branch
+• CALL
+• RETURN
+
+A branch instruction changes the next instruction address according to the instruction and, when applicable, its condition.
+
+14. INTERRUPTS AND INTERRUPT HANDLING
+An interrupt is a request for the CPU to temporarily stop its normal program sequence and service an event that needs attention. Depending on the system, interrupts may be generated by hardware or software.
+
+Basic interrupt handling sequence:
+1) Interrupt request occurs.
+2) CPU recognizes and accepts the interrupt when permitted.
+3) CPU saves the necessary program state.
+4) Control transfers to an Interrupt Service Routine (ISR).
+5) ISR services the event.
+6) Saved state is restored and the interrupted program resumes.
+
+Interrupts allow the processor to respond to events without continuously checking each device through polling.
+
+15. RISC
+RISC means Reduced Instruction Set Computer. RISC designs generally use a smaller, simpler instruction set with emphasis on simple instructions and efficient execution.
+
+General characteristics:
+• Relatively simple instruction formats
+• Many operations designed to execute efficiently
+• Strong use of registers
+• Load/store approach is commonly associated with RISC designs
+
+16. CISC
+CISC means Complex Instruction Set Computer. CISC designs provide a larger and more varied instruction set, including instructions that may perform more complex operations.
+
+General characteristics:
+• Large instruction set
+• More varied instruction formats and addressing possibilities
+• Some instructions may perform multi-step or complex operations
+
+17. RISC VS CISC
+RISC and CISC are different instruction-set design approaches. The comparison focuses on instruction complexity, instruction format, addressing possibilities and how much work an individual instruction may perform.
+
+RISC — simpler instructions and regular/simple formats are common; efficient execution is emphasized.
+CISC — more complex and varied instructions are provided; some operations can be expressed in fewer instructions.
+
+The exact implementation depends on the processor architecture, and modern processors may combine ideas from both approaches internally.
+
+18. PIPELINE ARCHITECTURE
+Pipeline architecture divides instruction processing into stages so that different instructions can be in different stages at the same time. This overlaps work on multiple instructions and can increase instruction throughput.
+
+Simple conceptual pipeline:
+Fetch → Decode → Execute → Memory → Write Back
+
+Example:
+While instruction 1 is in Execute, instruction 2 can be in Decode and instruction 3 can be in Fetch.
+
+Pipelining improves throughput, but hazards and dependencies can reduce the ideal speedup.
+
+19. VECTOR PROCESSING
+Vector processing performs the same type of operation on multiple data elements treated as a vector. It is useful when the same operation must be repeated over a sequence of values.
+
+Example idea:
+C[i] = A[i] + B[i]
+A vector-oriented processor can process multiple elements of A and B efficiently as part of vector operations.
+
+20. ARRAY PROCESSING
+Array processing is a method of processing multiple data elements arranged as an array using parallel or organized operations. It is useful for problems involving large collections of similar data.
+
+Example applications include matrix and image-related computations where the same type of operation is performed on many array elements.
+
+21. VECTOR PROCESSING VS ARRAY PROCESSING
+Vector processing treats a sequence of data elements as a vector and applies operations across the elements. Array processing emphasizes processing many array elements, often using parallel processing resources. The exact implementation depends on the processor architecture.
+
+22. QUICK EXAM REVISION
+• ISA = programmer-visible rules and instruction set of a processor.
+• Instruction code = encoded information specifying the operation and operand/address information.
+• Addressing mode = method used to locate an operand.
+• Assembly language = symbolic representation of machine instructions.
+• Machine code = processor-executable encoded instructions.
+• Instruction cycle = fetch → decode → operand access → execute → write back/store, as applicable.
+• General registers = fast CPU storage for operands/intermediate results.
+• Stack = LIFO structure using PUSH and POP.
+• Three-address = three explicit operands/addresses.
+• Two-address = two explicit operands/addresses.
+• One-address = one explicit address with an implicit operand such as ACC.
+• Zero-address = operands are implicit, typically stack-based.
+• Data transfer = move data.
+• Data manipulation = process/change data.
+• Program control = change execution sequence.
+• Interrupt = request for CPU attention and service routine execution.
+• RISC = reduced, simpler instruction-set approach.
+• CISC = complex, larger instruction-set approach.
+• Pipeline = overlap instruction-processing stages.
+• Vector processing = operate on multiple vector elements.
+• Array processing = organized/parallel processing of array elements.
+
+IMPORTANT EXAM QUESTIONS
+1. Define Instruction Set Architecture (ISA).
+2. What is an instruction code? Explain opcode and operand/address fields.
+3. Explain addressing modes with suitable examples.
+4. Differentiate assembly language and machine code.
+5. Explain the instruction cycle, timing and control.
+6. Explain general register organization.
+7. What is stack architecture? Explain PUSH and POP.
+8. Explain three-address, two-address, one-address and zero-address instruction formats with examples.
+9. Explain data transfer, data manipulation and program control instructions.
+10. What is an interrupt? Explain the basic interrupt handling sequence.
+11. Differentiate RISC and CISC.
+12. Explain pipeline architecture with a simple stage diagram.
+13. Explain vector processing and array processing.
+14. Compare vector processing and array processing.
+
+PRACTICAL / CONCEPT PRACTICE
+• Identify opcode and operand/address fields in sample instruction formats.
+• Identify the addressing mode used by a sample instruction.
+• Express a simple arithmetic statement in three-address, two-address, one-address and zero-address forms.
+• Trace fetch-decode-execute for a simple instruction.
+• Draw a stack and show PUSH/POP operations.
+• Draw a simple five-stage pipeline and trace three instructions through it.
+• Practice short-answer explanations for interrupts, RISC/CISC, vector processing and array processing.
+
 SYLLABUS ALIGNMENT: This note follows Unit 2 of the uploaded Semester III CSE Computer System Organisation syllabus: instruction code and addressing modes; assembly vs machine code; instruction cycle, timing and control; general register organization and stack architecture; instruction set and three/two/one/zero-address instruction formats; data transfer, data manipulation and program control instructions; interrupts and interrupt handling; RISC and CISC; pipeline architecture; vector processing; and array processing.` },  { subject:'Computer System Organisation', code:'304', unit:'Unit 3', title:'Control Unit Organization', desc:'Detailed Unit 3 notes covering control signals, hardwired and microprogrammed control, microinstructions, horizontal and vertical formats, control memory, address sequencing and comparison with examples.', type:'Detailed Notes',
     content:`Unit 3 — Control Unit Organization
 
