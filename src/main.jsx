@@ -6377,33 +6377,100 @@ const moduleLessons = {
     title: "Unit 1 — Introduction to Computational Thinking & Variables and Data Representation",
     topics: [
       {
-        title: "Problem-solving and computational thinking",
-        lesson: `Problem solving means understanding a problem, deciding what the computer needs to do, and building a logical solution.
+        title: "Concept of problem-solving and computational thinking",
+        lesson: `Problem solving means understanding a problem and developing a logical solution that a computer can follow.
 
-Computational thinking is a structured way to solve problems so that the solution can be expressed as clear steps a computer can follow.
+Computational thinking is a structured way of thinking about a problem so it can be broken into clear, manageable steps.
 
-Think of it like this:
-Problem → Understand it → Plan the steps → Implement → Test → Improve
+The focus is not on guessing the answer. It is on understanding the problem, planning a logical solution, implementing it, testing it and improving it when needed.
 
-Easy example:
-To find the total of two numbers, we first identify the inputs, decide the calculation, write the steps, and then check the result.`,
+Simple example:
+Suppose you need to find the total of two numbers. First identify the two inputs, decide that they must be added, plan the steps, perform the calculation and then display the result.`,
         questions: [
-          { type: "mcq", prompt: "Which idea means solving a problem using a clear, step-by-step logical approach?", options: ["Computational thinking", "Random guessing", "Data deletion", "File compression"], answer: 0 },
-          { type: "short", prompt: "Write any two important steps of problem solving.", keywords: ["understand", "input", "output", "algorithm", "implement", "test", "improve", "solution"], minKeywords: 2 }
+          {
+            type: "mcq",
+            prompt: "What is the main idea of computational thinking?",
+            options: ["Solving problems through a logical and structured approach", "Guessing the answer quickly", "Only writing code without planning", "Deleting unnecessary files"],
+            answer: 0
+          },
+          {
+            type: "short",
+            prompt: "In one or two sentences, explain what problem solving means in programming.",
+            keywords: ["problem", "solution"],
+            minKeywords: 2,
+            modelAnswer: "Problem solving in programming means understanding a problem and developing a logical solution that can be implemented by a computer."
+          }
         ]
       },
       {
-        title: "Components of computational thinking, flowcharts and algorithms",
-        lesson: `Computational thinking commonly uses decomposition, pattern recognition, abstraction and algorithmic thinking.
+        title: "Steps involved in problem solving",
+        lesson: `A clear problem-solving process helps us move from a problem statement to a working solution.
 
-Decomposition means breaking a large problem into smaller manageable parts.
-Pattern recognition means finding similarities or repeated structures.
-Abstraction means focusing on important information and ignoring unnecessary detail.
-Algorithmic thinking means creating a clear sequence of steps.
+A simple sequence is:
 
-An algorithm is a finite, ordered sequence of clear steps used to solve a problem.
+1. Understand and define the problem.
+2. Identify the required inputs and expected outputs.
+3. Break the problem into smaller parts.
+4. Design the solution using logical steps, an algorithm and/or flowchart.
+5. Implement the solution in a programming language.
+6. Test the solution with suitable inputs.
+7. Find errors and improve the solution if necessary.
 
-A flowchart is a graphical representation of an algorithm.
+The exact wording of the steps may vary, but the important idea is to move systematically from understanding the problem to testing the final solution.`,
+        questions: [
+          {
+            type: "mcq",
+            prompt: "Which step should normally come before implementation?",
+            options: ["Design the solution", "Delete the program", "Skip testing", "Close the computer"],
+            answer: 0
+          },
+          {
+            type: "short",
+            prompt: "Write any three steps involved in problem solving.",
+            keywords: ["understand", "input", "output", "break", "design", "algorithm", "flowchart", "implement", "test", "error", "improve"],
+            minKeywords: 3,
+            modelAnswer: "Any three valid steps include: understand the problem, identify inputs/outputs, design the solution, implement it, test it, or find and correct errors."
+          }
+        ]
+      },
+      {
+        title: "Components of computational thinking",
+        lesson: `The syllabus includes the main components of computational thinking.
+
+1. Decomposition — break a large or complex problem into smaller parts.
+2. Pattern recognition — identify similarities, repeated steps or common structures.
+3. Abstraction — focus on the important information and ignore unnecessary detail.
+4. Algorithmic thinking — develop a clear sequence of steps to solve the problem.
+
+Example:
+For a student-result problem, we can break the task into reading marks, calculating the result and displaying it. Repeated calculation patterns can be recognized, unnecessary details can be ignored, and then a clear step-by-step method can be designed.`,
+        questions: [
+          {
+            type: "mcq",
+            prompt: "Which component means breaking a large problem into smaller parts?",
+            options: ["Abstraction", "Decomposition", "Pattern recognition", "Algorithmic thinking"],
+            answer: 1
+          },
+          {
+            type: "mcq",
+            prompt: "Which component focuses on important information and ignores unnecessary detail?",
+            options: ["Abstraction", "Decomposition", "Pattern recognition", "Testing"],
+            answer: 0
+          },
+          {
+            type: "short",
+            prompt: "Name the four main components of computational thinking.",
+            keywords: ["decomposition", "pattern", "abstraction", "algorithmic"],
+            minKeywords: 4,
+            modelAnswer: "The four main components are decomposition, pattern recognition, abstraction and algorithmic thinking."
+          }
+        ]
+      },
+      {
+        title: "Converting problems into flowcharts and algorithms",
+        lesson: `An algorithm is a clear, finite sequence of steps used to solve a problem.
+
+A flowchart is a graphical representation of an algorithm. It shows the sequence of operations and decisions using standard symbols.
 
 Common flowchart symbols:
 • Oval — Start/End
@@ -6411,19 +6478,44 @@ Common flowchart symbols:
 • Parallelogram — Input/Output
 • Diamond — Decision
 
-Example algorithm to add two numbers:
+Example: Add two numbers
+
+Algorithm:
 1. Start
 2. Read A and B
 3. SUM = A + B
 4. Display SUM
-5. Stop`,
+5. Stop
+
+The same solution can be represented as a flowchart:
+Start → Input A, B → SUM = A + B → Display SUM → Stop
+
+So, the problem is first understood, then converted into logical steps, and those steps can be represented as an algorithm and a flowchart.`,
         questions: [
-          { type: "mcq", prompt: "Which flowchart symbol is normally used for a decision?", options: ["Oval", "Rectangle", "Diamond", "Parallelogram"], answer: 2 },
-          { type: "short", prompt: "What is an algorithm? Answer in one or two simple sentences.", keywords: ["finite", "sequence", "steps", "solve", "problem", "ordered"], minKeywords: 2 }
+          {
+            type: "mcq",
+            prompt: "Which flowchart symbol is normally used for a decision?",
+            options: ["Oval", "Rectangle", "Diamond", "Parallelogram"],
+            answer: 2
+          },
+          {
+            type: "short",
+            prompt: "What is an algorithm?",
+            keywords: ["finite", "steps"],
+            minKeywords: 2,
+            modelAnswer: "An algorithm is a finite, ordered sequence of clear steps used to solve a problem."
+          },
+          {
+            type: "short",
+            prompt: "Write the basic algorithm steps for adding two numbers.",
+            keywords: ["start", "read", "sum", "display", "stop"],
+            minKeywords: 4,
+            modelAnswer: "Start → Read A and B → calculate SUM = A + B → Display SUM → Stop."
+          }
         ]
       },
       {
-        title: "Variables, constants, data types and memory representation",
+        title: "Variables, constants, data types and memory representation of variables",
         lesson: `A variable is a named storage location whose value can change during program execution.
 
 Example:
@@ -6439,21 +6531,46 @@ Common C data types include:
 • char — character values
 • float — single-precision floating-point values
 • double — double-precision floating-point values
-• void — absence of a value/type in relevant contexts
+• void — represents absence of a value/type in relevant contexts
 
-Computers store data in binary form using bits (0 or 1). A group of 8 bits is called a byte. A variable is stored in memory, and its data type tells the program how the stored value should be interpreted.
+Computers store information in binary form using bits (0 and 1). A group of 8 bits is called a byte.
+
+A variable is associated with a memory location. Its data type tells the program how the stored value should be interpreted.
 
 Concept:
 Variable name → memory location → stored value`,
         questions: [
-          { type: "mcq", prompt: "Which statement is correct?", options: ["A variable can never change", "A variable is a named storage location", "A constant must always change", "A data type is a flowchart symbol"], answer: 1 },
-          { type: "short", prompt: "Name any three common C data types.", keywords: ["int", "char", "float", "double", "void"], minKeywords: 3 }
+          {
+            type: "mcq",
+            prompt: "Which statement correctly describes a variable?",
+            options: ["A named storage location whose value can change", "A flowchart symbol", "A file extension", "A value that can never change"],
+            answer: 0
+          },
+          {
+            type: "mcq",
+            prompt: "Which of the following is a C data type?",
+            options: ["int", "flow", "input", "algorithm"],
+            answer: 0
+          },
+          {
+            type: "short",
+            prompt: "Name any three common C data types.",
+            keywords: ["int", "char", "float", "double", "void"],
+            minKeywords: 3,
+            modelAnswer: "Any three examples are int, char, float, double and void."
+          },
+          {
+            type: "short",
+            prompt: "What is the basic idea of memory representation of a variable?",
+            keywords: ["variable", "memory", "location"],
+            minKeywords: 3,
+            modelAnswer: "A variable is stored at a memory location, and its data type tells the program how the stored value is interpreted."
+          }
         ]
       }
     ]
   }
 };
-
 const mcqs = [
   { q: 'Which layer of the OSI model is responsible for routing?', options: ['Transport', 'Network', 'Session', 'Presentation'], answer: 1, topic: 'Computer Networks' },
   { q: 'Which data structure follows LIFO?', options: ['Queue', 'Array', 'Stack', 'Linked List'], answer: 2, topic: 'Data Structures' },
@@ -6737,8 +6854,11 @@ function StudyModule({ subject, unit, onExit }) {
 
   const checkQuestion = (question, value) => {
     if (question.type === 'mcq') return Number(value) === question.answer;
-    const normalized = String(value || '').toLowerCase();
-    const hits = question.keywords.filter((keyword) => normalized.includes(keyword.toLowerCase()));
+    const normalized = String(value || '').toLowerCase().replace(/[^a-z0-9+.#]+/g, ' ');
+    const hits = question.keywords.filter((keyword) => {
+      const key = keyword.toLowerCase().replace(/[^a-z0-9+.#]+/g, ' ').trim();
+      return key && normalized.includes(key);
+    });
     return hits.length >= question.minKeywords;
   };
 
@@ -6750,12 +6870,13 @@ function StudyModule({ subject, unit, onExit }) {
       correct: checkQuestion(question, value),
       correctAnswer: question.type === 'mcq'
         ? question.options[question.answer]
-        : `Include at least ${question.minKeywords} key ideas such as: ${question.keywords.slice(0, Math.min(question.minKeywords + 2, question.keywords.length)).join(', ')}.`
+        : question.modelAnswer
     };
   }) : [];
 
   const correctCount = results.filter((item) => item.correct).length;
   const wrongCount = results.length - correctCount;
+  const scorePercent = totalQuestions ? Math.round((correctCount / totalQuestions) * 100) : 0;
   const elapsedSeconds = submitted && startedAt && finishedAt ? Math.max(0, Math.round((finishedAt - startedAt) / 1000)) : 0;
   const minutes = Math.floor(elapsedSeconds / 60);
   const seconds = elapsedSeconds % 60;
@@ -6806,7 +6927,7 @@ function StudyModule({ subject, unit, onExit }) {
       <div className="module-result-grid">
         <div><span>Correct</span><strong>{correctCount}</strong></div>
         <div><span>Wrong</span><strong>{wrongCount}</strong></div>
-        <div><span>Total</span><strong>{totalQuestions}</strong></div>
+        <div><span>Score</span><strong>{scorePercent}%</strong></div>
         <div><span>Time</span><strong>{minutes}m {seconds}s</strong></div>
       </div>
 
@@ -6823,7 +6944,10 @@ function StudyModule({ subject, unit, onExit }) {
             {!item.correct && <div className="module-review-answer"><strong>Expected:</strong><span>{item.correctAnswer}</span></div>}
           </article>)}
         </div>
-        <button className="secondary dark full" onClick={onExit}>Back to Subjects</button>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'8px'}}>
+          <button className="secondary dark full" onClick={() => { setAnswers({}); setSubmitted(false); setTopicIndex(0); setStartedAt(Date.now()); setFinishedAt(null); }}>Retry Module</button>
+          <button className="primary full" onClick={onExit}>Back to Subjects</button>
+        </div>
       </section>
     </section>;
   }
@@ -6831,7 +6955,7 @@ function StudyModule({ subject, unit, onExit }) {
   return <section className="module-shell">
     <div className="module-progress-head">
       <div>
-        <span className="section-kicker">TOPIC {topicIndex + 1} OF {module.topics.length}</span>
+        <span className="section-kicker">TOPIC {topicIndex + 1} OF {module.topics.length} · {currentTopic.questions.length} QUESTIONS</span>
         <h1>{currentTopic.title}</h1>
       </div>
       <span className="module-progress-count">{Math.round(((topicIndex + 1) / module.topics.length) * 100)}%</span>
