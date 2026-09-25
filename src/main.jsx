@@ -5680,8 +5680,402 @@ PRACTICAL / CONCEPT PRACTICE
 
 SYLLABUS ALIGNMENT
 This note follows Unit 3 of the uploaded Semester III CSE Algorithms syllabus: Linear Search (concept, process and complexity); Binary Search (concept, process and complexity by recurrence relation); Binary Search Trees including structure/properties and insertion, deletion and search; Balanced Search Trees including need for balancing and concept of height balancing; and Hash Tables including definition/purpose, hash functions and collision handling through chaining and open addressing.` },
-  { subject:'Algorithms', code:'305', unit:'Unit 4', title:'Graphs', desc:'Graph types and representation, topological sorting, MST and shortest path algorithms.', type:'Syllabus Unit',
-    content:'Unit 4 — Graphs\n\n• Directed and undirected graphs\n• Adjacency list and matrix\n• Paths, cycles and connected/disconnected graphs\n• Spanning trees\n• Topological sorting\n• Minimum spanning trees: Prim’s and Kruskal’s algorithms\n• Shortest path: Dijkstra’s algorithm' },
+  { subject:'Algorithms', code:'305', unit:'Unit 4', title:'Graphs', desc:'Detailed Unit 4 notes covering directed and undirected graphs, adjacency list and matrix representations, paths, cycles, connected/disconnected graphs, spanning trees, topological sorting, Prim’s and Kruskal’s minimum spanning tree algorithms, and Dijkstra’s shortest-path algorithm.', type:'Detailed Notes',
+    content:`Unit 4 — Graphs
+
+1. INTRODUCTION TO GRAPHS
+A graph is a data structure used to represent relationships or connections between objects.
+
+A graph is commonly described using:
+• Vertices (or nodes) — the objects being represented.
+• Edges — the connections between vertices.
+
+Example:
+For cities connected by roads:
+• Each city can be a vertex.
+• Each road can be an edge.
+
+Graphs are useful when relationships between items are more important than a simple linear arrangement.
+
+2. DIRECTED GRAPH
+A directed graph has edges with a direction.
+
+An edge from A to B means:
+A → B
+
+The connection from A to B does not automatically mean that B connects back to A.
+
+Example:
+A → B → C
+
+This can represent a one-way relationship.
+
+3. UNDIRECTED GRAPH
+An undirected graph has edges without direction.
+
+An edge between A and B means:
+A — B
+
+The relationship is represented in both directions.
+
+Example:
+A — B — C
+
+This can represent a two-way connection.
+
+4. DIRECTED VS UNDIRECTED GRAPHS
+Directed:
+• Edges have a direction.
+• A → B is different from B → A.
+
+Undirected:
+• Edges do not have a direction.
+• A — B represents a connection between A and B.
+
+5. GRAPH REPRESENTATION
+The syllabus includes two important graph representations:
+• Adjacency List
+• Adjacency Matrix
+
+The choice of representation depends on the type and density of the graph and the operations required.
+
+6. ADJACENCY LIST
+An adjacency list stores, for each vertex, a list of the vertices connected to it.
+
+Example for an undirected graph:
+A — B
+A — C
+B — D
+
+Adjacency list:
+A → B, C
+B → A, D
+C → A
+D → B
+
+Advantages:
+• Stores only the connections that actually exist.
+• Can be useful for graphs with relatively few edges.
+
+7. ADJACENCY MATRIX
+An adjacency matrix uses a two-dimensional matrix.
+
+For a graph with n vertices, the matrix has n × n positions.
+
+For a simple unweighted graph:
+• 1 can indicate an edge.
+• 0 can indicate no edge.
+
+Example:
+Vertices: A, B, C
+
+Matrix idea:
+    A B C
+A   0 1 1
+B   1 0 0
+C   1 0 0
+
+The exact values depend on the graph.
+
+8. ADJACENCY LIST VS MATRIX
+Adjacency List:
+• Represents each vertex with its connected neighbors.
+• Avoids storing every possible vertex pair when many pairs have no edge.
+
+Adjacency Matrix:
+• Uses a fixed n × n table.
+• Makes the presence/absence of a direct edge easy to represent.
+
+9. PATHS
+A path is a sequence of vertices connected by edges.
+
+Example:
+A → B → C → D
+
+A to D is a path through B and C.
+
+A path may contain several edges and vertices.
+
+10. CYCLES
+A cycle is a path that starts and ends at the same vertex, with the required connections forming a closed route.
+
+Example:
+A → B → C → A
+
+This forms a cycle.
+
+11. CONNECTED GRAPH
+For an undirected graph, a graph is connected when every vertex can be reached from every other vertex through one or more paths.
+
+Example:
+A — B — C — D
+
+All vertices are connected through the graph.
+
+12. DISCONNECTED GRAPH
+A graph is disconnected when at least one vertex or group of vertices has no path to another part of the graph.
+
+Example:
+A — B     C — D
+
+There is no path from A to C.
+
+13. SPANNING TREE
+A spanning tree of a connected undirected graph is a tree that:
+• Contains all vertices of the graph.
+• Uses only edges from the original graph.
+• Contains no cycle.
+
+For a graph with n vertices, a spanning tree contains n − 1 edges.
+
+A graph can have more than one possible spanning tree.
+
+14. WHY SPANNING TREES ARE USEFUL
+Spanning trees provide a way to connect all vertices without unnecessary cycles.
+
+They are useful when designing connection structures where every required vertex must remain connected while redundant cycles are avoided.
+
+15. TOPOLOGICAL SORTING — CONCEPT
+Topological sorting produces a linear ordering of vertices in a directed graph such that for every directed edge:
+
+A → B
+
+A appears before B in the ordering.
+
+It is applicable to directed graphs where such an ordering is possible.
+
+Conceptual example:
+A → C
+B → C
+
+Possible topological ordering:
+A, B, C
+
+The order may not be unique.
+
+16. TOPOLOGICAL SORTING — EXAMPLE
+Suppose:
+Design → Code → Test
+
+A valid topological order is:
+Design, Code, Test
+
+The dependency is respected because each prerequisite appears before the task that depends on it.
+
+17. MINIMUM SPANNING TREE
+For a connected weighted undirected graph, a Minimum Spanning Tree (MST) is a spanning tree whose total edge weight is minimum among the possible spanning trees.
+
+The syllabus includes two MST algorithms:
+• Prim’s algorithm
+• Kruskal’s algorithm
+
+18. PRIM’S ALGORITHM — CONCEPT
+Prim’s algorithm builds an MST by growing one connected tree.
+
+Basic idea:
+1) Start from a chosen vertex.
+2) Among edges that connect the current tree to a vertex outside the tree, choose the minimum-weight edge.
+3) Add that edge and the new vertex to the tree.
+4) Repeat until all vertices are included.
+
+The selected edges remain connected to the growing tree.
+
+19. PRIM’S ALGORITHM — SIMPLE EXAMPLE
+Suppose a starting vertex is A.
+
+If the currently connected vertices are:
+A, B
+
+and the available edges to outside vertices have weights:
+B — C = 2
+A — D = 5
+B — D = 3
+
+Choose B — C because weight 2 is the smallest available connecting edge.
+
+Continue selecting the minimum suitable edge until all vertices are included.
+
+20. KRUSKAL’S ALGORITHM — CONCEPT
+Kruskal’s algorithm builds an MST by considering edges in increasing order of weight.
+
+Basic idea:
+1) Sort all graph edges by increasing weight.
+2) Consider the smallest edge.
+3) Add it if adding it does not create a cycle.
+4) Continue with the next smallest edge.
+5) Stop when the spanning tree has enough edges to connect all vertices.
+
+21. KRUSKAL’S ALGORITHM — SIMPLE EXAMPLE
+Suppose the sorted edge weights are:
+A—B = 1
+B—C = 2
+A—C = 3
+C—D = 4
+
+Select:
+A—B
+B—C
+
+Skip A—C if it would create a cycle among A, B and C.
+
+Then select:
+C—D
+
+The selected edges connect all vertices without creating a cycle.
+
+22. PRIM VS KRUSKAL
+Prim’s:
+• Starts from a vertex.
+• Grows one connected tree.
+• Chooses the minimum edge connecting the current tree to an outside vertex.
+
+Kruskal’s:
+• Starts with edges considered in sorted order.
+• Adds the next smallest edge when it does not create a cycle.
+• Builds the spanning forest and gradually joins components.
+
+Both are used to find a Minimum Spanning Tree.
+
+23. SHORTEST PATH
+A shortest-path problem asks for a path between vertices with minimum total path cost.
+
+The cost can represent distance, time or another non-negative measure, depending on the application.
+
+The syllabus includes Dijkstra’s algorithm for finding shortest paths.
+
+24. DIJKSTRA’S ALGORITHM — CONCEPT
+Dijkstra’s algorithm finds shortest paths from a chosen source vertex to other vertices in a weighted graph when the edge weights satisfy the algorithm’s non-negative-weight requirement.
+
+Basic idea:
+1) Set the source distance to 0.
+2) Set other tentative distances to infinity.
+3) Select the unprocessed vertex with the smallest tentative distance.
+4) Check its outgoing edges and update neighboring distances when a shorter route is found.
+5) Mark the selected vertex as processed.
+6) Repeat until the required shortest paths are determined.
+
+25. DIJKSTRA’S RELAXATION IDEA
+Suppose:
+Current shortest distance to A = 5
+Edge A → B = 3
+
+Then the route through A gives:
+5 + 3 = 8
+
+If B currently has a tentative distance greater than 8, update it to 8.
+
+This repeated improvement of tentative distances is the key idea behind the algorithm.
+
+26. SIMPLE DIJKSTRA EXAMPLE
+Suppose:
+A —1— B
+A —4— C
+B —2— C
+
+Starting at A:
+• Distance(A) = 0
+• Distance(B) = 1
+• Distance(C) initially = 4
+
+Through B:
+Distance(B) + weight(B,C) = 1 + 2 = 3
+
+Since 3 is less than 4, update:
+Distance(C) = 3
+
+So the shortest path from A to C is:
+A → B → C
+with total cost 3.
+
+27. GRAPH TOPICS — QUICK COMPARISON
+Directed graph:
+• Edges have direction.
+
+Undirected graph:
+• Edges have no direction.
+
+Adjacency list:
+• Stores connected neighbors for each vertex.
+
+Adjacency matrix:
+• Uses an n × n matrix.
+
+Path:
+• Sequence of connected vertices.
+
+Cycle:
+• Closed path returning to the starting vertex.
+
+Connected graph:
+• Vertices are reachable through paths in the relevant graph sense.
+
+Disconnected graph:
+• At least one part is not reachable from another.
+
+Spanning tree:
+• Includes all vertices without cycles.
+
+MST:
+• Spanning tree with minimum total edge weight.
+
+Topological sorting:
+• Linear ordering that respects directed dependencies.
+
+Prim:
+• Grows an MST from a chosen starting vertex.
+
+Kruskal:
+• Adds smallest suitable edges while avoiding cycles.
+
+Dijkstra:
+• Finds shortest paths from a source under its non-negative edge-weight requirement.
+
+28. QUICK EXAM REVISION
+• Graph = vertices + edges.
+• Directed graph = edges have direction.
+• Undirected graph = edges have no direction.
+• Adjacency list = neighbor lists.
+• Adjacency matrix = n × n representation.
+• Path = sequence of connected vertices.
+• Cycle = closed path.
+• Connected graph = vertices can reach one another through paths in an undirected graph.
+• Disconnected graph = graph has separated parts.
+• Spanning tree = all vertices, no cycles.
+• MST = minimum-weight spanning tree.
+• Topological sorting = ordering that respects directed dependencies.
+• Prim’s = grows MST from a starting vertex.
+• Kruskal’s = chooses edges in increasing weight while avoiding cycles.
+• Dijkstra = shortest paths from a source for graphs satisfying its non-negative-weight requirement.
+
+IMPORTANT EXAM QUESTIONS
+1. Define a graph. Explain directed and undirected graphs.
+2. Explain adjacency list and adjacency matrix with examples.
+3. Differentiate adjacency list and adjacency matrix.
+4. Define path and cycle in a graph.
+5. Differentiate connected and disconnected graphs.
+6. What is a spanning tree? Explain its properties.
+7. Explain topological sorting with an example.
+8. What is a Minimum Spanning Tree?
+9. Explain Prim’s algorithm with an example.
+10. Explain Kruskal’s algorithm with an example.
+11. Compare Prim’s and Kruskal’s algorithms.
+12. What is the shortest-path problem?
+13. Explain Dijkstra’s algorithm with an example.
+14. Explain the relaxation/update step in Dijkstra’s algorithm.
+
+PRACTICAL / CONCEPT PRACTICE
+• Draw directed and undirected graphs for a small set of vertices.
+• Represent the same graph using an adjacency list and adjacency matrix.
+• Identify paths and cycles in a sample graph.
+• Determine whether a sample graph is connected or disconnected.
+• Construct a spanning tree from a connected graph.
+• Perform a topological ordering for a simple directed dependency graph.
+• Construct an MST using Prim’s algorithm.
+• Construct an MST using Kruskal’s algorithm.
+• Trace Dijkstra’s algorithm from a chosen source and update tentative distances step by step.
+
+SYLLABUS ALIGNMENT
+This note follows Unit 4 of the uploaded Semester III CSE Algorithms syllabus: directed and undirected graphs; adjacency list and matrix; paths, cycles and connected/disconnected graphs; spanning trees; topological sorting; Minimum Spanning Trees using Prim’s and Kruskal’s algorithms; and shortest path using Dijkstra’s algorithm.` },
   { subject:'Algorithms', code:'305', unit:'Unit 5', title:'Strings and Data Compression', desc:'String sorting, substring search, regular expressions and Huffman coding.', type:'Syllabus Unit',
     content:'Unit 5 — Strings and Data Compression\n\n• String sorting and applications\n• Substring search\n• Regular expressions: meaning, patterns and validation applications\n• Need for data compression\n• Huffman coding and working\n• Applications in file storage and transmission' },
 
