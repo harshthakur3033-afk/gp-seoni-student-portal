@@ -5027,8 +5027,302 @@ PRACTICAL / CONCEPT PRACTICE
 
 SYLLABUS ALIGNMENT
 This note follows Unit 1 of the uploaded Semester III CSE Algorithms syllabus: definition, characteristics and importance; steps in algorithm design; pseudocode; flowcharts and structured approach; iterative vs recursive processes; time and space complexity; Big-O, Omega and Theta; best-case, worst-case and average-case analysis; and analysis of simple algorithms such as addition and multiplication of an array.` },
-  { subject:'Algorithms', code:'305', unit:'Unit 2', title:'Sorting', desc:'Sorting importance and applications, elementary sorts, merge sort and quick sort.', type:'Syllabus Unit',
-    content:'Unit 2 — Sorting\n\n• Importance and applications of sorting\n• Bubble sort\n• Selection sort\n• Insertion sort\n• Merge sort\n• Quick sort and divide-and-conquer idea\n• Complexity and comparison of sorting methods' },
+  { subject:'Algorithms', code:'305', unit:'Unit 2', title:'Sorting', desc:'Detailed Unit 2 notes covering the importance and applications of sorting, Bubble, Selection, Insertion, Merge and Quick Sort, divide-and-conquer, recurrence-based complexity, and comparison of sorting methods.', type:'Detailed Notes',
+    content:`Unit 2 — Sorting
+
+1. INTRODUCTION TO SORTING
+Sorting is the process of arranging data items in a specified order, such as ascending or descending order.
+
+Example:
+Unsorted:  40, 10, 30, 20
+Ascending: 10, 20, 30, 40
+
+Sorting is often used before searching, reporting or other data-processing tasks.
+
+2. IMPORTANCE OF SORTING IN DATA ORGANIZATION
+Sorting helps organize data so that it can be processed and understood more easily.
+
+Importance:
+• Makes data easier to read and analyze.
+• Can make some searching tasks more efficient.
+• Helps in creating ordered reports and records.
+• Makes duplicate detection and related data-processing tasks easier.
+• Provides a useful arrangement for many algorithms.
+
+3. APPLICATIONS OF SORTING
+Sorting is used in many computing tasks, for example:
+• Arranging student records by roll number or marks.
+• Ordering names or records alphabetically.
+• Organizing numerical data.
+• Preparing ranked lists.
+• Arranging database or file records for processing.
+
+The most suitable sorting method depends on factors such as input size, existing order of data, available memory and required performance.
+
+4. BUBBLE SORT — CONCEPT
+Bubble Sort repeatedly compares adjacent elements and exchanges them when they are in the wrong order.
+
+For ascending order, if the left element is greater than the right element, they are swapped.
+
+5. BUBBLE SORT — PROCESS
+Example:
+Array: 5, 3, 4, 1
+
+Pass 1:
+5 and 3 → swap → 3, 5, 4, 1
+5 and 4 → swap → 3, 4, 5, 1
+5 and 1 → swap → 3, 4, 1, 5
+
+The largest unsorted value has moved toward the end.
+
+Further passes continue until the array is sorted.
+
+6. BUBBLE SORT — COMPLEXITY
+For the usual basic implementation:
+• Best case can be O(n) when the input is already sorted and an optimized swap check is used.
+• Average case is O(n²).
+• Worst case is O(n²).
+• Auxiliary space is O(1) for an in-place implementation.
+
+Bubble Sort is simple but can become slow for large unsorted inputs.
+
+7. SELECTION SORT — CONCEPT
+Selection Sort repeatedly selects the smallest element from the unsorted portion and places it in its correct position.
+
+For ascending order:
+1) Find the smallest element in the unsorted part.
+2) Swap it with the first unsorted element.
+3) Move the boundary of the sorted part forward.
+4) Repeat.
+
+8. SELECTION SORT — PROCESS
+Example:
+Array: 5, 3, 4, 1
+
+Step 1:
+Smallest = 1
+Swap with first element:
+1, 3, 4, 5
+
+Now the first position is sorted.
+
+Continue with the remaining unsorted positions until the array is sorted.
+
+9. SELECTION SORT — COMPLEXITY
+For the standard implementation:
+• Best case = O(n²)
+• Average case = O(n²)
+• Worst case = O(n²)
+• Auxiliary space = O(1)
+
+Selection Sort performs a similar number of comparisons even when the input is already partly sorted.
+
+10. INSERTION SORT — CONCEPT
+Insertion Sort builds the sorted array one element at a time.
+
+Each new element is inserted into its proper position within the already sorted portion.
+
+11. INSERTION SORT — PROCESS
+Example:
+Array: 5, 3, 4, 1
+
+Start with 5 as the sorted portion.
+
+Insert 3:
+3, 5, 4, 1
+
+Insert 4:
+3, 4, 5, 1
+
+Insert 1:
+1, 3, 4, 5
+
+At each step, larger elements in the sorted portion are shifted to make space.
+
+12. INSERTION SORT — COMPLEXITY
+For the standard implementation:
+• Best case = O(n) when the input is already sorted.
+• Average case = O(n²)
+• Worst case = O(n²)
+• Auxiliary space = O(1)
+
+Insertion Sort is useful for small inputs or data that is already nearly sorted.
+
+13. MERGE SORT — CONCEPT
+Merge Sort uses the divide-and-conquer approach.
+
+Basic idea:
+1) Divide the array into smaller parts.
+2) Continue dividing until small subarrays are obtained.
+3) Sort the small parts.
+4) Merge the sorted parts to form the final sorted array.
+
+14. MERGE SORT — DIVIDE AND CONQUER
+The divide-and-conquer idea has three main stages:
+• Divide — split the problem into smaller subproblems.
+• Conquer — solve the smaller subproblems.
+• Combine — combine their solutions.
+
+15. MERGE SORT — EXAMPLE
+Array:
+8, 3, 6, 2
+
+Divide:
+[8, 3] and [6, 2]
+
+Divide again:
+[8] [3] [6] [2]
+
+Merge sorted pairs:
+[3, 8] and [2, 6]
+
+Final merge:
+[2, 3, 6, 8]
+
+16. MERGE SORT — COMPLEXITY
+Merge Sort has:
+• Best case = O(n log n)
+• Average case = O(n log n)
+• Worst case = O(n log n)
+
+Its recurrence is commonly represented as:
+T(n) = 2T(n/2) + O(n)
+
+The O(n) term represents the merging work at each level.
+
+Merge Sort generally needs additional memory for merging, so its auxiliary space is O(n) in a typical array implementation.
+
+17. QUICK SORT — CONCEPT
+Quick Sort also uses divide-and-conquer.
+
+It chooses a pivot, partitions the array so that elements are placed on the appropriate sides of the pivot, and then recursively sorts the resulting subarrays.
+
+18. QUICK SORT — PROCESS
+Basic steps:
+1) Choose a pivot.
+2) Partition the array around the pivot.
+3) Elements smaller than the pivot are placed toward one side and larger elements toward the other side, according to the chosen partition scheme.
+4) Recursively apply the same process to the subarrays.
+5) The sorted result is obtained when the subarrays become small enough.
+
+The exact sequence of swaps depends on the partition method and pivot selection.
+
+19. QUICK SORT — COMPLEXITY
+For a typical comparison:
+• Best case = O(n log n)
+• Average case = O(n log n)
+• Worst case = O(n²) when partitions become highly unbalanced.
+
+The recurrence depends on how the pivot divides the input.
+
+Balanced partition:
+T(n) = 2T(n/2) + O(n) → O(n log n)
+
+Highly unbalanced partition:
+T(n) = T(n−1) + O(n) → O(n²)
+
+Quick Sort is often efficient in practice and can be implemented in-place, although its exact performance depends strongly on pivot selection and partitioning.
+
+20. COMPARISON OF SORTING METHODS
+Bubble Sort:
+• Best: O(n) with an optimized implementation
+• Average: O(n²)
+• Worst: O(n²)
+• Simple to understand
+• Useful mainly for small or educational examples
+
+Selection Sort:
+• Best: O(n²)
+• Average: O(n²)
+• Worst: O(n²)
+• Uses few swaps
+• Simple and predictable
+
+Insertion Sort:
+• Best: O(n)
+• Average: O(n²)
+• Worst: O(n²)
+• Good for small or nearly sorted data
+
+Merge Sort:
+• Best/Average/Worst: O(n log n)
+• Predictable performance
+• Needs additional memory in the usual array implementation
+• Useful when consistent O(n log n) performance is required
+
+Quick Sort:
+• Best/Average: O(n log n)
+• Worst: O(n²)
+• Often fast in practice
+• Performance depends on pivot/partition choices
+
+21. RELATIVE PERFORMANCE
+When comparing sorting methods, consider:
+• Input size.
+• Initial order of data.
+• Best, average and worst-case complexity.
+• Extra memory requirements.
+• Number of comparisons and data movements.
+• Whether stable or in-place behavior is important for the application.
+
+No single sorting method is optimal for every situation.
+
+22. SITUATIONS WHERE EACH METHOD IS USEFUL
+Bubble Sort:
+Useful for learning the basic idea of comparison and swapping, and for very small datasets.
+
+Selection Sort:
+Useful when a simple method with a small number of swaps is desired.
+
+Insertion Sort:
+Useful for small datasets and data that is already nearly sorted.
+
+Merge Sort:
+Useful when predictable O(n log n) performance is important and additional memory is acceptable.
+
+Quick Sort:
+Useful when fast average-case performance is desired and a suitable pivot strategy is available.
+
+23. QUICK EXAM REVISION
+• Sorting = arranging data in a required order.
+• Bubble Sort = repeatedly swaps adjacent out-of-order elements.
+• Selection Sort = repeatedly selects the smallest unsorted element.
+• Insertion Sort = inserts each new element into the sorted portion.
+• Merge Sort = divide, recursively sort, then merge.
+• Quick Sort = choose pivot, partition, recursively sort.
+• Merge Sort recurrence = T(n) = 2T(n/2) + O(n).
+• Balanced Quick Sort recurrence = about 2T(n/2) + O(n).
+• Quick Sort worst case = O(n²).
+• Merge Sort = O(n log n) in best, average and worst cases.
+• Insertion Sort = O(n) best, O(n²) average/worst.
+• Selection Sort = O(n²) best/average/worst.
+• Bubble Sort = O(n) best with optimized check, O(n²) average/worst.
+
+IMPORTANT EXAM QUESTIONS
+1. What is sorting? Explain its importance in data organization.
+2. Write the applications of sorting.
+3. Explain Bubble Sort with process and complexity.
+4. Explain Selection Sort with process and complexity.
+5. Explain Insertion Sort with process and complexity.
+6. Explain Merge Sort and the divide-and-conquer approach.
+7. Explain Quick Sort and the role of the pivot.
+8. Write the recurrence relation for Merge Sort.
+9. Explain the best, average and worst-case complexity of Quick Sort.
+10. Compare Bubble, Selection and Insertion Sort.
+11. Compare Merge Sort and Quick Sort.
+12. Explain situations in which different sorting methods are useful.
+
+PRACTICAL / CONCEPT PRACTICE
+• Sort a small list using Bubble Sort and show every pass.
+• Sort a list using Selection Sort and show the selected minimum at each step.
+• Sort a list using Insertion Sort and show each insertion.
+• Divide an array and show the merge process for Merge Sort.
+• Choose a pivot and demonstrate one Quick Sort partition.
+• Analyze the best, average and worst cases for each syllabus sorting method.
+• Compare sorting methods for small, nearly sorted and larger inputs.
+
+SYLLABUS ALIGNMENT
+This note follows Unit 2 of the uploaded Semester III CSE Algorithms syllabus: importance of sorting in data organization; applications of sorting; Bubble Sort, Selection Sort and Insertion Sort with concept, process and complexity; Merge Sort and Quick Sort with divide-and-conquer and complexity by recurrence relation; and comparison of sorting methods using relative best, worst and average performance and situations where each method is useful.` },
   { subject:'Algorithms', code:'305', unit:'Unit 3', title:'Searching', desc:'Linear and binary search, BST, balancing and hashing concepts.', type:'Syllabus Unit',
     content:'Unit 3 — Searching\n\n• Linear search\n• Binary search and recurrence relation\n• Binary Search Trees: structure, insertion, deletion and search\n• Balanced search trees and height balancing\n• Hash tables and purpose of hashing\n• Hash functions\n• Collision handling: chaining and open addressing' },
   { subject:'Algorithms', code:'305', unit:'Unit 4', title:'Graphs', desc:'Graph types and representation, topological sorting, MST and shortest path algorithms.', type:'Syllabus Unit',
