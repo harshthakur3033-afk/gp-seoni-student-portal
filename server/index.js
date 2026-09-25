@@ -13,12 +13,14 @@ app.get('/api/health', (_req, res) => res.json({ ok: true, service: 'gp-seoni-st
 app.post('/api/study-assistant', async (req, res) => {
   const question = typeof req.body?.question === 'string' ? req.body.question.trim() : '';
   if (!question) return res.status(400).json({ error: 'Question is required.' });
-  if (!process.env.OPENAI_API_KEY) return res.status(503).json({ error: 'AI assistant is not configured yet.' });
+  const apiKey = process.env.OPENAI_API_KEY?.trim();
+  const model = process.env.OPENAI_MODEL?.trim() || 'gpt-5.6-luna';
+  if (!apiKey) return res.status(503).json({ error: 'AI assistant is not configured yet. Check the OPENAI_API_KEY variable on Render.' });
 
   try {
-    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+    const client = new OpenAI({ apiKey });
     const response = await client.responses.create({
-      model: process.env.OPENAI_MODEL || 'gpt-5.6-luna',
+      model,
       instructions: 'You are a helpful study assistant for diploma/polytechnic students in India. Explain concepts clearly, step-by-step, and keep answers suitable for exams and practical learning. Do not invent college-specific notices or syllabus details.',
       input: question,
     });
@@ -30,8 +32,22 @@ app.post('/api/study-assistant', async (req, res) => {
 
     res.json({ answer });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'The AI assistant could not answer right now.' });
+    console.error('Study assistant error:', error);
+    const status = Number(error?.status) || 500;
+    const code = error?.code || error?.name || 'unknown_error';
+    let message = 'The AI assistant could not answer right now.';
+
+    if (status === 401) {
+      message = 'OpenAI authentication failed. Check the OPENAI_API_KEY on Render.';
+    } else if (status === 403) {
+      message = 'OpenAI access was denied. Check the API project/key permissions on OpenAI Platform.';
+    } else if (status === 429) {
+      message = 'OpenAI request limit or quota was reached. Check the API project billing/limits.';
+    } else if (code === 'model_not_found' || status === 404) {
+      message = `The configured OpenAI model could not be used. Current model: ${model}`;
+    }
+
+    res.status(status >= 400 && status < 600 ? status : 500).json({ error: message, code });
   }
 });
 
