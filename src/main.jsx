@@ -5323,8 +5323,363 @@ PRACTICAL / CONCEPT PRACTICE
 
 SYLLABUS ALIGNMENT
 This note follows Unit 2 of the uploaded Semester III CSE Algorithms syllabus: importance of sorting in data organization; applications of sorting; Bubble Sort, Selection Sort and Insertion Sort with concept, process and complexity; Merge Sort and Quick Sort with divide-and-conquer and complexity by recurrence relation; and comparison of sorting methods using relative best, worst and average performance and situations where each method is useful.` },
-  { subject:'Algorithms', code:'305', unit:'Unit 3', title:'Searching', desc:'Linear and binary search, BST, balancing and hashing concepts.', type:'Syllabus Unit',
-    content:'Unit 3 — Searching\n\n• Linear search\n• Binary search and recurrence relation\n• Binary Search Trees: structure, insertion, deletion and search\n• Balanced search trees and height balancing\n• Hash tables and purpose of hashing\n• Hash functions\n• Collision handling: chaining and open addressing' },
+  { subject:'Algorithms', code:'305', unit:'Unit 3', title:'Searching', desc:'Detailed Unit 3 notes covering linear search, binary search, recurrence-based complexity, binary search trees, balancing, hash tables, hash functions and collision handling through chaining and open addressing.', type:'Detailed Notes',
+    content:`Unit 3 — Searching
+
+1. INTRODUCTION TO SEARCHING
+Searching is the process of locating a required element in a collection of data.
+
+A search operation generally:
+1) Takes a target value.
+2) Examines data according to a search method.
+3) Reports whether the target is present and, when appropriate, its location.
+
+The efficiency of a search method depends on the data organization, input size and assumptions made by the method.
+
+2. LINEAR SEARCH — CONCEPT
+Linear Search checks elements one by one from the beginning of the list until the target is found or all elements have been examined.
+
+It can be used on an unsorted list.
+
+Example:
+List: 10, 25, 7, 40
+Target: 7
+
+Check:
+10 → not equal
+25 → not equal
+7 → found
+
+3. LINEAR SEARCH — PROCESS
+Basic steps:
+1) Start from the first element.
+2) Compare the current element with the target.
+3) If equal, report the position and stop.
+4) Otherwise move to the next element.
+5) Continue until the target is found or the list ends.
+
+Pseudocode:
+LINEAR_SEARCH(A, n, target)
+for i = 0 to n−1
+    if A[i] == target
+        return i
+return NOT_FOUND
+
+4. LINEAR SEARCH — COMPLEXITY
+For n elements:
+• Best case = O(1), when the target is the first element.
+• Worst case = O(n), when the target is last or absent.
+• Average case = O(n) under the usual assumptions.
+• Auxiliary space = O(1) for an iterative implementation.
+
+5. BINARY SEARCH — CONCEPT
+Binary Search repeatedly divides a sorted search range into two parts.
+
+Important requirement:
+• The data must be arranged in sorted order for the standard binary-search method.
+
+At each step:
+• Compare the target with the middle element.
+• If equal, the target is found.
+• If the target is smaller, continue in the left half.
+• If the target is larger, continue in the right half.
+
+6. BINARY SEARCH — PROCESS
+Example:
+Sorted list: 10, 20, 30, 40, 50
+Target: 40
+
+Step 1:
+Middle = 30
+40 > 30 → search right half
+
+Step 2:
+Right-half middle = 40
+Target found.
+
+Basic pseudocode:
+BINARY_SEARCH(A, low, high, target)
+while low <= high
+    mid = middle position of low and high
+    if A[mid] == target
+        return mid
+    else if target < A[mid]
+        high = mid − 1
+    else
+        low = mid + 1
+return NOT_FOUND
+
+7. BINARY SEARCH — COMPLEXITY
+At each step, the searchable range is approximately divided by two.
+
+The recurrence relation can be expressed as:
+T(n) = T(n/2) + O(1)
+
+Therefore:
+• Best case = O(1)
+• Average case = O(log n)
+• Worst case = O(log n)
+• Auxiliary space = O(1) for an iterative implementation
+
+Binary Search is much more efficient than Linear Search for large sorted collections, but it requires the ordering condition.
+
+8. LINEAR SEARCH VS BINARY SEARCH
+Linear Search:
+• Can work on unsorted data.
+• Checks elements sequentially.
+• Worst case = O(n).
+
+Binary Search:
+• Standard method requires sorted data.
+• Repeatedly halves the search range.
+• Worst case = O(log n).
+
+9. BINARY SEARCH TREES — INTRODUCTION
+A Binary Search Tree (BST) is a binary tree organized so that the keys follow an ordering property.
+
+For a node containing key K:
+• Keys in its left subtree are smaller than K.
+• Keys in its right subtree are larger than K, under the standard distinct-key convention.
+
+This ordering allows searching, insertion and deletion to be organized similarly to binary search.
+
+10. BST — STRUCTURE AND PROPERTIES
+A BST consists of nodes connected through parent-child relationships.
+
+Important properties:
+• Each node has at most two children.
+• Left subtree contains smaller keys.
+• Right subtree contains larger keys under the standard BST ordering rule.
+• The shape of the tree affects operation efficiency.
+
+Example:
+      50
+     /  \
+   30    70
+  /  \  /  \
+20  40 60  80
+
+Here values smaller than 50 are on the left and values larger than 50 are on the right.
+
+11. BST — SEARCH OPERATION
+To search for a key:
+1) Start at the root.
+2) Compare the target with the current node.
+3) If equal, the key is found.
+4) If the target is smaller, move to the left child.
+5) If the target is larger, move to the right child.
+6) Continue until found or a null/missing child is reached.
+
+Example:
+Search 60 in the example tree:
+50 → go right
+70 → go left
+60 → found
+
+12. BST — INSERTION
+To insert a new key:
+1) Start at the root.
+2) Compare the new key with the current node.
+3) Move left if the new key is smaller.
+4) Move right if the new key is larger.
+5) Insert at the appropriate empty child position.
+
+Example:
+Insert 65 into the example tree:
+50 → 70 → 60 → right
+So 65 becomes the right child of 60.
+
+13. BST — DELETION
+Deleting a node from a BST depends on the number of children.
+
+CASE 1 — LEAF NODE
+If the node has no children, simply remove it.
+
+CASE 2 — ONE CHILD
+If the node has one child, connect its parent directly to that child.
+
+CASE 3 — TWO CHILDREN
+If the node has two children, replace its key using an appropriate replacement such as:
+• Inorder successor — smallest key in the right subtree.
+or
+• Inorder predecessor — largest key in the left subtree.
+
+Then remove the replacement node from its original position.
+
+14. BST OPERATION COMPLEXITY
+The search, insertion and deletion cost depends on the height of the tree.
+
+If the tree is reasonably balanced:
+• Search, insertion and deletion can be O(log n) on average.
+
+If the tree becomes highly skewed:
+• Search, insertion and deletion can become O(n).
+
+This is why balancing is important.
+
+15. BALANCED SEARCH TREES — NEED FOR BALANCING
+A BST can become unbalanced depending on the order in which keys are inserted.
+
+Example of a skewed BST:
+10
+  \
+   20
+     \
+      30
+        \
+         40
+
+This behaves more like a linked list than a balanced tree.
+
+Balancing helps keep the tree height relatively small so operations remain efficient.
+
+16. CONCEPT OF HEIGHT BALANCING
+Height balancing means controlling the height difference or overall shape of subtrees so that one side does not become disproportionately long.
+
+The exact balancing rules depend on the particular balanced-tree technique.
+
+The syllabus requires the need for balancing and the concept of height balancing; it does not specify a particular balancing algorithm.
+
+17. HASH TABLES — DEFINITION
+A hash table is a data structure that stores data using a key and a hash function to determine a storage position, commonly called a bucket or slot.
+
+Basic idea:
+Key → Hash Function → Table Index
+
+Hash tables are designed to support efficient average-case insertion, search and deletion when the table and hash function are suitably designed.
+
+18. PURPOSE OF HASHING
+Hashing is used to map keys to positions in a table so that data can be located quickly.
+
+Applications include:
+• Symbol tables.
+• Record lookup.
+• Caches and dictionaries.
+• Fast key-based data retrieval.
+
+19. HASH FUNCTIONS — CONCEPT
+A hash function converts a key into an index or hash value used to determine where the key should be stored or searched for.
+
+Example:
+For a table of size 10, a simple illustrative function could be:
+h(k) = k mod 10
+
+For k = 47:
+h(47) = 7
+
+So slot 7 is selected by this simple function.
+
+A useful hash function should distribute keys reasonably well across the table to reduce collisions.
+
+20. COLLISION
+A collision occurs when two different keys produce the same hash-table index.
+
+Example using h(k) = k mod 10:
+h(27) = 7
+h(47) = 7
+
+Both keys map to slot 7, so a collision must be handled.
+
+21. COLLISION HANDLING — CHAINING
+In chaining, each table slot can maintain a collection of entries that share the same hash value.
+
+Conceptual structure:
+Slot 7 → [27] → [47] → [67]
+
+When searching for a key, the hash function selects the slot and the entries in that chain are examined.
+
+Advantages:
+• Simple collision-handling concept.
+• Multiple colliding keys can be stored at the same table index.
+
+22. COLLISION HANDLING — OPEN ADDRESSING
+In open addressing, all entries are stored within the hash table itself. When a collision occurs, another available slot is searched according to a probing rule.
+
+Common probing ideas include:
+• Linear probing.
+• Quadratic probing.
+• Double hashing.
+
+The syllabus specifically requires an overview of open addressing; the exact probing strategy depends on the implementation.
+
+23. CHAINING VS OPEN ADDRESSING
+Chaining:
+• Uses a separate collection/chain for collided entries at a slot.
+• Can store multiple entries associated with the same hash index.
+
+Open addressing:
+• Stores entries in the table itself.
+• Searches for another available slot after a collision.
+
+24. SEARCHING METHODS — COMPARISON
+Linear Search:
+• Works without sorted data.
+• Simple implementation.
+• O(n) worst case.
+
+Binary Search:
+• Standard method requires sorted data.
+• Repeatedly halves search range.
+• O(log n) worst case.
+
+BST Search:
+• Uses tree ordering.
+• Depends on tree height.
+• Can be O(log n) when height is well controlled.
+• Can degrade to O(n) in a skewed tree.
+
+Hash Table Search:
+• Uses a hash function.
+• Average performance can be efficient with good distribution.
+• Collision handling and table load affect performance.
+
+25. QUICK EXAM REVISION
+• Linear Search = check items one by one.
+• Linear Search worst case = O(n).
+• Binary Search = repeatedly divide a sorted search range by two.
+• Binary Search recurrence = T(n) = T(n/2) + O(1).
+• Binary Search worst case = O(log n).
+• BST = left keys smaller, right keys larger under standard ordering.
+• BST operations depend on tree height.
+• Balanced tree = controls height to avoid severe skewing.
+• Hash Table = key mapped to table slot using a hash function.
+• Collision = different keys map to the same slot.
+• Chaining = store collided items in a chain/collection.
+• Open addressing = find another free table slot using probing.
+
+IMPORTANT EXAM QUESTIONS
+1. Explain Linear Search with its process and complexity.
+2. Explain Binary Search with its process and complexity.
+3. Write the recurrence relation for Binary Search.
+4. Compare Linear Search and Binary Search.
+5. Define a Binary Search Tree and explain its properties.
+6. Explain search operation in a BST.
+7. Explain insertion in a BST.
+8. Explain deletion from a BST for zero, one and two children.
+9. Explain why balancing is required in search trees.
+10. What is height balancing?
+11. Define a hash table and explain the purpose of hashing.
+12. What is a hash function? Give an example.
+13. What is a collision in hashing?
+14. Explain collision handling by chaining.
+15. Explain the concept of open addressing.
+16. Compare chaining and open addressing.
+17. Compare Linear Search, Binary Search, BST Search and Hash Table Search.
+
+PRACTICAL / CONCEPT PRACTICE
+• Trace Linear Search on a sample list and count comparisons.
+• Trace Binary Search on a sorted list.
+• Build a small BST by inserting a sequence of keys.
+• Search for a value in a BST.
+• Demonstrate BST deletion for a leaf, one-child and two-child node.
+• Show a skewed BST and explain why balancing is needed.
+• Calculate hash values using a simple hash function.
+• Demonstrate a collision using two different keys with the same hash value.
+• Show collision handling using chaining.
+• Demonstrate open addressing with a simple probing sequence.
+
+SYLLABUS ALIGNMENT
+This note follows Unit 3 of the uploaded Semester III CSE Algorithms syllabus: Linear Search (concept, process and complexity); Binary Search (concept, process and complexity by recurrence relation); Binary Search Trees including structure/properties and insertion, deletion and search; Balanced Search Trees including need for balancing and concept of height balancing; and Hash Tables including definition/purpose, hash functions and collision handling through chaining and open addressing.` },
   { subject:'Algorithms', code:'305', unit:'Unit 4', title:'Graphs', desc:'Graph types and representation, topological sorting, MST and shortest path algorithms.', type:'Syllabus Unit',
     content:'Unit 4 — Graphs\n\n• Directed and undirected graphs\n• Adjacency list and matrix\n• Paths, cycles and connected/disconnected graphs\n• Spanning trees\n• Topological sorting\n• Minimum spanning trees: Prim’s and Kruskal’s algorithms\n• Shortest path: Dijkstra’s algorithm' },
   { subject:'Algorithms', code:'305', unit:'Unit 5', title:'Strings and Data Compression', desc:'String sorting, substring search, regular expressions and Huffman coding.', type:'Syllabus Unit',
