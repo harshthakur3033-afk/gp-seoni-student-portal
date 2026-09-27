@@ -14,7 +14,7 @@
 <circle cx="95" cy="55" r="32" fill="#16a06b"/>
 <text x="95" y="65" text-anchor="middle" font-family="Arial" font-size="28" font-weight="700" fill="#fff">2</text>
 <text x="95" y="122" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#14213d">Identify</text>
-<text x="95" y="150" text-anchor="middle" font-family="Arial" font-size="14" fill="#60748f">inputs & outputs</text>
+<text x="95" y="150" text-anchor="middle" font-family="Arial" font-size="14" fill="#60748f">inputs &amp; outputs</text>
 </g>
 <g transform="translate(516,100)">
 <rect width="190" height="220" rx="18" fill="#ffffff" stroke="#dce6f3" stroke-width="2"/>
