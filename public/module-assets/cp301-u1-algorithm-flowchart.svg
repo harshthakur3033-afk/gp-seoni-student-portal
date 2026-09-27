@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
+<rect width="1200" height="560" rx="24" fill="#f8fbff"/>
+<text x="600" y="48" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#14213d">Algorithm and Flowchart — Add Two Numbers</text>
+<g transform="translate(80,95)">
+<text x="225" y="0" text-anchor="middle" font-family="Arial" font-size="21" font-weight="700" fill="#1d5fc4">Algorithm</text>
+<rect x="0" y="30" width="450" height="390" rx="18" fill="#fff" stroke="#dce6f3" stroke-width="2"/>
+<g transform="translate(70,65)"><circle cx="28" cy="22" r="20" fill="#eaf2ff"/><text x="28" y="28" text-anchor="middle" font-family="Arial" font-size="15" font-weight="700" fill="#1d5fc4">1</text><text x="62" y="28" font-family="Arial" font-size="16" fill="#263650">Start</text><path d="M 28 45 L 28 58" stroke="#8aa6c9" stroke-width="3"/></g><g transform="translate(70,130)"><circle cx="28" cy="22" r="20" fill="#eaf2ff"/><text x="28" y="28" text-anchor="middle" font-family="Arial" font-size="15" font-weight="700" fill="#1d5fc4">2</text><text x="62" y="28" font-family="Arial" font-size="16" fill="#263650">Read A and B</text><path d="M 28 45 L 28 58" stroke="#8aa6c9" stroke-width="3"/></g><g transform="translate(70,195)"><circle cx="28" cy="22" r="20" fill="#eaf2ff"/><text x="28" y="28" text-anchor="middle" font-family="Arial" font-size="15" font-weight="700" fill="#1d5fc4">3</text><text x="62" y="28" font-family="Arial" font-size="16" fill="#263650">SUM = A + B</text><path d="M 28 45 L 28 58" stroke="#8aa6c9" stroke-width="3"/></g><g transform="translate(70,260)"><circle cx="28" cy="22" r="20" fill="#eaf2ff"/><text x="28" y="28" text-anchor="middle" font-family="Arial" font-size="15" font-weight="700" fill="#1d5fc4">4</text><text x="62" y="28" font-family="Arial" font-size="16" fill="#263650">Display SUM</text><path d="M 28 45 L 28 58" stroke="#8aa6c9" stroke-width="3"/></g><g transform="translate(70,325)"><circle cx="28" cy="22" r="20" fill="#eaf2ff"/><text x="28" y="28" text-anchor="middle" font-family="Arial" font-size="15" font-weight="700" fill="#1d5fc4">5</text><text x="62" y="28" font-family="Arial" font-size="16" fill="#263650">Stop</text></g>
+</g>
+<g transform="translate(650,85)">
+<text x="225" y="0" text-anchor="middle" font-family="Arial" font-size="21" font-weight="700" fill="#16a06b">Flowchart</text>
+<rect x="0" y="30" width="450" height="400" rx="18" fill="#fff" stroke="#dce6f3" stroke-width="2"/>
+<ellipse cx="225" cy="75" rx="75" ry="28" fill="#eaf7f0" stroke="#16a06b" stroke-width="3"/><text x="225" y="82" text-anchor="middle" font-family="Arial" font-size="15" font-weight="700" fill="#146f4e">Start</text>
+<path d="M225 103 L225 130" stroke="#8aa6c9" stroke-width="3"/>
+<path d="M145 130 H305 L330 165 L305 200 H145 L120 165 Z" fill="#edf5ff" stroke="#2b69d3" stroke-width="3"/><text x="225" y="170" text-anchor="middle" font-family="Arial" font-size="14" fill="#263650">Input A, B</text>
+<path d="M225 200 L225 230" stroke="#8aa6c9" stroke-width="3"/>
+<rect x="145" y="230" width="160" height="58" rx="8" fill="#fff4e8" stroke="#ef8b23" stroke-width="3"/><text x="225" y="266" text-anchor="middle" font-family="Arial" font-size="14" fill="#263650">SUM = A + B</text>
+<path d="M225 288 L225 318" stroke="#8aa6c9" stroke-width="3"/>
+<path d="M145 318 H305 L330 353 L305 388 H145 L120 353 Z" fill="#edf5ff" stroke="#2b69d3" stroke-width="3"/><text x="225" y="358" text-anchor="middle" font-family="Arial" font-size="14" fill="#263650">Display SUM</text>
+<path d="M225 388 L225 405" stroke="#8aa6c9" stroke-width="3"/>
+<ellipse cx="225" cy="430" rx="75" ry="28" fill="#eaf7f0" stroke="#16a06b" stroke-width="3"/><text x="225" y="437" text-anchor="middle" font-family="Arial" font-size="15" font-weight="700" fill="#146f4e">Stop</text>
+</g>
+</svg>
