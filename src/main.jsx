@@ -6883,10 +6883,10 @@ function StudyModule({ subject, unit, onExit }) {
   const topicVisuals = subject === 'Computer Programming' && String(unit) === '1'
     ? [
         '/module-assets/cp301-u1-problem-solving.svg',
-        '/module-assets/cp301-u1-problem-solving.svg',
+        '/module-assets/cp301-u1-problem-solving-steps.svg',
         '/module-assets/cp301-u1-computational-thinking.svg',
         '/module-assets/cp301-u1-algorithm-flowchart.svg',
-        '/module-assets/cp301-u1-memory-representation.svg'
+        '/module-assets/cp301-u1-variables-data-types.svg'
       ]
     : [];
   const currentVisual = topicVisuals[topicIndex];
