@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
+<rect width="1200" height="520" rx="24" fill="#fbfcff"/>
+<text x="600" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#14213d">Components of Computational Thinking</text>
+<circle cx="600" cy="270" r="86" fill="#1d5fc4"/>
+<text x="600" y="258" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700" fill="#fff">Computational</text>
+<text x="600" y="285" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700" fill="#fff">Thinking</text>
+
+<g>
+<rect x="105" y="120" width="310" height="120" rx="18" fill="#fff" stroke="#2b69d3" stroke-width="3"/>
+<circle cx="141" cy="156" r="14" fill="#2b69d3"/>
+<text x="170" y="162" font-family="Arial" font-size="18" font-weight="700" fill="#14213d">Decomposition</text>
+<text x="129" y="196" font-family="Arial" font-size="13" fill="#60748f">Break a big problem into smaller parts</text>
+<path d="M 415 180 L 514 270" fill="none" stroke="#2b69d3" stroke-width="4"/>
+</g>
+<g>
+<rect x="785" y="120" width="310" height="120" rx="18" fill="#fff" stroke="#ef8b23" stroke-width="3"/>
+<circle cx="821" cy="156" r="14" fill="#ef8b23"/>
+<text x="850" y="162" font-family="Arial" font-size="18" font-weight="700" fill="#14213d">Pattern Recognition</text>
+<text x="809" y="196" font-family="Arial" font-size="13" fill="#60748f">Find similarities and repeated structures</text>
+<path d="M 785 180 L 686 270" fill="none" stroke="#ef8b23" stroke-width="4"/>
+</g>
+<g>
+<rect x="105" y="350" width="310" height="120" rx="18" fill="#fff" stroke="#7b4fd6" stroke-width="3"/>
+<circle cx="141" cy="386" r="14" fill="#7b4fd6"/>
+<text x="170" y="392" font-family="Arial" font-size="18" font-weight="700" fill="#14213d">Abstraction</text>
+<text x="129" y="426" font-family="Arial" font-size="13" fill="#60748f">Keep important details; ignore unnecessary detail</text>
+<path d="M 415 410 L 514 270" fill="none" stroke="#7b4fd6" stroke-width="4"/>
+</g>
+<g>
+<rect x="785" y="350" width="310" height="120" rx="18" fill="#fff" stroke="#16a06b" stroke-width="3"/>
+<circle cx="821" cy="386" r="14" fill="#16a06b"/>
+<text x="850" y="392" font-family="Arial" font-size="18" font-weight="700" fill="#14213d">Algorithmic Thinking</text>
+<text x="809" y="426" font-family="Arial" font-size="13" fill="#60748f">Create clear step-by-step procedures</text>
+<path d="M 785 410 L 686 270" fill="none" stroke="#16a06b" stroke-width="4"/>
+</g>
+</svg>
