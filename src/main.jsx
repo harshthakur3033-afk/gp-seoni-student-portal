@@ -6879,6 +6879,17 @@ function StudyModule({ subject, unit, onExit }) {
   }
 
   const currentTopic = module.topics[topicIndex];
+
+  const topicVisuals = subject === 'Computer Programming' && String(unit) === '1'
+    ? [
+        '/module-assets/cp301-u1-problem-solving.svg',
+        '/module-assets/cp301-u1-problem-solving.svg',
+        '/module-assets/cp301-u1-computational-thinking.svg',
+        '/module-assets/cp301-u1-algorithm-flowchart.svg',
+        '/module-assets/cp301-u1-memory-representation.svg'
+      ]
+    : [];
+  const currentVisual = topicVisuals[topicIndex];
   const totalQuestions = module.topics.reduce((sum, topic) => sum + topic.questions.length, 0);
   const flatQuestions = module.topics.flatMap((topic, tIndex) => topic.questions.map((question, qIndex) => ({
     ...question,
@@ -7014,7 +7025,7 @@ function StudyModule({ subject, unit, onExit }) {
             <h3>{item.prompt}</h3>
             <div className="module-review-answer">
               <strong>Your answer:</strong>
-              <span>{item.question?.type === 'mcq' ? item.selectedAnswer : (item.value || 'No answer')}</span>
+              <span>{item.type === 'mcq' ? item.selectedAnswer : (item.value || 'No answer')}</span>
             </div>
             <div className="module-review-answer">
               <strong>Correct answer:</strong>
@@ -7045,6 +7056,10 @@ function StudyModule({ subject, unit, onExit }) {
       <div className="module-lesson-text">
         {currentTopic.lesson.split('\n').map((line, index) => line.trim() ? <p key={index}>{line}</p> : <div key={index} className="module-space" />)}
       </div>
+      {currentVisual && <div className="module-visual-card">
+        <span className="section-kicker">VISUAL LEARNING</span>
+        <img src={currentVisual} alt={`Visual explanation for ${currentTopic.title}`} />
+      </div>}
     </article>
 
     <article className="module-questions-card">
