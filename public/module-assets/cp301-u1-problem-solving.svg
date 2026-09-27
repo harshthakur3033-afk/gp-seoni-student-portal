@@ -1,42 +1,82 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420">
-<rect width="1200" height="420" rx="24" fill="#f7faff"/>
-<text x="600" y="48" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#14213d">Steps of Problem Solving</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect width="1200" height="720" rx="26" fill="#f7faff"/>
+<rect x="30" y="25" width="1140" height="82" rx="20" fill="#0b2a5b"/>
+<text x="64" y="58" font-family="Arial" font-size="18" font-weight="700" fill="#a8cdfd">COMPUTER PROGRAMMING • 301</text>
+<text x="64" y="88" font-family="Arial" font-size="27" font-weight="700" fill="#ffffff">Problem Solving and Computational Thinking</text>
 
-<g transform="translate(60,100)">
-<rect width="190" height="220" rx="18" fill="#ffffff" stroke="#dce6f3" stroke-width="2"/>
-<circle cx="95" cy="55" r="32" fill="#2b69d3"/>
-<text x="95" y="65" text-anchor="middle" font-family="Arial" font-size="28" font-weight="700" fill="#fff">1</text>
-<text x="95" y="122" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#14213d">Understand</text>
-<text x="95" y="150" text-anchor="middle" font-family="Arial" font-size="14" fill="#60748f">the problem</text>
+<text x="55" y="145" font-family="Arial" font-size="22" font-weight="700" fill="#14213d">1. What is Problem Solving?</text>
+<rect x="55" y="165" width="510" height="115" rx="16" fill="#ffffff" stroke="#d8e4f2" stroke-width="2"/>
+<text x="78" y="198" font-family="Arial" font-size="16" fill="#30445f">Problem solving means understanding a problem</text>
+<text x="78" y="224" font-family="Arial" font-size="16" fill="#30445f">and developing a logical solution that a computer</text>
+<text x="78" y="250" font-family="Arial" font-size="16" fill="#30445f">can follow.</text>
+<rect x="590" y="165" width="555" height="115" rx="16" fill="#edf5ff" stroke="#cfe0f6" stroke-width="2"/>
+<text x="615" y="196" font-family="Arial" font-size="15" font-weight="700" fill="#1d5fc4">Simple example: add two numbers</text>
+<text x="615" y="222" font-family="Arial" font-size="14" fill="#30445f">Identify A and B → plan addition → calculate A+B</text>
+<text x="615" y="247" font-family="Arial" font-size="14" fill="#30445f">→ display the result.</text>
+
+<text x="55" y="325" font-family="Arial" font-size="22" font-weight="700" fill="#14213d">2. Problem-Solving Process</text>
+<g transform="translate(55,350)">
+<rect width="140" height="145" rx="15" fill="#fff" stroke="#dce6f3" stroke-width="2"/>
+<circle cx="70" cy="34" r="22" fill="#2b69d3"/><text x="70" y="41" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#fff">1</text>
+<text x="70" y="79" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#14213d">Understand</text>
+<text x="70" y="101" text-anchor="middle" font-family="Arial" font-size="12" fill="#60748f">What is the problem?</text>
+<path d="M140 72 L153 72" stroke="#8aa6c9" stroke-width="3"/><path d="M148 65 L157 72 L148 79" fill="none" stroke="#8aa6c9" stroke-width="2.5"/>
+</g><g transform="translate(215,350)">
+<rect width="140" height="145" rx="15" fill="#fff" stroke="#dce6f3" stroke-width="2"/>
+<circle cx="70" cy="34" r="22" fill="#16a06b"/><text x="70" y="41" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#fff">2</text>
+<text x="70" y="79" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#14213d">Identify</text>
+<text x="70" y="101" text-anchor="middle" font-family="Arial" font-size="12" fill="#60748f">Inputs & outputs</text>
+<path d="M140 72 L153 72" stroke="#8aa6c9" stroke-width="3"/><path d="M148 65 L157 72 L148 79" fill="none" stroke="#8aa6c9" stroke-width="2.5"/>
+</g><g transform="translate(375,350)">
+<rect width="140" height="145" rx="15" fill="#fff" stroke="#dce6f3" stroke-width="2"/>
+<circle cx="70" cy="34" r="22" fill="#ef8b23"/><text x="70" y="41" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#fff">3</text>
+<text x="70" y="79" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#14213d">Break down</text>
+<text x="70" y="101" text-anchor="middle" font-family="Arial" font-size="12" fill="#60748f">Smaller manageable parts</text>
+<path d="M140 72 L153 72" stroke="#8aa6c9" stroke-width="3"/><path d="M148 65 L157 72 L148 79" fill="none" stroke="#8aa6c9" stroke-width="2.5"/>
+</g><g transform="translate(535,350)">
+<rect width="140" height="145" rx="15" fill="#fff" stroke="#dce6f3" stroke-width="2"/>
+<circle cx="70" cy="34" r="22" fill="#7b4fd6"/><text x="70" y="41" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#fff">4</text>
+<text x="70" y="79" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#14213d">Design</text>
+<text x="70" y="101" text-anchor="middle" font-family="Arial" font-size="12" fill="#60748f">Algorithm / flowchart</text>
+<path d="M140 72 L153 72" stroke="#8aa6c9" stroke-width="3"/><path d="M148 65 L157 72 L148 79" fill="none" stroke="#8aa6c9" stroke-width="2.5"/>
+</g><g transform="translate(695,350)">
+<rect width="140" height="145" rx="15" fill="#fff" stroke="#dce6f3" stroke-width="2"/>
+<circle cx="70" cy="34" r="22" fill="#d94a63"/><text x="70" y="41" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#fff">5</text>
+<text x="70" y="79" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#14213d">Implement</text>
+<text x="70" y="101" text-anchor="middle" font-family="Arial" font-size="12" fill="#60748f">Write the program</text>
+<path d="M140 72 L153 72" stroke="#8aa6c9" stroke-width="3"/><path d="M148 65 L157 72 L148 79" fill="none" stroke="#8aa6c9" stroke-width="2.5"/>
+</g><g transform="translate(855,350)">
+<rect width="140" height="145" rx="15" fill="#fff" stroke="#dce6f3" stroke-width="2"/>
+<circle cx="70" cy="34" r="22" fill="#0f8fa5"/><text x="70" y="41" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#fff">6</text>
+<text x="70" y="79" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#14213d">Test</text>
+<text x="70" y="101" text-anchor="middle" font-family="Arial" font-size="12" fill="#60748f">Check the result</text>
+<path d="M140 72 L153 72" stroke="#8aa6c9" stroke-width="3"/><path d="M148 65 L157 72 L148 79" fill="none" stroke="#8aa6c9" stroke-width="2.5"/>
+</g><g transform="translate(1015,350)">
+<rect width="140" height="145" rx="15" fill="#fff" stroke="#dce6f3" stroke-width="2"/>
+<circle cx="70" cy="34" r="22" fill="#7a65c4"/><text x="70" y="41" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#fff">7</text>
+<text x="70" y="79" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#14213d">Improve</text>
+<text x="70" y="101" text-anchor="middle" font-family="Arial" font-size="12" fill="#60748f">Correct & refine</text>
+
 </g>
-<g transform="translate(288,100)">
-<rect width="190" height="220" rx="18" fill="#ffffff" stroke="#dce6f3" stroke-width="2"/>
-<circle cx="95" cy="55" r="32" fill="#16a06b"/>
-<text x="95" y="65" text-anchor="middle" font-family="Arial" font-size="28" font-weight="700" fill="#fff">2</text>
-<text x="95" y="122" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#14213d">Identify</text>
-<text x="95" y="150" text-anchor="middle" font-family="Arial" font-size="14" fill="#60748f">inputs &amp; outputs</text>
+
+<rect x="55" y="525" width="1090" height="150" rx="18" fill="#ffffff" stroke="#dce6f3" stroke-width="2"/>
+<text x="80" y="557" font-family="Arial" font-size="21" font-weight="700" fill="#14213d">3. How Computational Thinking Helps</text>
+<text x="80" y="586" font-family="Arial" font-size="14" fill="#60748f">Computational thinking gives us a structured way to understand, simplify and solve problems.</text>
+<g transform="translate(120,610)">
+<rect width="225" height="48" rx="10" fill="#efe8ff"/>
+<text x="112" y="20" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700" fill="#263650">Decomposition</text>
+<text x="112" y="36" text-anchor="middle" font-family="Arial" font-size="9.5" fill="#60748f">Break a big problem into smaller parts</text>
+</g><g transform="translate(380,610)">
+<rect width="225" height="48" rx="10" fill="#eaf7f0"/>
+<text x="112" y="20" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700" fill="#263650">Pattern Recognition</text>
+<text x="112" y="36" text-anchor="middle" font-family="Arial" font-size="9.5" fill="#60748f">Find similarities or repeated structures</text>
+</g><g transform="translate(640,610)">
+<rect width="225" height="48" rx="10" fill="#fff4e8"/>
+<text x="112" y="20" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700" fill="#263650">Abstraction</text>
+<text x="112" y="36" text-anchor="middle" font-family="Arial" font-size="9.5" fill="#60748f">Keep important information; ignore unnecessary detail</text>
+</g><g transform="translate(900,610)">
+<rect width="225" height="48" rx="10" fill="#edf5ff"/>
+<text x="112" y="20" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700" fill="#263650">Algorithmic Thinking</text>
+<text x="112" y="36" text-anchor="middle" font-family="Arial" font-size="9.5" fill="#60748f">Create clear step-by-step procedures</text>
 </g>
-<g transform="translate(516,100)">
-<rect width="190" height="220" rx="18" fill="#ffffff" stroke="#dce6f3" stroke-width="2"/>
-<circle cx="95" cy="55" r="32" fill="#ef8b23"/>
-<text x="95" y="65" text-anchor="middle" font-family="Arial" font-size="28" font-weight="700" fill="#fff">3</text>
-<text x="95" y="122" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#14213d">Design</text>
-<text x="95" y="150" text-anchor="middle" font-family="Arial" font-size="14" fill="#60748f">the solution</text>
-</g>
-<g transform="translate(744,100)">
-<rect width="190" height="220" rx="18" fill="#ffffff" stroke="#dce6f3" stroke-width="2"/>
-<circle cx="95" cy="55" r="32" fill="#7b4fd6"/>
-<text x="95" y="65" text-anchor="middle" font-family="Arial" font-size="28" font-weight="700" fill="#fff">4</text>
-<text x="95" y="122" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#14213d">Implement</text>
-<text x="95" y="150" text-anchor="middle" font-family="Arial" font-size="14" fill="#60748f">the solution</text>
-</g>
-<g transform="translate(972,100)">
-<rect width="190" height="220" rx="18" fill="#ffffff" stroke="#dce6f3" stroke-width="2"/>
-<circle cx="95" cy="55" r="32" fill="#d94a63"/>
-<text x="95" y="65" text-anchor="middle" font-family="Arial" font-size="28" font-weight="700" fill="#fff">5</text>
-<text x="95" y="122" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#14213d">Test &amp; Improve</text>
-<text x="95" y="150" text-anchor="middle" font-family="Arial" font-size="14" fill="#60748f">the result</text>
-</g>
-<path d="M 250 210 L 275 210" stroke="#8aa6c9" stroke-width="5" stroke-linecap="round"/><path d="M 268 202 L 280 210 L 268 218" fill="none" stroke="#8aa6c9" stroke-width="4"/><path d="M 478 210 L 503 210" stroke="#8aa6c9" stroke-width="5" stroke-linecap="round"/><path d="M 496 202 L 508 210 L 496 218" fill="none" stroke="#8aa6c9" stroke-width="4"/><path d="M 706 210 L 731 210" stroke="#8aa6c9" stroke-width="5" stroke-linecap="round"/><path d="M 724 202 L 736 210 L 724 218" fill="none" stroke="#8aa6c9" stroke-width="4"/><path d="M 934 210 L 959 210" stroke="#8aa6c9" stroke-width="5" stroke-linecap="round"/><path d="M 952 202 L 964 210 L 952 218" fill="none" stroke="#8aa6c9" stroke-width="4"/>
-<text x="600" y="378" text-anchor="middle" font-family="Arial" font-size="16" fill="#526783">A logical process moves from understanding the problem to testing and improving the solution.</text>
 </svg>
