@@ -1,36 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
-<rect width="1200" height="520" rx="24" fill="#fbfcff"/>
-<text x="600" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#14213d">Components of Computational Thinking</text>
-<circle cx="600" cy="270" r="86" fill="#1d5fc4"/>
-<text x="600" y="258" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700" fill="#fff">Computational</text>
-<text x="600" y="285" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700" fill="#fff">Thinking</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect width="1200" height="720" rx="28" fill="#f8fbff"/>
+<rect x="32" y="28" width="1136" height="86" rx="20" fill="#0b2a5b"/>
+<text x="64" y="62" font-family="Arial" font-size="16" font-weight="700" fill="#a8cdfd">COMPUTER PROGRAMMING 301</text>
+<text x="64" y="94" font-family="Arial" font-size="28" font-weight="700" fill="#fff">Computational Thinking: 4 Components</text>
 
-<g>
-<rect x="105" y="120" width="310" height="120" rx="18" fill="#fff" stroke="#2b69d3" stroke-width="3"/>
-<circle cx="141" cy="156" r="14" fill="#2b69d3"/>
-<text x="170" y="162" font-family="Arial" font-size="18" font-weight="700" fill="#14213d">Decomposition</text>
-<text x="129" y="196" font-family="Arial" font-size="13" fill="#60748f">Break a big problem into smaller parts</text>
-<path d="M 415 180 L 514 270" fill="none" stroke="#2b69d3" stroke-width="4"/>
+<text x="55" y="150" font-family="Arial" font-size="20" font-weight="700" fill="#14213d">Think of computational thinking as a toolbox for solving difficult problems.</text>
+<text x="55" y="178" font-family="Arial" font-size="13" fill="#60748f">First simplify the problem, then look for patterns, keep only useful information, and finally create clear steps.</text>
+
+<circle cx="600" cy="380" r="98" fill="#1d5fc4"/>
+<text x="600" y="370" text-anchor="middle" font-family="Arial" font-size="21" font-weight="700" fill="#fff">Computational</text>
+<text x="600" y="398" text-anchor="middle" font-family="Arial" font-size="21" font-weight="700" fill="#fff">Thinking</text>
+
+<g transform="translate(80,225)">
+<rect width="380" height="170" rx="18" fill="#fff" stroke="#7b4fd6" stroke-width="3"/>
+<circle cx="38" cy="38" r="23" fill="#7b4fd6"/><text x="38" y="45" text-anchor="middle" font-family="Arial" font-size="16" font-weight="700" fill="#fff">1</text>
+<text x="75" y="42" font-family="Arial" font-size="18" font-weight="700" fill="#14213d">Decomposition</text>
+<text x="24" y="78" font-family="Arial" font-size="12.5" fill="#526783">Break a large problem into smaller manageable parts.</text>
+<rect x="22" y="112" width="336" height="38" rx="9" fill="#7b4fd6" opacity=".10"/>
+<text x="34" y="136" font-family="Arial" font-size="11.5" font-weight="700" fill="#7b4fd6">Example: divide a result system into marks, total and grade.</text>
+<path d="M380 85 C470 85 500 100 505 170" fill="none" stroke="#7b4fd6" stroke-width="4"/>
+</g><g transform="translate(740,225)">
+<rect width="380" height="170" rx="18" fill="#fff" stroke="#16a06b" stroke-width="3"/>
+<circle cx="38" cy="38" r="23" fill="#16a06b"/><text x="38" y="45" text-anchor="middle" font-family="Arial" font-size="16" font-weight="700" fill="#fff">2</text>
+<text x="75" y="42" font-family="Arial" font-size="18" font-weight="700" fill="#14213d">Pattern Recognition</text>
+<text x="24" y="78" font-family="Arial" font-size="12.5" fill="#526783">Find similarities, repeated steps or structures.</text>
+<rect x="22" y="112" width="336" height="38" rx="9" fill="#16a06b" opacity=".10"/>
+<text x="34" y="136" font-family="Arial" font-size="11.5" font-weight="700" fill="#16a06b">Example: the same calculation repeats for many students.</text>
+<path d="M0 85 C-90 85 -60 100 -55 170" fill="none" stroke="#16a06b" stroke-width="4"/>
+</g><g transform="translate(80,455)">
+<rect width="380" height="170" rx="18" fill="#fff" stroke="#ef8b23" stroke-width="3"/>
+<circle cx="38" cy="38" r="23" fill="#ef8b23"/><text x="38" y="45" text-anchor="middle" font-family="Arial" font-size="16" font-weight="700" fill="#fff">3</text>
+<text x="75" y="42" font-family="Arial" font-size="18" font-weight="700" fill="#14213d">Abstraction</text>
+<text x="24" y="78" font-family="Arial" font-size="12.5" fill="#526783">Focus on important information and ignore unnecessary detail.</text>
+<rect x="22" y="112" width="336" height="38" rx="9" fill="#ef8b23" opacity=".10"/>
+<text x="34" y="136" font-family="Arial" font-size="11.5" font-weight="700" fill="#ef8b23">Example: use marks without worrying about unrelated details.</text>
+<path d="M380 85 C470 85 500 100 505 170" fill="none" stroke="#ef8b23" stroke-width="4"/>
+</g><g transform="translate(740,455)">
+<rect width="380" height="170" rx="18" fill="#fff" stroke="#2b69d3" stroke-width="3"/>
+<circle cx="38" cy="38" r="23" fill="#2b69d3"/><text x="38" y="45" text-anchor="middle" font-family="Arial" font-size="16" font-weight="700" fill="#fff">4</text>
+<text x="75" y="42" font-family="Arial" font-size="18" font-weight="700" fill="#14213d">Algorithmic Thinking</text>
+<text x="24" y="78" font-family="Arial" font-size="12.5" fill="#526783">Create a clear step-by-step procedure.</text>
+<rect x="22" y="112" width="336" height="38" rx="9" fill="#2b69d3" opacity=".10"/>
+<text x="34" y="136" font-family="Arial" font-size="11.5" font-weight="700" fill="#2b69d3">Example: write ordered steps before writing C code.</text>
+<path d="M0 85 C-90 85 -60 100 -55 170" fill="none" stroke="#2b69d3" stroke-width="4"/>
 </g>
-<g>
-<rect x="785" y="120" width="310" height="120" rx="18" fill="#fff" stroke="#ef8b23" stroke-width="3"/>
-<circle cx="821" cy="156" r="14" fill="#ef8b23"/>
-<text x="850" y="162" font-family="Arial" font-size="18" font-weight="700" fill="#14213d">Pattern Recognition</text>
-<text x="809" y="196" font-family="Arial" font-size="13" fill="#60748f">Find similarities and repeated structures</text>
-<path d="M 785 180 L 686 270" fill="none" stroke="#ef8b23" stroke-width="4"/>
-</g>
-<g>
-<rect x="105" y="350" width="310" height="120" rx="18" fill="#fff" stroke="#7b4fd6" stroke-width="3"/>
-<circle cx="141" cy="386" r="14" fill="#7b4fd6"/>
-<text x="170" y="392" font-family="Arial" font-size="18" font-weight="700" fill="#14213d">Abstraction</text>
-<text x="129" y="426" font-family="Arial" font-size="13" fill="#60748f">Keep important details; ignore unnecessary detail</text>
-<path d="M 415 410 L 514 270" fill="none" stroke="#7b4fd6" stroke-width="4"/>
-</g>
-<g>
-<rect x="785" y="350" width="310" height="120" rx="18" fill="#fff" stroke="#16a06b" stroke-width="3"/>
-<circle cx="821" cy="386" r="14" fill="#16a06b"/>
-<text x="850" y="392" font-family="Arial" font-size="18" font-weight="700" fill="#14213d">Algorithmic Thinking</text>
-<text x="809" y="426" font-family="Arial" font-size="13" fill="#60748f">Create clear step-by-step procedures</text>
-<path d="M 785 410 L 686 270" fill="none" stroke="#16a06b" stroke-width="4"/>
-</g>
+
+<rect x="120" y="650" width="960" height="42" rx="12" fill="#eef4ff"/>
+<text x="600" y="678" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#315f99">Quick memory line: Break it → Find patterns → Keep what matters → Write clear steps</text>
 </svg>
