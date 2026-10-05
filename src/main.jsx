@@ -7115,7 +7115,8 @@ function VisualLearningLab({ topicIndex }) {
   const [a,setA]=useState(10), [b,setB]=useState(3), [op,setOp]=useState('+');
   const [step,setStep]=useState(0), [logicA,setLogicA]=useState(true), [logicB,setLogicB]=useState(false);
   const [ioValue,setIoValue]=useState('25'), [ioRun,setIoRun]=useState(false);
-  const [fileMode,setFileMode]=useState('w');
+  const [formatValue,setFormatValue]=useState('85'), [formatSpec,setFormatSpec]=useState('%d');
+  const [fileMode,setFileMode]=useState('w'), [fileText,setFileText]=useState('Computer Programming');
 
   const binary4=(n)=>((Number(n)||0)&15).toString(2).padStart(4,'0');
   const arithmetic=op==='+'?a+b:op==='-'?a-b:op==='*'?a*b:b===0?'undefined':Math.trunc(a/b);
@@ -7162,10 +7163,26 @@ function VisualLearningLab({ topicIndex }) {
     {ioRun&&<div className="visual-output">Screen output: Age = {ioValue}</div>}
   </div>;
 
+  if(topicIndex===6) return <div className="visual-lab">
+    <div className="visual-lab-title">Formatted output — type a value and see printf()</div>
+    <div className="visual-controls">
+      <input value={formatValue} onChange={e=>setFormatValue(e.target.value)} placeholder="Type value" />
+      <select value={formatSpec} onChange={e=>setFormatSpec(e.target.value)}>
+        <option value="%d">%d — integer</option><option value="%c">%c — character</option><option value="%f">%f — floating-point</option><option value="%s">%s — string</option>
+      </select>
+    </div>
+    <div className="format-preview"><code>printf("Value = {formatSpec}", {formatValue || '...'});</code><div>Screen: <b>{formatSpec==='%c' ? (formatValue ? String(formatValue)[0] : '...') : formatValue || '...'}</b></div></div>
+    <small>Type in the box, choose a format specifier, and see how printf() formats the output.</small>
+  </div>;
+
   return <div className="visual-lab">
-    <div className="visual-lab-title">File I/O flow — select a mode</div>
+    <div className="visual-lab-title">File I/O — type file data and choose a mode</div>
+    <div className="visual-controls">
+      <input className="visual-wide-input" value={fileText} onChange={e=>setFileText(e.target.value)} placeholder="Type file content..." />
+    </div>
     <div className="visual-toggle-row">{[['w','Write'],['r','Read'],['a','Append']].map(([v,label])=><button key={v} className={fileMode===v?'active':''} onClick={()=>setFileMode(v)}>{label}</button>)}</div>
     <div className="file-flow"><span>Program</span><i>→</i><span>fopen("notes.txt", "{fileMode}")</span><i>→</i><span>{fileMode==='r'?'Read data':fileMode==='a'?'Add data':'Write data'}</span><i>→</i><span>fclose()</span></div>
+    <div className="visual-output">{fileMode==='r' ? <>File contains: <b>{fileText || '...'}</b></> : fileMode==='a' ? <>Append: <b>{fileText || '...'}</b></> : <>Write: <b>{fileText || '...'}</b></>}</div>
     <small>{fileMode==='w'?'w = writing; an existing file may be replaced.':fileMode==='r'?'r = reading an existing file.':'a = appending data at the end.'}</small>
   </div>;
 }
