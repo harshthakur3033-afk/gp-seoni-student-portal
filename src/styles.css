@@ -123,3 +123,25 @@
 
 .module-visual-card{margin-top:14px;padding:14px 16px;background:#fff;border:1px solid #dfe7f1;border-radius:14px}
 .module-visual-card img{display:block;width:100%;max-height:430px;object-fit:contain;margin-top:8px;border-radius:10px}
+
+
+/* Module visual sizing: fit the complete visual to the available page width */
+.module-visual-svg{
+  width:100%;
+  max-width:100%;
+  margin-top:8px;
+  overflow:hidden;
+  border-radius:10px;
+  display:block;
+  line-height:0;
+}
+.module-visual-svg svg{
+  display:block;
+  width:100% !important;
+  height:auto !important;
+  max-width:100%;
+}
+@media(max-width:760px){
+  .module-visual-card{padding:10px;}
+  .module-visual-svg{margin-top:6px;}
+}
