@@ -181,3 +181,16 @@
 .format-preview div{font-size:10px;color:#667a96}
 .format-preview b{color:#26744d}
 .visual-wide-input{flex:1;min-width:180px}
+
+.problem-pipeline{display:grid;gap:7px;margin-top:9px}
+.problem-pipeline div,.problem-pipeline button{border:1px solid #dbe5f0;background:#eef3f9;color:#8190a4;border-radius:8px;padding:9px 10px;text-align:left;font-size:9px;font-weight:700}
+.problem-pipeline div.shown,.problem-pipeline button.shown{background:#eaf3ff;border-color:#bcd2ef;color:#1556b5}
+.ct-demo{margin-top:11px;display:grid;gap:5px;padding:13px;border-radius:9px;background:#fff;border:1px solid #dbe5f0}
+.ct-demo b{font-size:12px;color:#173e70}.ct-demo span{font-size:9px;line-height:1.55;color:#667a96}
+.algorithm-flow{display:grid;gap:6px;margin-top:10px}
+.algorithm-flow div{padding:9px;border-radius:8px;text-align:center;background:#e8eef7;color:#8b99aa;font-size:9px;font-weight:800}
+.algorithm-flow div.shown{background:#eaf3ff;color:#1556b5;border:1px solid #bcd2ef}
+.variable-card{margin-top:10px;padding:12px;background:#fff;border:1px solid #dbe5f0;border-radius:9px}
+.variable-card code{display:block;font-family:ui-monospace,monospace;font-size:10px;color:#315b91;margin-bottom:10px}
+.memory-box{display:grid;grid-template-columns:90px 1fr auto;align-items:center;gap:8px;padding:10px;border-radius:7px;background:#f8fbff}
+.memory-box span{font-size:9px;color:#71839a}.memory-box b{font-size:13px;color:#17345e}.memory-box small{font-size:8px;color:#8491a4}
