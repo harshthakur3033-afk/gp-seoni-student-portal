@@ -7111,7 +7111,7 @@ function ModuleLibrary({ go, subjectFilter }) {
   </>;
 }
 
-function VisualLearningLab({ topicIndex }) {
+function VisualLearningLab({ topicIndex, subject, unit }) {
   const [a,setA]=useState(10), [b,setB]=useState(3), [op,setOp]=useState('+');
   const [step,setStep]=useState(0), [logicA,setLogicA]=useState(true), [logicB,setLogicB]=useState(false);
   const [ioValue,setIoValue]=useState('25'), [ioRun,setIoRun]=useState(false);
@@ -7124,6 +7124,46 @@ function VisualLearningLab({ topicIndex }) {
   const logical=op==='&&'?(logicA&&logicB):op==='||'?(logicA||logicB):!logicA;
   const bitwise=op==='&'?((a|0)&(b|0)):op==='|'?((a|0)|(b|0)):((a|0)^(b|0));
   const bitsA=binary4(a), bitsB=binary4(b), bitsR=binary4(bitwise);
+  const [problemChoice,setProblemChoice]=useState('sum'), [problemStep,setProblemStep]=useState(0);
+  const [ctPart,setCtPart]=useState('decomposition');
+  const [algA,setAlgA]=useState('10'), [algB,setAlgB]=useState('20'), [algStep,setAlgStep]=useState(0);
+  const [varValue,setVarValue]=useState('75'), [varType,setVarType]=useState('int');
+
+  const isUnit1=subject==='Computer Programming' && String(unit)==='1';
+  if(isUnit1 && topicIndex===0) return <div className="visual-lab">
+    <div className="visual-lab-title">Turn a problem into a solution</div>
+    <div className="visual-toggle-row"><button className={problemChoice==='sum'?'active':''} onClick={()=>{setProblemChoice('sum');setProblemStep(0)}}>Add two numbers</button><button className={problemChoice==='average'?'active':''} onClick={()=>{setProblemChoice('average');setProblemStep(0)}}>Find average</button></div>
+    <div className="problem-pipeline">{(problemChoice==='sum'?['Problem','Inputs: A, B','Operation: A + B','Output: SUM']:['Problem','Inputs: A, B','Operation: (A + B) / 2','Output: Average']).map((x,i)=><div className={i<=problemStep?'shown':''} key={x}>{i+1}. {x}</div>)}</div>
+    <div className="visual-step-actions"><button disabled={problemStep===0} onClick={()=>setProblemStep(problemStep-1)}>Previous</button><button disabled={problemStep===3} onClick={()=>setProblemStep(problemStep+1)}>Next step</button></div>
+    <small>Problem solving means understanding the problem, identifying inputs/outputs, planning the logic and then implementing it.</small>
+  </div>;
+
+  if(isUnit1 && topicIndex===1) return <div className="visual-lab">
+    <div className="visual-lab-title">Problem-solving process — move through the steps</div>
+    <div className="problem-pipeline">{['Understand problem','Identify inputs & outputs','Design algorithm / flowchart','Implement in C','Test with inputs','Find errors & improve'].map((x,i)=><button className={i===problemStep?'shown':''} onClick={()=>setProblemStep(i)} key={x}>{i+1}. {x}</button>)}</div>
+    <div className="visual-output"><b>Step {problemStep+1}:</b> {['Understand what is being asked.','Decide what data enters and what result is required.','Plan clear logical steps.','Write the solution in a programming language.','Check the program with suitable inputs.','Correct errors and improve the solution.'][problemStep]}</div>
+  </div>;
+
+  if(isUnit1 && topicIndex===2) return <div className="visual-lab">
+    <div className="visual-lab-title">Explore the four components of computational thinking</div>
+    <div className="visual-toggle-row">{[['decomposition','Decomposition'],['pattern','Pattern recognition'],['abstraction','Abstraction'],['algorithmic','Algorithmic thinking']].map(([v,label])=><button key={v} className={ctPart===v?'active':''} onClick={()=>setCtPart(v)}>{label}</button>)}</div>
+    <div className="ct-demo"><b>{ctPart==='decomposition'?'Break it down':ctPart==='pattern'?'Find repetition':ctPart==='abstraction'?'Keep what matters':'Create clear steps'}</b><span>{ctPart==='decomposition'?'Large problem → smaller manageable parts':ctPart==='pattern'?'Notice similarities and repeated structures':ctPart==='abstraction'?'Ignore unnecessary details and focus on important information':'Arrange a logical sequence that solves the problem'}</span></div>
+  </div>;
+
+  if(isUnit1 && topicIndex===3) return <div className="visual-lab">
+    <div className="visual-lab-title">Algorithm → flowchart for adding two numbers</div>
+    <div className="visual-controls"><input type="number" value={algA} onChange={e=>setAlgA(e.target.value)}/><span>+</span><input type="number" value={algB} onChange={e=>setAlgB(e.target.value)}/><button onClick={()=>setAlgStep(algStep===4?0:algStep+1)}>{algStep===4?'Reset':'Next step'}</button></div>
+    <div className="algorithm-flow">{['START','Read A = '+(algA||'...')+', B = '+(algB||'...'),'SUM = '+(Number(algA||0)+Number(algB||0)),'Display SUM','STOP'].map((x,i)=><div className={i<=algStep?'shown':''} key={x}>{x}</div>)}</div>
+    <small>Click Next step to follow the same logical sequence an algorithm/flowchart represents.</small>
+  </div>;
+
+  if(isUnit1 && topicIndex===4) return <div className="visual-lab">
+    <div className="visual-lab-title">Variable + data type + memory value</div>
+    <div className="visual-controls"><input value={varValue} onChange={e=>setVarValue(e.target.value)} placeholder="Type a value"/><select value={varType} onChange={e=>setVarType(e.target.value)}><option>int</option><option>char</option><option>float</option><option>double</option></select></div>
+    <div className="variable-card"><code>{varType} value = {varType==='char' ? "'"+(varValue||'A')[0]+"'" : (varValue||'0')};</code><div className="memory-box"><span>Memory</span><b>{varValue||'empty'}</b><small>{varType} variable</small></div></div>
+    <small>A variable is a named storage location whose value can change during program execution. The selected data type tells the program what kind of value is stored.</small>
+  </div>;
+
 
   if(topicIndex===0) return <div className="visual-lab">
     <div className="visual-lab-title">Try the operator</div>
@@ -7397,7 +7437,7 @@ function StudyModule({ subject, unit, onExit }) {
       <div className="module-visual-card">
         <span className="section-kicker">VISUAL LEARNING</span>
         {currentVisual && <div className="module-visual-svg" role="img" aria-label={`Visual explanation for ${currentTopic.title}`} dangerouslySetInnerHTML={{ __html: currentVisual }} />}
-        <VisualLearningLab topicIndex={topicIndex} />
+        <VisualLearningLab topicIndex={topicIndex} subject={subject} unit={unit} />
       </div>
     </article>
 
