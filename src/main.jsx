@@ -7110,6 +7110,66 @@ function ModuleLibrary({ go, subjectFilter }) {
     </div>
   </>;
 }
+
+function VisualLearningLab({ topicIndex }) {
+  const [a,setA]=useState(10), [b,setB]=useState(3), [op,setOp]=useState('+');
+  const [step,setStep]=useState(0), [logicA,setLogicA]=useState(true), [logicB,setLogicB]=useState(false);
+  const [ioValue,setIoValue]=useState('25'), [ioRun,setIoRun]=useState(false);
+  const [fileMode,setFileMode]=useState('w');
+
+  const binary4=(n)=>((Number(n)||0)&15).toString(2).padStart(4,'0');
+  const arithmetic=op==='+'?a+b:op==='-'?a-b:op==='*'?a*b:b===0?'undefined':Math.trunc(a/b);
+  const relation=op==='<'?a<b:op==='>'?a>b:op==='<='?a<=b:op==='>='?a>=b:op==='=='?a===b:a!==b;
+  const logical=op==='&&'?(logicA&&logicB):op==='||'?(logicA||logicB):!logicA;
+  const bitwise=op==='&'?((a|0)&(b|0)):op==='|'?((a|0)|(b|0)):((a|0)^(b|0));
+  const bitsA=binary4(a), bitsB=binary4(b), bitsR=binary4(bitwise);
+
+  if(topicIndex===0) return <div className="visual-lab">
+    <div className="visual-lab-title">Try the operator</div>
+    <div className="visual-controls"><input type="number" value={a} onChange={e=>setA(Number(e.target.value))}/><select value={op} onChange={e=>setOp(e.target.value)}><option>+</option><option>-</option><option>*</option><option>/</option></select><input type="number" value={b} onChange={e=>setB(Number(e.target.value))}/></div>
+    <div className="visual-result"><span>{a} {op} {b}</span><b>= {arithmetic}</b></div>
+  </div>;
+
+  if(topicIndex===1) return <div className="visual-lab">
+    <div className="visual-lab-title">Change the values and compare</div>
+    <div className="visual-controls"><input type="number" value={a} onChange={e=>setA(Number(e.target.value))}/><select value={op} onChange={e=>setOp(e.target.value)}><option>&lt;</option><option>&gt;</option><option>&lt;=</option><option>&gt;=</option><option>==</option><option>!=</option></select><input type="number" value={b} onChange={e=>setB(Number(e.target.value))}/></div>
+    <div className={`visual-result ${relation?'is-true':'is-false'}`}><span>{a} {op} {b}</span><b>{relation?'TRUE':'FALSE'}</b></div>
+  </div>;
+
+  if(topicIndex===2) return <div className="visual-lab">
+    <div className="visual-lab-title">See how conditions combine</div>
+    <div className="visual-toggle-row"><button className={logicA?'active':''} onClick={()=>setLogicA(!logicA)}>A = {String(logicA)}</button><button className={logicB?'active':''} onClick={()=>setLogicB(!logicB)}>B = {String(logicB)}</button><select value={op} onChange={e=>setOp(e.target.value)}><option>&amp;&amp;</option><option>||</option><option>!</option></select></div>
+    <div className={`visual-result ${logical?'is-true':'is-false'}`}><span>{op==='!'?`!A`:`A ${op} B`}</span><b>{String(logical).toUpperCase()}</b></div>
+  </div>;
+
+  if(topicIndex===3) return <div className="visual-lab">
+    <div className="visual-lab-title">Bitwise operation — watch the bits change</div>
+    <div className="visual-controls"><input type="number" min="0" max="15" value={a} onChange={e=>setA(Number(e.target.value))}/><select value={op} onChange={e=>setOp(e.target.value)}><option>&amp;</option><option>|</option><option>^</option></select><input type="number" min="0" max="15" value={b} onChange={e=>setB(Number(e.target.value))}/></div>
+    <div className="bit-row"><span>{a}</span><code>{bitsA}</code></div><div className="bit-row"><span>{b}</span><code>{bitsB}</code></div><div className="bit-row result"><span>Result</span><code>{bitsR}</code><b>{bitwise}</b></div>
+  </div>;
+
+  if(topicIndex===4) return <div className="visual-lab">
+    <div className="visual-lab-title">Precedence step-by-step: 2 + 3 × 4</div>
+    <div className="precedence-steps">{['2 + 3 × 4','2 + 12','14'].map((x,i)=><div className={i<=step?'shown':''} key={x}>{x}</div>)}</div>
+    <div className="visual-step-actions"><button disabled={step===0} onClick={()=>setStep(step-1)}>Previous</button><button disabled={step===2} onClick={()=>setStep(step+1)}>Next step</button></div>
+    <small>Multiplication is evaluated before addition.</small>
+  </div>;
+
+  if(topicIndex===5) return <div className="visual-lab">
+    <div className="visual-lab-title">Input → variable → program → output</div>
+    <div className="io-flow"><span>User enters <b>{ioValue}</b></span><i>→</i><span>scanf()</span><i>→</i><span>age = {ioRun?ioValue:'?'}</span><i>→</i><span>printf()</span></div>
+    <div className="visual-controls"><input value={ioValue} onChange={e=>setIoValue(e.target.value)} /><button onClick={()=>setIoRun(true)}>Run</button></div>
+    {ioRun&&<div className="visual-output">Screen output: Age = {ioValue}</div>}
+  </div>;
+
+  return <div className="visual-lab">
+    <div className="visual-lab-title">File I/O flow — select a mode</div>
+    <div className="visual-toggle-row">{[['w','Write'],['r','Read'],['a','Append']].map(([v,label])=><button key={v} className={fileMode===v?'active':''} onClick={()=>setFileMode(v)}>{label}</button>)}</div>
+    <div className="file-flow"><span>Program</span><i>→</i><span>fopen("notes.txt", "{fileMode}")</span><i>→</i><span>{fileMode==='r'?'Read data':fileMode==='a'?'Add data':'Write data'}</span><i>→</i><span>fclose()</span></div>
+    <small>{fileMode==='w'?'w = writing; an existing file may be replaced.':fileMode==='r'?'r = reading an existing file.':'a = appending data at the end.'}</small>
+  </div>;
+}
+
 function StudyModule({ subject, unit, onExit }) {
   const key = `${subject || ''}|${unit || ''}`;
   const module = moduleLessons[key];
@@ -7317,10 +7377,11 @@ function StudyModule({ subject, unit, onExit }) {
       <div className="module-lesson-text">
         {currentTopic.lesson.split('\n').map((line, index) => line.trim() ? <p key={index}>{line}</p> : <div key={index} className="module-space" />)}
       </div>
-      {currentVisual && <div className="module-visual-card">
+      <div className="module-visual-card">
         <span className="section-kicker">VISUAL LEARNING</span>
-        <div className="module-visual-svg" role="img" aria-label={`Visual explanation for ${currentTopic.title}`} dangerouslySetInnerHTML={{ __html: currentVisual }} />
-      </div>}
+        {currentVisual && <div className="module-visual-svg" role="img" aria-label={`Visual explanation for ${currentTopic.title}`} dangerouslySetInnerHTML={{ __html: currentVisual }} />}
+        <VisualLearningLab topicIndex={topicIndex} />
+      </div>
     </article>
 
     <article className="module-questions-card">
