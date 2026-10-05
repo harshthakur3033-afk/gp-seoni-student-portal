@@ -175,3 +175,9 @@
  .bit-row{grid-template-columns:55px 1fr 40px}
  .io-flow,.file-flow{justify-content:flex-start}
 }
+
+.format-preview{margin-top:10px;padding:11px;border:1px solid #dbe5f0;border-radius:8px;background:#fff}
+.format-preview code{display:block;font-family:ui-monospace,monospace;font-size:9px;color:#315b91;margin-bottom:8px;white-space:pre-wrap}
+.format-preview div{font-size:10px;color:#667a96}
+.format-preview b{color:#26744d}
+.visual-wide-input{flex:1;min-width:180px}
