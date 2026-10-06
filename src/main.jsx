@@ -7329,45 +7329,46 @@ function VisualLearningLab({ topicIndex, subject, unit }) {
   </div>;
 
 
-  if(topicIndex===0) return <div className="visual-lab">
+  const isUnit2=subject==='Computer Programming' && String(unit)==='2';
+  if(isUnit2 && topicIndex===0) return <div className="visual-lab">
     <div className="visual-lab-title">Try the operator</div>
     <div className="visual-controls"><input type="number" value={a} onChange={e=>setA(Number(e.target.value))}/><select value={op} onChange={e=>setOp(e.target.value)}><option>+</option><option>-</option><option>*</option><option>/</option></select><input type="number" value={b} onChange={e=>setB(Number(e.target.value))}/></div>
     <div className="visual-result"><span>{a} {op} {b}</span><b>= {arithmetic}</b></div>
   </div>;
 
-  if(topicIndex===1) return <div className="visual-lab">
+  if(isUnit2 && topicIndex===1) return <div className="visual-lab">
     <div className="visual-lab-title">Change the values and compare</div>
     <div className="visual-controls"><input type="number" value={a} onChange={e=>setA(Number(e.target.value))}/><select value={op} onChange={e=>setOp(e.target.value)}><option>&lt;</option><option>&gt;</option><option>&lt;=</option><option>&gt;=</option><option>==</option><option>!=</option></select><input type="number" value={b} onChange={e=>setB(Number(e.target.value))}/></div>
     <div className={`visual-result ${relation?'is-true':'is-false'}`}><span>{a} {op} {b}</span><b>{relation?'TRUE':'FALSE'}</b></div>
   </div>;
 
-  if(topicIndex===2) return <div className="visual-lab">
+  if(isUnit2 && topicIndex===2) return <div className="visual-lab">
     <div className="visual-lab-title">See how conditions combine</div>
     <div className="visual-toggle-row"><button className={logicA?'active':''} onClick={()=>setLogicA(!logicA)}>A = {String(logicA)}</button><button className={logicB?'active':''} onClick={()=>setLogicB(!logicB)}>B = {String(logicB)}</button><select value={op} onChange={e=>setOp(e.target.value)}><option>&amp;&amp;</option><option>||</option><option>!</option></select></div>
     <div className={`visual-result ${logical?'is-true':'is-false'}`}><span>{op==='!'?`!A`:`A ${op} B`}</span><b>{String(logical).toUpperCase()}</b></div>
   </div>;
 
-  if(topicIndex===3) return <div className="visual-lab">
+  if(isUnit2 && topicIndex===3) return <div className="visual-lab">
     <div className="visual-lab-title">Bitwise operation — watch the bits change</div>
     <div className="visual-controls"><input type="number" min="0" max="15" value={a} onChange={e=>setA(Number(e.target.value))}/><select value={op} onChange={e=>setOp(e.target.value)}><option>&amp;</option><option>|</option><option>^</option></select><input type="number" min="0" max="15" value={b} onChange={e=>setB(Number(e.target.value))}/></div>
     <div className="bit-row"><span>{a}</span><code>{bitsA}</code></div><div className="bit-row"><span>{b}</span><code>{bitsB}</code></div><div className="bit-row result"><span>Result</span><code>{bitsR}</code><b>{bitwise}</b></div>
   </div>;
 
-  if(topicIndex===4) return <div className="visual-lab">
+  if(isUnit2 && topicIndex===4) return <div className="visual-lab">
     <div className="visual-lab-title">Precedence step-by-step: 2 + 3 × 4</div>
     <div className="precedence-steps">{['2 + 3 × 4','2 + 12','14'].map((x,i)=><div className={i<=step?'shown':''} key={x}>{x}</div>)}</div>
     <div className="visual-step-actions"><button disabled={step===0} onClick={()=>setStep(step-1)}>Previous</button><button disabled={step===2} onClick={()=>setStep(step+1)}>Next step</button></div>
     <small>Multiplication is evaluated before addition.</small>
   </div>;
 
-  if(topicIndex===5) return <div className="visual-lab">
+  if(isUnit2 && topicIndex===5) return <div className="visual-lab">
     <div className="visual-lab-title">Input → variable → program → output</div>
     <div className="io-flow"><span>User enters <b>{ioValue}</b></span><i>→</i><span>scanf()</span><i>→</i><span>age = {ioRun?ioValue:'?'}</span><i>→</i><span>printf()</span></div>
     <div className="visual-controls"><input value={ioValue} onChange={e=>setIoValue(e.target.value)} /><button onClick={()=>setIoRun(true)}>Run</button></div>
     {ioRun&&<div className="visual-output">Screen output: Age = {ioValue}</div>}
   </div>;
 
-  if(topicIndex===6) return <div className="visual-lab">
+  if(isUnit2 && topicIndex===6) return <div className="visual-lab">
     <div className="visual-lab-title">Formatted output — type a value and see printf()</div>
     <div className="visual-controls">
       <input value={formatValue} onChange={e=>setFormatValue(e.target.value)} placeholder="Type value" />
