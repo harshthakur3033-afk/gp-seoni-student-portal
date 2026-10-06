@@ -6820,6 +6820,159 @@ Program → fopen() → read/write → fclose() → file`,
         ]
       }
     ]
+  },
+  "Computer Programming|3": {
+    title:"Unit 3 — Conditional and Looping Constructs",
+    topics:[
+      {title:"if Statement",lesson:`The if statement executes a block only when a condition is true.
+
+Syntax:
+if (condition) {
+    statement;
+}
+
+Example:
+if (marks >= 40) {
+    printf("Pass");
+}
+
+The condition is checked first. If it is true, the if block runs; otherwise it is skipped.`,questions:[
+        {type:"mcq",prompt:"When does an if block execute?",options:["When the condition is true","Always","When false","Only after a loop"],answer:0},
+        {type:"mcq",prompt:"Which keyword is used for a simple decision?",options:["when","if","check","case"],answer:1},
+        {type:"short",prompt:"What does an if statement do?",keywords:["condition","true","execute"],minKeywords:2,modelAnswer:"An if statement executes a block when its condition is true."}]},
+      {title:"if-else Statement",lesson:`The if-else statement provides two possible paths.
+
+Example:
+if (number % 2 == 0) {
+    printf("Even");
+} else {
+    printf("Odd");
+}
+
+The if block runs when the condition is true; otherwise the else block runs.`,questions:[
+        {type:"mcq",prompt:"How many main alternatives does if-else provide?",options:["One","Two","Three","None"],answer:1},
+        {type:"mcq",prompt:"Which block runs when the if condition is false?",options:["for","case","else","while"],answer:2},
+        {type:"short",prompt:"What is the purpose of if-else?",keywords:["true","false","alternative"],minKeywords:2,modelAnswer:"if-else chooses one block when the condition is true and another when it is false."}]},
+      {title:"Nested if",lesson:`A nested if places one if statement inside another decision block.
+
+Example:
+if (marks >= 40) {
+    if (marks >= 75) {
+        printf("Distinction");
+    }
+}
+
+The inner decision is checked only after the outer condition allows entry.`,questions:[
+        {type:"mcq",prompt:"What is a nested if?",options:["An if inside another if block","An if without a condition","A loop inside switch","A variable"],answer:0},
+        {type:"mcq",prompt:"When is the inner if checked?",options:["Before the outer condition","After the outer condition allows entry","At program end","Never"],answer:1},
+        {type:"short",prompt:"Why are nested if statements useful?",keywords:["condition","decision","inside"],minKeywords:2,modelAnswer:"They are useful when one decision depends on another condition."}]},
+      {title:"Conditional Operator ?: ",lesson:`The conditional operator ?: is a compact way to select one of two expressions.
+
+Syntax:
+condition ? expression1 : expression2;
+
+Example:
+result = (a > b) ? a : b;
+
+The first expression is selected when the condition is true; otherwise the second is selected.`,questions:[
+        {type:"mcq",prompt:"Which operator is called the conditional operator?",options:["::","?:","??","=>"],answer:1},
+        {type:"mcq",prompt:"How many expressions are selected by a basic conditional operator?",options:["One","Two","Three","Four"],answer:1},
+        {type:"short",prompt:"How does ?: choose between two expressions?",keywords:["condition","true","false"],minKeywords:2,modelAnswer:"The condition selects the first expression when true and the second when false."}]},
+      {title:"for Loop",lesson:`A for loop is useful when initialization, a condition and an update can be written together.
+
+Syntax:
+for (initialization; condition; update) {
+    statement;
+}
+
+Example:
+for (int i = 1; i <= 5; i++) {
+    printf("%d\\n", i);
+}
+
+The condition is checked before each iteration.`,questions:[
+        {type:"mcq",prompt:"Which three parts are commonly in a for header?",options:["Input, output, print","Initialization, condition, update","Start, stop, switch","Case, break, default"],answer:1},
+        {type:"mcq",prompt:"When is the for-loop condition checked?",options:["Before each iteration","Only after the loop","Never","Only once"],answer:0},
+        {type:"short",prompt:"Give one situation where a for loop is useful.",keywords:["repeat","iteration"],minKeywords:1,modelAnswer:"A for loop is useful when a task needs repeated iterations with a clear initialization, condition and update."}]},
+      {title:"while Loop",lesson:`A while loop checks its condition before each iteration.
+
+Syntax:
+while (condition) {
+    statement;
+}
+
+If the condition is false initially, the body can execute zero times.`,questions:[
+        {type:"mcq",prompt:"When does a while loop check its condition?",options:["Before each iteration","Only after the body","At program end","Never"],answer:0},
+        {type:"mcq",prompt:"Can a while loop execute zero times?",options:["Yes","No","Only in C++","Only with switch"],answer:0},
+        {type:"short",prompt:"What is the main idea of a while loop?",keywords:["condition","repeat","before"],minKeywords:2,modelAnswer:"A while loop repeats a block while its condition remains true and checks it before each iteration."}]},
+      {title:"do-while Loop",lesson:`A do-while loop executes its body first and checks the condition afterward.
+
+Syntax:
+do {
+    statement;
+} while (condition);
+
+Because the condition is checked after the body, the body executes at least once. Remember the semicolon after while(condition).`,questions:[
+        {type:"mcq",prompt:"When is the do-while condition checked?",options:["Before the body","After the body","Before the program","Never"],answer:1},
+        {type:"mcq",prompt:"Minimum number of body executions?",options:["Zero","One","Two","Depends on switch"],answer:1},
+        {type:"short",prompt:"Why does do-while execute at least once?",keywords:["body","condition","after"],minKeywords:2,modelAnswer:"The body runs before the condition is checked, so it executes at least once."}]},
+      {title:"Nested Loops",lesson:`A nested loop is a loop placed inside another loop.
+
+Example:
+for (int i = 1; i <= 3; i++) {
+    for (int j = 1; j <= 3; j++) {
+        printf("* ");
+    }
+    printf("\\n");
+}
+
+For every outer-loop iteration, the inner loop completes its iterations. Nested loops are useful for patterns, tables and multidimensional data.`,questions:[
+        {type:"mcq",prompt:"What is a nested loop?",options:["A loop inside another loop","A loop without a condition","A switch inside if","A function only"],answer:0},
+        {type:"mcq",prompt:"For each outer-loop iteration, what normally happens to the inner loop?",options:["It completes its iterations","It is skipped forever","The program exits","The outer loop stops"],answer:0},
+        {type:"short",prompt:"Name one common use of nested loops.",keywords:["pattern","table","matrix"],minKeywords:1,modelAnswer:"Nested loops are commonly used for patterns, tables or multidimensional data."}]},
+      {title:"switch-case",lesson:`The switch-case statement selects one block from several alternatives based on an expression.
+
+Basic form:
+switch (choice) {
+    case 1:
+        printf("Add");
+        break;
+    case 2:
+        printf("Exit");
+        break;
+    default:
+        printf("Invalid choice");
+}
+
+break normally prevents execution from continuing into the next case. default handles values for which no case matches.`,questions:[
+        {type:"mcq",prompt:"Which keyword selects an alternative in switch?",options:["case","choose","option","select"],answer:0},
+        {type:"mcq",prompt:"What is the purpose of default?",options:["Runs when no case matches","Always runs first","Exits every loop","Declares a variable"],answer:0},
+        {type:"short",prompt:"Why is break commonly used inside switch cases?",keywords:["stop","next","case"],minKeywords:2,modelAnswer:"break stops execution from falling through to the next case."}]},
+      {title:"break Statement",lesson:`The break statement immediately terminates the nearest enclosing loop or switch.
+
+Example:
+for (int i = 1; i <= 10; i++) {
+    if (i == 5) break;
+    printf("%d ", i);
+}
+
+When i becomes 5, the loop stops and control moves after the loop.`,questions:[
+        {type:"mcq",prompt:"What does break do inside a loop?",options:["Skips one iteration","Terminates the nearest loop","Restarts the loop","Pauses the program"],answer:1},
+        {type:"mcq",prompt:"Where does control go after break exits a loop?",options:["To the next statement after the loop","To the loop condition forever","To the first line","To another case"],answer:0},
+        {type:"short",prompt:"What is the main purpose of break?",keywords:["terminate","loop","exit"],minKeywords:2,modelAnswer:"break terminates the nearest enclosing loop or switch."}]},
+      {title:"continue Statement",lesson:`The continue statement skips the remaining statements in the current loop iteration and proceeds to the next iteration.
+
+Example:
+for (int i = 1; i <= 5; i++) {
+    if (i == 3) continue;
+    printf("%d ", i);
+}
+
+The value 3 is skipped, but the loop continues.`,questions:[
+        {type:"mcq",prompt:"What does continue do inside a loop?",options:["Terminates the loop","Skips the current iteration","Ends the program","Repeats the same iteration"],answer:1},
+        {type:"mcq",prompt:"After continue, what normally happens?",options:["The next iteration begins","The program exits","The loop becomes a switch","The previous iteration repeats"],answer:0},
+        {type:"short",prompt:"Differentiate break and continue.",keywords:["break","terminate","continue","skip"],minKeywords:3,modelAnswer:"break terminates the loop, while continue skips the current iteration and proceeds with the next one."}]}
+    ]
   }
 };
 const mcqs = [
@@ -7128,6 +7281,17 @@ function VisualLearningLab({ topicIndex, subject, unit }) {
   const [ctPart,setCtPart]=useState('decomposition');
   const [algA,setAlgA]=useState('10'), [algB,setAlgB]=useState('20'), [algStep,setAlgStep]=useState(0);
   const [varValue,setVarValue]=useState('75'), [varType,setVarType]=useState('int');
+  const [ifNumber,setIfNumber]=useState(55), [ifThreshold,setIfThreshold]=useState(40);
+  const [parityNumber,setParityNumber]=useState(7);
+  const [nestedMarks,setNestedMarks]=useState(82), [nestedAttendance,setNestedAttendance]=useState(80);
+  const [condA,setCondA]=useState(12), [condB,setCondB]=useState(20);
+  const [loopStart,setLoopStart]=useState(1), [loopEnd,setLoopEnd]=useState(5), [loopStep,setLoopStep]=useState(1);
+  const [whileStart,setWhileStart]=useState(1), [whileLimit,setWhileLimit]=useState(5);
+  const [doStart,setDoStart]=useState(0), [doLimit,setDoLimit]=useState(3);
+  const [gridRows,setGridRows]=useState(3), [gridCols,setGridCols]=useState(4);
+  const [switchChoice,setSwitchChoice]=useState('2');
+  const [breakStop,setBreakStop]=useState(4);
+  const [skipValue,setSkipValue]=useState(3);
 
   const isUnit1=subject==='Computer Programming' && String(unit)==='1';
   if(isUnit1 && topicIndex===0) return <div className="visual-lab">
@@ -7214,6 +7378,53 @@ function VisualLearningLab({ topicIndex, subject, unit }) {
     <div className="format-preview"><code>printf("Value = {formatSpec}", {formatValue || '...'});</code><div>Screen: <b>{formatSpec==='%c' ? (formatValue ? String(formatValue)[0] : '...') : formatValue || '...'}</b></div></div>
     <small>Type in the box, choose a format specifier, and see how printf() formats the output.</small>
   </div>;
+
+
+  const isUnit3=subject==='Computer Programming' && String(unit)==='3';
+  if(isUnit3 && topicIndex===0) {
+    const ok=ifNumber>=ifThreshold;
+    return <div className="visual-lab"><div className="visual-lab-title">if — test a condition live</div><div className="visual-controls"><label>Value <input type="number" value={ifNumber} onChange={e=>setIfNumber(Number(e.target.value))}/></label><label>Threshold <input type="number" value={ifThreshold} onChange={e=>setIfThreshold(Number(e.target.value))}/></label></div><div className={`visual-result ${ok?'is-true':'is-false'}`}><span>{ifNumber} &gt;= {ifThreshold}</span><b>{ok?'TRUE → block runs':'FALSE → block skipped'}</b></div></div>;
+  }
+  if(isUnit3 && topicIndex===1) {
+    const even=parityNumber%2===0;
+    return <div className="visual-lab"><div className="visual-lab-title">if-else — see which branch executes</div><div className="visual-controls"><input type="number" value={parityNumber} onChange={e=>setParityNumber(Number(e.target.value))}/></div><div className="problem-pipeline"><div className={even?'shown':''}>if (number % 2 == 0) → {even?'TRUE':'FALSE'}</div><div className={!even?'shown':''}>else → {even?'skipped':'runs'}</div></div><div className={`visual-result ${even?'is-true':'is-false'}`}><span>{parityNumber}</span><b>{even?'EVEN':'ODD'}</b></div></div>;
+  }
+  if(isUnit3 && topicIndex===2) {
+    const pass=nestedMarks>=40, eligible=pass&&nestedAttendance>=75;
+    return <div className="visual-lab"><div className="visual-lab-title">Nested if — outer decision, then inner decision</div><div className="visual-controls"><label>Marks <input type="number" value={nestedMarks} onChange={e=>setNestedMarks(Number(e.target.value))}/></label><label>Attendance % <input type="number" value={nestedAttendance} onChange={e=>setNestedAttendance(Number(e.target.value))}/></label></div><div className="problem-pipeline"><div className={pass?'shown':''}>Outer: marks &gt;= 40 → {pass?'TRUE':'FALSE'}</div><div className={eligible?'shown':''}>{pass?'Inner: attendance &gt;= 75 → '+(eligible?'TRUE':'FALSE'):'Inner condition is not checked'}</div></div><div className={`visual-result ${eligible?'is-true':'is-false'}`}><span>Eligible</span><b>{eligible?'YES':'NO'}</b></div></div>;
+  }
+  if(isUnit3 && topicIndex===3) {
+    const max=condA>condB?condA:condB;
+    return <div className="visual-lab"><div className="visual-lab-title">?: — compact two-way decision</div><div className="visual-controls"><input type="number" value={condA} onChange={e=>setCondA(Number(e.target.value))}/><span> vs </span><input type="number" value={condB} onChange={e=>setCondB(Number(e.target.value))}/></div><div className="format-preview"><code>result = (a &gt; b) ? a : b;</code><div>Condition: <b>{condA} &gt; {condB}</b> → result = <b>{max}</b></div></div></div>;
+  }
+  if(isUnit3 && topicIndex===4) {
+    const stepN=Math.max(1,Math.abs(loopStep)), values=[]; for(let n=loopStart,g=0;n<=loopEnd&&g<30;n+=stepN,g++) values.push(n);
+    return <div className="visual-lab"><div className="visual-lab-title">for loop — watch each iteration</div><div className="visual-controls"><label>Start <input type="number" value={loopStart} onChange={e=>setLoopStart(Number(e.target.value))}/></label><label>End <input type="number" value={loopEnd} onChange={e=>setLoopEnd(Number(e.target.value))}/></label><label>Step <input type="number" min="1" value={loopStep} onChange={e=>setLoopStep(Number(e.target.value))}/></label></div><div className="algorithm-flow">{values.map((n,i)=><div className="shown" key={`${n}-${i}`}>i = {n} → body executes</div>)}</div><small>for (i = start; i &lt;= end; i += step)</small></div>;
+  }
+  if(isUnit3 && topicIndex===5) {
+    const values=[]; for(let n=whileStart,g=0;n<=whileLimit&&g<30;n++,g++) values.push(n);
+    return <div className="visual-lab"><div className="visual-lab-title">while loop — condition checked first</div><div className="visual-controls"><label>Start <input type="number" value={whileStart} onChange={e=>setWhileStart(Number(e.target.value))}/></label><label>Limit <input type="number" value={whileLimit} onChange={e=>setWhileLimit(Number(e.target.value))}/></label></div><div className="algorithm-flow"><div className="shown">Check {whileStart} &lt;= {whileLimit} → {whileStart<=whileLimit?'TRUE':'FALSE'}</div>{values.map(n=><div className="shown" key={n}>i = {n} → body</div>)}<div className="shown">Next check → stop</div></div></div>;
+  }
+  if(isUnit3 && topicIndex===6) {
+    const first=doStart, repeats=doStart<=doLimit?Math.min(30,doLimit-doStart+1):1;
+    return <div className="visual-lab"><div className="visual-lab-title">do-while — body runs before the check</div><div className="visual-controls"><label>Start <input type="number" value={doStart} onChange={e=>setDoStart(Number(e.target.value))}/></label><label>Limit <input type="number" value={doLimit} onChange={e=>setDoLimit(Number(e.target.value))}/></label></div><div className="algorithm-flow"><div className="shown">1. Body executes → {first}</div><div className="shown">2. Check {first} &lt;= {doLimit} → {doStart<=doLimit?'TRUE → repeat':'FALSE → stop'}</div></div><div className="visual-result is-true"><span>Minimum body executions</span><b>1</b></div><small>{repeats} execution(s) in this example.</small></div>;
+  }
+  if(isUnit3 && topicIndex===7) {
+    const rows=Math.max(1,Math.min(6,gridRows)), cols=Math.max(1,Math.min(6,gridCols));
+    return <div className="visual-lab"><div className="visual-lab-title">Nested loops — outer rows × inner columns</div><div className="visual-controls"><label>Rows <input type="number" min="1" max="6" value={gridRows} onChange={e=>setGridRows(Number(e.target.value))}/></label><label>Columns <input type="number" min="1" max="6" value={gridCols} onChange={e=>setGridCols(Number(e.target.value))}/></label></div><div className="algorithm-flow">{Array.from({length:rows},(_,r)=><div className="shown" key={r}>row {r+1}: {'* '.repeat(cols)}</div>)}</div><small>Each outer iteration runs the inner loop {cols} times.</small></div>;
+  }
+  if(isUnit3 && topicIndex===8) {
+    const labels={1:'Add',2:'Subtract',3:'Multiply',4:'Exit'}, choice=Number(switchChoice);
+    return <div className="visual-lab"><div className="visual-lab-title">switch-case — select one case</div><div className="visual-controls"><select value={switchChoice} onChange={e=>setSwitchChoice(e.target.value)}><option value="1">1 — Add</option><option value="2">2 — Subtract</option><option value="3">3 — Multiply</option><option value="4">4 — Exit</option><option value="9">9 — Invalid</option></select></div><div className="problem-pipeline"><div className="shown">switch(choice) → {labels[choice]||'default'}</div><div className="shown">{labels[choice]?'case '+choice+' runs → break':'default runs → break'}</div></div></div>;
+  }
+  if(isUnit3 && topicIndex===9) {
+    const values=[]; for(let n=1;n<=10;n++){if(n===breakStop) break;values.push(n);}
+    return <div className="visual-lab"><div className="visual-lab-title">break — terminate the loop immediately</div><div className="visual-controls"><label>Stop at <input type="number" min="1" max="10" value={breakStop} onChange={e=>setBreakStop(Number(e.target.value))}/></label></div><div className="algorithm-flow">{values.map(n=><div className="shown" key={n}>i = {n} → print</div>)}<div className="shown">i = {breakStop} → break → loop ends</div></div></div>;
+  }
+  if(isUnit3 && topicIndex===10) {
+    const values=[]; for(let n=1;n<=10;n++){if(n===skipValue) continue;values.push(n);}
+    return <div className="visual-lab"><div className="visual-lab-title">continue — skip one iteration</div><div className="visual-controls"><label>Skip value <input type="number" min="1" max="10" value={skipValue} onChange={e=>setSkipValue(Number(e.target.value))}/></label></div><div className="algorithm-flow">{values.map(n=><div className="shown" key={n}>i = {n} → print</div>)}<div className="shown">i = {skipValue} → continue → print skipped</div></div></div>;
+  }
 
   return <div className="visual-lab">
     <div className="visual-lab-title">File I/O — type file data and choose a mode</div>
