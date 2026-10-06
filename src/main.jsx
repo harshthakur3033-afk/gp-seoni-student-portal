@@ -7245,7 +7245,7 @@ function ModuleLibrary({ go, subjectFilter }) {
 
         <div className="topic-list">
           {current.topics.map((topic,i) => {
-            const available = current.name === 'Computer Programming' && (i === 0 || i === 1);
+            const available = current.name === 'Computer Programming' && i >= 0 && i <= 2;
             return <button
               key={topic}
               disabled={!available}
