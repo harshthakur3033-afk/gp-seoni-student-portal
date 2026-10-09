@@ -7524,10 +7524,9 @@ function StudyModule({ subject, unit, onExit }) {
     return <section className={`module-shell ${isUnit3Module ? "module-shell-unit3" : ""}`}>
       <div className="module-hero">
         <div>
-          <span className="section-kicker">{isUnit3Module ? "CP-301 · UNIT 3 / CONTROL FLOW STUDIO" : "INTERACTIVE STUDY MODULE"}</span>
-          <h1>{isUnit3Module ? "Decisions in. Loops out." : module.title}</h1>
-          <p>{isUnit3Module ? "Learn how a C program chooses a path, repeats work, and changes its flow—then test each idea in a guided lab." : "Read each topic in simple language, answer short questions, then move to the next topic."}</p>
-          {isUnit3Module && <span className="unit3-original-title">{module.title}</span>}
+          <span className="section-kicker">INTERACTIVE STUDY MODULE</span>
+          <h1>{module.title}</h1>
+          <p>Read each topic in simple language, answer short questions, then move to the next topic.</p>
         </div>
         <div className="module-stat"><strong>{module.topics.length}</strong><span>Topics</span></div>
       </div>
