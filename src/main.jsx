@@ -7264,6 +7264,26 @@ function ModuleLibrary({ go, subjectFilter }) {
   </>;
 }
 
+
+function Unit3Lab({ title, subtitle, code, takeaway, challenge, answer, children }) {
+  const [showAnswer,setShowAnswer]=useState(false);
+  return <section className="unit3-lab-card">
+    <div className="unit3-lab-header">
+      <div><span className="unit3-lab-kicker">HANDS-ON C LAB · UNIT 3</span><h3>{title}</h3><p>{subtitle}</p></div>
+      <span className="unit3-lab-badge"><Sparkles size={13}/> Explore</span>
+    </div>
+    <div className="unit3-lab-workspace">{children}</div>
+    <div className="unit3-lab-learning-grid">
+      <section className="unit3-code-panel"><div className="unit3-panel-heading"><Code2 size={14}/> C CODE PATTERN</div><pre><code>{code}</code></pre></section>
+      <section className="unit3-idea-panel"><div className="unit3-panel-heading"><BookOpen size={14}/> KEY IDEA</div><p>{takeaway}</p></section>
+    </div>
+    <div className="unit3-challenge-panel">
+      <div className="unit3-challenge-copy"><span>YOUR TURN</span><strong>{challenge}</strong>{showAnswer&&<p>{answer}</p>}</div>
+      <button type="button" onClick={()=>setShowAnswer(value=>!value)}>{showAnswer?'Hide answer':'Reveal answer'} <ChevronRight size={14}/></button>
+    </div>
+  </section>;
+}
+
 function VisualLearningLab({ topicIndex, subject, unit }) {
   const [a,setA]=useState(10), [b,setB]=useState(3), [op,setOp]=useState('+');
   const [step,setStep]=useState(0), [logicA,setLogicA]=useState(true), [logicB,setLogicB]=useState(false);
@@ -7384,47 +7404,96 @@ function VisualLearningLab({ topicIndex, subject, unit }) {
   const isUnit3=subject==='Computer Programming' && String(unit)==='3';
   if(isUnit3 && topicIndex===0) {
     const ok=ifNumber>=ifThreshold;
-    return <div className="visual-lab"><div className="visual-lab-title">if — test a condition live</div><div className="visual-controls"><label>Value <input type="number" value={ifNumber} onChange={e=>setIfNumber(Number(e.target.value))}/></label><label>Threshold <input type="number" value={ifThreshold} onChange={e=>setIfThreshold(Number(e.target.value))}/></label></div><div className={`visual-result ${ok?'is-true':'is-false'}`}><span>{ifNumber} &gt;= {ifThreshold}</span><b>{ok?'TRUE → block runs':'FALSE → block skipped'}</b></div></div>;
+    return <Unit3Lab key={topicIndex} title="Conditional branch: if" subtitle="Change the values and watch the condition decide whether the code runs." code={"if (marks >= 40) {\n    printf(\"Pass\");\n}"} takeaway="An if block runs only when its condition is true. If the condition is false, the block is skipped." challenge="Set marks below the pass mark. What should happen to the if block?" answer="The condition becomes false, so the statements inside the if block do not run.">
+      <div className="visual-controls"><label>Student marks<input type="number" min="0" max="100" value={ifNumber} onChange={e=>setIfNumber(Math.max(0,Math.min(100,Number(e.target.value)||0)))}/></label><label>Pass mark<input type="number" min="0" max="100" value={ifThreshold} onChange={e=>setIfThreshold(Math.max(0,Math.min(100,Number(e.target.value)||0)))}/></label></div>
+      <div className="unit3-execution"><span className="unit3-execution-label">LIVE EXECUTION</span><div className={"unit3-condition "+(ok?'passed':'failed')}><code>{ifNumber} &gt;= {ifThreshold}</code><b>{ok?'TRUE':'FALSE'}</b></div><div className="unit3-execution-result"><span className="unit3-result-icon">{ok?'✓':'↷'}</span><div><strong>{ok?'printf(\"Pass\") runs':'if block is skipped'}</strong><small>{ok?'The condition is satisfied.':'Try raising marks to the pass mark or above.'}</small></div></div></div>
+    </Unit3Lab>;
   }
   if(isUnit3 && topicIndex===1) {
     const even=parityNumber%2===0;
-    return <div className="visual-lab"><div className="visual-lab-title">if-else — see which branch executes</div><div className="visual-controls"><input type="number" value={parityNumber} onChange={e=>setParityNumber(Number(e.target.value))}/></div><div className="problem-pipeline"><div className={even?'shown':''}>if (number % 2 == 0) → {even?'TRUE':'FALSE'}</div><div className={!even?'shown':''}>else → {even?'skipped':'runs'}</div></div><div className={`visual-result ${even?'is-true':'is-false'}`}><span>{parityNumber}</span><b>{even?'EVEN':'ODD'}</b></div></div>;
+    return <Unit3Lab key={topicIndex} title="Two-way decision: if-else" subtitle="Try different integers and see how C chooses exactly one branch." code={"if (number % 2 == 0) {\n    printf(\"Even\");\n} else {\n    printf(\"Odd\");\n}"} takeaway="if-else gives the program two paths: the if path for true, and the else path for false." challenge="Try 14, then 9. Which branch runs for each number?" answer="14 % 2 is 0, so the if branch prints Even. 9 % 2 is 1, so the else branch prints Odd.">
+      <div className="visual-controls"><label>Test integer<input type="number" value={parityNumber} onChange={e=>setParityNumber(Number(e.target.value)||0)}/></label></div>
+      <div className="unit3-branch-map"><div className={"unit3-branch "+(even?'branch-active':'')}><span>IF</span><code>number % 2 == 0</code><b>{even?'✓ TRUE':'FALSE'}</b><small>{even?'Print Even':'Not selected'}</small></div><div className={"unit3-branch "+(!even?'branch-active':'')}><span>ELSE</span><code>otherwise</code><b>{!even?'✓ RUNS':'Not selected'}</b><small>{!even?'Print Odd':'Skipped'}</small></div></div>
+      <div className={"visual-result "+(even?'is-true':'is-false')}><span>Program output</span><b>{even?'Even':'Odd'}</b></div>
+    </Unit3Lab>;
   }
   if(isUnit3 && topicIndex===2) {
     const pass=nestedMarks>=40, distinction=pass&&nestedMarks>=75;
-    return <div className="visual-lab"><div className="visual-lab-title">Nested if — see the outer and inner decisions</div><div className="visual-controls"><label>Marks <input type="number" min="0" max="100" value={nestedMarks} onChange={e=>setNestedMarks(Number(e.target.value))}/></label></div><div className="problem-pipeline"><div className={pass?'shown':''}>Outer: marks &gt;= 40 → {pass?'TRUE':'FALSE'}</div><div className={distinction?'shown':''}>{pass?'Inner: marks &gt;= 75 → '+(distinction?'TRUE':'FALSE'):'Inner if is not checked'}</div></div><div className={`visual-result ${distinction?'is-true':'is-false'}`}><span>{distinction?'Distinction condition satisfied':'Distinction condition not satisfied'}</span><b>{distinction?'YES':'NO'}</b></div><small>Conceptual C flow: if (marks &gt;= 40) { '{' } if (marks &gt;= 75) { '{' } ... { '}' } { '}' }</small></div>;
+    return <Unit3Lab key={topicIndex} title="Nested if: decision inside a decision" subtitle="The inner condition is checked only when the outer condition is true." code={"if (marks >= 40) {\n    if (marks >= 75) {\n        printf(\"Distinction\");\n    }\n}"} takeaway="A nested if is an if statement inside another if. The outer condition controls whether the inner decision is reached." challenge="Try 35, 60, and 85 marks. At which value does the inner condition run and become true?" answer="At 35 the outer condition is false, so the inner if is not checked. At 60 the outer condition is true but the inner one is false. At 85 both conditions are true.">
+      <div className="visual-controls"><label>Marks<input type="number" min="0" max="100" value={nestedMarks} onChange={e=>setNestedMarks(Math.max(0,Math.min(100,Number(e.target.value)||0)))}/></label></div>
+      <div className="unit3-nested-flow"><div className={"unit3-flow-step "+(pass?'step-true':'step-false')}><span>1</span><div><strong>Outer if: marks &gt;= 40?</strong><small>{pass?'TRUE — enter the outer block':'FALSE — stop; inner if is not checked'}</small></div><b>{pass?'TRUE':'FALSE'}</b></div><div className={"unit3-flow-step "+(pass?(distinction?'step-true':'step-false'):'step-muted')}><span>2</span><div><strong>Inner if: marks &gt;= 75?</strong><small>{!pass?'Not reached':distinction?'TRUE — Distinction condition met':'FALSE — inside outer block, but below 75'}</small></div><b>{!pass?'—':distinction?'TRUE':'FALSE'}</b></div></div>
+      <div className={"visual-result "+(distinction?'is-true':'is-false')}><span>Final message</span><b>{distinction?'Distinction':'No distinction'}</b></div>
+    </Unit3Lab>;
   }
   if(isUnit3 && topicIndex===3) {
-    const max=condA>condB?condA:condB;
-    return <div className="visual-lab"><div className="visual-lab-title">?: — compact two-way decision</div><div className="visual-controls"><input type="number" value={condA} onChange={e=>setCondA(Number(e.target.value))}/><span> vs </span><input type="number" value={condB} onChange={e=>setCondB(Number(e.target.value))}/></div><div className="format-preview"><code>result = (a &gt; b) ? a : b;</code><div>Condition: <b>{condA} &gt; {condB}</b> → result = <b>{max}</b></div></div></div>;
+    const max=condA>condB?condA:condB, aWins=condA>condB;
+    return <Unit3Lab key={topicIndex} title="Conditional operator: ?:" subtitle="Compare two values and watch the operator choose one expression." code={"max = (a > b) ? a : b;"} takeaway="condition ? value_if_true : value_if_false. This operator is a compact alternative for a simple two-way choice." challenge="Set both values equal. Does the comparison a > b become true?" answer="No. When both values are equal, a > b is false, so the expression after the colon is selected. Both values are equal, so the result is still that same value.">
+      <div className="visual-controls"><label>Value a<input type="number" value={condA} onChange={e=>setCondA(Number(e.target.value)||0)}/></label><span className="unit3-compare-word">compared with</span><label>Value b<input type="number" value={condB} onChange={e=>setCondB(Number(e.target.value)||0)}/></label></div>
+      <div className="unit3-ternary"><div className={"unit3-ternary-option "+(aWins?'picked':'')}><span>IF TRUE</span><strong>{condA}</strong><small>a is greater</small></div><div className="unit3-ternary-operator">?</div><div className={"unit3-ternary-option "+(!aWins?'picked':'')}><span>IF FALSE</span><strong>{condB}</strong><small>b is selected</small></div></div>
+      <div className="unit3-output-banner"><span>Selected result: max</span><strong>{max}</strong><small>Condition {condA} &gt; {condB} is {aWins?'TRUE':'FALSE'}.</small></div>
+    </Unit3Lab>;
   }
   if(isUnit3 && topicIndex===4) {
-    const stepN=Math.max(1,Math.abs(loopStep)), values=[]; for(let n=loopStart,g=0;n<=loopEnd&&g<30;n+=stepN,g++) values.push(n);
-    return <div className="visual-lab"><div className="visual-lab-title">for loop — watch each iteration</div><div className="visual-controls"><label>Start <input type="number" value={loopStart} onChange={e=>setLoopStart(Number(e.target.value))}/></label><label>End <input type="number" value={loopEnd} onChange={e=>setLoopEnd(Number(e.target.value))}/></label><label>Step <input type="number" min="1" value={loopStep} onChange={e=>setLoopStep(Number(e.target.value))}/></label></div><div className="algorithm-flow">{values.map((n,i)=><div className="shown" key={`${n}-${i}`}>i = {n} → body executes</div>)}</div><small>for (i = start; i &lt;= end; i += step)</small></div>;
+    const stepN=Math.max(1,Math.abs(loopStep)), values=[];
+    if(loopStart<=loopEnd) for(let n=loopStart,g=0;n<=loopEnd&&g<20;n+=stepN,g++) values.push(n);
+    return <Unit3Lab key={topicIndex} title="for loop: trace every iteration" subtitle="Change start, end and step to see exactly when the loop body executes." code={"for (int i = start; i <= end; i += step) {\n    printf(\"%d \", i);\n}"} takeaway="The for header groups initialization, condition and update. The condition is checked before each iteration." challenge="Set start = 1, end = 5, step = 2. Which values are printed?" answer="The loop prints 1, 3, 5. After printing 5, i becomes 7 and the condition 7 <= 5 is false, so the loop stops.">
+      <div className="visual-controls"><label>Start<input type="number" value={loopStart} onChange={e=>setLoopStart(Number(e.target.value)||0)}/></label><label>End<input type="number" value={loopEnd} onChange={e=>setLoopEnd(Number(e.target.value)||0)}/></label><label>Step<input type="number" min="1" max="10" value={loopStep} onChange={e=>setLoopStep(Math.max(1,Math.min(10,Number(e.target.value)||1)))}/></label></div>
+      <div className="unit3-loop-trace">{values.map((n,i)=><div key={i} className="unit3-loop-chip"><span>ITERATION {i+1}</span><strong>i = {n}</strong><small>print {n}</small></div>)}{values.length===0&&<div className="unit3-empty-state">The starting value is already greater than the end value, so the first condition is false and the body runs zero times.</div>}</div>
+      <div className="unit3-output-banner"><span>Output</span><strong>{values.length?values.join('  '):'(no output)'}</strong><small>{values.length?'After the final value, the condition becomes false.':'No iteration takes place.'}</small></div>
+    </Unit3Lab>;
   }
   if(isUnit3 && topicIndex===5) {
-    const values=[]; for(let n=whileStart,g=0;n<=whileLimit&&g<30;n++,g++) values.push(n);
-    return <div className="visual-lab"><div className="visual-lab-title">while loop — condition checked first</div><div className="visual-controls"><label>Start <input type="number" value={whileStart} onChange={e=>setWhileStart(Number(e.target.value))}/></label><label>Limit <input type="number" value={whileLimit} onChange={e=>setWhileLimit(Number(e.target.value))}/></label></div><div className="algorithm-flow"><div className="shown">Check {whileStart} &lt;= {whileLimit} → {whileStart<=whileLimit?'TRUE':'FALSE'}</div>{values.map(n=><div className="shown" key={n}>i = {n} → body</div>)}<div className="shown">Next check → stop</div></div></div>;
+    const values=[];
+    if(whileStart<=whileLimit) for(let n=whileStart,g=0;n<=whileLimit&&g<20;n++,g++) values.push(n);
+    const finalCheck=values.length?values[values.length-1]+1:whileStart;
+    return <Unit3Lab key={topicIndex} title="while loop: check, then execute" subtitle="Follow the condition on every pass, including the final false check." code={"int i = start;\nwhile (i <= limit) {\n    printf(\"%d \", i);\n    i++;\n}"} takeaway="A while loop checks its condition before running the body. If the first condition is false, the body runs zero times." challenge="Set start = 4 and limit = 3. How many times will the body run?" answer="Zero times. The first check 4 <= 3 is false, so execution never enters the loop body.">
+      <div className="visual-controls"><label>Start<input type="number" value={whileStart} onChange={e=>setWhileStart(Number(e.target.value)||0)}/></label><label>Limit<input type="number" value={whileLimit} onChange={e=>setWhileLimit(Number(e.target.value)||0)}/></label></div>
+      <div className="unit3-nested-flow">{values.map((n,i)=><div className="unit3-flow-step step-true" key={i}><span>{i+1}</span><div><strong>Check {n} &lt;= {whileLimit}</strong><small>TRUE — print {n}, then increment i</small></div><b>TRUE</b></div>)}<div className={"unit3-flow-step "+(values.length?'step-false':'step-false')}><span>{values.length+1}</span><div><strong>Check {finalCheck} &lt;= {whileLimit}</strong><small>FALSE — leave the loop</small></div><b>FALSE</b></div></div>
+      <div className="unit3-output-banner"><span>Printed values</span><strong>{values.length?values.join('  '):'(no output)'}</strong><small>There is one final condition check that stops the loop.</small></div>
+    </Unit3Lab>;
   }
   if(isUnit3 && topicIndex===6) {
-    const first=doStart, repeats=doStart<=doLimit?Math.min(30,doLimit-doStart+1):1;
-    return <div className="visual-lab"><div className="visual-lab-title">do-while — body runs before the check</div><div className="visual-controls"><label>Start <input type="number" value={doStart} onChange={e=>setDoStart(Number(e.target.value))}/></label><label>Limit <input type="number" value={doLimit} onChange={e=>setDoLimit(Number(e.target.value))}/></label></div><div className="algorithm-flow"><div className="shown">1. Body executes → {first}</div><div className="shown">2. Check {first} &lt;= {doLimit} → {doStart<=doLimit?'TRUE → repeat':'FALSE → stop'}</div></div><div className="visual-result is-true"><span>Minimum body executions</span><b>1</b></div><small>{repeats} execution(s) in this example.</small></div>;
+    const values=[];
+    let current=doStart;
+    for(let guard=0;guard<20;guard++){values.push(current);current++;if(!(current<=doLimit))break;}
+    return <Unit3Lab key={topicIndex} title="do-while: execute, then check" subtitle="Notice that the body executes once before the condition is checked." code={"int i = start;\ndo {\n    printf(\"%d \", i);\n    i++;\n} while (i <= limit);"} takeaway="Unlike while, do-while checks the condition after executing the body, so the body always runs at least once." challenge="Set start = 5 and limit = 3. Does the body run?" answer="Yes. It prints 5 once, increments i to 6, then checks 6 <= 3. That condition is false, so the loop stops.">
+      <div className="visual-controls"><label>Start<input type="number" value={doStart} onChange={e=>setDoStart(Number(e.target.value)||0)}/></label><label>Limit<input type="number" value={doLimit} onChange={e=>setDoLimit(Number(e.target.value)||0)}/></label></div>
+      <div className="unit3-nested-flow">{values.map((n,i)=><div className="unit3-flow-step step-true" key={i}><span>{i+1}</span><div><strong>Body runs: print {n}</strong><small>Increment i to {n+1}; then check {n+1} &lt;= {doLimit}</small></div><b>{n+1<=doLimit?'TRUE':'FALSE'}</b></div>)}</div>
+      <div className="unit3-output-banner"><span>Printed values</span><strong>{values.join('  ')}</strong><small>Minimum body executions: 1.</small></div>
+    </Unit3Lab>;
   }
   if(isUnit3 && topicIndex===7) {
     const rows=Math.max(1,Math.min(6,gridRows)), cols=Math.max(1,Math.min(6,gridCols));
-    return <div className="visual-lab"><div className="visual-lab-title">Nested loops — outer rows × inner columns</div><div className="visual-controls"><label>Rows <input type="number" min="1" max="6" value={gridRows} onChange={e=>setGridRows(Number(e.target.value))}/></label><label>Columns <input type="number" min="1" max="6" value={gridCols} onChange={e=>setGridCols(Number(e.target.value))}/></label></div><div className="algorithm-flow">{Array.from({length:rows},(_,r)=><div className="shown" key={r}>row {r+1}: {'* '.repeat(cols)}</div>)}</div><small>Each outer iteration runs the inner loop {cols} times.</small></div>;
+    return <Unit3Lab key={topicIndex} title="Nested loops: build a pattern" subtitle="Change the rows and columns. The outer loop controls rows; the inner loop controls each row's symbols." code={"for (int row = 1; row <= rows; row++) {\n    for (int col = 1; col <= cols; col++) {\n        printf(\"* \");\n    }\n    printf(\"\\\\n\");\n}"} takeaway="For every outer-loop iteration, the inner loop completes all of its iterations. A 3 × 4 pattern prints 12 stars." challenge="Set 2 rows and 3 columns. How many stars are printed in total?" answer="2 × 3 = 6 stars. Each of the two outer-loop iterations prints three stars through the inner loop.">
+      <div className="visual-controls"><label>Rows<input type="number" min="1" max="6" value={gridRows} onChange={e=>setGridRows(Math.max(1,Math.min(6,Number(e.target.value)||1)))}/></label><label>Columns<input type="number" min="1" max="6" value={gridCols} onChange={e=>setGridCols(Math.max(1,Math.min(6,Number(e.target.value)||1)))}/></label></div>
+      <div className="unit3-pattern-grid" style={{gridTemplateColumns:'repeat('+cols+', minmax(0, 1fr))'}}>{Array.from({length:rows*cols},(_,i)=><div className="unit3-pattern-cell" key={i}><span>*</span><small>r{Math.floor(i/cols)+1}, c{(i%cols)+1}</small></div>)}</div>
+      <div className="unit3-output-banner"><span>Total body executions / stars</span><strong>{rows*cols}</strong><small>{rows} outer iterations × {cols} inner iterations.</small></div>
+    </Unit3Lab>;
   }
   if(isUnit3 && topicIndex===8) {
     const labels={1:'Add',2:'Subtract',3:'Multiply',4:'Exit'}, choice=Number(switchChoice);
-    return <div className="visual-lab"><div className="visual-lab-title">switch-case — select one case</div><div className="visual-controls"><select value={switchChoice} onChange={e=>setSwitchChoice(e.target.value)}><option value="1">1 — Add</option><option value="2">2 — Subtract</option><option value="3">3 — Multiply</option><option value="4">4 — Exit</option><option value="9">9 — Invalid</option></select></div><div className="problem-pipeline"><div className="shown">switch(choice) → {labels[choice]||'default'}</div><div className="shown">{labels[choice]?'case '+choice+' runs → break':'default runs → break'}</div></div></div>;
+    return <Unit3Lab key={topicIndex} title="switch-case: menu selection" subtitle="Select an option and follow the matching case and break." code={"switch (choice) {\n    case 1: printf(\"Add\"); break;\n    case 2: printf(\"Subtract\"); break;\n    case 3: printf(\"Multiply\"); break;\n    default: printf(\"Invalid choice\");\n}"} takeaway="switch compares its expression with case labels. default handles unmatched values; break prevents fall-through to the next case." challenge="Choose 9. Which part of the switch runs?" answer="No listed case matches 9, so the default block runs and prints Invalid choice.">
+      <div className="visual-controls"><label>Choose menu item<select value={switchChoice} onChange={e=>setSwitchChoice(e.target.value)}><option value="1">1 — Add</option><option value="2">2 — Subtract</option><option value="3">3 — Multiply</option><option value="4">4 — Exit</option><option value="9">9 — Invalid option</option></select></label></div>
+      <div className="unit3-nested-flow"><div className="unit3-flow-step step-true"><span>1</span><div><strong>Evaluate switch(choice)</strong><small>choice = {choice}</small></div><b>{labels[choice]?'MATCH':'NO MATCH'}</b></div><div className={"unit3-flow-step "+(labels[choice]?'step-true':'step-false')}><span>2</span><div><strong>{labels[choice]?'case '+choice:'default'} runs</strong><small>Output: {labels[choice]||'Invalid choice'}</small></div><b>RUN</b></div><div className="unit3-flow-step step-muted"><span>3</span><div><strong>break</strong><small>Exit the switch block</small></div><b>EXIT</b></div></div>
+    </Unit3Lab>;
   }
   if(isUnit3 && topicIndex===9) {
-    const values=[]; for(let n=1;n<=10;n++){if(n===breakStop) break;values.push(n);}
-    return <div className="visual-lab"><div className="visual-lab-title">break — terminate the loop immediately</div><div className="visual-controls"><label>Stop at <input type="number" min="1" max="10" value={breakStop} onChange={e=>setBreakStop(Number(e.target.value))}/></label></div><div className="algorithm-flow">{values.map(n=><div className="shown" key={n}>i = {n} → print</div>)}<div className="shown">i = {breakStop} → break → loop ends</div></div></div>;
+    const stopAt=Math.max(1,Math.min(10,breakStop)), values=[];
+    for(let n=1;n<=10;n++){if(n===stopAt)break;values.push(n);}
+    return <Unit3Lab key={topicIndex} title="break: exit the loop" subtitle="Move the break point. Values after the break point should not be printed." code={"for (int i = 1; i <= 10; i++) {\n    if (i == stopAt) break;\n    printf(\"%d \", i);\n}"} takeaway="break terminates the nearest enclosing loop immediately. It does not merely skip one value." challenge="Set the break point to 4. Which values are printed?" answer="1, 2 and 3 are printed. When i becomes 4, break exits the loop before printf runs for that value.">
+      <div className="visual-controls"><label>Break when i equals<input type="number" min="1" max="10" value={breakStop} onChange={e=>setBreakStop(Math.max(1,Math.min(10,Number(e.target.value)||1)))}/></label></div>
+      <div className="unit3-loop-trace">{values.map(n=><div className="unit3-loop-chip" key={n}><span>PRINT</span><strong>i = {n}</strong><small>loop continues</small></div>)}<div className="unit3-loop-chip chip-stop"><span>BREAK</span><strong>i = {stopAt}</strong><small>loop stops here</small></div></div>
+      <div className="unit3-output-banner"><span>Output</span><strong>{values.join('  ')||'(no output)'}</strong><small>The break value itself is not printed because break runs first.</small></div>
+    </Unit3Lab>;
   }
   if(isUnit3 && topicIndex===10) {
-    const values=[]; for(let n=1;n<=10;n++){if(n===skipValue) continue;values.push(n);}
-    return <div className="visual-lab"><div className="visual-lab-title">continue — skip one iteration</div><div className="visual-controls"><label>Skip value <input type="number" min="1" max="10" value={skipValue} onChange={e=>setSkipValue(Number(e.target.value))}/></label></div><div className="algorithm-flow">{values.map(n=><div className="shown" key={n}>i = {n} → print</div>)}<div className="shown">i = {skipValue} → continue → print skipped</div></div></div>;
+    const skipAt=Math.max(1,Math.min(10,skipValue)), values=[];
+    for(let n=1;n<=10;n++){if(n===skipAt)continue;values.push(n);}
+    return <Unit3Lab key={topicIndex} title="continue: skip this iteration" subtitle="Choose a value to skip. The loop should keep running after continue." code={"for (int i = 1; i <= 10; i++) {\n    if (i == skipValue) continue;\n    printf(\"%d \", i);\n}"} takeaway="continue skips the remaining statements in the current iteration and moves to the next iteration. Unlike break, it does not end the loop." challenge="Set the skipped value to 3. Does the loop end at 3?" answer="No. The number 3 is not printed, but the loop continues and prints 4 through 10.">
+      <div className="visual-controls"><label>Skip value<input type="number" min="1" max="10" value={skipValue} onChange={e=>setSkipValue(Math.max(1,Math.min(10,Number(e.target.value)||1)))}/></label></div>
+      <div className="unit3-loop-trace">{values.map(n=><div className="unit3-loop-chip" key={n}><span>PRINT</span><strong>i = {n}</strong><small>loop continues</small></div>)}<div className="unit3-loop-chip chip-skip"><span>CONTINUE</span><strong>i = {skipAt}</strong><small>this value is skipped</small></div></div>
+      <div className="unit3-output-banner"><span>Output</span><strong>{values.join('  ')}</strong><small>The loop continues after the skipped value.</small></div>
+    </Unit3Lab>;
   }
 
   return <div className="visual-lab">
