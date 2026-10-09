@@ -7424,6 +7424,7 @@ function StudyModule({ subject, unit, onExit }) {
   }
 
   const currentTopic = module.topics[topicIndex];
+  const isUnit3Module = subject === 'Computer Programming' && String(unit) === '3';
 
   const topicVisuals = subject === 'Computer Programming' && String(unit) === '1'
     ? [
@@ -7520,12 +7521,13 @@ function StudyModule({ subject, unit, onExit }) {
   const seconds = elapsedSeconds % 60;
 
   if (!started) {
-    return <section className="module-shell">
+    return <section className={`module-shell ${isUnit3Module ? "module-shell-unit3" : ""}`}>
       <div className="module-hero">
         <div>
-          <span className="section-kicker">INTERACTIVE STUDY MODULE</span>
-          <h1>{module.title}</h1>
-          <p>Read each topic in simple language, answer short questions, then move to the next topic.</p>
+          <span className="section-kicker">{isUnit3Module ? "CP-301 · UNIT 3 / CONTROL FLOW STUDIO" : "INTERACTIVE STUDY MODULE"}</span>
+          <h1>{isUnit3Module ? "Decisions in. Loops out." : module.title}</h1>
+          <p>{isUnit3Module ? "Learn how a C program chooses a path, repeats work, and changes its flow—then test each idea in a guided lab." : "Read each topic in simple language, answer short questions, then move to the next topic."}</p>
+          {isUnit3Module && <span className="unit3-original-title">{module.title}</span>}
         </div>
         <div className="module-stat"><strong>{module.topics.length}</strong><span>Topics</span></div>
       </div>
@@ -7538,24 +7540,28 @@ function StudyModule({ subject, unit, onExit }) {
           </div>
           <BookOpen size={22}/>
         </div>
-        <div className="module-topic-preview">
+        {isUnit3Module ? <div className="unit3-launch-roadmap">
+          {module.topics.map((topic, index) => <div className="unit3-launch-roadmap-item" key={topic.title}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <div><strong>{topic.title}</strong><small>{index < 3 ? "Decision making" : index < 4 ? "Conditional shortcut" : "Loop control"} · {topic.questions.length} questions</small></div>
+          </div>)}
+        </div> : <div className="module-topic-preview">
           {module.topics.map((topic, index) => <div className="module-topic-preview-row" key={topic.title}>
             <span>{String(index + 1).padStart(2, '0')}</span>
             <div><strong>{topic.title}</strong><small>{topic.questions.length} quick questions</small></div>
           </div>)}
-        </div>
+        </div>}
         <div className="module-rules">
-          <span>✓ Learn the topic first</span>
-          <span>✓ Answer all questions before moving on</span>
-          <span>✓ Results stay hidden until final submit</span>
+          {isUnit3Module ? <><span>01 · Understand the rule</span><span>02 · Change inputs in the lab</span><span>03 · Predict output, then answer</span></> : <><span>✓ Learn the topic first</span><span>✓ Answer all questions before moving on</span><span>✓ Results stay hidden until final submit</span></>}
         </div>
+        {isUnit3Module && <div className="unit3-flow-steps" aria-label="Unit 3 learning flow"><span><b>01</b> THEORY</span><i>→</i><span><b>02</b> INTERACTIVE LAB</span><i>→</i><span><b>03</b> PRACTICE</span></div>}
         <button className="primary full" onClick={startModule}>Start Module <ChevronRight size={17}/></button>
       </section>
     </section>;
   }
 
   if (submitted) {
-    return <section className="module-shell">
+    return <section className={`module-shell ${isUnit3Module ? "module-shell-unit3" : ""}`}>
       <div className="module-result-hero">
         <span className="section-kicker">MODULE COMPLETE</span>
         <h1>Unit completed</h1>
@@ -7596,7 +7602,16 @@ function StudyModule({ subject, unit, onExit }) {
     </section>;
   }
 
-  return <section className="module-shell">
+  return <section className={`module-shell ${isUnit3Module ? "module-shell-unit3" : ""}`}>
+    {isUnit3Module && <section className="unit3-studio-banner">
+      <div className="unit3-studio-copy">
+        <span>CP-301 / CONTROL FLOW STUDIO</span>
+        <h2>Teach your code to choose and repeat.</h2>
+        <p>Follow the path from decisions to loops. Each topic has its own experiment, code pattern, and challenge.</p>
+        <div className="unit3-studio-tags"><span>DECISIONS</span><span>CONDITIONS</span><span>LOOPS</span></div>
+      </div>
+      <div className="unit3-studio-side"><div><strong>{String(topicIndex + 1).padStart(2, "0")}</strong><span>/ {String(module.topics.length).padStart(2, "0")}</span></div><small>TOPIC IN PROGRESS</small></div>
+    </section>}
     <div className="module-progress-head">
       <div>
         <span className="section-kicker">TOPIC {topicIndex + 1} OF {module.topics.length} · {currentTopic.questions.length} QUESTIONS</span>
@@ -7605,21 +7620,28 @@ function StudyModule({ subject, unit, onExit }) {
       <span className="module-progress-count">{Math.round(((topicIndex + 1) / module.topics.length) * 100)}%</span>
     </div>
     <div className="module-progress-bar"><i style={{ width: `${((topicIndex + 1) / module.topics.length) * 100}%` }}/></div>
+    {isUnit3Module && <div className="unit3-roadmap-wrap">
+      <div className="unit3-roadmap-heading"><div><span>YOUR ROADMAP</span><strong>11 steps through control flow</strong></div><small>Current topic highlighted</small></div>
+      <div className="unit3-topic-roadmap">{module.topics.map((topic, index) => <div key={topic.title} className={`unit3-roadmap-node ${index < topicIndex ? "is-done" : index === topicIndex ? "is-current" : ""}`} title={topic.title}><span>{String(index + 1).padStart(2, "0")}</span><b>{topic.title}</b></div>)}</div>
+      <div className="unit3-roadmap-legend"><span><i className="current-dot"/> Current topic</span><span><i className="done-dot"/> Earlier topic</span><span><i className="next-dot"/> Upcoming</span></div>
+    </div>}
 
-    <article className="module-lesson-card">
-      <span className="section-kicker">THEORY EXPLANATION · START HERE</span>
+    <article className={`module-lesson-card ${isUnit3Module ? "unit3-content-panel" : ""}`}>
+      {isUnit3Module && <div className="unit3-section-heading"><span>01</span><div><b>Understand the rule</b><small>Start with the explanation, then try the lab below.</small></div><em>THEORY</em></div>}
+      <span className="section-kicker">{isUnit3Module ? "THEORY EXPLANATION · STEP 01" : "THEORY EXPLANATION · START HERE"}</span>
       <div className="module-lesson-text">
         {currentTopic.lesson.split('\n').map((line, index) => line.trim() ? <p key={index}>{line}</p> : <div key={index} className="module-space" />)}
       </div>
-      <div className="module-visual-card">
-        <span className="section-kicker">VISUAL LEARNING</span>
+      <div className={`module-visual-card ${isUnit3Module ? "unit3-practice-card" : ""}`}>
+        {isUnit3Module && <div className="unit3-section-heading"><span>02</span><div><b>Experiment with the logic</b><small>Change the inputs and observe the program’s decision.</small></div><em>INTERACTIVE LAB</em></div>}
+        <span className="section-kicker">{isUnit3Module ? "VISUAL LEARNING · STEP 02" : "VISUAL LEARNING"}</span>
         {currentVisual && <div className="module-visual-svg" role="img" aria-label={`Visual explanation for ${currentTopic.title}`} dangerouslySetInnerHTML={{ __html: currentVisual }} />}
         <VisualLearningLab topicIndex={topicIndex} subject={subject} unit={unit} />
       </div>
     </article>
 
-    <article className="module-questions-card">
-      <div className="module-overview-head"><div><span className="section-kicker">CHECK YOUR UNDERSTANDING</span><h2>Answer before continuing</h2></div><CircleHelp size={22}/></div>
+    <article className={`module-questions-card ${isUnit3Module ? "unit3-practice-quiz" : ""}`}>
+      <div className="module-overview-head"><div><span className="section-kicker">{isUnit3Module ? "STEP 03 / YOUR TURN" : "CHECK YOUR UNDERSTANDING"}</span><h2>{isUnit3Module ? "Can you predict the program?" : "Answer before continuing"}</h2></div><CircleHelp size={22}/></div>
       <div className="module-question-list">
         {currentTopic.questions.map((question, qIndex) => {
           const value = answers[`${topicIndex}-${qIndex}`];
