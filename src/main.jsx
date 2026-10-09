@@ -6824,151 +6824,47 @@ Program → fopen() → read/write → fclose() → file`,
   "Computer Programming|3": {
     title:"Unit 3 — Conditional and Looping Constructs",
     topics:[
-      {title:"if Statement",lesson:`The if statement executes a block only when a condition is true.
-
-Syntax:
-if (condition) {
-    statement;
-}
-
-Example:
-if (marks >= 40) {
-    printf("Pass");
-}
-
-The condition is checked first. If it is true, the if block runs; otherwise it is skipped.`,questions:[
+      {title:"if Statement",lesson:"DEFINITION:\nThe if statement is a decision-making statement. It runs a block of code only when a condition is true. This lets a program choose whether an action should happen.\n\nHOW IT WORKS:\n1. C evaluates the condition inside parentheses.\n2. A non-zero result is treated as true; zero is treated as false.\n3. If true, the statements inside the if block execute.\n4. If false, the program skips that block and continues after it.\n\nSYNTAX:\nif (condition) {\n    statements;\n}\n\nC EXAMPLE:\nint marks = 65;\nif (marks >= 40) {\n    printf(\"Pass\");\n}\n\nOUTPUT:\nPass\n\nDRY RUN:\nmarks is 65. The condition 65 >= 40 is true, so printf(\"Pass\") runs.\n\nCOMMON MISTAKES:\n• Use == to compare two values; a single = assigns a value.\n• Keep the condition inside parentheses.\n• Use braces around the block to make the intended statements clear.\n\nREMEMBER:\nAn if statement has no automatic else branch. When its condition is false, its body is skipped.",questions:[
         {type:"mcq",prompt:"When does an if block execute?",options:["When the condition is true","Always","When false","Only after a loop"],answer:0},
         {type:"mcq",prompt:"Which keyword is used for a simple decision?",options:["when","if","check","case"],answer:1},
         {type:"short",prompt:"What does an if statement do?",keywords:["condition","true","execute"],minKeywords:2,modelAnswer:"An if statement executes a block when its condition is true."}]},
-      {title:"if-else Statement",lesson:`The if-else statement provides two possible paths.
-
-Example:
-if (number % 2 == 0) {
-    printf("Even");
-} else {
-    printf("Odd");
-}
-
-The if block runs when the condition is true; otherwise the else block runs.`,questions:[
+      {title:"if-else Statement",lesson:"DEFINITION:\nThe if-else statement chooses between two alternative blocks. The if block runs when the condition is true; the else block runs when it is false.\n\nHOW IT WORKS:\n1. Evaluate the condition.\n2. If it is true, run the if block and skip the else block.\n3. Otherwise, run the else block.\nOnly one of these two branches is selected in a normal if-else statement.\n\nC EXAMPLE:\nint number = 7;\nif (number % 2 == 0) {\n    printf(\"Even\");\n} else {\n    printf(\"Odd\");\n}\n\nOUTPUT:\nOdd\n\nUNDERSTAND THE OPERATOR:\n% gives the remainder after integer division. An even integer has remainder 0 when divided by 2; an odd integer has remainder 1 or -1.\n\nDRY RUN:\n7 % 2 is 1, so the condition is false and the else branch prints Odd.\n\nCOMMON MISTAKE:\nDo not write an independent second if when you need exactly one of two alternatives. Use else to pair the alternatives.",questions:[
         {type:"mcq",prompt:"How many main alternatives does if-else provide?",options:["One","Two","Three","None"],answer:1},
         {type:"mcq",prompt:"Which block runs when the if condition is false?",options:["for","case","else","while"],answer:2},
         {type:"short",prompt:"What is the purpose of if-else?",keywords:["true","false","alternative"],minKeywords:2,modelAnswer:"if-else chooses one block when the condition is true and another when it is false."}]},
-      {title:"Nested if",lesson:`A nested if places one if statement inside another decision block.
-
-Example:
-if (marks >= 40) {
-    if (marks >= 75) {
-        printf("Distinction");
-    }
-}
-
-The inner decision is checked only after the outer condition allows entry.`,questions:[
+      {title:"Nested if",lesson:"DEFINITION:\nA nested if is an if statement placed inside another if or else block. It is useful when the second decision should only be considered after the first decision succeeds.\n\nC EXAMPLE:\nint marks = 82;\nif (marks >= 40) {\n    if (marks >= 75) {\n        printf(\"Distinction\");\n    }\n}\n\nHOW IT WORKS:\n• First, C checks marks >= 40.\n• If that condition is false, the outer block is skipped and the inner if is never reached.\n• If the outer condition is true, C checks marks >= 75.\n• The message is printed only when both conditions are true.\n\nDRY RUN:\n35 marks → outer condition false → inner if not reached.\n60 marks → outer true → inner false → no message.\n82 marks → outer true → inner true → Distinction.\n\nWHERE IT HELPS:\nUse nested if when one decision depends on another, such as checking eligibility first and then checking a second requirement.\n\nCOMMON MISTAKE:\nIndent nested blocks clearly and match each opening brace { with a closing brace }.",questions:[
         {type:"mcq",prompt:"What is a nested if?",options:["An if inside another if block","An if without a condition","A loop inside switch","A variable"],answer:0},
         {type:"mcq",prompt:"When is the inner if checked?",options:["Before the outer condition","After the outer condition allows entry","At program end","Never"],answer:1},
         {type:"short",prompt:"Why are nested if statements useful?",keywords:["condition","decision","inside"],minKeywords:2,modelAnswer:"They are useful when one decision depends on another condition."}]},
-      {title:"Conditional Operator ?: ",lesson:`The conditional operator ?: is a compact way to select one of two expressions.
-
-Syntax:
-condition ? expression1 : expression2;
-
-Example:
-result = (a > b) ? a : b;
-
-The first expression is selected when the condition is true; otherwise the second is selected.`,questions:[
+      {title:"Conditional Operator ?: ",lesson:"DEFINITION:\nThe conditional operator ?: is a compact operator for choosing one of two expressions based on a condition. It is also called the ternary operator because it uses three operands.\n\nSYNTAX:\ncondition ? expression_if_true : expression_if_false;\n\nC EXAMPLE:\nint a = 12, b = 20;\nint max = (a > b) ? a : b;\nprintf(\"%d\", max);\n\nOUTPUT:\n20\n\nHOW IT WORKS:\n1. Evaluate a > b.\n2. If true, the expression after ? is selected.\n3. If false, the expression after : is selected.\n4. The selected value is assigned to max.\n\nDRY RUN:\n12 > 20 is false, so b is selected and max becomes 20.\n\nWHEN TO USE IT:\nIt is best for a simple choice between two expressions. Use if-else when the logic contains several statements or becomes hard to read.\n\nCOMMON MISTAKE:\nRemember both symbols: ? separates the condition from the true expression, and : separates the true and false expressions.",questions:[
         {type:"mcq",prompt:"Which operator is called the conditional operator?",options:["::","?:","??","=>"],answer:1},
         {type:"mcq",prompt:"How many expressions are selected by a basic conditional operator?",options:["One","Two","Three","Four"],answer:1},
         {type:"short",prompt:"How does ?: choose between two expressions?",keywords:["condition","true","false"],minKeywords:2,modelAnswer:"The condition selects the first expression when true and the second when false."}]},
-      {title:"for Loop",lesson:`A for loop is useful when initialization, a condition and an update can be written together.
-
-Syntax:
-for (initialization; condition; update) {
-    statement;
-}
-
-Example:
-for (int i = 1; i <= 5; i++) {
-    printf("%d\\n", i);
-}
-
-The condition is checked before each iteration.`,questions:[
+      {title:"for Loop",lesson:"DEFINITION:\nA for loop repeats a block of code. It is especially useful when the loop variable, stopping condition and update can be written together.\n\nSYNTAX:\nfor (initialization; condition; update) {\n    statements;\n}\n\nC EXAMPLE:\nfor (int i = 1; i <= 5; i++) {\n    printf(\"%d \", i);\n}\n\nOUTPUT:\n1 2 3 4 5\n\nTHE THREE PARTS:\n• Initialization: int i = 1 runs once before the loop starts.\n• Condition: i <= 5 is checked before every iteration.\n• Update: i++ increases i by 1 after the body finishes.\n\nDRY RUN:\ni = 1 → condition true → print 1 → update to 2.\nThis repeats through i = 5. After printing 5, i becomes 6; 6 <= 5 is false, so the loop stops.\n\nCOMMON MISTAKES:\n• The condition must eventually become false, or the loop may run forever.\n• A semicolon in the wrong place can create an empty loop body.\n• Check whether the final value should be included (< versus <=).",questions:[
         {type:"mcq",prompt:"Which three parts are commonly in a for header?",options:["Input, output, print","Initialization, condition, update","Start, stop, switch","Case, break, default"],answer:1},
         {type:"mcq",prompt:"When is the for-loop condition checked?",options:["Before each iteration","Only after the loop","Never","Only once"],answer:0},
         {type:"short",prompt:"Give one situation where a for loop is useful.",keywords:["repeat","iteration"],minKeywords:1,modelAnswer:"A for loop is useful when a task needs repeated iterations with a clear initialization, condition and update."}]},
-      {title:"while Loop",lesson:`A while loop checks its condition before each iteration.
-
-Syntax:
-while (condition) {
-    statement;
-}
-
-If the condition is false initially, the body can execute zero times.`,questions:[
+      {title:"while Loop",lesson:"DEFINITION:\nA while loop repeatedly executes a block as long as its condition remains true. It is useful when repetition depends on a condition and the number of iterations may not be known in advance.\n\nSYNTAX:\nwhile (condition) {\n    statements;\n}\n\nC EXAMPLE:\nint i = 1;\nwhile (i <= 5) {\n    printf(\"%d \", i);\n    i++;\n}\n\nOUTPUT:\n1 2 3 4 5\n\nHOW IT WORKS:\n1. Check i <= 5 before entering the body.\n2. If true, print i.\n3. Increase i so the next check uses a new value.\n4. Repeat until the condition is false.\n\nIMPORTANT DIFFERENCE:\nA while loop can execute zero times. If its condition is false at the very first check, the body is skipped entirely.\n\nCOMMON MISTAKE:\nDo not forget to update the loop variable when needed. For example, forgetting i++ in this example means i stays 1 and the condition remains true forever.",questions:[
         {type:"mcq",prompt:"When does a while loop check its condition?",options:["Before each iteration","Only after the body","At program end","Never"],answer:0},
         {type:"mcq",prompt:"Can a while loop execute zero times?",options:["Yes","No","Only in C++","Only with switch"],answer:0},
         {type:"short",prompt:"What is the main idea of a while loop?",keywords:["condition","repeat","before"],minKeywords:2,modelAnswer:"A while loop repeats a block while its condition remains true and checks it before each iteration."}]},
-      {title:"do-while Loop",lesson:`A do-while loop executes its body first and checks the condition afterward.
-
-Syntax:
-do {
-    statement;
-} while (condition);
-
-Because the condition is checked after the body, the body executes at least once. Remember the semicolon after while(condition).`,questions:[
+      {title:"do-while Loop",lesson:"DEFINITION:\nA do-while loop is a condition-controlled loop that executes the body first and checks the condition afterward. Therefore, its body always executes at least once.\n\nSYNTAX:\ndo {\n    statements;\n} while (condition);\n\nC EXAMPLE:\nint i = 5;\ndo {\n    printf(\"%d \", i);\n    i++;\n} while (i <= 3);\n\nOUTPUT:\n5\n\nHOW IT WORKS:\n1. The body prints 5.\n2. i is increased to 6.\n3. C checks 6 <= 3.\n4. The condition is false, so the loop stops—but the body has already run once.\n\nWHY IT IS USEFUL:\nIt can be used for menus or prompts that must be shown at least once before deciding whether to repeat.\n\nCOMMON MISTAKE:\nA semicolon is required after while(condition); at the end of a do-while loop. This differs from the usual while loop syntax.",questions:[
         {type:"mcq",prompt:"When is the do-while condition checked?",options:["Before the body","After the body","Before the program","Never"],answer:1},
         {type:"mcq",prompt:"Minimum number of body executions?",options:["Zero","One","Two","Depends on switch"],answer:1},
         {type:"short",prompt:"Why does do-while execute at least once?",keywords:["body","condition","after"],minKeywords:2,modelAnswer:"The body runs before the condition is checked, so it executes at least once."}]},
-      {title:"Nested Loops",lesson:`A nested loop is a loop placed inside another loop.
-
-Example:
-for (int i = 1; i <= 3; i++) {
-    for (int j = 1; j <= 3; j++) {
-        printf("* ");
-    }
-    printf("\\n");
-}
-
-For every outer-loop iteration, the inner loop completes its iterations. Nested loops are useful for patterns, tables and multidimensional data.`,questions:[
+      {title:"Nested Loops",lesson:"DEFINITION:\nA nested loop is a loop placed inside another loop. The outer loop controls one level of repetition; the inner loop completes its own repetitions for each outer-loop iteration.\n\nC EXAMPLE:\nfor (int row = 1; row <= 2; row++) {\n    for (int col = 1; col <= 3; col++) {\n        printf(\"* \");\n    }\n    printf(\"\\\\n\");\n}\n\nOUTPUT:\n* * *\n* * *\n\nHOW IT WORKS:\n• The outer loop selects row 1.\n• The inner loop prints three stars for columns 1, 2 and 3.\n• The inner loop finishes; the newline moves output to the next line.\n• The outer loop selects row 2 and the inner loop runs three more times.\n\nCOUNT THE WORK:\n2 rows × 3 columns = 6 executions of the inner loop body.\n\nWHERE IT HELPS:\nNested loops are common in pattern printing, multiplication tables, matrices and row-column data.\n\nCOMMON MISTAKE:\nThe inner loop normally starts again for each outer iteration. Carefully check which variable belongs to each loop.",questions:[
         {type:"mcq",prompt:"What is a nested loop?",options:["A loop inside another loop","A loop without a condition","A switch inside if","A function only"],answer:0},
         {type:"mcq",prompt:"For each outer-loop iteration, what normally happens to the inner loop?",options:["It completes its iterations","It is skipped forever","The program exits","The outer loop stops"],answer:0},
         {type:"short",prompt:"Name one common use of nested loops.",keywords:["pattern","table","matrix"],minKeywords:1,modelAnswer:"Nested loops are commonly used for patterns, tables or multidimensional data."}]},
-      {title:"switch-case",lesson:`The switch-case statement selects one block from several alternatives based on an expression.
-
-Basic form:
-switch (choice) {
-    case 1:
-        printf("Add");
-        break;
-    case 2:
-        printf("Exit");
-        break;
-    default:
-        printf("Invalid choice");
-}
-
-break normally prevents execution from continuing into the next case. default handles values for which no case matches.`,questions:[
+      {title:"switch-case",lesson:"DEFINITION:\nThe switch-case statement selects a branch by matching the value of an expression against case labels. It is useful for menus or a fixed set of choices.\n\nBASIC FORM:\nswitch (choice) {\n    case 1:\n        printf(\"Add\");\n        break;\n    case 2:\n        printf(\"Subtract\");\n        break;\n    default:\n        printf(\"Invalid choice\");\n}\n\nHOW IT WORKS:\n1. Evaluate choice.\n2. Jump to the matching case label.\n3. Run that case's statements.\n4. break exits the switch.\n5. If no case matches, default runs when it is provided.\n\nIMPORTANT RULES:\n• Case labels must be constant values of a compatible type.\n• The default section is optional but helpful for unexpected choices.\n• Without break, execution may fall through into later cases.\n\nCOMMON MISTAKE:\nDo not confuse switch with a general range comparison. For ranges such as marks >= 40, an if-else structure is usually more suitable.",questions:[
         {type:"mcq",prompt:"Which keyword selects an alternative in switch?",options:["case","choose","option","select"],answer:0},
         {type:"mcq",prompt:"What is the purpose of default?",options:["Runs when no case matches","Always runs first","Exits every loop","Declares a variable"],answer:0},
         {type:"short",prompt:"Why is break commonly used inside switch cases?",keywords:["stop","next","case"],minKeywords:2,modelAnswer:"break stops execution from falling through to the next case."}]},
-      {title:"break Statement",lesson:`The break statement immediately terminates the nearest enclosing loop or switch.
-
-Example:
-for (int i = 1; i <= 10; i++) {
-    if (i == 5) break;
-    printf("%d ", i);
-}
-
-When i becomes 5, the loop stops and control moves after the loop.`,questions:[
+      {title:"break Statement",lesson:"DEFINITION:\nThe break statement immediately exits the nearest enclosing loop or switch statement. Execution continues at the first statement after that loop or switch.\n\nC EXAMPLE:\nfor (int i = 1; i <= 5; i++) {\n    if (i == 4) {\n        break;\n    }\n    printf(\"%d \", i);\n}\n\nOUTPUT:\n1 2 3\n\nDRY RUN:\nWhen i is 1, 2 and 3, the condition i == 4 is false, so each value is printed. When i becomes 4, break runs before printf, and the loop ends.\n\nWHERE IT WORKS:\nbreak can be used inside loops and switch statements. It exits only the nearest enclosing loop or switch, not every nested loop.\n\nCOMMON MISTAKE:\nbreak is different from continue. break ends the loop; continue skips only the remaining statements in the current iteration.",questions:[
         {type:"mcq",prompt:"What does break do inside a loop?",options:["Skips one iteration","Terminates the nearest loop","Restarts the loop","Pauses the program"],answer:1},
         {type:"mcq",prompt:"Where does control go after break exits a loop?",options:["To the next statement after the loop","To the loop condition forever","To the first line","To another case"],answer:0},
         {type:"short",prompt:"What is the main purpose of break?",keywords:["terminate","loop","exit"],minKeywords:2,modelAnswer:"break terminates the nearest enclosing loop or switch."}]},
-      {title:"continue Statement",lesson:`The continue statement skips the remaining statements in the current loop iteration and proceeds to the next iteration.
-
-Example:
-for (int i = 1; i <= 5; i++) {
-    if (i == 3) continue;
-    printf("%d ", i);
-}
-
-The value 3 is skipped, but the loop continues.`,questions:[
+      {title:"continue Statement",lesson:"DEFINITION:\nThe continue statement skips the remaining statements in the current loop iteration and moves to the next iteration. It does not end the loop.\n\nC EXAMPLE:\nfor (int i = 1; i <= 5; i++) {\n    if (i == 3) {\n        continue;\n    }\n    printf(\"%d \", i);\n}\n\nOUTPUT:\n1 2 4 5\n\nDRY RUN:\nWhen i is 1 and 2, the value is printed. When i becomes 3, continue skips printf. The for loop still performs its update, i becomes 4, and printing resumes.\n\nBREAK VS CONTINUE:\n• break: exits the nearest enclosing loop or switch.\n• continue: skips the rest of the current loop iteration and continues with the next one.\n\nCOMMON MISTAKE:\nIn a while loop, make sure the loop variable still updates when continue is used. If the update is accidentally skipped, the loop may never reach its stopping condition.",questions:[
         {type:"mcq",prompt:"What does continue do inside a loop?",options:["Terminates the loop","Skips the current iteration","Ends the program","Repeats the same iteration"],answer:1},
         {type:"mcq",prompt:"After continue, what normally happens?",options:["The next iteration begins","The program exits","The loop becomes a switch","The previous iteration repeats"],answer:0},
         {type:"short",prompt:"Differentiate break and continue.",keywords:["break","terminate","continue","skip"],minKeywords:3,modelAnswer:"break terminates the loop, while continue skips the current iteration and proceeds with the next one."}]}
@@ -7711,7 +7607,7 @@ function StudyModule({ subject, unit, onExit }) {
     <div className="module-progress-bar"><i style={{ width: `${((topicIndex + 1) / module.topics.length) * 100}%` }}/></div>
 
     <article className="module-lesson-card">
-      <span className="section-kicker">LEARN</span>
+      <span className="section-kicker">THEORY EXPLANATION · START HERE</span>
       <div className="module-lesson-text">
         {currentTopic.lesson.split('\n').map((line, index) => line.trim() ? <p key={index}>{line}</p> : <div key={index} className="module-space" />)}
       </div>
