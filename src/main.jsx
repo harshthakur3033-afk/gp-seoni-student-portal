@@ -1290,7 +1290,7 @@ Global variable:
 A variable created outside functions is in the global scope of the module and can be accessed from functions subject to Python's name-resolution rules.
 
 Example:
-college = "GP Seoni"
+college = "CSE Diploma Learning"
 
 def show_college():
     print(college)
@@ -6986,7 +6986,7 @@ function App() {
   return (
     <div className="app-shell">
       <aside className={`sidebar ${menuOpen ? 'open' : ''}`}>
-        <div className="brand"><div className="brand-mark"><GraduationCap size={23}/></div><div><strong>GP Seoni</strong><span>Student Portal</span></div><button className="mobile-close" onClick={() => setMenuOpen(false)} aria-label="Close menu"><X size={20}/></button></div>
+        <div className="brand"><div className="brand-mark"><GraduationCap size={23}/></div><div><strong>CSE Diploma</strong><span>Learning Platform</span></div><button className="mobile-close" onClick={() => setMenuOpen(false)} aria-label="Close menu"><X size={20}/></button></div>
         <div className="college-chip">Government Polytechnic College<br/>Seoni, Madhya Pradesh</div>
         <nav>{nav.map((item) => <button key={item} className={active === item ? 'nav-item active' : 'nav-item'} onClick={() => go(item)}><span>{item === 'Dashboard' ? <LayoutDashboard size={18}/> : item === 'Subjects' ? <BookOpen size={18}/> : item === 'Modules' ? <BookOpen size={18}/> : item === 'Notes' ? <FileText size={18}/> : item === 'Question Papers' ? <FileText size={18}/> : item === 'MCQ Practice' ? <CircleHelp size={18}/> : item === 'Study Planner' ? <CalendarDays size={18}/> : <BrainCircuit size={18}/>}</span>{item}</button>)}</nav>
         <div className="sidebar-bottom"><div className="security-note"><ShieldCheck size={17}/><span>Learning resources<br/><b>Student-focused</b></span></div></div>
@@ -7005,7 +7005,7 @@ function App() {
           {active === 'MCQ Practice' && <MCQPractice mcq={mcqs[mcqIndex]} index={mcqIndex} selected={selected} score={score} answer={answerMcq} next={nextMcq} />}
           {active === 'Study Planner' && <Planner tasks={tasks} newTask={newTask} setNewTask={setNewTask} addTask={addTask} toggleTask={toggleTask} />}
           {active === 'AI Study Assistant' && <AIAssistant question={aiQuestion} setQuestion={setAiQuestion} answer={aiAnswer} loading={aiLoading} ask={askAI} />}
-          <footer><span>GP Seoni Student Portal</span><span>Learning platform • Built for students</span></footer>
+          <footer><span>CSE Diploma Learning</span><span>Learning platform • Built for students</span></footer>
         </section>
       </main>
     </div>
