@@ -8138,21 +8138,39 @@ function Notes({ search, subjectFilter, medium }) {
           <button className="text-button" onClick={() => setSelectedNote(null)} aria-label="Close resource"><X size={20}/></button>
         </div>
         <div className="note-content" aria-label="Study material">
-          {selectedNote.content.split('\n').map((line, i) => {
-            const text = line.trim();
-            const isHeading =
-              /^\d+\.\s+/.test(text) ||
-              /^(IMPORTANT EXAM QUESTIONS|PRACTICAL PRACTICE|QUICK EXAM REVISION|SYLLABUS ALIGNMENT|PRACTICAL PRACTICE|FUNCTION VS RECURSIVE FUNCTION|त्वरित परीक्षा पुनरावृत्ति \(QUICK EXAM REVISION\)|महत्वपूर्ण परीक्षा प्रश्न \(IMPORTANT EXAM QUESTIONS\)|महत्वपूर्ण प्रश्न|प्रैक्टिकल अभ्यास \(PRACTICAL PRACTICE\)|पाठ्यक्रम अनुरूपता \(SYLLABUS ALIGNMENT\)|विस्तृत विषय-वस्तु \(DETAILED TOPIC COVERAGE\))$/.test(text);
-            const isLabel = /^(Example:|Syntax:|General form:|Declaration:|Initialization:|Access example:)$/.test(text);
+          {(() => {
+            let inImportantQuestions = false;
+            return selectedNote.content.split('\n').map((line, i) => {
+              const text = line.trim();
+              const isImportantQuestionsHeading =
+                /^(?:IMPORTANT EXAM QUESTIONS|महत्वपूर्ण परीक्षा प्रश्न(?:\s*\(IMPORTANT EXAM QUESTIONS\))?|महत्वपूर्ण प्रश्न(?:\s*\(IMPORTANT EXAM QUESTIONS\))?)\s*:?\s*$/i.test(text);
+              const isEndOfImportantQuestions =
+                /^(?:\d+\.\s*)?(?:PRACTICAL.*PRACTICE|QUICK EXAM REVISION|SYLLABUS ALIGNMENT|त्वरित परीक्षा पुनरावृत्ति.*|प्रैक्टिकल अभ्यास.*|प्रैक्टिस|अभ्यास|पाठ्यक्रम अनुरूपता.*|विस्तृत विषय-वस्तु.*|DETAILED TOPIC COVERAGE)\s*:?\s*$/i.test(text);
 
-            if (!text) return <div key={i} className="note-blank" />;
+              if (isImportantQuestionsHeading) inImportantQuestions = true;
+              const isImportantQuestion = inImportantQuestions && /^\d+\.\s+/.test(text);
+              if (isEndOfImportantQuestions && !isImportantQuestionsHeading) inImportantQuestions = false;
 
-            return (
-              <div key={i} className={isHeading ? 'note-heading' : isLabel ? 'note-label' : 'note-line'}>
-                {line}
-              </div>
-            );
-          })}
+              const isHeading =
+                /^\d+\.\s+/.test(text) ||
+                /^(IMPORTANT EXAM QUESTIONS|PRACTICAL PRACTICE|QUICK EXAM REVISION|SYLLABUS ALIGNMENT|PRACTICAL PRACTICE|FUNCTION VS RECURSIVE FUNCTION|त्वरित परीक्षा पुनरावृत्ति \(QUICK EXAM REVISION\)|महत्वपूर्ण परीक्षा प्रश्न \(IMPORTANT EXAM QUESTIONS\)|महत्वपूर्ण प्रश्न|प्रैक्टिकल अभ्यास \(PRACTICAL PRACTICE\)|पाठ्यक्रम अनुरूपता \(SYLLABUS ALIGNMENT\)|विस्तृत विषय-वस्तु \(DETAILED TOPIC COVERAGE\))$/.test(text);
+              const isLabel = /^(Example:|Syntax:|General form:|Declaration:|Initialization:|Access example:)$/.test(text);
+
+              if (!text) return <div key={i} className="note-blank" />;
+
+              const className = isImportantQuestionsHeading
+                ? 'note-important-heading'
+                : isImportantQuestion
+                  ? 'note-important-question'
+                  : isHeading
+                    ? 'note-heading'
+                    : isLabel
+                      ? 'note-label'
+                      : 'note-line';
+
+              return <div key={i} className={className}>{line}</div>;
+            });
+          })()}
         </div>
         <button className="primary full" style={{marginTop:'16px'}} onClick={() => setSelectedNote(null)}>Close Resource</button>
       </section>
