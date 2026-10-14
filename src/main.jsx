@@ -7087,6 +7087,12 @@ const hindiModuleQuestionOptions = {
     "Program समाप्त होता है",
     "Loop switch बन जाता है",
     "पिछली iteration दोहरती है"
+  ],
+  "Where does control go after break exits a loop?": [
+    "Loop के बाद आने वाले अगले statement पर",
+    "Loop condition पर हमेशा",
+    "Program की पहली line पर",
+    "दूसरे case पर"
   ]
 };
 const hindiModuleShortAnswers = {
@@ -7383,6 +7389,28 @@ const hindiModuleShortAnswers = {
     ],
     "minKeywords": 2,
     "modelAnswer": "break loop समाप्त करता है; continue वर्तमान iteration छोड़कर अगली iteration की ओर बढ़ता है।"
+  },
+  "Why is break commonly used inside switch cases?": {
+    "keywords": [
+      "अगला",
+      "case",
+      "रोक",
+      "बाहर",
+      "fall through"
+    ],
+    "minKeywords": 1,
+    "modelAnswer": "switch में break अगले case में अनचाहे fall-through को रोकता है।"
+  },
+  "What is the main purpose of break?": {
+    "keywords": [
+      "समाप्त",
+      "loop",
+      "बाहर",
+      "terminate",
+      "exit"
+    ],
+    "minKeywords": 1,
+    "modelAnswer": "break निकटतम loop या switch से बाहर निकलता है।"
   }
 };
 
