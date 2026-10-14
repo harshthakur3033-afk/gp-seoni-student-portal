@@ -6581,7 +6581,7 @@ const hindiMcqs = [
     "q": "OSI मॉडल की कौन-सी परत routing के लिए जिम्मेदार है?",
     "options": [
       "Transport",
-      "Network",
+      "नेटवर्क (Network)",
       "Session",
       "Presentation"
     ],
@@ -6593,7 +6593,7 @@ const hindiMcqs = [
     "options": [
       "Queue",
       "Array",
-      "Stack",
+      "स्टैक (Stack)",
       "Linked List"
     ],
     "topic": "डेटा स्ट्रक्चर",
@@ -6603,7 +6603,7 @@ const hindiMcqs = [
     "q": "Information security में CIA का पूरा नाम क्या है?",
     "options": [
       "Control, Internet, Access",
-      "Confidentiality, Integrity, Availability",
+      "गोपनीयता, अखंडता और उपलब्धता (Confidentiality, Integrity, Availability)",
       "Cyber, Identity, Authentication",
       "Code, Integrity, Access"
     ],
@@ -6613,10 +6613,10 @@ const hindiMcqs = [
   {
     "q": "डेटा प्राप्त करने के लिए कौन-सा SQL command उपयोग होता है?",
     "options": [
-      "SELECT",
-      "INSERT",
-      "DELETE",
-      "UPDATE"
+      "डेटा प्राप्त करने वाला SELECT command",
+      "डेटा जोड़ने वाला INSERT command",
+      "डेटा हटाने वाला DELETE command",
+      "डेटा बदलने वाला UPDATE command"
     ],
     "topic": "डेटाबेस मैनेजमेंट",
     "answer": 0
@@ -6626,15 +6626,13 @@ const hindiMcqs = [
     "options": [
       "Compiler",
       "Browser",
-      "Operating System",
+      "ऑपरेटिंग सिस्टम (Operating System)",
       "Database"
     ],
     "topic": "ऑपरेटिंग सिस्टम",
     "answer": 2
   }
 ];
-
-
 
 const hindiModuleTitles = {
   "Computer Programming|1": "इकाई 1 — कम्प्यूटेशनल थिंकिंग, वेरिएबल और डेटा निरूपण",
@@ -6737,6 +6735,18 @@ const hindiModuleTopicContent = {
   "continue Statement": {
     "title": "continue स्टेटमेंट",
     "lesson": "continue वर्तमान iteration का बचा हुआ भाग छोड़ता है और अगली iteration की ओर बढ़ता है। break loop समाप्त करता है, जबकि continue loop को जारी रखता है।"
+  },
+  "Unit 1 — Introduction to Computational Thinking & Variables and Data Representation": {
+    "title": "इकाई 1 — कम्प्यूटेशनल थिंकिंग और डेटा निरूपण",
+    "lesson": "इस इकाई में समस्या को तार्किक चरणों में बदलना, सही solution की योजना बनाना और डेटा को computer memory में दर्शाने की मूल बातें सीखेंगे।\n\nमुख्य विषय: समस्या समाधान, computational thinking के घटक, algorithm, flowchart, variables, constants, C data types और memory representation।\n\nउदाहरण: किसी छात्र के marks का total निकालने के लिए inputs लेना, जोड़ करना और परिणाम दिखाना आवश्यक है। इस सरल उदाहरण से algorithm और program की बुनियाद समझी जा सकती है।"
+  },
+  "Unit 2 — Operators and Input-Output": {
+    "title": "इकाई 2 — ऑपरेटर और इनपुट-आउटपुट",
+    "lesson": "इस इकाई में C language के operators और data input/output के तरीके सीखेंगे।\n\nमुख्य विषय: arithmetic, relational, logical और bitwise operators; precedence और associativity; printf(), scanf(), format specifiers तथा basic file I/O।\n\nइन topics से calculations करना, conditions जाँचना, user input लेना और results को सही format में display करना समझ आता है।"
+  },
+  "Unit 3 — Conditional and Looping Constructs": {
+    "title": "इकाई 3 — Conditional और Looping Constructs",
+    "lesson": "इस इकाई में program को conditions के आधार पर निर्णय लेना और statements को बार-बार execute करना सिखाया जाता है।\n\nमुख्य विषय: if, if-else, nested if, conditional operator ?:, for, while, do-while, nested loops, switch-case, break और continue।\n\nइन concepts की मदद से marks check करना, menu-driven program बनाना, counters चलाना और repetitive tasks automate करना संभव होता है।"
   }
 };
 const hindiModuleQuestionPrompts = {
