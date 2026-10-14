@@ -6365,6 +6365,269 @@ This note follows Unit 5 of the uploaded Semester III CSE Algorithms syllabus: S
     content:'Unit VI — Group Discussion\n\n• Need and importance of group discussion in professional work\n• Ideal group discussion\n• Skills needed for effective participation\n• Practice of group discussion skills' },
 ];
 
+
+
+const hindiNotes = {
+  "301|Unit 1": {
+    "title": "कम्प्यूटेशनल थिंकिंग, वेरिएबल और डेटा निरूपण",
+    "desc": "समस्या समाधान, एल्गोरिदम, फ्लोचार्ट, वेरिएबल, कॉन्स्टेंट, डेटा टाइप और मेमोरी निरूपण के नोट्स।",
+    "content": "इकाई 1 — समस्या समाधान, कम्प्यूटेशनल थिंकिंग और डेटा निरूपण\n\n1. समस्या समाधान\nसमस्या समाधान का अर्थ है समस्या को समझना, उसका तार्किक हल बनाना, उसे प्रोग्राम में लागू करना और परिणाम की जाँच करना।\nमुख्य चरण:\n1) समस्या को स्पष्ट रूप से समझें।\n2) इनपुट और अपेक्षित आउटपुट पहचानें।\n3) समस्या को छोटे भागों में बाँटें।\n4) एल्गोरिदम या फ्लोचार्ट बनाएँ।\n5) प्रोग्राम लिखें और चलाएँ।\n6) अलग-अलग इनपुट से परीक्षण करें तथा त्रुटियाँ सुधारें।\n\n2. कम्प्यूटेशनल थिंकिंग\nयह समस्या को व्यवस्थित तरीके से हल करने की सोच है।\n• Decomposition (विभाजन): बड़ी समस्या को छोटे भागों में बाँटना।\n• Pattern Recognition (पैटर्न पहचान): समानताएँ और दोहराव ढूँढना।\n• Abstraction (अमूर्तन): जरूरी जानकारी पर ध्यान देना।\n• Algorithmic Thinking: हल के स्पष्ट क्रमबद्ध चरण बनाना।\n\n3. एल्गोरिदम और फ्लोचार्ट\nएल्गोरिदम किसी समस्या को हल करने के सीमित और क्रमबद्ध चरण हैं। फ्लोचार्ट मानक प्रतीकों से एल्गोरिदम का चित्रात्मक रूप है।\nमुख्य प्रतीक: Oval — Start/End; Rectangle — Process; Parallelogram — Input/Output; Diamond — Decision; Arrow — Flow।\n\nदो संख्याएँ जोड़ने का एल्गोरिदम:\n1. Start\n2. A और B पढ़ें\n3. SUM = A + B करें\n4. SUM दिखाएँ\n5. Stop\n\n4. वेरिएबल और कॉन्स्टेंट\nVariable ऐसा नामित मेमोरी स्थान है जिसका मान बदल सकता है। Constant ऐसा मान है जिसे प्रोग्राम में बदलने के लिए नहीं रखा जाता।\nउदाहरण: int marks = 75; और const int DAYS = 7;\n\n5. C के डेटा टाइप\nint पूर्णांक, char अक्षर, float दशमलव मान और double अधिक परिशुद्धता वाला दशमलव मान रखता है। वास्तविक आकार कंपाइलर और सिस्टम पर निर्भर हो सकता है।\n\n6. मेमोरी निरूपण\nकंप्यूटर डेटा को बिट (0 या 1) के रूप में रखता है। 8 बिट मिलकर सामान्यतः 1 byte बनाते हैं। वेरिएबल का डेटा टाइप उसके मान को समझने और मेमोरी उपयोग को निर्धारित करने में मदद करता है।"
+  },
+  "301|Unit 2": {
+    "title": "ऑपरेटर और इनपुट-आउटपुट",
+    "desc": "Arithmetic, relational, logical और bitwise operators, precedence, associativity, printf, scanf तथा file I/O के हिंदी नोट्स।",
+    "content": "इकाई 2 — ऑपरेटर और इनपुट-आउटपुट\n\n1. ऑपरेटर\nऑपरेटर वे चिन्ह हैं जो डेटा पर गणना, तुलना या तर्क संबंधी कार्य करते हैं।\n\n2. Arithmetic Operators\n+ जोड़, - घटाव, * गुणा, / भाग और % शेषफल निकालता है। यदि दोनों operands int हों, तो 10 / 3 का परिणाम 3 होगा।\n\n3. Relational Operators\n<, >, <=, >=, == और != दो मानों की तुलना करते हैं। तुलना का परिणाम सत्य (true) या असत्य (false) होता है। = मान assign करता है, जबकि == बराबरी जाँचता है।\n\n4. Logical Operators\n&& (AND) तभी true होता है जब दोनों शर्तें true हों। || (OR) कम-से-कम एक शर्त true होने पर true होता है। ! (NOT) शर्त का उल्टा परिणाम देता है।\n\n5. Bitwise Operators\n&, |, ^, ~ और shift operators पूर्णांकों के bits पर काम करते हैं। उदाहरण: 5 = 0101 और 3 = 0011; 5 & 3 = 0001 अर्थात 1।\n\n6. Precedence और Associativity\nPrecedence तय करता है कि कौन-सा operator पहले लागू होगा। Associativity समान precedence वाले operators के मूल्यांकन की दिशा बताती है। Parentheses () से क्रम स्पष्ट किया जा सकता है। उदाहरण: 2 + 3 * 4 = 14।\n\n7. Input और Output\nprintf() formatted output दिखाता है और scanf() formatted input पढ़ता है। इन functions के लिए सामान्यतः #include <stdio.h> उपयोग होता है। %d int, %f floating-point और %c character के लिए सामान्य format specifiers हैं। \\n अगली पंक्ति शुरू करता है।\n\n8. Formatted Output\nFormat specifier बताता है कि किसी value को किस प्रकार दिखाना है। उदाहरण: printf(\"Marks = %d\", marks);\n\n9. Basic File I/O\nFILE *fp; से file pointer बनाया जाता है। fopen() फ़ाइल खोलता है, fprintf()/fscanf() फ़ाइल में लिखने/पढ़ने में मदद करते हैं और fclose() फ़ाइल बंद करता है। सामान्य क्रम: खोलना → पढ़ना/लिखना → बंद करना।"
+  },
+  "301|Unit 3": {
+    "title": "कंडीशनल और लूपिंग कंस्ट्रक्ट्स",
+    "desc": "if, if-else, nested if, conditional operator, for/while/do-while, switch, break और continue के हिंदी नोट्स।",
+    "content": "इकाई 3 — Conditional और Looping Constructs\n\n1. if Statement\nif का उपयोग शर्त जाँचने के लिए होता है। शर्त true होने पर ही उसके अंदर का block चलता है।\nउदाहरण: if (marks >= 40) { printf(\"Pass\"); }\n\n2. if-else\nशर्त true होने पर if वाला block और false होने पर else वाला block चलता है। यह दो विकल्पों में निर्णय लेने में उपयोगी है।\n\n3. Nested if\nएक if के अंदर दूसरा if होना nested if कहलाता है। जब निर्णय कई शर्तों पर निर्भर हो, तब इसका उपयोग किया जा सकता है।\n\n4. Conditional Operator (?:)\nयह संक्षिप्त रूप में किसी शर्त के आधार पर दो expressions में से एक चुनता है।\nउदाहरण: max = (a > b) ? a : b;\n\n5. for Loop\nfor loop में initialization, condition और update सामान्यतः एक ही header में होते हैं। जब दोहराव की संख्या ज्ञात हो, तो यह उपयोगी है।\n\n6. while Loop\nwhile पहले condition जाँचता है। शर्त false हो तो body एक बार भी नहीं चल सकती।\n\n7. do-while Loop\ndo-while में body पहले चलती है और condition बाद में जाँची जाती है, इसलिए body कम-से-कम एक बार चलती है।\n\n8. Nested Loops\nएक loop के अंदर दूसरा loop nested loop कहलाता है। इसका उपयोग patterns, tables और two-dimensional arrays के लिए किया जाता है।\n\n9. switch-case\nswitch किसी expression के मान के अनुसार case चुनता है। default तब चलता है जब कोई case match नहीं करता। break case से बाहर निकलने में मदद करता है।\n\n10. break और continue\nbreak loop या switch से बाहर निकलता है। continue वर्तमान iteration के शेष भाग को छोड़कर अगले iteration की ओर बढ़ता है।"
+  },
+  "301|Unit 4": {
+    "title": "ऐरे और पॉइंटर",
+    "desc": "एक-विमीय और बहु-विमीय arrays, strings, pointers तथा dynamic memory allocation के नोट्स।",
+    "content": "इकाई 4 — Arrays और Pointers\n\n1. Array\nArray समान डेटा टाइप के कई मानों को एक नाम के अंतर्गत क्रम से रखता है। C में index 0 से शुरू होता है।\nउदाहरण: int marks[5] = {70, 75, 80, 85, 90};\n\n2. एक-विमीय और बहु-विमीय Array\nएक-विमीय array सूची जैसा होता है। दो-विमीय array पंक्तियों और स्तंभों के रूप में डेटा रख सकता है, जैसे matrix: int a[3][4];\n\n3. Strings\nC में string char array होता है और उसके अंत में null character '\\0' आता है। String functions के लिए सामान्यतः string.h उपयोग होता है।\n\n4. Pointer\nPointer ऐसा variable है जो किसी अन्य variable का memory address रखता है। & address प्राप्त करता है और * pointer द्वारा दर्शाए गए मान तक पहुँचने के लिए उपयोग होता है।\nउदाहरण: int x=10; int *p=&x;\n\n5. Dynamic Memory Allocation\nmalloc(), calloc(), realloc() और free() का उपयोग runtime पर memory लेने, बदलने और मुक्त करने के लिए होता है। सफल allocation के बाद pointer जाँचना चाहिए और उपयोग के बाद memory free करनी चाहिए।"
+  },
+  "301|Unit 5": {
+    "title": "फंक्शन और रिकर्शन",
+    "desc": "Function declaration, scope, parameter passing, recursion और recursive functions के नोट्स।",
+    "content": "इकाई 5 — Functions और Recursion\n\n1. Function\nFunction ऐसा नामित code block है जो एक विशेष कार्य करता है। इससे code दोबारा उपयोग करना और program को छोटे भागों में बाँटना आसान होता है।\nघटक: declaration/prototype, definition और function call।\n\n2. Parameters और Return Value\nActual arguments function call में दिए जाते हैं। Formal parameters function definition में लिखे जाते हैं। return statement result वापस कर सकता है। C में सामान्यतः arguments value के रूप में pass होते हैं; address pass करके मूल डेटा बदला जा सकता है।\n\n3. Scope और Lifetime\nScope बताता है कि variable कहाँ उपलब्ध है। Lifetime बताता है कि variable का अस्तित्व कब तक रहता है। Local variable सामान्यतः function/block के भीतर उपयोग होता है।\n\n4. Recursion\nजब कोई function स्वयं को सीधे या अप्रत्यक्ष रूप से call करता है, इसे recursion कहते हैं। Recursive function में base case और progress की ओर ले जाने वाला recursive case होना चाहिए, वरना अनंत calls हो सकती हैं।\nउदाहरण: factorial(n) = n * factorial(n-1), जहाँ factorial(0)=1।"
+  },
+  "302|Unit 1": {
+    "title": "परिचय, वेरिएबल और डेटा टाइप",
+    "desc": "Python की विशेषताएँ, syntax, errors, variables, data types, strings और operators के नोट्स।",
+    "content": "इकाई 1 — Python का परिचय, Variables और Data Types\n\nPython एक उच्च-स्तरीय, interpreted और general-purpose programming language है। इसका syntax पढ़ने में आसान है और इसका उपयोग automation, scripting, data analysis तथा web development में होता है।\n\n1. विशेषताएँ\nReadable syntax, बड़े standard library, कई programming styles का समर्थन और अनेक platforms पर उपलब्धता।\n\n2. Variables\nPython में variable नाम किसी object/value को संदर्भित करता है। सामान्यतः type अलग से लिखना आवश्यक नहीं होता।\nउदाहरण: name = \"Aman\"; marks = 85\n\n3. सामान्य Data Types\nint पूर्णांक, float दशमलव, str text, bool True/False, list, tuple, dict और set संग्रहों के लिए उपयोग होते हैं।\n\n4. Operators\n+ - * / % जैसी arithmetic operations, comparison operators और and/or/not जैसे logical operators उपलब्ध हैं।\n\n5. Errors\nSyntax error भाषा के नियम टूटने पर, runtime error चलने के दौरान और logical error गलत परिणाम देने पर होता है। छोटे उदाहरणों और परीक्षण से त्रुटियाँ पहचानी जा सकती हैं।"
+  },
+  "302|Unit 2": {
+    "title": "उन्नत डेटा टाइप",
+    "desc": "Python lists, tuples, dictionaries, sets और arrays बनाने, बदलने और उपयोग करने के नोट्स।",
+    "content": "इकाई 2 — Advanced Data Types\n\n1. List\nList क्रमबद्ध और mutable संग्रह है। इसे [] से बनाया जाता है। Index से item पढ़ सकते हैं, append() से जोड़ और remove() से हटा सकते हैं।\n\n2. Tuple\nTuple क्रमबद्ध लेकिन immutable संग्रह है। इसे सामान्यतः () से लिखा जाता है। बदलने योग्य डेटा की आवश्यकता न होने पर उपयोगी है।\n\n3. Dictionary\nDictionary key-value pairs रखती है। उदाहरण: student = {\"name\": \"Aman\", \"marks\": 80}; value को key द्वारा प्राप्त किया जाता है।\n\n4. Set\nSet अद्वितीय items रखता है और duplicate values को एक ही बार रखता है। Union, intersection और difference जैसे set operations किए जा सकते हैं।\n\n5. Iteration और Slicing\nfor loop से collection के items पर काम किया जा सकता है। Slicing से किसी sequence का भाग प्राप्त होता है, जैसे nums[1:4]।"
+  },
+  "302|Unit 3": {
+    "title": "कंट्रोल स्ट्रक्चर्स",
+    "desc": "if/else/elif, for, range, while, break, continue और loop else के नोट्स।",
+    "content": "इकाई 3 — Control Structures\n\nControl structures program के execution का क्रम नियंत्रित करते हैं।\n\n1. if, elif और else\nif पहली शर्त जाँचता है। elif अतिरिक्त शर्त जाँचता है और else तब चलता है जब पहले की कोई शर्त true नहीं होती। Python में block की सीमा indentation से तय होती है।\n\n2. for और range()\nfor loop किसी sequence या iterable पर चलता है। range(start, stop, step) संख्याओं की श्रृंखला देता है; stop शामिल नहीं होता।\n\n3. while\nwhile शर्त true रहने तक दोहराता है। loop के अंदर condition बदलना जरूरी है, वरना अनचाहा infinite loop हो सकता है।\n\n4. break और continue\nbreak loop समाप्त करता है। continue current iteration का शेष भाग छोड़ता है।\n\n5. Loop else\nPython में loop से break के बिना सामान्य रूप से बाहर आने पर loop का else block चल सकता है।"
+  },
+  "302|Unit 4": {
+    "title": "फंक्शन, मॉड्यूल और पैकेज",
+    "desc": "Functions, parameters, return values, scope, recursion, modules, namespaces, packages और PIP के नोट्स।",
+    "content": "इकाई 4 — Functions, Modules और Packages\n\nFunction किसी काम को एक नामित और पुनः उपयोग योग्य भाग में रखता है। इसे def keyword से बनाया जाता है।\nउदाहरण:\ndef add(a, b):\n    return a + b\n\nParameters positional, keyword, default या variable-length हो सकते हैं। return function का परिणाम देता है। Local variables अपने function/block में उपलब्ध रहते हैं।\n\nModule Python file है जिसमें functions, classes या variables रखे जा सकते हैं। import से module का उपयोग किया जाता है। Package संबंधित modules को व्यवस्थित करता है। pip Python packages install और manage करने का tool है।\n\nRecursion में function स्वयं को call करता है; base case आवश्यक है।"
+  },
+  "302|Unit 5": {
+    "title": "फाइल I/O, टेक्स्ट प्रोसेसिंग और रेगुलर एक्सप्रेशन",
+    "desc": "File operations, modes, exception handling, text processing और Python re module के नोट्स।",
+    "content": "इकाई 5 — File I/O और Text Processing\n\n1. File Operations\nopen() फ़ाइल खोलता है। सामान्य modes: 'r' पढ़ने, 'w' लिखने (पुरानी सामग्री हट सकती है), 'a' अंत में जोड़ने और 'b' binary mode के लिए है।\nwith open(\"data.txt\", \"r\") as file:\n    text = file.read()\nwith block फ़ाइल को उचित समय पर बंद करने में मदद करता है।\n\n2. पढ़ना और लिखना\nread() पूरी सामग्री या निर्दिष्ट भाग पढ़ सकता है, readline() एक पंक्ति पढ़ता है, और write() text लिखता है।\n\n3. Exception Handling\ntry-except संभावित runtime errors सँभालने में मदद करते हैं। finally सफाई के कार्यों के लिए उपयोगी है।\n\n4. Regular Expressions\nre module pattern खोजने और text validate करने में मदद करता है। उदाहरण: re.search(pattern, text) match खोजता है। Regex का उपयोग email-जैसे pattern, digits और text extraction में किया जा सकता है।"
+  },
+  "303|Unit 1": {
+    "title": "डेटा स्ट्रक्चर की मूल बातें",
+    "desc": "Data structures का वर्गीकरण, pointers, arrays, structures और मुख्य operations के नोट्स।",
+    "content": "इकाई 1 — Data Structure की मूल बातें\n\nData structure डेटा को इस प्रकार व्यवस्थित रखता है कि उसे प्रभावी ढंग से access और modify किया जा सके।\n\n1. वर्गीकरण\nLinear structures में elements क्रम में होते हैं, जैसे array, linked list, stack और queue। Non-linear structures में tree और graph आते हैं।\n\n2. Array और Memory Layout\nArray सामान्यतः लगातार memory locations में रखा जाता है। 2-D array का address निकालने में row-major या column-major layout की अवधारणा उपयोग होती है।\n\n3. Pointers और Structures\nPointer memory address रखता है। Structure अलग-अलग data types के fields को एक record में समूहित कर सकता है।\n\n4. मुख्य Operations\nTraversal सभी elements पर जाना, searching item ढूँढना, insertion जोड़ना और deletion हटाना है। सही structure का चुनाव operation और data की जरूरत पर निर्भर करता है।"
+  },
+  "303|Unit 2": {
+    "title": "सर्चिंग और सॉर्टिंग तकनीक",
+    "desc": "Linear/binary search तथा insertion, selection, bubble, quick और heap sort के नोट्स।",
+    "content": "इकाई 2 — Searching और Sorting\n\nSearching किसी collection में आवश्यक item ढूँढना है। Sorting items को बढ़ते या घटते क्रम में व्यवस्थित करना है।\n\n1. Linear Search\nपहले item से क्रमशः तुलना करता है। इसकी worst-case time complexity O(n) है और sorted data आवश्यक नहीं है।\n\n2. Binary Search\nSorted array में middle item से तुलना कर search interval आधा करता है। Time complexity O(log n) है, लेकिन data sorted होना चाहिए।\n\n3. Sorting Methods\nBubble Sort पास-पास के elements बदलता है; Selection Sort हर pass में उपयुक्त minimum चुनता है; Insertion Sort sorted भाग में item जोड़ता है; Quick Sort partitioning का उपयोग करता है; Heap Sort heap structure का उपयोग करता है।\n\nAlgorithm चुनते समय time, memory, data size और stability को ध्यान में रखें।"
+  },
+  "303|Unit 3": {
+    "title": "लीनियर डेटा स्ट्रक्चर्स",
+    "desc": "Stacks, queues, infix-to-postfix, deque और circular queue के नोट्स।",
+    "content": "इकाई 3 — Linear Data Structures\n\n1. Stack\nStack LIFO (Last In, First Out) सिद्धांत पर काम करता है। push जोड़ता है, pop शीर्ष item हटाता है और peek/top शीर्ष item देखता है। उपयोग: function calls, undo और expression evaluation।\n\n2. Queue\nQueue FIFO (First In, First Out) सिद्धांत पर काम करता है। enqueue पीछे जोड़ता है और dequeue सामने से हटाता है। उपयोग: scheduling और request handling।\n\n3. Circular Queue\nअंतिम स्थान के बाद indexing फिर शुरुआत की ओर लौटती है, जिससे खाली स्थान का बेहतर उपयोग होता है।\n\n4. Deque\nDouble-ended queue में दोनों सिरों से insertion और deletion हो सकते हैं।\n\n5. Expressions\nInfix में operator operands के बीच होता है, जैसे A+B। Postfix में operator बाद में आता है, जैसे AB+। Stack का उपयोग conversion और evaluation में मदद करता है।"
+  },
+  "303|Unit 4": {
+    "title": "लिंक्ड लिस्ट",
+    "desc": "Singly, circular और doubly linked lists तथा traversal, insertion, deletion और searching के नोट्स।",
+    "content": "इकाई 4 — Linked List\n\nLinked list nodes का समूह है। प्रत्येक node में data और एक या अधिक links/pointers होते हैं।\n\n1. Singly Linked List\nहर node अगले node का address रखता है। अंतिम node का next सामान्यतः NULL होता है।\n\n2. Traversal और Searching\nHead से शुरू करके links का अनुसरण करते हुए nodes देखे जाते हैं। Item खोजने के लिए data की तुलना की जाती है।\n\n3. Insertion और Deletion\nकिसी node के पहले/बाद links अपडेट करके item जोड़ा या हटाया जा सकता है। हटाते समय बाकी list का link सही बनाए रखना आवश्यक है।\n\n4. Circular और Doubly Linked List\nCircular list में अंतिम node फिर शुरुआत से जुड़ सकता है। Doubly linked list में next और previous दोनों links होते हैं, जिससे दोनों दिशाओं में traversal संभव है।"
+  },
+  "303|Unit 5": {
+    "title": "नॉन-लीनियर डेटा स्ट्रक्चर",
+    "desc": "Trees, binary trees, traversals, graphs, BFS और DFS के नोट्स।",
+    "content": "इकाई 5 — Non-linear Data Structures\n\n1. Tree\nTree hierarchical structure है। Root शीर्ष node है; parent-child संबंध होते हैं; leaf node का कोई child नहीं होता। Binary tree में किसी node के अधिकतम दो children होते हैं।\n\n2. Tree Traversal\nPreorder: Root, Left, Right; Inorder: Left, Root, Right; Postorder: Left, Right, Root। Binary Search Tree में बाएँ subtree के values छोटे और दाएँ subtree के values बड़े रखे जाते हैं (परिभाषा के अनुसार duplicate नीति बदल सकती है)।\n\n3. Graph\nGraph vertices (nodes) और edges (connections) से बनता है। Directed graph में edge की दिशा होती है, जबकि undirected graph में नहीं।\n\n4. Representation और Traversal\nAdjacency matrix या adjacency list से graph रखा जा सकता है। BFS queue द्वारा स्तर-स्तर पर और DFS stack/recursion द्वारा गहराई में जाता है।"
+  },
+  "304|Unit 1": {
+    "title": "कंप्यूटर की मूल संरचना",
+    "desc": "Functional blocks, buses, number systems, registers, instruction cycle, RTL और microoperations के नोट्स।",
+    "content": "इकाई 1 — Basic Computer Structure\n\nकंप्यूटर के मुख्य भाग Input Unit, Memory, CPU और Output Unit हैं। CPU में ALU, Control Unit और registers प्रमुख भूमिका निभाते हैं।\n\n1. Bus\nBus वह साझा संचार मार्ग है जो components के बीच data, address या control signals पहुँचाता है। Data bus data, address bus स्थान और control bus signals से संबंधित होती है।\n\n2. Number Systems\nDecimal base 10, binary base 2, octal base 8 और hexadecimal base 16 का उपयोग करता है। Binary digits 0 और 1 होते हैं।\n\n3. Registers और Instruction Cycle\nRegisters CPU के भीतर तेज storage स्थान हैं। Instruction cycle सामान्यतः fetch, decode और execute चरणों में समझाया जाता है।\n\n4. RTL और Microoperations\nRegister Transfer Language registers के बीच data movement दर्शाती है। Microoperations register में data पर होने वाली छोटी operations हैं, जैसे transfer, arithmetic या logic operations।"
+  },
+  "304|Unit 2": {
+    "title": "इंस्ट्रक्शन सेट आर्किटेक्चर",
+    "desc": "Instruction formats, addressing modes, RISC/CISC, interrupts, pipeline और vector processing के नोट्स।",
+    "content": "इकाई 2 — Instruction Set Architecture\n\nInstruction Set Architecture (ISA) programmer-visible instructions, registers, data types और addressing के नियम निर्धारित करती है।\n\n1. Instruction Format\nInstruction में opcode (कौन-सा operation) और operand/address संबंधी fields हो सकते हैं।\n\n2. Addressing Modes\nImmediate में value instruction में, direct में address स्पष्ट, indirect में address किसी अन्य location से और register mode में operand register में हो सकता है।\n\n3. Machine और Assembly Code\nMachine code processor द्वारा निष्पादित binary instructions हैं। Assembly mnemonics के माध्यम से उन्हें पढ़ना आसान बनाती है।\n\n4. RISC और CISC\nRISC सामान्यतः सरल, सीमित instruction formats पर जोर देता है; CISC अधिक जटिल instructions का समर्थन कर सकता है। Pipeline execution के चरणों को overlap कर throughput बढ़ाने का प्रयास करती है। Interrupt CPU का ध्यान किसी घटना की ओर ले जाता है।"
+  },
+  "304|Unit 3": {
+    "title": "कंट्रोल यूनिट संगठन",
+    "desc": "Control signals, hardwired/microprogrammed control, microinstructions और address sequencing के नोट्स।",
+    "content": "इकाई 3 — Control Unit Organization\n\nControl Unit processor के विभिन्न भागों के संचालन और timing को नियंत्रित करने वाले signals बनाती है।\n\n1. Hardwired Control\nLogic circuits से control signals बनते हैं। यह तेज हो सकती है, पर डिजाइन बदलना कठिन हो सकता है।\n\n2. Microprogrammed Control\nControl memory में microinstructions रखे जाते हैं, जो control signals या उनके समूह निर्दिष्ट करते हैं। बदलाव करना अपेक्षाकृत आसान हो सकता है।\n\n3. Microinstruction\nMicroinstruction control operations को दर्शाती है। इसका format horizontal या vertical हो सकता है। Horizontal format अधिक direct control bits और vertical format encoded representation का उपयोग कर सकता है।\n\n4. Address Sequencing\nयह तय करता है कि अगली microinstruction कहाँ से ली जाए। अगला address क्रमिक, branch या opcode के आधार पर चुना जा सकता है।"
+  },
+  "304|Unit 4": {
+    "title": "मेमोरी और I/O संगठन",
+    "desc": "Memory hierarchy, SRAM/DRAM, ROM, CPU interfacing, DMA और I/O processors के नोट्स।",
+    "content": "इकाई 4 — Memory और I/O Organization\n\n1. Memory Hierarchy\nRegisters, cache, main memory और secondary storage के बीच speed, capacity और cost के आधार पर अंतर होता है। तेज memory सामान्यतः महँगी और कम capacity वाली होती है।\n\n2. RAM और ROM\nSRAM को refresh की आवश्यकता नहीं होती और यह cache में उपयोग होती है। DRAM को refresh करना पड़ता है और यह main memory में सामान्य है। ROM प्रकारों में ROM, PROM, EPROM और अन्य variants शामिल होते हैं।\n\n3. I/O Organization\nCPU और peripheral devices data/status/control signals के जरिए संवाद करते हैं। Handshaking अलग-अलग गति वाले devices के बीच transfer coordinate करती है।\n\n4. Interrupt और DMA\nInterrupt-driven I/O में device CPU को attention के लिए संकेत देता है। DMA (Direct Memory Access) data को device और memory के बीच CPU के हर byte को handle किए बिना transfer करने में मदद करता है।"
+  },
+  "304|Unit 5": {
+    "title": "8085 केस स्टडी और असेंबली प्रोग्रामिंग",
+    "desc": "8085 architecture, pins, instruction set, addressing modes और assembly programs के नोट्स।",
+    "content": "इकाई 5 — 8085 Microprocessor\n\n8085 एक 8-bit microprocessor है। इसकी architecture में ALU, accumulator, general-purpose registers, program counter, stack pointer, instruction register और control/timing logic शामिल हैं।\n\n1. Functional Blocks\nALU arithmetic और logical operations करती है। Accumulator परिणामों और operands में उपयोग होता है। Program Counter अगली instruction का address रखता है; Stack Pointer stack के शीर्ष को दर्शाता है।\n\n2. Pins और Signals\nAddress/data lines, control signals और interrupt pins processor को memory तथा I/O devices से जोड़ने में मदद करते हैं। Pin diagram को syllabus/official datasheet से मिलाकर पढ़ें।\n\n3. Instructions और Addressing\nInstructions data move, arithmetic, logic, branch और machine control कार्य करती हैं। Addressing mode बताता है operand कहाँ है या कैसे प्राप्त होगा।\n\n4. Assembly Program\nAssembly code mnemonics में लिखा जाता है और simulator/assembler से जाँचा जा सकता है। पहले program का उद्देश्य, input, processing और expected output स्पष्ट करें।"
+  },
+  "305|Unit 1": {
+    "title": "एल्गोरिदम की मूल बातें",
+    "desc": "Algorithm, pseudocode, flowchart, iterative/recursive process, Big-O, Omega और Theta के नोट्स।",
+    "content": "इकाई 1 — Fundamentals of Algorithms\n\nAlgorithm किसी समस्या को हल करने के लिए स्पष्ट और सीमित चरणों का क्रम है। अच्छे algorithm के inputs, outputs, स्पष्टता और termination निश्चित होने चाहिए।\n\n1. Design Steps\nसमस्या समझें, input/output पहचानें, समाधान के चरण बनाएँ, pseudocode/flowchart लिखें, complexity का अनुमान लगाएँ और परीक्षण करें।\n\n2. Pseudocode और Flowchart\nPseudocode साधारण भाषा जैसे संरचित चरण लिखने का तरीका है। Flowchart symbols और arrows द्वारा प्रक्रिया दिखाता है।\n\n3. Iterative और Recursive\nIterative solution loops का उपयोग करता है। Recursive solution समस्या के छोटे रूप पर function को दोबारा call करता है।\n\n4. Complexity\nTime complexity input size के साथ work बढ़ने का अनुमान है; space complexity memory उपयोग से संबंधित है। Big-O upper asymptotic bound, Omega lower bound और Theta tight bound दर्शाते हैं। उदाहरण: linear search O(n), binary search O(log n) (sorted data में)।"
+  },
+  "305|Unit 2": {
+    "title": "सॉर्टिंग",
+    "desc": "Bubble, Selection, Insertion, Merge और Quick Sort तथा उनकी complexity के नोट्स।",
+    "content": "इकाई 2 — Sorting\n\nSorting elements को ascending या descending क्रम में व्यवस्थित करती है। इससे searching और data analysis आसान हो सकते हैं।\n\n1. Bubble Sort\nपड़ोसी elements की तुलना करके गलत क्रम वाले elements बदलता है। सामान्य implementation में average/worst time O(n²) है।\n\n2. Selection Sort\nहर pass में unsorted भाग से minimum चुनकर अगली सही जगह रखता है। समय सामान्यतः O(n²) होता है।\n\n3. Insertion Sort\nएक item को पहले से sorted भाग में सही स्थान पर insert करता है। छोटे या लगभग sorted data पर उपयोगी हो सकता है।\n\n4. Merge Sort और Quick Sort\nMerge Sort भागों में बाँटकर sort और merge करता है; सामान्य time O(n log n) है। Quick Sort pivot के आधार पर partition करता है; average O(n log n), worst-case O(n²) हो सकता है।\n\nAlgorithm तुलना में time, extra space, stability और input order का ध्यान रखें।"
+  },
+  "305|Unit 3": {
+    "title": "सर्चिंग",
+    "desc": "Linear/binary search, binary search trees, hash tables और collision handling के नोट्स।",
+    "content": "इकाई 3 — Searching\n\n1. Linear Search\nElements को शुरुआत से एक-एक करके जाँचता है। Time complexity O(n) है।\n\n2. Binary Search\nSorted data के बीच वाले element से तुलना कर आधा search space हटाता है। Time complexity O(log n) है; unsorted data पर सीधे लागू नहीं होता।\n\n3. Binary Search Tree\nBST में सामान्यतः left subtree के keys node से छोटे और right subtree के keys बड़े होते हैं। असंतुलित tree में operations धीमे हो सकते हैं, इसलिए balancing उपयोगी है।\n\n4. Hash Table\nHash function key को table index में बदलने में मदद करता है। अलग keys का समान slot मिलना collision कहलाता है। Chaining में slot पर items की list रखी जाती है; open addressing में दूसरे slots खोजे जाते हैं।"
+  },
+  "305|Unit 4": {
+    "title": "ग्राफ",
+    "desc": "Graph representations, paths, cycles, spanning trees, Prim, Kruskal और Dijkstra algorithms के नोट्स।",
+    "content": "इकाई 4 — Graphs\n\nGraph vertices और edges का समूह है। Directed graph में edges की दिशा होती है; undirected graph में edge दो vertices को बिना दिशा जोड़ती है।\n\n1. Representation\nAdjacency matrix में vertex-pairs के लिए matrix होता है। Adjacency list में प्रत्येक vertex के connected neighbors रखे जाते हैं। Sparse graph में list अक्सर memory बचाती है।\n\n2. Paths और Connectivity\nPath vertices के बीच edge-following क्रम है। Cycle वह path है जो वापस उसी vertex पर आ सकता है। Connected graph में हर vertex तक रास्ता होता है (undirected graph के लिए)।\n\n3. Spanning Tree और MST\nSpanning tree सभी vertices को बिना cycle जोड़ता है। Minimum Spanning Tree कुल edge weight न्यूनतम करता है। Prim और Kruskal MST algorithms हैं।\n\n4. Shortest Path\nDijkstra non-negative edge weights वाले graph में source से shortest distances निकालता है। Topological sorting directed acyclic graph में dependency order दे सकती है।"
+  },
+  "305|Unit 5": {
+    "title": "स्ट्रिंग और डेटा कम्प्रेशन",
+    "desc": "String sorting, substring search, regular expressions, validation और Huffman coding के नोट्स।",
+    "content": "इकाई 5 — Strings और Data Compression\n\n1. String\nString characters का क्रम है। String processing में length, comparison, searching और substring extraction जैसे कार्य शामिल हैं।\n\n2. Pattern Matching\nSubstring search text में pattern ढूँढता है। Simple approach हर संभव position पर तुलना करता है। Regular expressions text patterns को खोजने/जाँचने के लिए उपयोग होते हैं।\n\n3. Validation\nPattern की मदद से input का format जाँचा जा सकता है, जैसे digits की संख्या या किसी identifier का नियम। Regex अकेले सभी semantic नियमों की पुष्टि नहीं करता।\n\n4. Data Compression\nCompression data को कम storage या कम bits में दर्शाने का प्रयास है। Lossless compression में मूल data पूरी तरह वापस मिल सकता है। Huffman coding frequently used symbols को छोटे codes और कम सामान्य symbols को लंबे codes दे सकती है।"
+  },
+  "—|Internship": {
+    "title": "समर इंटर्नशिप — I",
+    "desc": "द्वितीय सेमेस्टर के बाद 3–4 सप्ताह की व्यावहारिक इंटर्नशिप, रिपोर्ट, viva और प्रस्तुति।",
+    "content": "समर इंटर्नशिप — I\n\nइंटर्नशिप में छात्र वास्तविक कार्यस्थल या मान्यता प्राप्त संस्था में व्यावहारिक अनुभव लेते हैं। इसका उद्देश्य कक्षा में सीखी बातों को वास्तविक कार्यों से जोड़ना है।\n\nमुख्य गतिविधियाँ:\n1. संस्था और कार्य-क्षेत्र का परिचय।\n2. दिए गए कार्य/प्रोजेक्ट का उद्देश्य समझना।\n3. नियमित कार्य-डायरी और तकनीकी नोट्स बनाना।\n4. किए गए कार्य, सीखी गई skills और परिणामों की रिपोर्ट बनाना।\n5. Viva और presentation के लिए अपने योगदान और सीख को स्पष्ट रूप से समझाना।\n\nरिपोर्ट में वास्तविक कार्य ही लिखें, काल्पनिक अनुभव या परिणाम नहीं।"
+  },
+  "—|Unit I": {
+    "title": "व्यावसायिक और सामाजिक नैतिकता",
+    "desc": "Professional ethics, code of ethics और समूह में काम करने के सामाजिक कौशल।",
+    "content": "इकाई I — Professional and Social Ethics\n\nProfessional ethics कार्यस्थल में ईमानदारी, जिम्मेदारी, गोपनीयता, निष्पक्षता और दूसरों के सम्मान से जुड़े सिद्धांत हैं।\n\nमुख्य बातें:\n• सही और सत्य जानकारी देना।\n• समय, नियम और जिम्मेदारियों का पालन करना।\n• निजी या संस्थागत डेटा की सुरक्षा करना।\n• गलती होने पर उसे स्वीकार कर सुधारना।\n• टीम में दूसरों की राय सुनना और भेदभाव से बचना।\n\nCode of ethics किसी संस्था या पेशे में अपेक्षित व्यवहार के नियमों का लिखित समूह है।"
+  },
+  "—|Unit II": {
+    "title": "आजीवन और स्व-निर्देशित शिक्षा",
+    "desc": "Lifelong learning, self-directed learning, planning और उदाहरण।",
+    "content": "इकाई II — Lifelong Learning और Self-directed Learning\n\nLifelong learning जीवन भर ज्ञान और कौशल विकसित करते रहने की प्रक्रिया है। तकनीक और उद्योग बदलते रहते हैं, इसलिए नई चीजें सीखना आवश्यक है।\n\nSelf-directed learning में विद्यार्थी अपनी learning need पहचानता है, लक्ष्य तय करता है, संसाधन चुनता है, अभ्यास करता है और प्रगति की समीक्षा करता है।\n\nएक प्रभावी योजना में स्पष्ट लक्ष्य, समय-सारणी, विश्वसनीय संसाधन, अभ्यास और नियमित self-assessment होना चाहिए।"
+  },
+  "—|Unit III": {
+    "title": "करियर योजना",
+    "desc": "Career opportunities, qualifications, skills, experience और व्यक्तिगत career plan।",
+    "content": "इकाई III — Career Planning\n\nCareer planning अपनी रुचि, ताकत, योग्यता और अवसरों के आधार पर करियर लक्ष्य तय करने और उन्हें पाने के कदम बनाने की प्रक्रिया है।\n\nचरण:\n1. अपनी रुचियों और कौशल का आकलन करें।\n2. संबंधित career paths और आवश्यक qualifications की जानकारी लें।\n3. तकनीकी तथा communication skills विकसित करें।\n4. छोटे लक्ष्यों, projects, training या internship से अनुभव बनाएँ।\n5. समय-समय पर योजना की समीक्षा करें।\n\nएक अच्छा career plan वास्तविक, लचीला और मापने योग्य होना चाहिए।"
+  },
+  "—|Unit IV": {
+    "title": "औद्योगिक भ्रमण",
+    "desc": "Industrial visit का उद्देश्य, planning और वास्तविक प्रणालियों का अवलोकन।",
+    "content": "इकाई IV — Industrial Visits\n\nIndustrial visit छात्रों को उद्योग, कार्यालय या तकनीकी संस्था में काम करने की वास्तविक प्रक्रिया देखने का अवसर देता है।\n\nतैयारी:\n• भ्रमण का उद्देश्य और संस्था का परिचय पढ़ें।\n• अनुमति, सुरक्षा नियम और समय-सारणी का पालन करें।\n• विशेषज्ञों से उचित प्रश्न पूछें।\n• देखी गई प्रक्रिया और सीखी गई बातों के नोट्स बनाएँ।\n• बाद में संक्षिप्त रिपोर्ट या प्रस्तुति तैयार करें।\n\nIndustrial visit का उद्देश्य केवल घूमना नहीं, बल्कि वास्तविक काम और classroom concepts के संबंध को समझना है।"
+  },
+  "—|Unit V": {
+    "title": "CV, Resume, बायोडाटा और इंटरव्यू",
+    "desc": "Resume formats, covering letter, interview preparation और practice।",
+    "content": "इकाई V — CV, Resume, Bio-data और Interview\n\nResume नौकरी या internship के लिए संबंधित योग्यता, कौशल, शिक्षा, projects और अनुभव का संक्षिप्त विवरण है। CV अधिक विस्तृत हो सकता है; Bio-data में व्यक्तिगत विवरण पर अधिक जोर हो सकता है।\n\nएक उपयोगी resume में contact details, objective/summary (जहाँ उचित हो), education, skills, projects, training और उपलब्ध अनुभव शामिल किए जा सकते हैं। जानकारी सत्य और स्पष्ट रखें।\n\nInterview तैयारी:\n1. संस्था और role के बारे में पढ़ें।\n2. अपने projects और उनमें किए गए योगदान को समझें।\n3. सामान्य तकनीकी तथा व्यवहारिक प्रश्नों का अभ्यास करें।\n4. स्पष्ट, सम्मानपूर्ण और ईमानदार उत्तर दें।"
+  },
+  "—|Unit VI": {
+    "title": "समूह चर्चा",
+    "desc": "Group discussion का महत्व, सहभागिता कौशल और अभ्यास।",
+    "content": "इकाई VI — Group Discussion\n\nGroup discussion किसी विषय पर अनेक लोगों के विचार सुनने, तर्क रखने और मिलकर निष्कर्ष तक पहुँचने का अभ्यास है।\n\nअच्छी सहभागिता के गुण:\n• विषय को समझकर बोलें।\n• संक्षिप्त, स्पष्ट और तथ्य-आधारित बात रखें।\n• दूसरों को बीच में काटने से बचें।\n• असहमति होने पर व्यक्ति नहीं, विचार पर चर्चा करें।\n• शांत और सम्मानपूर्ण भाषा अपनाएँ।\n• समय के अनुसार मुख्य बिंदुओं का सार दें।\n\nकेवल अधिक बोलना नेतृत्व नहीं है; सही समय पर उपयोगी योगदान और दूसरों को सुनना भी महत्वपूर्ण है।"
+  }
+};
+const hindiSyllabus = {
+  "301": [
+    "इकाई 1: कम्प्यूटेशनल थिंकिंग, वेरिएबल और डेटा निरूपण",
+    "इकाई 2: ऑपरेटर और इनपुट-आउटपुट",
+    "इकाई 3: कंडीशनल और लूपिंग कंस्ट्रक्ट्स",
+    "इकाई 4: ऐरे और पॉइंटर",
+    "इकाई 5: फंक्शन और रिकर्शन"
+  ],
+  "302": [
+    "इकाई 1: परिचय, वेरिएबल और डेटा टाइप",
+    "इकाई 2: उन्नत डेटा टाइप",
+    "इकाई 3: कंट्रोल स्ट्रक्चर्स",
+    "इकाई 4: फंक्शन, मॉड्यूल और पैकेज",
+    "इकाई 5: फाइल I/O, टेक्स्ट प्रोसेसिंग और रेगुलर एक्सप्रेशन"
+  ],
+  "303": [
+    "इकाई 1: डेटा स्ट्रक्चर की मूल बातें",
+    "इकाई 2: सर्चिंग और सॉर्टिंग तकनीक",
+    "इकाई 3: लीनियर डेटा स्ट्रक्चर्स",
+    "इकाई 4: लिंक्ड लिस्ट",
+    "इकाई 5: नॉन-लीनियर डेटा स्ट्रक्चर"
+  ],
+  "304": [
+    "इकाई 1: कंप्यूटर की मूल संरचना",
+    "इकाई 2: इंस्ट्रक्शन सेट आर्किटेक्चर",
+    "इकाई 3: कंट्रोल यूनिट संगठन",
+    "इकाई 4: मेमोरी और I/O संगठन",
+    "इकाई 5: 8085 केस स्टडी और असेंबली प्रोग्रामिंग"
+  ],
+  "305": [
+    "इकाई 1: एल्गोरिदम की मूल बातें",
+    "इकाई 2: सॉर्टिंग",
+    "इकाई 3: सर्चिंग",
+    "इकाई 4: ग्राफ",
+    "इकाई 5: स्ट्रिंग और डेटा कम्प्रेशन"
+  ],
+  "—": [
+    "व्यावहारिक इंटर्नशिप",
+    "व्यावसायिक और सामाजिक नैतिकता",
+    "आजीवन और स्व-निर्देशित शिक्षा",
+    "करियर योजना",
+    "औद्योगिक भ्रमण",
+    "CV, Resume, बायोडाटा और इंटरव्यू",
+    "समूह चर्चा"
+  ]
+};
+const hindiMcqs = [
+  {
+    "q": "OSI मॉडल की कौन-सी परत routing के लिए जिम्मेदार है?",
+    "options": [
+      "Transport",
+      "Network",
+      "Session",
+      "Presentation"
+    ],
+    "topic": "Computer Networks"
+  },
+  {
+    "q": "कौन-सा data structure LIFO सिद्धांत का पालन करता है?",
+    "options": [
+      "Queue",
+      "Array",
+      "Stack",
+      "Linked List"
+    ],
+    "topic": "Data Structures"
+  },
+  {
+    "q": "Information security में CIA का पूरा नाम क्या है?",
+    "options": [
+      "Control, Internet, Access",
+      "Confidentiality, Integrity, Availability",
+      "Cyber, Identity, Authentication",
+      "Code, Integrity, Access"
+    ],
+    "topic": "Cyber Security Basics"
+  },
+  {
+    "q": "डेटा प्राप्त करने के लिए कौन-सा SQL command उपयोग होता है?",
+    "options": [
+      "SELECT",
+      "INSERT",
+      "DELETE",
+      "UPDATE"
+    ],
+    "topic": "Database Management"
+  },
+  {
+    "q": "Processes और hardware resources का प्रबंधन कौन करता है?",
+    "options": [
+      "Compiler",
+      "Browser",
+      "Operating System",
+      "Database"
+    ],
+    "topic": "Operating Systems"
+  }
+];
+
 const papers = [
   { semester: '3rd Semester', subject: 'Computer Networks', year: 'Previous Year', status: 'Practice set' },
   { semester: '3rd Semester', subject: 'Data Structures', year: 'Previous Year', status: 'Practice set' },
@@ -6891,6 +7154,8 @@ function App() {
   const [selectedUnit, setSelectedUnit] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [search, setSearch] = useState('');
+  const [medium, setMedium] = useState(() => window.localStorage.getItem('cse-diploma-medium') === 'hi' ? 'hi' : 'en');
+  useEffect(() => { window.localStorage.setItem('cse-diploma-medium', medium); }, [medium]);
   const [mcqIndex, setMcqIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [score, setScore] = useState(0);
@@ -6902,7 +7167,7 @@ function App() {
 
   const nav = ['Dashboard', 'Subjects', 'Modules', 'Notes', 'Question Papers', 'MCQ Practice', 'Study Planner', 'AI Study Assistant'];
   const query = search.trim().toLowerCase();
-  const filteredSubjects = useMemo(() => subjects.filter((s) => `${s.name} ${s.code} ${s.topics.join(' ')}`.toLowerCase().includes(query)), [query]);
+  const filteredSubjects = useMemo(() => subjects.filter((subject) => { const localizedTopics = hindiSyllabus[subject.code] || []; return `${subject.name} ${subject.code} ${subject.topics.join(' ')} ${localizedTopics.join(' ')}`.toLowerCase().includes(query); }), [query]);
 
   useEffect(() => {
     const initialState = {
@@ -6993,16 +7258,16 @@ function App() {
       </aside>
 
       <main className="main">
-        <header className="topbar"><button className="menu-button" onClick={() => setMenuOpen(true)} aria-label="Open menu"><Menu size={22}/></button><div className="crumb">Academic Portal <ChevronRight size={15}/> <b>{pageTitle}</b></div><div className="search-box"><Search size={17}/><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search subjects, topics, notes..."/></div></header>
+        <header className="topbar"><button className="menu-button" onClick={() => setMenuOpen(true)} aria-label="Open menu"><Menu size={22}/></button><div className="crumb">Academic Portal <ChevronRight size={15}/> <b>{pageTitle}</b></div><div className="search-box"><Search size={17}/><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search subjects, topics, notes..."/></div><div className="medium-switch" role="group" aria-label="Study material language"><span className="medium-label">Study Medium</span><button type="button" className={medium === 'en' ? 'medium-option active' : 'medium-option'} aria-pressed={medium === 'en'} onClick={() => setMedium('en')}>English</button><button type="button" className={medium === 'hi' ? 'medium-option active' : 'medium-option'} aria-pressed={medium === 'hi'} onClick={() => setMedium('hi')}>हिन्दी</button></div></header>
 
         <section className="content">
           {active === 'Dashboard' && <Dashboard go={go} filteredSubjects={filteredSubjects} />}
-          {active === 'Subjects' && <Subjects filteredSubjects={filteredSubjects} go={go} />}
-          {active === 'Modules' && <ModuleLibrary go={go} subjectFilter={selectedSubject} />}
-          {active === 'Notes' && <Notes search={query} subjectFilter={selectedSubject} />}
-          {active === 'Module' && <StudyModule subject={selectedSubject} unit={selectedUnit} onExit={() => go('Modules', selectedSubject)} />}
-          {active === 'Question Papers' && <Papers />}
-          {active === 'MCQ Practice' && <MCQPractice mcq={mcqs[mcqIndex]} index={mcqIndex} selected={selected} score={score} answer={answerMcq} next={nextMcq} />}
+          {active === 'Subjects' && <Subjects filteredSubjects={filteredSubjects} go={go} medium={medium} />}
+          {active === 'Modules' && <ModuleLibrary go={go} subjectFilter={selectedSubject} medium={medium} />}
+          {active === 'Notes' && <Notes search={query} subjectFilter={selectedSubject} medium={medium} />}
+          {active === 'Module' && <StudyModule subject={selectedSubject} unit={selectedUnit} onExit={() => go('Modules', selectedSubject)} medium={medium} />}
+          {active === 'Question Papers' && <Papers medium={medium} />}
+          {active === 'MCQ Practice' && <MCQPractice mcq={(medium === 'hi' ? hindiMcqs[mcqIndex] : mcqs[mcqIndex])} index={mcqIndex} selected={selected} score={score} answer={answerMcq} next={nextMcq} />}
           {active === 'Study Planner' && <Planner tasks={tasks} newTask={newTask} setNewTask={setNewTask} addTask={addTask} toggleTask={toggleTask} />}
           {active === 'AI Study Assistant' && <AIAssistant question={aiQuestion} setQuestion={setAiQuestion} answer={aiAnswer} loading={aiLoading} ask={askAI} />}
           <footer><span>CSE Diploma Learning</span><span>Learning platform • Built for students</span></footer>
@@ -7025,7 +7290,7 @@ function Dashboard({ go, filteredSubjects }) {
   </>;
 }
 
-function Subjects({ filteredSubjects, go }) {
+function Subjects({ filteredSubjects, go, medium }) {
   const [selected, setSelected] = useState(filteredSubjects[0]?.code || null);
   const current = filteredSubjects.find((s) => s.code === selected);
   return <><div className="page-intro"><span className="section-kicker">ACADEMIC CONTENT</span><h1>Subjects & Modules</h1><p>Choose a subject to see its current module outline and jump into study material.</p></div><div className="subject-page-grid"><div className="subject-list">{filteredSubjects.map(({name,code,icon:Icon,tag}) => <button key={code} className={selected===code?'subject-row selected':'subject-row'} onClick={() => setSelected(code)}><span className="subject-icon"><Icon size={19}/></span><span><strong>{name}</strong><small>{code} · {tag}</small></span><ChevronRight size={17}/></button>)}</div>{current && <section className="module-panel"><div className="module-head"><div className="subject-icon">{React.createElement(current.icon,{size:21})}</div><div><span className="section-kicker">MODULE OUTLINE</span><h2>{current.name}</h2><small>{current.code}</small></div></div><div className="topic-list">{current.topics.map((topic,i)=><button key={topic} onClick={() => {
@@ -7034,14 +7299,15 @@ function Subjects({ filteredSubjects, go }) {
             } else {
               go('Notes', current.name);
             }
-          }}><span>{String(i+1).padStart(2,'0')}</span><b>{topic}</b><ChevronRight size={16}/></button>)}</div><button className="primary full" onClick={() => go('Notes', current.name)}>Open Study Material <BookOpen size={16}/></button></section>}</div></>;
+          }}><span>{String(i+1).padStart(2,'0')}</span><b>{medium === 'hi' ? (hindiSyllabus[current.code]?.[i] || topic) : topic}</b><ChevronRight size={16}/></button>)}</div><button className="primary full" onClick={() => go('Notes', current.name)}>Open Study Material <BookOpen size={16}/></button></section>}</div></>;
 }
 
-function Notes({ search, subjectFilter }) {
-  const filtered = notes.filter((n) =>
-    (!subjectFilter || n.subject === subjectFilter) &&
-    `${n.subject} ${n.code} ${n.unit} ${n.title} ${n.desc}`.toLowerCase().includes(search)
-  );
+function Notes({ search, subjectFilter, medium }) {
+  const localizedNotes = notes.map((note) => medium === 'hi' ? { ...note, ...(hindiNotes[`${note.code}|${note.unit}`] || {}) } : note);
+  const filtered = localizedNotes.filter((n) => {
+    const original = notes.find((item) => item.code === n.code && item.unit === n.unit);
+    return (!subjectFilter || n.subject === subjectFilter) && `${n.subject} ${n.code} ${n.unit} ${n.title} ${n.desc} ${original?.title || ''} ${original?.desc || ''}`.toLowerCase().includes(search);
+  });
   const [selectedNote, setSelectedNote] = useState(null);
 
   return <>
@@ -7099,7 +7365,7 @@ function Notes({ search, subjectFilter }) {
 
 
 
-function ModuleLibrary({ go, subjectFilter }) {
+function ModuleLibrary({ go, subjectFilter, medium }) {
   const moduleSubjects = subjects.filter((subject) => subject.code && subject.code !== '—');
   const initialCode = moduleSubjects.find((subject) => subject.name === subjectFilter)?.code || moduleSubjects[0]?.code || null;
   const [selected, setSelected] = useState(initialCode);
@@ -7149,7 +7415,7 @@ function ModuleLibrary({ go, subjectFilter }) {
               onClick={() => available && go('Module', current.name, i + 1)}
             >
               <span>{String(i+1).padStart(2,'0')}</span>
-              <b>{topic}</b>
+              <b>{medium === 'hi' ? (hindiSyllabus[current.code]?.[i] || topic) : topic}</b>
               <span className={available ? 'module-open-badge' : 'module-soon-badge'}>{available ? 'Open Module' : 'Coming Soon'}</span>
               <ChevronRight size={16}/>
             </button>;
@@ -7677,7 +7943,7 @@ function StudyModule({ subject, unit, onExit }) {
 }
 
 
-function Papers() { return <><div className="page-intro"><span className="section-kicker">EXAM PREPARATION</span><h1>Question Papers</h1><p>Practice sets are ready here; replace or extend them with verified college/university papers later.</p></div><div className="paper-list">{papers.map((p)=><article className="paper-row" key={p.subject}><div className="paper-icon"><FileText size={21}/></div><div><strong>{p.subject}</strong><small>{p.semester} · {p.year}</small></div><span>{p.status}</span><button className="secondary dark">Practice <ChevronRight size={15}/></button></article>)}</div></>;
+function Papers({ medium }) { return <><div className="page-intro"><span className="section-kicker">EXAM PREPARATION</span><h1>Question Papers</h1><p>{medium === 'hi' ? 'ये अभी practice sets हैं; इन्हें verified college/university papers से आगे बढ़ाया जा सकता है।' : 'Practice sets are ready here; replace or extend them with verified college/university papers later.'}</p></div><div className="paper-list">{papers.map((p)=><article className="paper-row" key={p.subject}><div className="paper-icon"><FileText size={21}/></div><div><strong>{medium === 'hi' ? ({'Computer Networks':'कंप्यूटर नेटवर्क','Data Structures':'डेटा स्ट्रक्चर','Database Management':'डेटाबेस मैनेजमेंट'}[p.subject] || p.subject) : p.subject}</strong><small>{medium === 'hi' ? 'तीसरा सेमेस्टर' : p.semester} · {medium === 'hi' ? (p.year === 'Previous Year' ? 'पिछले वर्ष का अभ्यास' : 'प्रश्न बैंक') : p.year}</small></div><span>{medium === 'hi' ? (p.status === 'Practice set' ? 'अभ्यास सेट' : 'दोहराव') : p.status}</span><button className="secondary dark">Practice <ChevronRight size={15}/></button></article>)}</div></>;
 }
 
 function MCQPractice({ mcq,index,selected,score,answer,next }) { const correct=selected!==null&&selected===mcq.answer; return <><div className="page-intro"><span className="section-kicker">OBJECTIVE PRACTICE</span><h1>MCQ Practice</h1><p>Question {index+1} of {mcqs.length} · Score: {score}</p></div><section className="quiz-card"><div className="quiz-meta"><span>{mcq.topic}</span><span>Question {index+1}/{mcqs.length}</span></div><h2>{mcq.q}</h2><div className="option-grid">{mcq.options.map((option,i)=><button key={option} disabled={selected!==null} className={`option ${selected!==null?(i===mcq.answer?'correct':i===selected?'wrong':''):''}`} onClick={()=>answer(i)}><span>{String.fromCharCode(65+i)}</span>{option}</button>)}</div>{selected!==null&&<div className={correct?'answer-note good':'answer-note'}>{correct?'Correct! Nice work.':`Not quite. The correct answer is ${mcq.options[mcq.answer]}.`}<button className="primary" onClick={next}>Next Question <ChevronRight size={16}/></button></div>}</section></> }
