@@ -6584,7 +6584,8 @@ const hindiMcqs = [
       "Session",
       "Presentation"
     ],
-    "topic": "Computer Networks"
+    "topic": "कंप्यूटर नेटवर्क",
+    "answer": 1
   },
   {
     "q": "कौन-सा data structure LIFO सिद्धांत का पालन करता है?",
@@ -6594,7 +6595,8 @@ const hindiMcqs = [
       "Stack",
       "Linked List"
     ],
-    "topic": "Data Structures"
+    "topic": "डेटा स्ट्रक्चर",
+    "answer": 2
   },
   {
     "q": "Information security में CIA का पूरा नाम क्या है?",
@@ -6604,7 +6606,8 @@ const hindiMcqs = [
       "Cyber, Identity, Authentication",
       "Code, Integrity, Access"
     ],
-    "topic": "Cyber Security Basics"
+    "topic": "साइबर सुरक्षा की मूल बातें",
+    "answer": 1
   },
   {
     "q": "डेटा प्राप्त करने के लिए कौन-सा SQL command उपयोग होता है?",
@@ -6614,7 +6617,8 @@ const hindiMcqs = [
       "DELETE",
       "UPDATE"
     ],
-    "topic": "Database Management"
+    "topic": "डेटाबेस मैनेजमेंट",
+    "answer": 0
   },
   {
     "q": "Processes और hardware resources का प्रबंधन कौन करता है?",
@@ -6624,7 +6628,8 @@ const hindiMcqs = [
       "Operating System",
       "Database"
     ],
-    "topic": "Operating Systems"
+    "topic": "ऑपरेटिंग सिस्टम",
+    "answer": 2
   }
 ];
 
