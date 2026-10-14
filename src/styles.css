@@ -339,12 +339,12 @@
 
 /* English / Hindi study-material selector */
 .topbar{gap:14px}
-.search-box{margin-left:auto;flex:0 1 420px}
+.search-box{margin-left:auto;margin-right:auto;flex:0 1 420px}
 .medium-switch{display:flex;align-items:center;gap:4px;flex:none;padding:4px;border:1px solid #e1e7ef;border-radius:10px;background:#f7f9fc}
 .medium-label{font-size:10px;font-weight:700;color:#7b899f;padding:0 5px 0 7px;white-space:nowrap}
 .medium-option{border:0;border-radius:7px;background:transparent;color:#64748b;padding:7px 10px;font-size:11px;font-weight:700;white-space:nowrap}
 .medium-option:hover{background:#edf3fb;color:#214f91}
 .medium-option.active{background:#1d5fc4;color:#fff;box-shadow:0 2px 6px rgba(29,95,196,.18)}
-@media(max-width:1000px){.topbar{gap:9px}.medium-label{display:none}.medium-option{padding:7px 8px}.search-box{flex:1;min-width:100px}}
+@media(max-width:1000px){.topbar{gap:9px}.medium-label{display:none}.medium-option{padding:7px 8px}.search-box{flex:1;min-width:100px;margin-left:0;margin-right:0}}
 @media(max-width:760px){.topbar{gap:7px;padding:0 10px}.search-box{min-width:70px;padding:0 7px;gap:5px}.search-box input{font-size:10px}.medium-switch{gap:2px;padding:3px}.medium-option{padding:7px 7px;font-size:10px}}
 @media(max-width:380px){.medium-option{padding:6px 5px;font-size:9px}.search-box input{font-size:9px}.search-box svg{width:14px}}
