@@ -6628,6 +6628,759 @@ const hindiMcqs = [
   }
 ];
 
+
+
+const hindiModuleTitles = {
+  "Computer Programming|1": "इकाई 1 — कम्प्यूटेशनल थिंकिंग, वेरिएबल और डेटा निरूपण",
+  "Computer Programming|2": "इकाई 2 — ऑपरेटर और इनपुट-आउटपुट",
+  "Computer Programming|3": "इकाई 3 — कंडीशनल और लूपिंग कंस्ट्रक्ट्स"
+};
+const hindiModuleTopicContent = {
+  "Concept of problem-solving and computational thinking": {
+    "title": "समस्या समाधान और कम्प्यूटेशनल थिंकिंग",
+    "lesson": "समस्या समाधान में समस्या को समझना और उसका तार्किक हल बनाना शामिल है। कम्प्यूटेशनल थिंकिंग ऐसी व्यवस्थित सोच है जिससे समाधान को स्पष्ट चरणों में बदला जा सके।\n\nउदाहरण: दो संख्याओं का योग निकालने के लिए इनपुट पहचानें, जोड़ की योजना बनाएँ, गणना करें और परिणाम दिखाएँ।"
+  },
+  "Steps involved in problem solving": {
+    "title": "समस्या समाधान के चरण",
+    "lesson": "समस्या समाधान के मुख्य चरण हैं: समस्या को समझना, इनपुट/आउटपुट पहचानना, बड़े काम को छोटे भागों में बाँटना, एल्गोरिदम या फ्लोचार्ट बनाना, प्रोग्राम लिखना, परीक्षण करना और त्रुटियाँ सुधारना।\n\nसमाधान को व्यवस्थित ढंग से बनाने से गलतियाँ ढूँढना आसान होता है।"
+  },
+  "Components of computational thinking": {
+    "title": "कम्प्यूटेशनल थिंकिंग के घटक",
+    "lesson": "चार प्रमुख घटक हैं:\n• Decomposition (विभाजन): बड़ी समस्या को छोटे भागों में बाँटना।\n• Pattern Recognition (पैटर्न पहचान): समानताओं को पहचानना।\n• Abstraction (अमूर्तन): गैर-जरूरी विवरण छोड़ना।\n• Algorithmic Thinking: क्रमबद्ध समाधान चरण बनाना।"
+  },
+  "Converting problems into flowcharts and algorithms": {
+    "title": "एल्गोरिदम और फ्लोचार्ट",
+    "lesson": "एल्गोरिदम समस्या हल करने के स्पष्ट, सीमित चरणों का क्रम है। फ्लोचार्ट मानक प्रतीकों से उन चरणों को चित्र के रूप में दिखाता है।\n\nOval Start/End, Rectangle Process, Parallelogram Input/Output और Diamond Decision दर्शाता है। उदाहरण: Start → A और B पढ़ें → SUM=A+B → परिणाम दिखाएँ → Stop।"
+  },
+  "Variables, constants, data types and memory representation of variables": {
+    "title": "वेरिएबल, कॉन्स्टेंट, डेटा टाइप और मेमोरी",
+    "lesson": "Variable ऐसा नामित memory स्थान है जिसका मान बदल सकता है। Constant ऐसा मान है जिसे बदलने के लिए नहीं रखा जाता।\n\nC में int पूर्णांक, char अक्षर, float और double दशमलव मान के लिए उपयोग होते हैं। कंप्यूटर डेटा को bits (0/1) में रखता है; 8 bits मिलकर 1 byte बनाते हैं।"
+  },
+  "Arithmetic Operators": {
+    "title": "अंकगणितीय ऑपरेटर",
+    "lesson": "Arithmetic operators गणना के लिए होते हैं: + जोड़, - घटाव, * गुणा, / भाग और % शेषफल।\n\nयदि दोनों operands int हों, तो C में 10/3 का परिणाम 3 होगा। उदाहरण: int sum = 5 + 3; से sum का मान 8 मिलता है।"
+  },
+  "Relational Operators": {
+    "title": "तुलनात्मक ऑपरेटर",
+    "lesson": "Relational operators दो मानों की तुलना करते हैं: <, >, <=, >=, == और !=। इनका परिणाम true या false होता है।\n\nध्यान दें: = किसी variable में मान assign करता है; == बराबरी की जाँच करता है।"
+  },
+  "Logical Operators": {
+    "title": "लॉजिकल ऑपरेटर",
+    "lesson": "&& (AND) तभी true होता है जब दोनों conditions true हों। || (OR) तब true होता है जब कम-से-कम एक condition true हो। ! (NOT) condition का उल्टा परिणाम देता है।\n\nये operators if और loops की शर्तों में उपयोग होते हैं।"
+  },
+  "Bitwise Operators": {
+    "title": "बिटवाइज़ ऑपरेटर",
+    "lesson": "Bitwise operators integer की अलग-अलग bits पर काम करते हैं। & AND, | OR, ^ XOR और ~ NOT करता है।\n\nउदाहरण: 5 = 0101 और 3 = 0011; इसलिए 5 & 3 = 0001 अर्थात 1। Bitwise operators को logical operators से अलग रखें।"
+  },
+  "Operator Precedence and Associativity": {
+    "title": "Precedence और Associativity",
+    "lesson": "Precedence तय करता है कि कौन-सा operator पहले evaluate होगा। Associativity समान precedence वाले operators की दिशा बताती है।\n\nउदाहरण: 2 + 3 * 4 = 14, क्योंकि multiplication पहले होता है। Parentheses () से क्रम स्पष्ट किया जा सकता है।"
+  },
+  "Input and Output Functions": {
+    "title": "इनपुट और आउटपुट फंक्शन",
+    "lesson": "C में printf() formatted output दिखाता है और scanf() input पढ़ता है। सामान्यतः इन functions के लिए #include <stdio.h> उपयोग होता है।\n\n%d int, %c character और %f floating-point data के लिए सामान्य format specifiers हैं।"
+  },
+  "Formatted Output": {
+    "title": "फॉर्मेटेड आउटपुट",
+    "lesson": "Formatted output में values को format specifier द्वारा पढ़ने योग्य रूप में दिखाया जाता है।\n\nउदाहरण: printf(\"Marks = %d\", marks); में %d integer की जगह उसका मान दिखाता है। \\n अगली line शुरू करता है।"
+  },
+  "Basic File I/O": {
+    "title": "फ़ाइल इनपुट/आउटपुट",
+    "lesson": "File I/O से C program फ़ाइल में डेटा पढ़ या लिख सकता है। सामान्य क्रम: FILE pointer घोषित करना, fopen() से फ़ाइल खोलना, डेटा पढ़ना/लिखना और fclose() से फ़ाइल बंद करना।\n\n'r' पढ़ने, 'w' लिखने और 'a' अंत में डेटा जोड़ने के लिए है।"
+  },
+  "if Statement": {
+    "title": "if स्टेटमेंट",
+    "lesson": "if condition जाँचता है। Condition true होने पर if block का code चलता है; false होने पर वह block छोड़ दिया जाता है।\n\nउदाहरण: if (marks >= 40) { printf(\"Pass\"); }"
+  },
+  "if-else Statement": {
+    "title": "if-else स्टेटमेंट",
+    "lesson": "if-else दो स्थितियों के लिए अलग code चलाता है। Condition true होने पर if block और false होने पर else block चलता है।\n\nइसका उपयोग Pass/Fail जैसे निर्णयों में किया जा सकता है।"
+  },
+  "Nested if": {
+    "title": "Nested if",
+    "lesson": "एक if के अंदर दूसरा if हो तो उसे nested if कहते हैं। इसका उपयोग जुड़े हुए कई निर्णय लेने में होता है, जहाँ अंदर की condition पहले निर्णय के पूरा होने पर ही जाँची जाती है।"
+  },
+  "Conditional Operator ?: ": {
+    "title": "Conditional operator ?: ",
+    "lesson": "Conditional operator condition के आधार पर दो expressions में से एक चुनता है। इसका रूप condition ? expression1 : expression2 है।\n\nउदाहरण: max = (a > b) ? a : b; — condition true होने पर a, अन्यथा b चुना जाता है।"
+  },
+  "for Loop": {
+    "title": "for लूप",
+    "lesson": "for loop के header में initialization, condition और update होते हैं। जब दोहराव की संख्या ज्ञात हो, तो यह उपयोगी है।\n\nउदाहरण: for (int i=1; i<=5; i++) { printf(\"%d\", i); }"
+  },
+  "while Loop": {
+    "title": "while लूप",
+    "lesson": "while loop पहले condition जाँचता है और true रहने तक body दोहराता है। यदि condition शुरू में false हो, तो body शून्य बार चल सकती है।\n\nध्यान रखें कि loop के अंदर condition बदलनी चाहिए ताकि अनंत loop न बने।"
+  },
+  "do-while Loop": {
+    "title": "do-while लूप",
+    "lesson": "do-while में body पहले चलती है और condition बाद में जाँची जाती है। इसलिए body कम-से-कम एक बार चलती है।\n\nउदाहरण: do { i++; } while (i < 3);"
+  },
+  "Nested Loops": {
+    "title": "Nested loops",
+    "lesson": "एक loop के अंदर दूसरा loop nested loop कहलाता है। सामान्यतः outer loop की हर iteration पर inner loop अपनी पूरी iteration करता है।\n\nउपयोग: patterns, multiplication tables और 2-D arrays पर काम करना।"
+  },
+  "switch-case": {
+    "title": "switch-case",
+    "lesson": "switch expression के मान के अनुसार matching case चुनता है। यदि कोई case match न हो, तो default block चल सकता है।\n\nbreak वर्तमान switch case से बाहर निकलने में मदद करता है।"
+  },
+  "break Statement": {
+    "title": "break स्टेटमेंट",
+    "lesson": "break निकटतम loop या switch से बाहर निकलता है। Loop में इसका उपयोग होने पर control loop के बाद आने वाले statement पर चला जाता है।"
+  },
+  "continue Statement": {
+    "title": "continue स्टेटमेंट",
+    "lesson": "continue वर्तमान iteration का बचा हुआ भाग छोड़ता है और अगली iteration की ओर बढ़ता है। break loop समाप्त करता है, जबकि continue loop को जारी रखता है।"
+  }
+};
+const hindiModuleQuestionPrompts = {
+  "What is the main idea of computational thinking?": "कम्प्यूटेशनल थिंकिंग का मुख्य विचार क्या है?",
+  "In one or two sentences, explain what problem solving means in programming.": "प्रोग्रामिंग में समस्या समाधान का अर्थ एक या दो वाक्यों में समझाइए।",
+  "Which step should normally come before implementation?": "Implementation से पहले सामान्यतः कौन-सा चरण आता है?",
+  "Write any three steps involved in problem solving.": "समस्या समाधान के कोई तीन चरण लिखिए।",
+  "Which component means breaking a large problem into smaller parts?": "कौन-सा घटक बड़ी समस्या को छोटे भागों में बाँटता है?",
+  "Which component focuses on important information and ignores unnecessary detail?": "कौन-सा घटक अनावश्यक विवरण छोड़कर जरूरी जानकारी पर ध्यान देता है?",
+  "Name the four main components of computational thinking.": "कम्प्यूटेशनल थिंकिंग के चार मुख्य घटकों के नाम लिखिए।",
+  "Which flowchart symbol is normally used for a decision?": "निर्णय के लिए सामान्यतः कौन-सा flowchart symbol उपयोग होता है?",
+  "What is an algorithm?": "एल्गोरिदम क्या है?",
+  "Write the basic algorithm steps for adding two numbers.": "दो संख्याओं को जोड़ने के एल्गोरिदम के चरण लिखिए।",
+  "Which statement correctly describes a variable?": "कौन-सा कथन variable का सही वर्णन करता है?",
+  "Which of the following is a C data type?": "इनमें से कौन-सा C data type है?",
+  "Name any three common C data types.": "C के कोई तीन सामान्य data types लिखिए।",
+  "What is the basic idea of memory representation of a variable?": "Variable के memory representation का मुख्य विचार क्या है?",
+  "Which operator gives the remainder after integer division?": "Integer division के बाद remainder कौन-सा operator देता है?",
+  "What is the value of 10 / 3 when both operands are int?": "दोनों operands int होने पर 10 / 3 का मान क्या होगा?",
+  "Write the five basic arithmetic operators in C.": "C के पाँच मुख्य arithmetic operators लिखिए।",
+  "Which operator checks equality?": "Equality जाँचने वाला operator कौन-सा है?",
+  "Which operator means 'not equal to'?": "'बराबर नहीं' के लिए कौन-सा operator है?",
+  "Differentiate = and == in C.": "C में = और == का अंतर बताइए।",
+  "Which logical operator is true when both conditions are true?": "दोनों conditions true होने पर कौन-सा logical operator true होता है?",
+  "What does ! do to a logical condition?": "Logical condition पर ! क्या करता है?",
+  "Explain &&, || and ! in simple words.": "&&, || और ! को सरल शब्दों में समझाइए।",
+  "Which operator is bitwise AND?": "Bitwise AND कौन-सा operator है?",
+  "What is 5 & 3 using 4-bit binary representation?": "4-bit binary रूप में 5 & 3 का मान क्या होगा?",
+  "What is the main difference between bitwise and logical operators?": "Bitwise और logical operators में मुख्य अंतर क्या है?",
+  "What is the value of 2 + 3 * 4?": "2 + 3 * 4 का मान क्या है?",
+  "What can be used to explicitly control the order of evaluation?": "Evaluation का क्रम स्पष्ट रूप से नियंत्रित करने के लिए क्या उपयोग होता है?",
+  "Differentiate precedence and associativity.": "Precedence और associativity में अंतर बताइए।",
+  "Which function is commonly used for formatted output in C?": "C में formatted output के लिए सामान्यतः कौन-सा function है?",
+  "Which format specifier is commonly used for an int?": "int के लिए सामान्य format specifier कौन-सा है?",
+  "What is the purpose of printf() and scanf()?": "printf() और scanf() का क्या उद्देश्य है?",
+  "Which format specifier is commonly used to print a string?": "String print करने के लिए सामान्य format specifier कौन-सा है?",
+  "What does \\\\n normally do in a printf() string?": "printf() string में \\\\n का सामान्य काम क्या है?",
+  "What is formatted output?": "Formatted output क्या है?",
+  "Which function opens a file in C?": "C में file खोलने वाला function कौन-सा है?",
+  "Which mode is used to append data to a file?": "File के अंत में data जोड़ने के लिए कौन-सा mode है?",
+  "Write the basic file I/O sequence.": "File I/O के मुख्य चरण लिखिए।",
+  "When does an if block execute?": "if block कब execute होता है?",
+  "Which keyword is used for a simple decision?": "साधारण decision के लिए कौन-सा keyword उपयोग होता है?",
+  "What does an if statement do?": "if statement क्या करता है?",
+  "How many main alternatives does if-else provide?": "if-else कितने मुख्य विकल्प देता है?",
+  "Which block runs when the if condition is false?": "if condition false होने पर कौन-सा block चलता है?",
+  "What is the purpose of if-else?": "if-else का उद्देश्य क्या है?",
+  "What is a nested if?": "Nested if क्या होता है?",
+  "When is the inner if checked?": "Inner if कब जाँचा जाता है?",
+  "Why are nested if statements useful?": "Nested if statements क्यों उपयोगी हैं?",
+  "Which operator is called the conditional operator?": "किस operator को conditional operator कहा जाता है?",
+  "How many expressions are selected by a basic conditional operator?": "Basic conditional operator कितने expressions में से चयन करता है?",
+  "How does ?: choose between two expressions?": "?: दो expressions में से चुनाव कैसे करता है?",
+  "Which three parts are commonly in a for header?": "for header में सामान्यतः कौन-से तीन भाग होते हैं?",
+  "When is the for-loop condition checked?": "for loop की condition कब जाँची जाती है?",
+  "Give one situation where a for loop is useful.": "एक स्थिति बताइए जहाँ for loop उपयोगी है।",
+  "When does a while loop check its condition?": "while loop अपनी condition कब जाँचता है?",
+  "Can a while loop execute zero times?": "क्या while loop शून्य बार execute हो सकता है?",
+  "What is the main idea of a while loop?": "while loop का मुख्य विचार क्या है?",
+  "When is the do-while condition checked?": "do-while की condition कब जाँची जाती है?",
+  "Minimum number of body executions?": "Body कम-से-कम कितनी बार चलती है?",
+  "Why does do-while execute at least once?": "do-while कम-से-कम एक बार क्यों चलता है?",
+  "What is a nested loop?": "Nested loop क्या है?",
+  "For each outer-loop iteration, what normally happens to the inner loop?": "Outer loop की हर iteration पर inner loop में सामान्यतः क्या होता है?",
+  "Name one common use of nested loops.": "Nested loops का एक सामान्य उपयोग बताइए।",
+  "Which keyword selects an alternative in switch?": "switch में विकल्प चुनने वाला keyword कौन-सा है?",
+  "What is the purpose of default?": "default का उद्देश्य क्या है?",
+  "Why is break commonly used inside switch cases?": "switch case में break का उपयोग क्यों होता है?",
+  "What does break do inside a loop?": "Loop के अंदर break क्या करता है?",
+  "Where does control go after break exits a loop?": "break से loop बाहर आने के बाद control कहाँ जाता है?",
+  "What is the main purpose of break?": "break का मुख्य उद्देश्य क्या है?",
+  "What does continue do inside a loop?": "Loop के अंदर continue क्या करता है?",
+  "After continue, what normally happens?": "continue के बाद सामान्यतः क्या होता है?",
+  "Differentiate break and continue.": "break और continue में अंतर बताइए।"
+};
+const hindiModuleQuestionOptions = {
+  "What is the main idea of computational thinking?": [
+    "समस्या को तार्किक और व्यवस्थित तरीके से हल करना",
+    "जल्दी उत्तर का अनुमान लगाना",
+    "योजना के बिना केवल code लिखना",
+    "अनावश्यक files हटाना"
+  ],
+  "Which step should normally come before implementation?": [
+    "समाधान की योजना बनाना",
+    "Program हटाना",
+    "Testing छोड़ना",
+    "Computer बंद करना"
+  ],
+  "Which component means breaking a large problem into smaller parts?": [
+    "Abstraction (अमूर्तन)",
+    "Decomposition (विभाजन)",
+    "Pattern Recognition",
+    "Algorithmic Thinking"
+  ],
+  "Which component focuses on important information and ignores unnecessary detail?": [
+    "Abstraction (अमूर्तन)",
+    "Decomposition (विभाजन)",
+    "Pattern Recognition",
+    "Testing"
+  ],
+  "Which flowchart symbol is normally used for a decision?": [
+    "Oval",
+    "Rectangle",
+    "Diamond",
+    "Parallelogram"
+  ],
+  "Which statement correctly describes a variable?": [
+    "ऐसा नामित memory स्थान जिसका मान बदल सकता है",
+    "Flowchart symbol",
+    "File extension",
+    "ऐसा मान जो कभी नहीं बदलता"
+  ],
+  "Which of the following is a C data type?": [
+    "int",
+    "flow",
+    "input",
+    "algorithm"
+  ],
+  "Which operator gives the remainder after integer division?": [
+    "/",
+    "%",
+    "*",
+    "+"
+  ],
+  "What is the value of 10 / 3 when both operands are int?": [
+    "3",
+    "3.33",
+    "4",
+    "0"
+  ],
+  "Which operator checks equality?": [
+    "=",
+    "==",
+    "!=",
+    "<="
+  ],
+  "Which operator means 'not equal to'?": [
+    "!=",
+    "==",
+    "<>",
+    "!"
+  ],
+  "Which logical operator is true when both conditions are true?": [
+    "||",
+    "&&",
+    "!",
+    "&"
+  ],
+  "What does ! do to a logical condition?": [
+    "मानों को जोड़ता है",
+    "Condition का truth value उलट देता है",
+    "Bits को multiply करता है",
+    "Value assign करता है"
+  ],
+  "Which operator is bitwise AND?": [
+    "&&",
+    "&",
+    "||",
+    "!"
+  ],
+  "What is 5 & 3 using 4-bit binary representation?": [
+    "1",
+    "2",
+    "7",
+    "8"
+  ],
+  "What is the value of 2 + 3 * 4?": [
+    "20",
+    "14",
+    "24",
+    "9"
+  ],
+  "What can be used to explicitly control the order of evaluation?": [
+    "Comments",
+    "Parentheses ( )",
+    "केवल variables",
+    "File modes"
+  ],
+  "Which function is commonly used for formatted output in C?": [
+    "scanf()",
+    "printf()",
+    "fopen()",
+    "fclose()"
+  ],
+  "Which format specifier is commonly used for an int?": [
+    "%s",
+    "%c",
+    "%d",
+    "%f"
+  ],
+  "Which format specifier is commonly used to print a string?": [
+    "%d",
+    "%c",
+    "%s",
+    "%f"
+  ],
+  "What does \\\\n normally do in a printf() string?": [
+    "Text delete करता है",
+    "नई line शुरू करता है",
+    "Input पढ़ता है",
+    "File बंद करता है"
+  ],
+  "Which function opens a file in C?": [
+    "fopen()",
+    "fclose()",
+    "printf()",
+    "scanf()"
+  ],
+  "Which mode is used to append data to a file?": [
+    "r",
+    "w",
+    "a",
+    "x"
+  ],
+  "When does an if block execute?": [
+    "जब condition true हो",
+    "हमेशा",
+    "जब false हो",
+    "केवल loop के बाद"
+  ],
+  "Which keyword is used for a simple decision?": [
+    "when",
+    "if",
+    "check",
+    "case"
+  ],
+  "How many main alternatives does if-else provide?": [
+    "एक",
+    "दो",
+    "तीन",
+    "कोई नहीं"
+  ],
+  "Which block runs when the if condition is false?": [
+    "for",
+    "case",
+    "else",
+    "while"
+  ],
+  "What is a nested if?": [
+    "एक if के अंदर दूसरा if",
+    "बिना condition का if",
+    "switch के अंदर loop",
+    "एक variable"
+  ],
+  "When is the inner if checked?": [
+    "Outer condition से पहले",
+    "जब outer condition अंदर जाने देती है",
+    "Program के अंत में",
+    "कभी नहीं"
+  ],
+  "Which operator is called the conditional operator?": [
+    "::",
+    "?:",
+    "??",
+    "=>"
+  ],
+  "How many expressions are selected by a basic conditional operator?": [
+    "एक",
+    "दो",
+    "तीन",
+    "चार"
+  ],
+  "Which three parts are commonly in a for header?": [
+    "Input, output, print",
+    "Initialization, condition, update",
+    "Start, stop, switch",
+    "Case, break, default"
+  ],
+  "When is the for-loop condition checked?": [
+    "हर iteration से पहले",
+    "केवल loop के बाद",
+    "कभी नहीं",
+    "केवल एक बार"
+  ],
+  "When does a while loop check its condition?": [
+    "हर iteration से पहले",
+    "केवल body के बाद",
+    "Program के अंत में",
+    "कभी नहीं"
+  ],
+  "Can a while loop execute zero times?": [
+    "हाँ",
+    "नहीं",
+    "केवल C++ में",
+    "केवल switch के साथ"
+  ],
+  "When is the do-while condition checked?": [
+    "Body के बाद",
+    "Body से पहले",
+    "Program शुरू होने से पहले",
+    "कभी नहीं"
+  ],
+  "Minimum number of body executions?": [
+    "शून्य",
+    "एक",
+    "दो",
+    "switch पर निर्भर"
+  ],
+  "What is a nested loop?": [
+    "एक loop के अंदर दूसरा loop",
+    "बिना condition का loop",
+    "if के अंदर switch",
+    "केवल function"
+  ],
+  "For each outer-loop iteration, what normally happens to the inner loop?": [
+    "यह अपनी iterations पूरी करता है",
+    "यह हमेशा छोड़ दिया जाता है",
+    "Program समाप्त होता है",
+    "Outer loop रुकता है"
+  ],
+  "Which keyword selects an alternative in switch?": [
+    "case",
+    "choose",
+    "option",
+    "select"
+  ],
+  "What is the purpose of default?": [
+    "जब कोई case match न हो तब चलता है",
+    "हमेशा सबसे पहले चलता है",
+    "हर loop रोकता है",
+    "Variable घोषित करता है"
+  ],
+  "Why is break commonly used inside switch cases?": [
+    "एक iteration छोड़ने के लिए",
+    "वर्तमान switch से बाहर निकलने के लिए",
+    "Loop फिर शुरू करने के लिए",
+    "Program pause करने के लिए"
+  ],
+  "What does break do inside a loop?": [
+    "Loop के बाद वाले statement पर ले जाता है",
+    "अनंत loop चलाता है",
+    "पहली line पर लौटता है",
+    "दूसरे case में जाता है"
+  ],
+  "What is the main purpose of break?": [
+    "Loop समाप्त करना",
+    "वर्तमान iteration छोड़ना",
+    "Program समाप्त करना",
+    "उसी iteration को दोहराना"
+  ],
+  "What does continue do inside a loop?": [
+    "वर्तमान iteration का शेष भाग छोड़ता है",
+    "Program से बाहर निकलता है",
+    "Loop को switch बनाता है",
+    "पिछली iteration दोहराता है"
+  ],
+  "After continue, what normally happens?": [
+    "अगली iteration शुरू होती है",
+    "Program समाप्त होता है",
+    "Loop switch बन जाता है",
+    "पिछली iteration दोहरती है"
+  ]
+};
+const hindiModuleShortAnswers = {
+  "In one or two sentences, explain what problem solving means in programming.": {
+    "keywords": [
+      "समस्या",
+      "हल"
+    ],
+    "minKeywords": 2,
+    "modelAnswer": "प्रोग्रामिंग में समस्या समाधान का अर्थ समस्या समझकर उसका तार्किक हल बनाना है।"
+  },
+  "Write any three steps involved in problem solving.": {
+    "keywords": [
+      "समझ",
+      "इनपुट",
+      "आउटपुट",
+      "डिजाइन",
+      "एल्गोरिदम",
+      "फ्लोचार्ट",
+      "परीक्षण",
+      "त्रुटि"
+    ],
+    "minKeywords": 3,
+    "modelAnswer": "उदाहरण: समस्या समझना, इनपुट/आउटपुट पहचानना, एल्गोरिदम बनाना, program लिखना और परीक्षण करना।"
+  },
+  "Name the four main components of computational thinking.": {
+    "keywords": [
+      "विभाजन",
+      "decomposition",
+      "पैटर्न",
+      "pattern",
+      "अमूर्तन",
+      "abstraction",
+      "algorithm"
+    ],
+    "minKeywords": 3,
+    "modelAnswer": "Decomposition, Pattern Recognition, Abstraction और Algorithmic Thinking।"
+  },
+  "What is an algorithm?": {
+    "keywords": [
+      "चरण",
+      "समस्या"
+    ],
+    "minKeywords": 2,
+    "modelAnswer": "एल्गोरिदम समस्या हल करने के स्पष्ट और सीमित चरणों का क्रम है।"
+  },
+  "Write the basic algorithm steps for adding two numbers.": {
+    "keywords": [
+      "इनपुट",
+      "जोड़",
+      "योग",
+      "परिणाम",
+      "दिखाएँ",
+      "display"
+    ],
+    "minKeywords": 2,
+    "modelAnswer": "Start → A और B पढ़ें → SUM=A+B → परिणाम दिखाएँ → Stop."
+  },
+  "Name any three common C data types.": {
+    "keywords": [
+      "int",
+      "char",
+      "float",
+      "double",
+      "void"
+    ],
+    "minKeywords": 3,
+    "modelAnswer": "int, char, float, double और void में से कोई तीन।"
+  },
+  "What is the basic idea of memory representation of a variable?": {
+    "keywords": [
+      "वेरिएबल",
+      "variable",
+      "मेमोरी",
+      "memory",
+      "स्थान",
+      "location"
+    ],
+    "minKeywords": 3,
+    "modelAnswer": "Variable का मान memory location पर रखा जाता है; data type value को समझने में मदद करता है।"
+  },
+  "Write the five basic arithmetic operators in C.": {
+    "keywords": [
+      "+",
+      "-",
+      "*",
+      "/",
+      "%"
+    ],
+    "minKeywords": 4,
+    "modelAnswer": "+, -, *, / और %।"
+  },
+  "Differentiate = and == in C.": {
+    "keywords": [
+      "assign",
+      "बराबरी",
+      "तुलना",
+      "मान देना"
+    ],
+    "minKeywords": 1,
+    "modelAnswer": "= value assign करता है, जबकि == equality compare करता है।"
+  },
+  "Explain &&, || and ! in simple words.": {
+    "keywords": [
+      "दोनों",
+      "एक",
+      "उल्टा",
+      "and",
+      "or",
+      "not"
+    ],
+    "minKeywords": 2,
+    "modelAnswer": "&& दोनों conditions true होने पर true, || कम-से-कम एक true होने पर true, और ! condition को उलटता है।"
+  },
+  "What is the main difference between bitwise and logical operators?": {
+    "keywords": [
+      "bits",
+      "condition",
+      "बिट",
+      "शर्त"
+    ],
+    "minKeywords": 2,
+    "modelAnswer": "Bitwise operators bits पर काम करते हैं; logical operators conditions पर।"
+  },
+  "What can be used to explicitly control the order of evaluation?": {
+    "keywords": [
+      "parentheses",
+      "कोष्ठक",
+      "parenthesis"
+    ],
+    "minKeywords": 1,
+    "modelAnswer": "Parentheses ( ) evaluation का क्रम स्पष्ट करते हैं।"
+  },
+  "Differentiate precedence and associativity.": {
+    "keywords": [
+      "precedence",
+      "पहले",
+      "क्रम",
+      "दिशा",
+      "associativity"
+    ],
+    "minKeywords": 2,
+    "modelAnswer": "Precedence बताता है कौन-सा operator पहले लागू होगा; associativity समान precedence वाले operators की दिशा बताती है।"
+  },
+  "What is the purpose of printf() and scanf()?": {
+    "keywords": [
+      "printf",
+      "output",
+      "scanf",
+      "input",
+      "आउटपुट",
+      "इनपुट"
+    ],
+    "minKeywords": 2,
+    "modelAnswer": "printf() output दिखाता है और scanf() input पढ़ता है।"
+  },
+  "What is formatted output?": {
+    "keywords": [
+      "format",
+      "specifier",
+      "प्रारूप",
+      "printf"
+    ],
+    "minKeywords": 1,
+    "modelAnswer": "Format specifier की मदद से value को नियंत्रित तरीके से दिखाना formatted output है।"
+  },
+  "Write the basic file I/O sequence.": {
+    "keywords": [
+      "खोल",
+      "पढ़",
+      "लिख",
+      "बंद",
+      "open",
+      "close"
+    ],
+    "minKeywords": 2,
+    "modelAnswer": "फ़ाइल खोलें, डेटा पढ़ें/लिखें और फ़ाइल बंद करें।"
+  },
+  "What does an if statement do?": {
+    "keywords": [
+      "condition",
+      "शर्त",
+      "true",
+      "सत्य"
+    ],
+    "minKeywords": 1,
+    "modelAnswer": "if condition जाँचता है और true होने पर block चलाता है।"
+  },
+  "What is the purpose of if-else?": {
+    "keywords": [
+      "विकल्प",
+      "true",
+      "false",
+      "सत्य",
+      "असत्य"
+    ],
+    "minKeywords": 1,
+    "modelAnswer": "if-else condition के true या false होने पर अलग block चलाता है।"
+  },
+  "Why are nested if statements useful?": {
+    "keywords": [
+      "कई",
+      "शर्त",
+      "निर्णय",
+      "condition"
+    ],
+    "minKeywords": 1,
+    "modelAnswer": "कई जुड़े हुए निर्णय या conditions जाँचने में nested if उपयोगी है।"
+  },
+  "How does ?: choose between two expressions?": {
+    "keywords": [
+      "condition",
+      "true",
+      "false",
+      "शर्त",
+      "सत्य",
+      "असत्य"
+    ],
+    "minKeywords": 1,
+    "modelAnswer": "Condition true हो तो पहला expression, अन्यथा दूसरा चुना जाता है।"
+  },
+  "Give one situation where a for loop is useful.": {
+    "keywords": [
+      "दोहराव",
+      "iterations",
+      "गिनती",
+      "ज्ञात",
+      "repeat"
+    ],
+    "minKeywords": 1,
+    "modelAnswer": "जब किसी काम को ज्ञात संख्या में दोहराना हो, तब for loop उपयोगी है।"
+  },
+  "What is the main idea of a while loop?": {
+    "keywords": [
+      "condition",
+      "शर्त",
+      "दोहर",
+      "true",
+      "सत्य"
+    ],
+    "minKeywords": 1,
+    "modelAnswer": "while condition true रहने तक body दोहराता है।"
+  },
+  "Why does do-while execute at least once?": {
+    "keywords": [
+      "पहले",
+      "body",
+      "बाद",
+      "condition",
+      "शर्त"
+    ],
+    "minKeywords": 1,
+    "modelAnswer": "क्योंकि do-while में body पहले चलती है और condition बाद में जाँची जाती है।"
+  },
+  "Name one common use of nested loops.": {
+    "keywords": [
+      "pattern",
+      "तालिका",
+      "table",
+      "array",
+      "पैटर्न"
+    ],
+    "minKeywords": 1,
+    "modelAnswer": "उदाहरण: patterns, tables या 2-D arrays पर काम करना।"
+  },
+  "What is the purpose of default?": {
+    "keywords": [
+      "match",
+      "मिले",
+      "case",
+      "विकल्प"
+    ],
+    "minKeywords": 1,
+    "modelAnswer": "switch में कोई case match न हो तो default चलता है।"
+  },
+  "Where does control go after break exits a loop?": {
+    "keywords": [
+      "बाद",
+      "statement",
+      "बाहर",
+      "next",
+      "अगला"
+    ],
+    "minKeywords": 1,
+    "modelAnswer": "Control loop के बाद आने वाले statement पर जाता है।"
+  },
+  "Differentiate break and continue.": {
+    "keywords": [
+      "समाप्त",
+      "छोड़",
+      "iteration",
+      "loop",
+      "अगली"
+    ],
+    "minKeywords": 2,
+    "modelAnswer": "break loop समाप्त करता है; continue वर्तमान iteration छोड़कर अगली iteration की ओर बढ़ता है।"
+  }
+};
+
 const papers = [
   { semester: '3rd Semester', subject: 'Computer Networks', year: 'Previous Year', status: 'Practice set' },
   { semester: '3rd Semester', subject: 'Data Structures', year: 'Previous Year', status: 'Practice set' },
@@ -7670,9 +8423,27 @@ function VisualLearningLab({ topicIndex, subject, unit }) {
   </div>;
 }
 
-function StudyModule({ subject, unit, onExit }) {
+function StudyModule({ subject, unit, onExit, medium }) {
   const key = `${subject || ''}|${unit || ''}`;
-  const module = moduleLessons[key];
+  const sourceModule = moduleLessons[key];
+  const module = medium === 'hi' && sourceModule ? {
+    ...sourceModule,
+    title: hindiModuleTitles[key] || sourceModule.title,
+    topics: sourceModule.topics.map((topic) => {
+      const translatedTopic = hindiModuleTopicContent[topic.title];
+      return {
+        ...topic,
+        title: translatedTopic?.title || topic.title,
+        lesson: translatedTopic?.lesson || topic.lesson,
+        questions: topic.questions.map((question) => ({
+          ...question,
+          prompt: hindiModuleQuestionPrompts[question.prompt] || question.prompt,
+          options: hindiModuleQuestionOptions[question.prompt] || question.options,
+          ...(hindiModuleShortAnswers[question.prompt] || {})
+        }))
+      };
+    })
+  } : sourceModule;
   const [started, setStarted] = useState(false);
   const [topicIndex, setTopicIndex] = useState(0);
   const [answers, setAnswers] = useState({});
@@ -7753,9 +8524,9 @@ function StudyModule({ subject, unit, onExit }) {
       const selectedIndex = Number(value);
       return Number.isInteger(selectedIndex) && selectedIndex >= 0 && selectedIndex < question.options.length && selectedIndex === question.answer;
     }
-    const normalized = String(value || '').toLowerCase().replace(/[^a-z0-9+.#]+/g, ' ');
+    const normalized = String(value || '').toLowerCase().replace(/[^a-z0-9\u0900-\u097f+.#]+/g, ' ');
     const hits = question.keywords.filter((keyword) => {
-      const key = keyword.toLowerCase().replace(/[^a-z0-9+.#]+/g, ' ').trim();
+      const key = keyword.toLowerCase().replace(/[^a-z0-9\u0900-\u097f+.#]+/g, ' ').trim();
       return key && normalized.includes(key);
     });
     return hits.length >= question.minKeywords;
