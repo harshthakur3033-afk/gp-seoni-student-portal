@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BookOpen, BrainCircuit, CalendarDays, CheckCircle2, ChevronRight, CircleHelp, Code2, FileText, GraduationCap, LayoutDashboard, Menu, Network, Plus, Search, Send, ShieldCheck, Sparkles, Target, X } from 'lucide-react';
 import './styles.css';
+import semesterSubjects from './semesterCurriculum.js';
 
 const subjects = [
   { name: 'Computer Programming', code: '301', icon: Code2, tag: 'CSE', topics: ['Unit 1: Computational Thinking, Variables & Data Representation', 'Unit 2: Operators & Input-Output', 'Unit 3: Conditional & Looping Constructs', 'Unit 4: Arrays & Pointer', 'Unit 5: Functions & Recursion'] },
@@ -7947,12 +7948,17 @@ const initialTasks = [
 
 function App() {
   const [active, setActive] = useState('Dashboard');
+  const [selectedSemester, setSelectedSemester] = useState(() => {
+    const saved = Number(window.localStorage.getItem('cse-diploma-semester') || 3);
+    return [3, 4, 5, 6].includes(saved) ? saved : 3;
+  });
   const [selectedSubject, setSelectedSubject] = useState(null);
   const [selectedUnit, setSelectedUnit] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [search, setSearch] = useState('');
   const [medium, setMedium] = useState(() => window.localStorage.getItem('cse-diploma-medium') === 'hi' ? 'hi' : 'en');
   useEffect(() => { window.localStorage.setItem('cse-diploma-medium', medium); }, [medium]);
+  useEffect(() => { window.localStorage.setItem('cse-diploma-semester', String(selectedSemester)); }, [selectedSemester]);
   const [mcqIndex, setMcqIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [score, setScore] = useState(0);
@@ -7964,7 +7970,25 @@ function App() {
 
   const nav = ['Dashboard', 'Subjects', 'Modules', 'Notes', 'Question Papers', 'MCQ Practice', 'Study Planner', 'AI Study Assistant'];
   const query = search.trim().toLowerCase();
-  const filteredSubjects = useMemo(() => subjects.filter((subject) => { const localizedTopics = hindiSyllabus[subject.code] || []; return `${subject.name} ${subject.code} ${subject.topics.join(' ')} ${localizedTopics.join(' ')}`.toLowerCase().includes(query); }), [query]);
+  const semesterSubjectList = useMemo(() => selectedSemester === 3 ? subjects : semesterSubjects.filter((subject) => subject.semester === selectedSemester), [selectedSemester]);
+  const filteredSubjects = useMemo(() => semesterSubjectList.filter((subject) => {
+    const localizedTopics = subject.topicsHi || hindiSyllabus[subject.code] || [];
+    const searchable = `${subject.name} ${subject.nameHi || ''} ${subject.code} ${subject.officialCode || ''} ${subject.paperCode || ''} ${subject.topics.join(' ')} ${localizedTopics.join(' ')} ${subject.units?.map((unit) => unit.outline).join(' ') || ''}`;
+    return searchable.toLowerCase().includes(query);
+  }), [query, semesterSubjectList]);
+
+  const changeSemester = (value) => {
+    const nextSemester = [3, 4, 5, 6].includes(Number(value)) ? Number(value) : 3;
+    if (nextSemester === selectedSemester) return;
+    const nextState = { gpStudentPortal: true, active: 'Subjects', selectedSubject: null, selectedUnit: null, semester: nextSemester };
+    window.history.pushState(nextState, '', window.location.href);
+    setSelectedSemester(nextSemester);
+    setActive('Subjects');
+    setSelectedSubject(null);
+    setSelectedUnit(null);
+    setMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   useEffect(() => {
     const initialState = {
@@ -7972,6 +7996,7 @@ function App() {
       active: 'Dashboard',
       selectedSubject: null,
       selectedUnit: null,
+      semester: selectedSemester,
     };
 
     if (!window.history.state?.gpStudentPortal) {
@@ -7983,6 +8008,7 @@ function App() {
       setActive(state?.gpStudentPortal && state.active ? state.active : 'Dashboard');
       setSelectedSubject(state?.gpStudentPortal ? (state.selectedSubject || null) : null);
       setSelectedUnit(state?.gpStudentPortal ? (state.selectedUnit || null) : null);
+      setSelectedSemester(state?.gpStudentPortal && [3, 4, 5, 6].includes(Number(state.semester)) ? Number(state.semester) : 3);
       setMenuOpen(false);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -8005,6 +8031,7 @@ function App() {
       active: page,
       selectedSubject: nextSubject,
       selectedUnit: nextUnit,
+      semester: selectedSemester,
     };
 
     window.history.pushState(nextState, '', window.location.href);
@@ -8055,13 +8082,13 @@ function App() {
       </aside>
 
       <main className="main">
-        <header className="topbar"><button className="menu-button" onClick={() => setMenuOpen(true)} aria-label="Open menu"><Menu size={22}/></button><div className="crumb">Academic Portal <ChevronRight size={15}/> <b>{pageTitle}</b></div><div className="search-box"><Search size={17}/><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search subjects, topics, notes..."/></div><div className="medium-switch" role="group" aria-label="Study material language"><span className="medium-label">Study Medium</span><button type="button" className={medium === 'en' ? 'medium-option active' : 'medium-option'} aria-pressed={medium === 'en'} onClick={() => setMedium('en')}>English</button><button type="button" className={medium === 'hi' ? 'medium-option active' : 'medium-option'} aria-pressed={medium === 'hi'} onClick={() => setMedium('hi')}>हिन्दी</button></div></header>
+        <header className="topbar"><button className="menu-button" onClick={() => setMenuOpen(true)} aria-label="Open menu"><Menu size={22}/></button><div className="crumb">Academic Portal <ChevronRight size={15}/> <b>{pageTitle}</b></div><div className="search-box"><Search size={17}/><input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search subjects, topics, notes..."/></div><div className="semester-switch"><label htmlFor="semester-picker">Semester</label><select id="semester-picker" value={selectedSemester} onChange={(e) => changeSemester(e.target.value)} aria-label="Choose diploma semester"><option value={3}>3rd</option><option value={4}>4th</option><option value={5}>5th</option><option value={6}>6th</option></select></div><div className="medium-switch" role="group" aria-label="Study material language"><span className="medium-label">Study Medium</span><button type="button" className={medium === 'en' ? 'medium-option active' : 'medium-option'} aria-pressed={medium === 'en'} onClick={() => setMedium('en')}>English</button><button type="button" className={medium === 'hi' ? 'medium-option active' : 'medium-option'} aria-pressed={medium === 'hi'} onClick={() => setMedium('hi')}>हिन्दी</button></div></header>
 
         <section className="content">
-          {active === 'Dashboard' && <Dashboard go={go} filteredSubjects={filteredSubjects} />}
-          {active === 'Subjects' && <Subjects filteredSubjects={filteredSubjects} go={go} medium={medium} />}
-          {active === 'Modules' && <ModuleLibrary go={go} subjectFilter={selectedSubject} medium={medium} />}
-          {active === 'Notes' && <Notes search={query} subjectFilter={selectedSubject} medium={medium} />}
+          {active === 'Dashboard' && <Dashboard go={go} filteredSubjects={filteredSubjects} semester={selectedSemester} />}
+          {active === 'Subjects' && <Subjects key={`subjects-semester-${selectedSemester}`} filteredSubjects={filteredSubjects} go={go} medium={medium} semester={selectedSemester} />}
+          {active === 'Modules' && <ModuleLibrary go={go} subjectFilter={selectedSubject} medium={medium} semester={selectedSemester} />}
+          {active === 'Notes' && (selectedSemester === 3 ? <Notes search={query} subjectFilter={selectedSubject} medium={medium} /> : <SemesterSyllabusLibrary key={`syllabus-${selectedSemester}-${selectedSubject || 'all'}-${selectedUnit || 'all'}`} semester={selectedSemester} search={query} subjectFilter={selectedSubject} unitFilter={selectedUnit} medium={medium} go={go} />)}
           {active === 'Module' && <StudyModule subject={selectedSubject} unit={selectedUnit} onExit={() => go('Modules', selectedSubject)} medium={medium} />}
           {active === 'Question Papers' && <Papers medium={medium} />}
           {active === 'MCQ Practice' && <MCQPractice mcq={(medium === 'hi' ? hindiMcqs[mcqIndex] : mcqs[mcqIndex])} index={mcqIndex} selected={selected} score={score} answer={answerMcq} next={nextMcq} />}
@@ -8074,29 +8101,95 @@ function App() {
   );
 }
 
-function Dashboard({ go, filteredSubjects }) {
+function Dashboard({ go, filteredSubjects, semester = 3 }) {
   return <>
     <div className="hero"><div><div className="eyebrow"><Sparkles size={15}/> STUDY SMART • BUILD YOUR FUTURE</div><h1>Learn. Practice. <span>Grow.</span></h1><p>A focused learning space for Polytechnic students — organize your subjects, practice exams, and build practical skills.</p><div className="hero-actions"><button className="primary" onClick={() => go('Subjects')}>Explore Subjects <ChevronRight size={17}/></button><button className="secondary" onClick={() => go('MCQ Practice')}><Target size={17}/> Start Practice</button></div></div><button className="hero-card" onClick={() => go('AI Study Assistant')}><div className="hero-icon"><BrainCircuit size={30}/></div><span>AI Study Assistant</span><strong>Learn with guidance</strong><small>Ask • Understand • Revise</small></button></div>
     <div className="section-heading"><div><span className="section-kicker">QUICK ACCESS</span><h2>Everything you need to study</h2></div><button className="text-button" onClick={() => go('Subjects')}>View all <ChevronRight size={16}/></button></div>
     <div className="quick-grid">{[
       ['Notes & Study Material','Subject-wise notes and resources',BookOpen,'Notes'],['Previous Year Papers','Practice with past exam papers',FileText,'Question Papers'],['MCQ Practice','Test yourself with objective questions',CircleHelp,'MCQ Practice'],['AI Study Assistant','Ask questions and learn faster',Sparkles,'AI Study Assistant']
     ].map(([title,desc,Icon,page]) => <button className="quick-card" key={title} onClick={() => go(page)}><div className="quick-icon"><Icon size={21}/></div><div><strong>{title}</strong><p>{desc}</p></div><ChevronRight size={18}/></button>)}</div>
-    <div className="section-heading subjects-head"><div><span className="section-kicker">CURRENT STUDY</span><h2>Subjects & modules</h2></div><span className="semester-badge">3rd Semester</span></div>
+    <div className="section-heading subjects-head"><div><span className="section-kicker">CURRENT STUDY</span><h2>Subjects & modules</h2></div><span className="semester-badge">{({3:'3rd Semester',4:'4th Semester',5:'5th Semester',6:'6th Semester'})[semester]}</span></div>
     <div className="subject-grid">{filteredSubjects.map(({name,code,icon:Icon,tag},i) => <button className="subject-card" key={code} onClick={() => go('Modules', name)}><div className="subject-top"><div className="subject-icon"><Icon size={20}/></div><span>{tag}</span></div><strong>{name}</strong><small>{code} · Study material available</small><div className="progress"><i style={{width:`${52+i*8}%`}}/></div></button>)}</div>
     <div className="lower-grid"><section className="notice-card"><div className="card-title"><div><span className="section-kicker">STUDENT HUB</span><h2>Build your study routine</h2></div><CalendarDays size={21}/></div><div className="notice"><b>Study resources</b><span>Notes, question papers and revision material are organized into dedicated sections.</span></div><div className="notice"><b>Practice zone</b><span>Use MCQs to check your understanding before exams.</span></div></section><section className="planner-card"><div className="card-title"><div><span className="section-kicker">YOUR FOCUS</span><h2>One target at a time</h2></div><Target size={21}/></div><div className="focus-ring"><strong>01</strong><span>Set one small target<br/>for today.</span></div><button className="primary full" onClick={() => go('Study Planner')}>Open Study Planner <ChevronRight size={17}/></button></section></div>
   </>;
 }
 
-function Subjects({ filteredSubjects, go, medium }) {
+function Subjects({ filteredSubjects, go, medium, semester = 3 }) {
   const [selected, setSelected] = useState(filteredSubjects[0]?.code || null);
+  useEffect(() => { if (!filteredSubjects.some((subject) => subject.code === selected)) setSelected(filteredSubjects[0]?.code || null); }, [filteredSubjects, selected]);
   const current = filteredSubjects.find((s) => s.code === selected);
-  return <><div className="page-intro"><span className="section-kicker">ACADEMIC CONTENT</span><h1>Subjects & Modules</h1><p>Choose a subject to see its current module outline and jump into study material.</p></div><div className="subject-page-grid"><div className="subject-list">{filteredSubjects.map(({name,code,icon:Icon,tag}) => <button key={code} className={selected===code?'subject-row selected':'subject-row'} onClick={() => setSelected(code)}><span className="subject-icon"><Icon size={19}/></span><span><strong>{name}</strong><small>{code} · {tag}</small></span><ChevronRight size={17}/></button>)}</div>{current && <section className="module-panel"><div className="module-head"><div className="subject-icon">{React.createElement(current.icon,{size:21})}</div><div><span className="section-kicker">MODULE OUTLINE</span><h2>{current.name}</h2><small>{current.code}</small></div></div><div className="topic-list">{current.topics.map((topic,i)=><button key={topic} onClick={() => {
-            if (current.name === 'Computer Programming' && i === 0) {
-              go('Module', current.name, 1);
-            } else {
-              go('Notes', current.name);
-            }
-          }}><span>{String(i+1).padStart(2,'0')}</span><b>{medium === 'hi' ? (hindiSyllabus[current.code]?.[i] || topic) : topic}</b><ChevronRight size={16}/></button>)}</div><button className="primary full" onClick={() => go('Notes', current.name)}>Open Study Material <BookOpen size={16}/></button></section>}</div></>;
+  return <><div className="page-intro"><span className="section-kicker">SEMESTER {({3:'III',4:'IV',5:'V',6:'VI'})[semester]} · ACADEMIC CONTENT</span><h1>Subjects & Modules</h1><p>{semester === 3 ? 'Choose a subject to see its current module outline and jump into study material.' : 'Browse the official RGPV syllabus by subject and unit. Open a unit to inspect its syllabus topics and practical requirements.'}</p></div><div className="subject-page-grid"><div className="subject-list">{filteredSubjects.map(({name,nameHi,code,icon:Icon,tag,group,electiveGroup}) => <button key={code} className={selected===code?'subject-row selected':'subject-row'} onClick={() => setSelected(code)}><span className="subject-icon"><Icon size={19}/></span><span><strong>{medium === 'hi' && nameHi ? nameHi : name}</strong><small>{code} · {tag}{electiveGroup ? ` · Choice ${electiveGroup}` : ''}</small></span><ChevronRight size={17}/></button>)}</div>{current && <section className="module-panel"><div className="module-head"><div className="subject-icon">{React.createElement(current.icon,{size:21})}</div><div><span className="section-kicker">{semester === 3 ? 'MODULE OUTLINE' : `SEMESTER ${({4:'IV',5:'V',6:'VI'})[semester]} · OFFICIAL SYLLABUS`}</span><h2>{medium === 'hi' && current.nameHi ? current.nameHi : current.name}</h2><small>{current.code}{current.paperCode && current.paperCode !== '—' ? ` · Paper ${current.paperCode}` : ''}</small>{current.group && <p className="course-group-note">{current.group}</p>}{current.credits && <p className="course-group-note">Credits: {current.credits}</p>}</div></div><div className="topic-list">{current.topics.map((topic,i)=><button key={`${current.code}-${i}-${topic}`} onClick={() => {
+            if (semester === 3 && current.name === 'Computer Programming' && i < 3) go('Module', current.name, i + 1);
+            else go('Notes', current.name, i + 1);
+          }}><span>{String(i+1).padStart(2,'0')}</span><b>{medium === 'hi' ? (current.topicsHi?.[i] || hindiSyllabus[current.code]?.[i] || topic) : topic}</b><ChevronRight size={16}/></button>)}</div><button className="primary full" onClick={() => go('Notes', current.name)}>Open Study Material <BookOpen size={16}/></button></section>}</div></>;
+}
+
+function SemesterSyllabusLibrary({ semester, search, subjectFilter, unitFilter, medium }) {
+  const courses = semesterSubjects.filter((course) =>
+    course.semester === semester &&
+    (!subjectFilter || course.name === subjectFilter) &&
+    `${course.name} ${course.nameHi || ''} ${course.code} ${course.group || ''} ${course.units.map((unit) => `${unit.title} ${unit.titleHi || ''} ${unit.outline}`).join(' ')}`.toLowerCase().includes(search)
+  );
+  const unitKey = (course, index) => `${course.code}|Unit ${index + 1}`;
+  const [expanded, setExpanded] = useState(unitFilter && subjectFilter ? `${courses.find((course) => course.name === subjectFilter)?.code || ''}|Unit ${unitFilter}` : null);
+
+  useEffect(() => {
+    if (unitFilter && subjectFilter) {
+      const course = semesterSubjects.find((item) => item.semester === semester && item.name === subjectFilter);
+      setExpanded(course ? `${course.code}|Unit ${unitFilter}` : null);
+    } else {
+      setExpanded(null);
+    }
+  }, [semester, subjectFilter, unitFilter]);
+
+  const semesterRoman = ({4:'IV',5:'V',6:'VI'})[semester] || String(semester);
+  return <>
+    <div className="page-intro">
+      <span className="section-kicker">SEMESTER {semesterRoman} · RGPV SYLLABUS</span>
+      <h1>{medium === 'hi' ? `सेमेस्टर ${semesterRoman} का सिलेबस` : `Semester ${semesterRoman} Syllabus`}</h1>
+      <p>{medium === 'hi'
+        ? 'यहाँ PDF में दिए गए official subject names, unit topics, elective choices और practical requirements व्यवस्थित किए गए हैं। यह syllabus outline है, complete translated notes नहीं।'
+        : 'Official subject names, unit topics, elective choices and practical requirements from the uploaded RGPV syllabus PDF are organized below. These are syllabus outlines, not full lesson notes yet.'}</p>
+    </div>
+    <div className="semester-syllabus-stack">
+      {courses.map((course) => <article className="semester-syllabus-card" key={course.code}>
+        <div className="semester-syllabus-card-head">
+          <div className="syllabus-icon">{React.createElement(course.icon || BookOpen, {size:20})}</div>
+          <div className="syllabus-course-title">
+            <span className="section-kicker">{course.tag} · {course.officialCode || course.code}</span>
+            <h2>{medium === 'hi' && course.nameHi ? course.nameHi : course.name}</h2>
+            <p>{course.credits || 'Credits not specified'}{course.paperCode && course.paperCode !== '—' ? ` · Paper ${course.paperCode}` : ''}</p>
+          </div>
+        </div>
+        {course.group && <div className="syllabus-course-group">{course.group}</div>}
+        {course.sourceNote && <div className="syllabus-source-note">{course.sourceNote}</div>}
+        <div className="syllabus-unit-list">
+          {course.syllabusUnits.map((unit, index) => {
+            const key = unitKey(course, index);
+            const isExpanded = expanded === key;
+            return <div className="syllabus-unit" key={key}>
+              <button className="syllabus-unit-trigger" onClick={() => setExpanded(isExpanded ? null : key)} aria-expanded={isExpanded}>
+                <span className="syllabus-unit-number">{String(index + 1).padStart(2,'0')}</span>
+                <span className="syllabus-unit-title">{medium === 'hi' && unit.titleHi ? unit.titleHi : unit.title}</span>
+                <span className="syllabus-unit-toggle">{isExpanded ? 'Hide topics' : 'View topics'}</span>
+                <ChevronRight size={16} className={isExpanded ? 'syllabus-chevron open' : 'syllabus-chevron'}/>
+              </button>
+              {isExpanded && <div className="syllabus-unit-content">
+                <span className="section-kicker">{medium === 'hi' ? 'PDF से syllabus topics' : 'SYLLABUS TOPICS FROM PDF'}</span>
+                <p>{unit.outline || unit.title}</p>
+              </div>}
+            </div>;
+          })}
+        </div>
+        {course.practicals?.length > 0 && <details className="syllabus-practicals">
+          <summary>Practical / Lab syllabus ({course.practicals.length})</summary>
+          <ol>{course.practicals.map((item, index) => <li key={index}>{item}</li>)}</ol>
+        </details>}
+        {course.sourceNote && <small className="syllabus-footnote">The display retains source-specific notes where the uploaded PDF has no numbered units or has a code/text discrepancy.</small>}
+      </article>)}
+      {courses.length === 0 && <div className="empty">No syllabus entries match this search. Try a subject name, unit title, or code.</div>}
+    </div>
+  </>;
 }
 
 function Notes({ search, subjectFilter, medium }) {
@@ -8180,15 +8273,15 @@ function Notes({ search, subjectFilter, medium }) {
 
 
 
-function ModuleLibrary({ go, subjectFilter, medium }) {
-  const moduleSubjects = subjects.filter((subject) => subject.code && subject.code !== '—');
+function ModuleLibrary({ go, subjectFilter, medium, semester = 3 }) {
+  const moduleSubjects = semester === 3 ? subjects.filter((subject) => subject.code && subject.code !== '—') : semesterSubjects.filter((subject) => subject.semester === semester);
   const initialCode = moduleSubjects.find((subject) => subject.name === subjectFilter)?.code || moduleSubjects[0]?.code || null;
   const [selected, setSelected] = useState(initialCode);
 
   useEffect(() => {
     const nextCode = moduleSubjects.find((subject) => subject.name === subjectFilter)?.code || moduleSubjects[0]?.code || null;
     setSelected(nextCode);
-  }, [subjectFilter]);
+  }, [subjectFilter, semester]);
 
   const current = moduleSubjects.find((subject) => subject.code === selected);
 
@@ -8196,7 +8289,7 @@ function ModuleLibrary({ go, subjectFilter, medium }) {
     <div className="page-intro">
       <span className="section-kicker">INTERACTIVE LEARNING</span>
       <h1>Modules</h1>
-      <p>Choose a subject, select its unit, and open the interactive module. The learning flow is topic-by-topic with questions before moving ahead.</p>
+      <p>{semester === 3 ? 'Choose a subject, select its unit, and open the interactive module. The learning flow is topic-by-topic with questions before moving ahead.' : 'Choose a subject and unit to view the official syllabus outline. New semester outlines are available now; interactive lessons can be developed on top of these.'}</p>
     </div>
 
     <div className="subject-page-grid">
@@ -8204,7 +8297,7 @@ function ModuleLibrary({ go, subjectFilter, medium }) {
         {moduleSubjects.map(({name,code,icon:Icon,tag}) => (
           <button key={code} className={selected===code ? 'subject-row selected' : 'subject-row'} onClick={() => setSelected(code)}>
             <span className="subject-icon"><Icon size={19}/></span>
-            <span><strong>{name}</strong><small>{code} · {tag}</small></span>
+            <span><strong>{medium === 'hi' && moduleSubjects.find((subject) => subject.code === code)?.nameHi ? moduleSubjects.find((subject) => subject.code === code).nameHi : name}</strong><small>{code} · {tag}</small></span>
             <ChevronRight size={17}/>
           </button>
         ))}
@@ -8222,16 +8315,16 @@ function ModuleLibrary({ go, subjectFilter, medium }) {
 
         <div className="topic-list">
           {current.topics.map((topic,i) => {
-            const available = current.name === 'Computer Programming' && i >= 0 && i <= 2;
+            const available = semester !== 3 || (current.name === 'Computer Programming' && i >= 0 && i <= 2);
             return <button
               key={topic}
               disabled={!available}
               className={available ? '' : 'module-topic-disabled'}
-              onClick={() => available && go('Module', current.name, i + 1)}
+              onClick={() => available && (semester === 3 ? go('Module', current.name, i + 1) : go('Notes', current.name, i + 1))}
             >
               <span>{String(i+1).padStart(2,'0')}</span>
-              <b>{medium === 'hi' ? (hindiSyllabus[current.code]?.[i] || topic) : topic}</b>
-              <span className={available ? 'module-open-badge' : 'module-soon-badge'}>{available ? 'Open Module' : 'Coming Soon'}</span>
+              <b>{medium === 'hi' ? (current.topicsHi?.[i] || hindiSyllabus[current.code]?.[i] || topic) : topic}</b>
+              <span className={available ? 'module-open-badge' : 'module-soon-badge'}>{semester === 3 ? (available ? 'Open Module' : 'Coming Soon') : 'View Syllabus'}</span>
               <ChevronRight size={16}/>
             </button>;
           })}
