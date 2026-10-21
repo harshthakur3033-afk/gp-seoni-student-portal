@@ -5,7 +5,7 @@ import {
   FileText, Cpu, Lightbulb, Landmark, Radio, Layers, Users, GraduationCap, Target
 } from 'lucide-react';
 
-const U = (label, title, titleHi, outline) => ({ label, title, titleHi, outline });
+const U = (title, titleHi, outline) => ({ label: title, title, titleHi, outline });
 
 const C = (data) => ({
   ...data,
