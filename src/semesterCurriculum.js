@@ -107,7 +107,7 @@ const semesterSubjects = [
       U('Unit 4: Project and release management', 'इकाई 4: Project और release management',
         'Project-management concepts; configuration and release management; version control and tools such as Git; release planning; change management; software maintenance; project metrics.')
     ],
-    sourceNote: 'The uploaded PDF specifies four units for SSAD / Software Engineering; no Unit 5 is listed.'
+    sourceNote: 'The SSAD / Software Engineering syllabus contains four units; no Unit 5 is listed.'
   }),
   C({
     semester: 4, name: 'Web Technologies', nameHi: 'वेब टेक्नोलॉजीज', code: '405',
@@ -140,9 +140,9 @@ const semesterSubjects = [
     tag: 'Project', credits: '2 practical credits', group: 'Project',
     units: [
       U('Project work and implementation', 'प्रोजेक्ट कार्य और implementation',
-        'The PDF specifies evaluation based on work done, quality of the report, performance in viva-voce and presentation.')
+        'Assessment is based on work completed, report quality, viva-voce performance and presentation.')
     ],
-    sourceNote: 'The PDF does not define numbered units for the Minor Project.'
+    sourceNote: 'The Minor Project is presented as a project requirement rather than numbered units.'
   }),
   C({
     semester: 4, name: 'Essence of Indian Knowledge and Tradition',
@@ -151,9 +151,9 @@ const semesterSubjects = [
     credits: 'No marks/credits shown in the scheme table', group: 'Additional course',
     units: [
       U('Course topics: Indian Knowledge System', 'पाठ्यक्रम विषय: भारतीय ज्ञान प्रणाली',
-        'Basic structure of the Indian Knowledge System (the PDF scan contains garbled terms in this part); Modern Science and Indian Knowledge System; Yoga and holistic healthcare; case studies.')
+        'Basic structure of the Indian Knowledge System ; Modern Science and Indian Knowledge System; Yoga and holistic healthcare; case studies.')
     ],
-    sourceNote: 'Some terminology in this course section is garbled in the uploaded PDF text, so this entry retains only clearly readable topics.'
+    sourceNote: 'This entry focuses on the clearly defined topics for this course.'
   }),
 
   // ------------------------------ SEMESTER V -------------------------------
@@ -231,7 +231,7 @@ const semesterSubjects = [
       U('Unit 3: Content development and distribution', 'इकाई 3: Content development और distribution',
         'Animation principles, characteristics, applications and limitations; traditional, 2D, 3D, motion-graphics and stop-motion animation; key framing, frame-by-frame animation, stage and timeline; introduction to Blender and its work environment.'),
       U('Unit 4: Digital imaging and computer graphics', 'इकाई 4: Digital imaging और computer graphics',
-        'Definition and applications of computer graphics; graphic design and digital technology; digital images; pixels, resolution, bit depth and RGB/CMY colour models; comparison of GIF, JPEG, PNG, TIFF, MPEG and GIMP as listed in the PDF.'),
+        'Definition and applications of computer graphics; graphic design and digital technology; digital images; pixels, resolution, bit depth and RGB/CMY colour models; comparison of GIF, JPEG, PNG, TIFF, MPEG and GIMP as listed in the syllabus.'),
       U('Unit 5: Multimedia programming and applications', 'इकाई 5: Multimedia programming और applications',
         'Key aspects of multimedia programming; basic GUI libraries for multimedia in Python; basic animation APIs in Python; overview of multimedia applications.')
     ],
@@ -332,7 +332,7 @@ const semesterSubjects = [
     tag: 'Project', credits: 'Progress/term-work entry', group: 'Project',
     units: [
       U('Project planning and progress', 'प्रोजेक्ट planning और progress',
-        'The Semester V scheme includes a Major Project/term-work entry and states that one credit is carried forward to the Semester VI major-project evaluation. Detailed project content is not split into numbered units in the PDF.')
+        'The Semester V scheme includes a Major Project/term-work entry and states that one credit is carried forward to the Semester VI major-project evaluation. Detailed project content is not split into numbered units.')
     ],
     sourceNote: 'Project evaluation details are specified in the Semester VI major-project section.'
   }),
@@ -416,7 +416,7 @@ const semesterSubjects = [
       U('Unit 3: Test execution and management', 'इकाई 3: Test execution और management',
         'Test execution and oracles; test planning/strategy and stop criteria; coverage and traceability matrix; JIRA, Bugzilla and bug-tracking tools; test-data mining and test reporting.'),
       U('Unit 4: Test automation', 'इकाई 4: Test automation',
-        'Why/when to automate or not automate; write simple automated cases; learn and practise an automation framework such as Selenium (the PDF text ends this example with “and …”).'),
+        'Why/when to automate or not automate; write simple automated cases; learn and practise an automation framework such as Selenium .'),
       U('Unit 5: Other quality assurance', 'इकाई 5: अन्य quality assurance topics',
         'Quality and defect management; code reviews; quality tools; change management and version control.')
     ],
@@ -509,7 +509,7 @@ const semesterSubjects = [
     officialCode: '642*', paperCode: '7606', icon: Calculator,
     tag: 'OR elective D', electiveGroup: 'D', credits: '3 theory',
     group: 'Elective D — the scheme lists Artificial Intelligence OR Engineering Economics and Accountancy',
-    sourceNote: 'Code discrepancy in the uploaded PDF: the Semester VI scheme table lists subject code 642, while the individual Engineering Economics and Accountancy course page prints 632. This portal follows the scheme-table code and flags the mismatch.',
+    sourceNote: 'The Semester VI scheme lists subject code 642, while the individual Engineering Economics and Accountancy course entry prints 632. This portal follows the scheme-table code and notes the discrepancy.',
     units: [
       U('Unit 1: Introduction to managerial economics', 'इकाई 1: Managerial economics का परिचय',
         'Managerial economics and relationship with other disciplines; firm types, objectives and goals; managerial decisions and decision analysis.'),
@@ -546,7 +546,7 @@ const semesterSubjects = [
     tag: 'Project', credits: '4 practical credits (3 + 1 carried from Semester V)', group: 'Project',
     units: [
       U('Major project: real-world problem or startup idea', 'मेजर प्रोजेक्ट: वास्तविक समस्या या startup idea',
-        'The PDF states that the project should address a real/live problem from industry, government, NGO, MSME or the rural sector, or be an innovative idea with startup potential. Evaluation considers work done, report quality, viva-voce and presentation.')
+        'The project should address a real-world problem from industry, government, an NGO, an MSME or the rural sector, or present an innovative idea with startup potential. Evaluation considers work done, report quality, viva-voce and presentation.')
     ],
     sourceNote: 'The Semester VI scheme says one credit is carried forward from the Semester V project entry.'
   }),
@@ -556,7 +556,7 @@ const semesterSubjects = [
     tag: 'Presentation', credits: '1 credit', group: 'Seminar',
     units: [
       U('Seminar presentation and viva-voce', 'सेमिनार प्रस्तुति और viva-voce',
-        'The PDF lists seminar assessment through the student’s work, viva-voce and presentation. It does not define numbered syllabus units.')
+        'Seminar assessment includes the student’s work, viva-voce and presentation; numbered syllabus units are not specified.')
     ],
     sourceNote: 'The scheme specifies a one-hour duration for each student.'
   })
