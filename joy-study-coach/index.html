@@ -95,11 +95,11 @@ async function loadAll(){
   if(!state.selectedSubject||!state.subjects.some(x=>x.id===state.selectedSubject))state.selectedSubject=state.subjects[0]?.id||"";
   if(!state.selectedUnit||!state.units.some(x=>x.id===state.selectedUnit&&x.subject_id===state.selectedSubject))state.selectedUnit=unitsFor()[0]?.id||"";
   if(!state.selectedTask||!state.tasks.some(x=>x.id===state.selectedTask&&x.unit_id===state.selectedUnit))state.selectedTask=tasksFor()[0]?.id||"";
-  if(state.activeTimer?.status==="running"&&state.activeTimer.segmentStartedAt){state.activeTimer.accumulatedSeconds=(state.activeTimer.accumulatedSeconds||0)+Math.max(0,Math.floor((Date.now()-Date.parse(state.activeTimer.segmentStartedAt))/1000));state.activeTimer.segmentStartedAt=null;state.activeTimer.status="paused";state.activeTimer.recovered=true;await saveTimerState()}
+  if(state.activeTimer?.status==="running"&&state.activeTimer.segmentStartedAt){/* Do not count the unknown interval while the browser was closed. Keep only the last cloud-heartbeat total. */state.activeTimer.segmentStartedAt=null;state.activeTimer.status="paused";state.activeTimer.recovered=true;await saveTimerState()}
   state.loading=false;setCloud("Cloud saved");render();startHeartbeat();
  }catch(e){state.loading=false;setCloud("Cloud error",true);throw e}
 }
-async function saveTimerState(){if(!state.user)return;const r=await sb.from("active_timers").upsert({user_id:state.user.id,state:state.activeTimer,updated_at:nowIso()},{onConflict:"user_id"});if(r.error)throw r.error;localStorage.setItem("joy-sc-active-"+state.user.id,JSON.stringify(state.activeTimer));setCloud("Cloud saved")}
+async function saveTimerState(){if(!state.user)return;const r=await sb.from("active_timers").upsert({user_id:state.user.id,state:state.activeTimer,updated_at:nowIso()},{onConflict:"user_id"});if(r.error)throw r.error;try{localStorage.setItem("joy-sc-active-"+state.user.id,JSON.stringify(state.activeTimer))}catch(e){console.warn("Local timer cache unavailable; cloud save succeeded.",e)}setCloud("Cloud saved")}
 async function clearTimerState(){state.activeTimer=null;if(state.user){await must(sb.from("active_timers").delete().eq("user_id",state.user.id));localStorage.removeItem("joy-sc-active-"+state.user.id)}}
 function startHeartbeat(){
  clearInterval(heartbeatHandle);heartbeatHandle=setInterval(async()=>{
@@ -266,7 +266,7 @@ async function startTimer(){
  const p=Number($("timerPlan")?.value||t.planned_minutes);
  if(!Number.isInteger(p)||p<1||p>600){toast("Session time must be from 1 to 600 minutes.",true);return}
  state.activeTimer=toTimerState(t,p);state.selectedTask=t.id;
- try{await saveTimerState();await sb.from("tasks").update({status:"doing",updated_at:nowIso()}).eq("id",t.id);await refresh();state.view="timer";render();toast("Timer started. Stay focused.");}
+ try{await saveTimerState();await must(sb.from("tasks").update({status:"doing",updated_at:nowIso()}).eq("id",t.id));await refresh();state.view="timer";render();toast("Timer started. Stay focused.");}
  catch(e){state.activeTimer=null;fail(e)}
 }
 async function pauseTimer(){
