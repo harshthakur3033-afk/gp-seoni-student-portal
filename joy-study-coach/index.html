@@ -13,17 +13,14 @@
 <body>
 <header class="app-head">
  <div class="brand"><span class="brand-mark">J</span><span>Joy Study Coach</span></div>
- <div class="head-actions"><span id="cloudState" class="statusline"><span class="dot"></span>Connecting…</span><span id="userEmail" class="subtle"></span><button id="logoutBtn" class="ghost small hidden">Sign out</button></div>
+ <div class="head-actions"><span id="cloudState" class="statusline"><span class="dot"></span>Connecting…</span><span id="userEmail" class="subtle">This browser only</span><button id="logoutBtn" class="ghost small hidden">Sign out</button></div>
 </header>
-<div id="authScreen" class="auth-wrap">
- <div class="auth-card">
-  <span class="tag">YOUR STUDY SPACE</span><h1>Study with a plan.</h1><p class="muted">Your tasks, study sessions and progress are saved to your account, so you can return later on the same or another device.</p>
-  <div class="field"><label>Email</label><input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com"></div>
-  <div class="field"><label>Password</label><input id="authPassword" type="password" autocomplete="current-password" placeholder="At least 8 characters"></div>
-  <div class="row"><button id="signInBtn" class="primary">Sign in</button><button id="signUpBtn" class="soft">Create account</button></div>
-  <p id="authMessage" class="tiny muted"></p>
-  <div class="notice warning tiny">Use your own email. If you create a new account, email confirmation may be required before sign-in.</div>
- </div>
+<div id="authScreen" class="auth-wrap hidden">
+ <div class="auth-card"><span class="tag">PERSONAL MODE</span><h1>Joy Study Coach</h1>
+ <p class="muted">Sign-up is temporarily turned off. Your study tasks and records save in this browser on this device. Use Settings → Backup to keep a copy.</p>
+ <p id="authMessage" class="tiny muted"></p>
+ <button id="signInBtn" class="hidden" type="button">Sign in unavailable</button>
+ <button id="signUpBtn" class="hidden" type="button">Create account unavailable</button></div>
 </div>
 <div id="app" class="layout hidden">
  <aside><nav id="sideNav" class="nav">
@@ -34,7 +31,7 @@
   <button data-view="records"><span class="ico">▧</span>Study Records</button>
   <button data-view="settings"><span class="ico">⚙</span>Settings & Backup</button>
  </nav><div class="aside-note">LEARN · FOCUS · RECORD<br><br>One session at a time. Small progress counts.</div></aside>
- <main class="main"><div id="content"></div><div class="foot">Joy Study Coach · Cloud-saved study tracker · Hindi Part 1 can be added when available.</div></main>
+ <main class="main"><div id="content"></div><div class="foot">Joy Study Coach · Saved on this device · Export a backup regularly · Hindi Part 1 can be added when available.</div></main>
 </div>
 <nav id="mobileNav" class="mobile-nav hidden">
  <button data-view="dashboard" class="active"><span class="ico">▦</span>Home</button>
@@ -45,10 +42,100 @@
 </nav>
 <div id="toast" class="toast hidden"></div>
 <script type="module">
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-const SUPABASE_URL="https://dfjsjuiuicmgngrddeyh.supabase.co";
-const SUPABASE_KEY="sb_publishable_NNhFlGESVGgd9WnzpiwPCA_mndolbCF";
-const sb=createClient(SUPABASE_URL,SUPABASE_KEY);
+// Temporary personal mode: persistent browser storage, no signup or email confirmation.
+// Data stays in this browser/device until account sync is added later.
+const LOCAL_DB_KEY="joy-study-coach-local-v1";
+const EMPTY_DB={subjects:[],units:[],tasks:[],study_sessions:[],plan_items:[],active_timers:[],user_settings:[]};
+function readLocalDb(){
+ try { const raw=localStorage.getItem(LOCAL_DB_KEY); if(!raw)return structuredClone(EMPTY_DB);
+  const parsed=JSON.parse(raw);return Object.fromEntries(Object.keys(EMPTY_DB).map(k=>[k,Array.isArray(parsed[k])?parsed[k]:[]]));
+ } catch(e){throw new Error("Could not read saved data in this browser. Export/restore backup or enable browser storage. "+e.message)}
+}
+function writeLocalDb(db){
+ try {localStorage.setItem(LOCAL_DB_KEY,JSON.stringify(db))}
+ catch(e){throw new Error("Browser storage is unavailable or full. Your latest change was not saved. "+e.message)}
+}
+function seedLocalSyllabus(db,userId){
+ if(db.subjects.length)return false;
+ const seed=[
+  ["PHY","Physics","class12",1,["1 Electric Charges and Fields","2 Electrostatic Potential and Capacitance","3 Current Electricity","4 Moving Charges and Magnetism","5 Magnetism and Matter","6 Electromagnetic Induction","7 Alternating Current","8 Electromagnetic Waves","9 Ray Optics and Optical Instruments","10 Wave Optics","11 Dual Nature of Radiation and Matter","12 Atoms","13 Nuclei","14 Semiconductor Electronics: Materials, Devices and Simple Circuits"]],
+  ["CHE","Chemistry","class12",2,["1 Solutions","2 Electrochemistry","3 Chemical Kinetics","4 The d- and f-Block Elements","5 Coordination Compounds","6 Haloalkanes and Haloarenes","7 Alcohols, Phenols and Ethers","8 Aldehydes, Ketones and Carboxylic Acids","9 Amines","10 Biomolecules"]],
+  ["MAT","Mathematics","class12",3,["1 Relations and Functions","2 Inverse Trigonometric Functions","3 Matrices","4 Determinants","5 Continuity and Differentiability","6 Application of Derivatives","7 Integrals","8 Application of Integrals","9 Differential Equations","10 Vector Algebra","11 Three Dimensional Geometry","12 Linear Programming","13 Probability"]],
+  ["ENG","English (Flamingo + Vistas)","class12",4,["Flamingo prose: The Last Lesson","Flamingo prose: Lost Spring","Flamingo prose: Deep Water","Flamingo prose: The Rattrap","Flamingo prose: Indigo","Flamingo prose: Poets and Pancakes","Flamingo prose: The Interview (Part I and Part II)","Flamingo prose: Going Places","Flamingo poetry: My Mother at Sixty-six","Flamingo poetry: Keeping Quiet","Flamingo poetry: A Thing of Beauty","Flamingo poetry: A Roadside Stand","Flamingo poetry: Aunt Jennifer's Tigers","Vistas: The Third Level","Vistas: The Tiger King","Vistas: Journey to the End of the Earth","Vistas: The Enemy","Vistas: On the Face of It","Vistas: Memories of Childhood (The Cutting of My Long Hair; We Too are Human Beings)"]],
+  ["HIN","Hindi — Vitan Part 2","class12",5,["सिल्वर वैडिंग","जूझ","अतीत में दबे पाँव"]],
+  ["301","Computer Programming","diploma",6,["Unit 1 Introduction to Computational Thinking, Variables and Data Representation","Unit 2 Operators and Input-Output","Unit 3 Conditional and Looping Constructs","Unit 4 Arrays and Pointer","Unit 5 Functions and Recursion"]],
+  ["302","Scripting Languages","diploma",7,["Unit 1 Introduction, Variables and Data Types","Unit 2 Advanced Data Types","Unit 3 Control Structures","Unit 4 Functions, Modules and Packages","Unit 5 File I/O, Text Processing, Regular Expressions"]],
+  ["303","Data Structures","diploma",8,["Unit 1 Basics of Data Structure","Unit 2 Searching and Sorting Techniques","Unit 3 Linear Data Structures","Unit 4 Linked List","Unit 5 Non-Linear Data Structure"]],
+  ["304","Computer System Organisation","diploma",9,["Unit 1 Basic Computer Structure","Unit 2 Instruction Set Architecture","Unit 3 Control Unit Organization","Unit 4 Memory and I/O Organization","Unit 5 Microprocessor 8085 Case Study and Assembly Language Programming"]],
+  ["305","Algorithms","diploma",10,["Unit 1 Fundamental of Algorithms","Unit 2 Sorting","Unit 3 Searching","Unit 4 Graphs","Unit 5 Strings"]]
+ ];
+ const note="Textbook-based chapter list — check against current MP Board exam syllabus";
+ for(const [code,name,track,sort,titles] of seed){
+  const subject={id:uuid(),user_id:userId,code,name,track,sort,review_note:track==="class12"?note:"Diploma CSE Semester III syllabus",created_at:nowIso()};
+  db.subjects.push(subject);
+  titles.forEach((title,i)=>{
+   const unit={id:uuid(),user_id:userId,subject_id:subject.id,title,sort:i+1,needs_review:false,created_at:nowIso()};
+   db.units.push(unit);
+   db.tasks.push({id:uuid(),user_id:userId,subject_id:subject.id,unit_id:unit.id,title:"Read and make notes",notes:"Replace this with today's exact task for this unit.",planned_minutes:30,status:"todo",sort:1,created_at:nowIso(),updated_at:nowIso()});
+  });
+ }
+ db.user_settings.push({user_id:userId,daily_goal_minutes:120,light_goal_minutes:45,college_day:false,updated_at:nowIso()});
+ writeLocalDb(db);return true;
+}
+class LocalQuery{
+ constructor(table){this.table=table;this.action="select";this.payload=null;this.filters=[];this.orderSpec=null;this.limitNum=null;this.single=false;this.options={}}
+ select(){return this}
+ order(col,opts={}){this.orderSpec={col,ascending:opts.ascending!==false};return this}
+ limit(n){this.limitNum=n;return this}
+ maybeSingle(){this.single=true;return this}
+ eq(col,val){this.filters.push([col,val]);return this}
+ insert(payload){this.action="insert";this.payload=payload;return this}
+ upsert(payload,options={}){this.action="upsert";this.payload=payload;this.options=options||{};return this}
+ update(payload){this.action="update";this.payload=payload;return this}
+ delete(){this.action="delete";return this}
+ async execute(){
+  try{
+   const db=readLocalDb();if(!db[this.table])throw new Error("Unknown table: "+this.table);
+   const arr=db[this.table];const matches=x=>this.filters.every(([k,v])=>x[k]===v);
+   let data=null;
+   if(this.action==="select"){
+    data=arr.filter(matches);
+    if(this.orderSpec){const {col,ascending}=this.orderSpec;data.sort((a,b)=>{const x=a[col],y=b[col];if(x===y)return 0;return ((x>y)?1:-1)*(ascending?1:-1)})}
+    if(this.limitNum!==null)data=data.slice(0,this.limitNum);
+    if(this.single)data=data[0]||null;
+   }else if(this.action==="insert"){
+    const rows=Array.isArray(this.payload)?this.payload:[this.payload];
+    for(const row of rows){if(arr.some(x=>x.id===row.id))throw new Error("Record already exists.");arr.push({...row})}
+    data=rows;
+   }else if(this.action==="upsert"){
+    const rows=Array.isArray(this.payload)?this.payload:[this.payload];const keys=String(this.options.onConflict||"id").split(",").map(x=>x.trim());
+    data=[];
+    for(const row of rows){const found=arr.find(x=>keys.every(k=>x[k]===row[k]));
+     if(found){if(this.options.ignoreDuplicates)continue;Object.assign(found,row);data.push(found)}
+     else{arr.push({...row});data.push(row)}
+    }
+   }else if(this.action==="update"){
+    data=arr.filter(matches);for(const row of data)Object.assign(row,this.payload)
+   }else if(this.action==="delete"){
+    data=arr.filter(matches);const gone=new Set(data);db[this.table]=arr.filter(x=>!gone.has(x))
+   }
+   writeLocalDb(db);
+   return {data,error:null,count:Array.isArray(data)?data.length:(data?1:0)};
+  }catch(error){return {data:null,error}}
+ }
+ then(resolve,reject){return this.execute().then(resolve,reject)}
+}
+const sb={
+ from(table){return new LocalQuery(table)},
+ async rpc(name){try{if(name!=="seed_default_syllabus")throw new Error("Unknown action");const db=readLocalDb();const result=seedLocalSyllabus(db,"joy-local-user");return {data:result,error:null}}catch(error){return {data:null,error}}},
+ auth:{
+  async getSession(){return {data:{session:null},error:null}},
+  async signInWithPassword(){return {data:{user:null},error:new Error("Sign-in is not used in personal browser mode.")}},
+  async signUp(){return {data:{user:null,session:null},error:new Error("Account creation is disabled in personal browser mode.")}},
+  async signOut(){return {error:null}},
+  onAuthStateChange(){return {data:{subscription:{unsubscribe(){}}}}}
+ }
+};
 const $=id=>document.getElementById(id);
 const state={user:null,view:"dashboard",subjects:[],units:[],tasks:[],sessions:[],plans:[],settings:null,activeTimer:null,selectedSubject:"",selectedUnit:"",selectedTask:"",loading:false,saveLabel:"Cloud connected"};
 let tickHandle=null,heartbeatHandle=null,toastHandle=null,notifSentFor="";
@@ -60,7 +147,7 @@ const fmtMin=n=>{const v=Math.max(0,Number(n)||0);return (Math.round(v*10)/10).t
 const fmtTime=s=>{s=Math.max(0,Math.floor(s||0));return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")};
 const fmtDate=d=>d?new Date(d).toLocaleString([],{day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"}):"—";
 function toast(msg,err=false){$("toast").textContent=msg;$("toast").classList.remove("hidden","error");if(err)$("toast").classList.add("error");clearTimeout(toastHandle);toastHandle=setTimeout(()=>$("toast").classList.add("hidden"),3600)}
-function setCloud(s,err=false){$("cloudState").innerHTML='<span class="dot" style="background:'+(err?'#ffb3a9':'#83e0bb')+'"></span>'+esc(s)}
+function setCloud(s,err=false){const label= /error|not saved/i.test(s)?"Local save error":/loading/i.test(s)?"Loading saved data":/saving|importing/i.test(s)?s:"Saved on this device";$("cloudState").innerHTML='<span class="dot" style="background:'+(err?'#ffb3a9':'#83e0bb')+'"></span>'+esc(label)}
 function fail(e){console.error(e);toast(e?.message||String(e)||"Something went wrong. Please retry.",true);setCloud("Save error",true)}
 async function must(p){const r=await p;if(r.error)throw r.error;return r}
 function currentSubject(){return state.subjects.find(x=>x.id===state.selectedSubject)}
@@ -96,8 +183,8 @@ async function loadAll(){
   if(!state.selectedUnit||!state.units.some(x=>x.id===state.selectedUnit&&x.subject_id===state.selectedSubject))state.selectedUnit=unitsFor()[0]?.id||"";
   if(!state.selectedTask||!state.tasks.some(x=>x.id===state.selectedTask&&x.unit_id===state.selectedUnit))state.selectedTask=tasksFor()[0]?.id||"";
   if(state.activeTimer?.status==="running"&&state.activeTimer.segmentStartedAt){/* Do not count the unknown interval while the browser was closed. Keep only the last cloud-heartbeat total. */state.activeTimer.segmentStartedAt=null;state.activeTimer.status="paused";state.activeTimer.recovered=true;await saveTimerState()}
-  state.loading=false;setCloud("Cloud saved");render();startHeartbeat();
- }catch(e){state.loading=false;setCloud("Cloud error",true);throw e}
+  state.loading=false;setCloud("Saved on this device");render();startHeartbeat();
+ }catch(e){state.loading=false;setCloud("Local save error",true);throw e}
 }
 async function saveTimerState(){if(!state.user)return;const r=await sb.from("active_timers").upsert({user_id:state.user.id,state:state.activeTimer,updated_at:nowIso()},{onConflict:"user_id"});if(r.error)throw r.error;try{localStorage.setItem("joy-sc-active-"+state.user.id,JSON.stringify(state.activeTimer))}catch(e){console.warn("Local timer cache unavailable; cloud save succeeded.",e)}setCloud("Cloud saved")}
 async function clearTimerState(){state.activeTimer=null;if(state.user){await must(sb.from("active_timers").delete().eq("user_id",state.user.id));localStorage.removeItem("joy-sc-active-"+state.user.id)}}
@@ -156,7 +243,7 @@ function renderTimer(){
  if(t.status==="paused")s+='<button class="primary" data-action="resume-timer">Resume</button>';
  if(t.status==="break")s+='<button class="soft" data-action="end-break">End break & resume</button>';
  if(t.status!=="break")s+='<button class="soft" data-action="start-break">10-min break</button>';
- s+='<button class="primary" data-action="finish-timer">Finish & save</button><button class="danger" data-action="discard-timer">Discard</button></div><p class="muted tiny" style="text-align:center">A saved session is linked to this exact task, unit and subject.</p></section>';
+ s+='<button class="primary" data-action="finish-timer">Finish & save</button><button class="danger" data-action="discard-timer">Discard</button></div><p class="muted tiny" style="text-align:center">A saved session is linked to this exact task, unit and subject. Records are kept locally in this browser.</p></section>';
  return s}
  const current=currentTask();
  s+='<div class="grid two"><section class="card"><h2 class="section-title">Choose what to study</h2><div class="field"><label>Subject</label>'+subjectSelectHtml("timerSubject")+'</div><div class="field"><label>Unit / chapter</label>'+unitSelectHtml("timerUnit")+'</div><div class="field"><label>Saved task</label>'+taskSelectHtml("timerTask")+'</div><div class="notice">Your selected task’s planned time loads automatically. To create a new task, use Subjects & Units.</div></section><section class="card"><h2 class="section-title">Start a focus session</h2><div class="field"><label>Planned minutes for this session</label><input id="timerPlan" type="number" min="1" max="600" value="'+esc(current?.planned_minutes||30)+'"></div><div class="timer-face">00:00</div><p class="muted" style="text-align:center">Timer will begin when you tap Start.</p><div class="timer-actions"><button class="primary" data-action="start-timer" '+(!current?'disabled':'')+'>Start session</button><button class="ghost" data-action="nav" data-view="subjects">Create / edit task</button></div></section></div>';
@@ -178,8 +265,8 @@ function renderRecords(){
 }
 function renderSettings(){
  const set=state.settings||{daily_goal_minutes:120,light_goal_minutes:45,college_day:false};let s=pageHead("Settings & backup","Keep your data in your account and export a copy regularly.","ACCOUNT");
- s+='<div class="grid two"><section class="card"><h2 class="section-title">Study goals</h2><div class="field"><label>Regular day goal (minutes)</label><input id="normalGoal" type="number" min="5" max="960" value="'+esc(set.daily_goal_minutes)+'"></div><div class="field"><label>College day goal (minutes)</label><input id="lightGoal" type="number" min="5" max="960" value="'+esc(set.light_goal_minutes)+'"></div><div class="field"><label class="goal-switch"><input id="settingCollege" type="checkbox" '+(set.college_day?'checked':'')+'> Use college-day light plan today</label></div><button class="primary" data-action="save-settings">Save settings</button><hr style="border:0;border-top:1px solid var(--line);margin:20px 0"><h2 class="section-title">Browser reminders</h2><p class="muted tiny">Reminders work only while the website is open and the browser grants notification permission. They are not guaranteed after closing the browser.</p><button class="ghost" data-action="enable-notifications">Enable notifications</button></section><section class="card"><h2 class="section-title">Backup & restore</h2><p class="muted">Your study data is saved in the cloud account. Download a copy from time to time as extra protection.</p><div class="list"><button class="primary" data-action="export-json">Download full JSON backup</button><button class="soft" data-action="export-csv">Download sessions CSV</button><div class="field"><label>Restore from JSON backup</label><input type="file" id="backupFile" accept=".json,application/json"></div><div class="row"><button class="ghost" data-action="restore-merge">Merge backup</button><button class="danger" data-action="restore-replace">Replace all data</button></div><p class="muted tiny">Backup contains subject/unit/task labels, saved tasks, settings, plans and study sessions. Restore validates references first. Replace deletes current account data.</p></div></section></div>';
- s+='<section class="card" style="margin-top:15px"><h2 class="section-title">Account</h2><p class="muted">'+esc(state.user?.email||"")+' · Cloud database connected</p><button class="danger" data-action="logout">Sign out</button></section>';
+ s+='<div class="grid two"><section class="card"><h2 class="section-title">Study goals</h2><div class="field"><label>Regular day goal (minutes)</label><input id="normalGoal" type="number" min="5" max="960" value="'+esc(set.daily_goal_minutes)+'"></div><div class="field"><label>College day goal (minutes)</label><input id="lightGoal" type="number" min="5" max="960" value="'+esc(set.light_goal_minutes)+'"></div><div class="field"><label class="goal-switch"><input id="settingCollege" type="checkbox" '+(set.college_day?'checked':'')+'> Use college-day light plan today</label></div><button class="primary" data-action="save-settings">Save settings</button><hr style="border:0;border-top:1px solid var(--line);margin:20px 0"><h2 class="section-title">Browser reminders</h2><p class="muted tiny">Reminders work only while the website is open and the browser grants notification permission. They are not guaranteed after closing the browser.</p><button class="ghost" data-action="enable-notifications">Enable notifications</button></section><section class="card"><h2 class="section-title">Backup & restore</h2><p class="muted">Your study data is saved in this browser on this device. Download a JSON backup regularly. Clearing browser data or switching devices can remove or hide these records.</p><div class="list"><button class="primary" data-action="export-json">Download full JSON backup</button><button class="soft" data-action="export-csv">Download sessions CSV</button><div class="field"><label>Restore from JSON backup</label><input type="file" id="backupFile" accept=".json,application/json"></div><div class="row"><button class="ghost" data-action="restore-merge">Merge backup</button><button class="danger" data-action="restore-replace">Replace all data</button></div><p class="muted tiny">Backup contains subject/unit/task labels, saved tasks, settings, plans and study sessions. Restore validates references first. Replace deletes current account data.</p></div></section></div>';
+ s+='<section class="card" style="margin-top:15px"><h2 class="section-title">Account</h2><p class="muted">'+esc(state.user?.email||"")+' · Saved locally in this browser</p><button class="danger" data-action="logout">Sign out</button></section>';
  return s
 }
 function render(){
@@ -340,7 +427,7 @@ async function importBackup(replace){
    if(items.length){const rows=items.map(x=>({...x,user_id:state.user.id}));await must(sb.from(table).upsert(rows,{onConflict:"id"}))}
   }
   if(b.settings)await must(sb.from("user_settings").upsert({...b.settings,user_id:state.user.id},{onConflict:"user_id"}));
-  await refresh();state.view="dashboard";render();toast("Backup imported. Check your progress dashboard.");setCloud("Cloud saved");
+  await refresh();state.view="dashboard";render();toast("Backup imported. Check your progress dashboard.");setCloud("Saved on this device");
  }catch(e){fail(e)}
 }
 async function askNotifications(){
@@ -417,7 +504,7 @@ function attachEvents(){
  });
  document.body.addEventListener("input",ev=>{if(ev.target.id==="recordSearch")renderRecordsTable()});
  document.body.addEventListener("submit",async ev=>{if(ev.target.id==="taskForm")await saveTaskFromForm(ev)});
- $("signInBtn").addEventListener("click",signIn);$("signUpBtn").addEventListener("click",signUp);$("logoutBtn").addEventListener("click",signOut);
+ if($("signInBtn"))$("signInBtn").addEventListener("click",signIn);if($("signUpBtn"))$("signUpBtn").addEventListener("click",signUp);if($("logoutBtn"))$("logoutBtn").addEventListener("click",signOut);
 }
 async function signIn(){
  $("authMessage").textContent="Signing in…";const email=$("authEmail").value.trim(),password=$("authPassword").value;
@@ -433,13 +520,13 @@ async function signUp(){
 }
 async function signOut(){await sb.auth.signOut();state.user=null;state.subjects=[];state.units=[];state.tasks=[];state.sessions=[];state.plans=[];state.activeTimer=null;$("app").classList.add("hidden");$("mobileNav").classList.add("hidden");$("authScreen").classList.remove("hidden");$("logoutBtn").classList.add("hidden");$("userEmail").textContent="";$("authMessage").textContent="Signed out."}
 async function afterLogin(){
- $("authScreen").classList.add("hidden");$("app").classList.remove("hidden");$("mobileNav").classList.remove("hidden");$("logoutBtn").classList.remove("hidden");$("userEmail").textContent=state.user.email||"Account";
- try{await loadAll();state.view="dashboard";render();toast("Welcome back. Your cloud data is loaded.")}
+ $("authScreen").classList.add("hidden");$("app").classList.remove("hidden");$("mobileNav").classList.remove("hidden");$("logoutBtn").classList.add("hidden");$("userEmail").textContent="This browser only";
+ try{await loadAll();state.view="dashboard";render();toast("Your saved study data is loaded on this device.")}
  catch(e){$("content").innerHTML='<div class="card"><h1>Could not load cloud data</h1><p>'+esc(e.message||String(e))+'</p><button class="primary" data-action="retry-load">Retry loading</button></div>';fail(e)}
 }
 sb.auth.onAuthStateChange((_event,session)=>{if(session?.user&&!state.user){state.user=session.user;afterLogin().catch(fail)}else if(!session?.user&&state.user){state.user=null;$("app").classList.add("hidden");$("mobileNav").classList.add("hidden");$("authScreen").classList.remove("hidden");$("logoutBtn").classList.add("hidden")}});
 document.body.addEventListener("click",async ev=>{const b=ev.target.closest('[data-action="retry-load"]');if(b&&state.user){try{await loadAll()}catch(e){fail(e)}}});
 attachEvents();
-(async()=>{try{const r=await sb.auth.getSession();if(r.error)throw r.error;if(r.data.session){state.user=r.data.session.user;await afterLogin()}else setCloud("Sign in to sync")}catch(e){setCloud("Connection error",true);$("authMessage").textContent="Could not connect to the study database: "+e.message}})();
+(async()=>{try{state.user={id:"joy-local-user",email:"This browser"};await afterLogin()}catch(e){setCloud("Local save error",true);$("authMessage").textContent="Could not load local study data: "+e.message;fail(e)}})();
 </script>
 </body></html>
