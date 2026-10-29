@@ -522,7 +522,7 @@ async function signOut(){await sb.auth.signOut();state.user=null;state.subjects=
 async function afterLogin(){
  $("authScreen").classList.add("hidden");$("app").classList.remove("hidden");$("mobileNav").classList.remove("hidden");$("logoutBtn").classList.add("hidden");$("userEmail").textContent="This browser only";
  try{await loadAll();state.view="dashboard";render();toast("Your saved study data is loaded on this device.")}
- catch(e){$("content").innerHTML='<div class="card"><h1>Could not load cloud data</h1><p>'+esc(e.message||String(e))+'</p><button class="primary" data-action="retry-load">Retry loading</button></div>';fail(e)}
+ catch(e){$("content").innerHTML='<div class="card"><h1>Could not load saved data on this device</h1><p>'+esc(e.message||String(e))+'</p><button class="primary" data-action="retry-load">Retry loading</button></div>';fail(e)}
 }
 sb.auth.onAuthStateChange((_event,session)=>{if(session?.user&&!state.user){state.user=session.user;afterLogin().catch(fail)}else if(!session?.user&&state.user){state.user=null;$("app").classList.add("hidden");$("mobileNav").classList.add("hidden");$("authScreen").classList.remove("hidden");$("logoutBtn").classList.add("hidden")}});
 document.body.addEventListener("click",async ev=>{const b=ev.target.closest('[data-action="retry-load"]');if(b&&state.user){try{await loadAll()}catch(e){fail(e)}}});
